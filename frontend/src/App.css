@@ -1,0 +1,339 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+/* font-family: 'Cormorant', serif; */
+
+/* PRODUCTS GALLERY STYLES */
+.productsGallery {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+}
+
+/*PRODUCT CARD STYLES */
+.wrapper {
+  width: 300px; 
+  height: 500px;
+  background: white;
+
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 0;
+  transform: scale(0.95);
+  transition: box-shadow 0.5s, transform 0.5s;
+}
+.wrapper:hover {
+  box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
+}
+.wrapper .container {
+  width: 100%;
+  height: 100%;
+}
+.wrapper .container .top {
+  height: 80%;
+  width: 100%;
+  background: url(https://www.ikea.com/kr/en/images/products/dinera-mug-dark-grey__0642538_pe701238_s5.jpg?f=s)
+    no-repeat center center;
+  background-size: 100%;
+}
+.wrapper .container .bottom {
+  width: 100%;
+  height: 20%;
+}
+.wrapper .container .bottom h1 {
+  margin: 0;
+  padding: 0;
+}
+.wrapper .container .bottom p {
+  margin: 0;
+  padding: 0;
+}
+.wrapper .container .bottom {
+  height: 100%;
+  width: 100%;
+  background: #f4f4f4;
+}
+.wrapper .container .bottom .details {
+  padding: 20px;
+  float: left;
+  width: calc(70% - 40px);
+}
+.wrapper .inside {
+  z-index: 9;
+  background: #92879b;
+  width: 140px;
+  height: 140px;
+  position: absolute;
+  top: -70px;
+  right: -70px;
+  border-radius: 0px 0px 200px 200px;
+  transition: all 0.5s, border-radius 2s, top 1s;
+  overflow: hidden;
+}
+.wrapper .inside .icon {
+  position: absolute;
+  right: 85px;
+  top: 85px;
+  color: white;
+}
+/* PRODUCT FORM */
+.main, .productFormContainer, form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.productFormContainer {
+    width: 100%;
+}
+form.productForm{
+    min-height: 80vh;
+    justify-content: space-around;
+    background-color: #BFC6D4;
+    width: 80%;
+    margin-top: 2rem;
+}
+form input, form textarea {
+    width: 90%;
+    border: none;
+    background-color: transparent!important;
+    border-bottom: 1px solid black;
+    padding-left: .5rem;
+    height: 2rem;
+    resize: none;
+    outline: none
+}
+div.price, div.sale {
+    display: flex;
+    width: 90%;
+    gap: 1rem;
+}
+div.saleRadios {
+    display:flex;
+    width: 90%;
+    align-items: center;
+}
+div.saleRadios p {
+    padding: 0.5rem;
+}
+div.saleRadios input {
+    height: auto;
+    width: 20%;
+}
+.formButton {
+    padding: 0.5rem;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    border: none;
+    background-color: black;
+    color: white;
+}
+
+/* Sign up - Sign in */
+
+main.signup-main,
+main.signin-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url(https://i.imgur.com/Tc1vKCs.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: auto;
+  min-height: 50vh;
+  width: 400px;
+  color: #666;
+  border-radius: 3px;
+  background: #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  overflow: hidden;
+}
+
+.box h1 {
+  margin-left: 1vw;
+  padding: 2vh;
+  font-size: 3vmin;
+  font-weight: 300;
+  color: #bf988f;
+}
+
+.box button {
+  background: #d4c5bf;
+  border: 0;
+  color: #7e6661;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 300;
+  width: 330px;
+  margin: 20px auto;
+  display: block;
+  cursor: pointer;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  border-radius: 2px;
+}
+
+.box button:active {
+  background: #d4c5bf;
+  color: #263238;
+}
+
+.box button:hover {
+  background: #bf988f;
+  color: #fff;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.box p {
+  font-size: 14px;
+  text-align: center;
+}
+
+.group {
+  position: relative;
+  margin-bottom: 35px;
+  margin-left: 40px;
+}
+
+.inputMaterial {
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 90%;
+  border: none;
+  border-bottom: 1px solid #757575;
+}
+
+.inputMaterial:focus {
+  outline: none;
+}
+
+.form-label {
+  color: #999;
+  font-size: 14px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+/* Active input */
+.inputMaterial:focus ~ label,
+.inputMaterial:valid ~ label {
+  top: -21px;
+  font-size: 1.5vmin;
+  color: #bf988f;
+}
+
+/* Input bars on focus */
+.bar {
+  position: relative;
+  display: block;
+  width: 90%;
+}
+.bar:before,
+.bar:after {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #bf988f;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+.bar:before {
+  left: 50%;
+}
+.bar:after {
+  right: 50%;
+}
+
+/* Active input */
+.inputMaterial:focus ~ .bar:before,
+.inputMaterial:focus ~ .bar:after {
+  width: 50%;
+}
+
+.inputMaterial:focus ~ .highlight {
+  -webkit-animation: inputHighlighter 0.3s ease;
+  -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
+}
+
+/* SignUp > Animations */
+@-webkit-keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@-moz-keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+
+.footer-box {
+  width: 100%;
+  height: 5vh;
+  background: #bf988f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-text {
+  color: #ffffff;
+  font-size: 1.5vmin;
+  font-weight: 500;
+}
+
+.sign-up {
+  color: white;
+  cursor: pointer;
+}
+
+.sign-up:hover {
+  color: #bfc6d4;
+}
+
+.googleButton {
+  display: flex;
+  align-items: center;
+}
