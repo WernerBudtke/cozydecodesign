@@ -1,8 +1,11 @@
-html {
+/* GENERAL*/
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
+/* font-family: 'Cormorant', serif; */
 
 /* PRODUCTS GALLERY STYLES */
 .productsGallery {
@@ -10,7 +13,6 @@ html {
   width: 100%;
   display: flex;
 }
-
 /*PRODUCT CARD STYLES */
 
 .wrapper {

@@ -1,12 +1,15 @@
-import "./App.css";
-import ProductsGallery from "./pages/ProductsGallery";
+import './App.css'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import ProductsGallery from './pages/ProductsGallery'
 
-const App = () => {
-  return (
+const App=()=>{
+  return(
     <>
-      <ProductsGallery />
+    <Header/>
+    <ProductsGallery />
+    <Footer/>
     </>
-  );
-};
-
-export default App;
+  )
+}
+export default App
