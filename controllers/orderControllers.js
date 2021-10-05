@@ -1,6 +1,7 @@
 // Crear Orden, Pedir x User / ALL (x fecha) + Send Mail after purchase
 // Bajar el STOCK en X cantidad de los productos que compró y sumar X cantidad a los vendidos de cada producto.
 const Order = require('../models/Order')
+const Product = require('../models/Product')
 const orderControllers = {
     getOrders: async (req, res) => {
         console.log("Received GET ORDERS Petition:" + Date())
@@ -40,6 +41,9 @@ const orderControllers = {
                 totalPrice: parseFloat(totalPrice)
             })
             let savedOrder = await newOrder.save()
+            products.forEach(async product => {
+                await Product.findOneAndUpdate({_id: product.productId}, {$inc: {stock: -product.quantity, sold: product.quantity}})
+            })
             res.json({success: true, response: savedOrder})
         }catch(err){
             res.json({success: false, response: err.message})
