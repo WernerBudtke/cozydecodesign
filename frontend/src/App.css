@@ -1,0 +1,32 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  html{
+    min-height: 100%;
+  }
+  
+  body{
+    min-height: 100%;
+    background-image: url("https://i.postimg.cc/kMtZFYhW/5906ab-8bd83759807048a2914aa4965c9d6938-mv2.webp");
+    min-width: 80%;
+    height: 100%;
+    background-size: cover;
+    background-color:red;
+  }
+  .nav{
+    height: 20%;
+}
+  .home{
+      height: 80%;
+  }
+
+  .footer{
+    height: 20%;
+}
+  .text-primary{
+    color: var(--primary) !important;
+  }
+  
