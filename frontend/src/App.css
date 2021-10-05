@@ -1,0 +1,69 @@
+/* PRODUCT FORM */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main, .productFormContainer, form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.productFormContainer {
+    width: 100%;
+}
+
+form.productForm{
+    min-height: 80vh;
+    justify-content: space-around;
+    background-color: #BFC6D4;
+    width: 80%;
+    margin-top: 2rem;
+}
+
+form input, form textarea {
+    width: 90%;
+    border: none;
+    background-color: transparent!important;
+    border-bottom: 1px solid black;
+    padding-left: .5rem;
+    height: 2rem;
+    resize: none;
+    outline: none
+}
+
+div.price, div.sale {
+    display: flex;
+    width: 90%;
+    gap: 1rem;
+}
+
+div.saleRadios {
+    display:flex;
+    width: 90%;
+    align-items: center;
+}
+
+div.saleRadios p {
+    padding: 0.5rem;
+}
+
+div.saleRadios input {
+    height: auto;
+    width: 20%;
+}
+
+.formButton {
+    padding: 0.5rem;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    border: none;
+    background-color: black;
+    color: white;
+}

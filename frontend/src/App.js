@@ -1,6 +1,11 @@
+import ProductForm from "./pages/ProductForm"
+import "./App.css"
+
 const App=()=>{
   return(
-    <h1>hola equipo!!</h1>
+    <>
+      <ProductForm/>
+    </>
   )
 }
 
