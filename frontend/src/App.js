@@ -1,7 +1,12 @@
-const App=()=>{
-  return(
-    <h1>hola equipo!!</h1>
-  )
-}
+import "./App.css";
+import ProductsGallery from "./pages/ProductsGallery";
 
-export default App
+const App = () => {
+  return (
+    <>
+      <ProductsGallery />
+    </>
+  );
+};
+
+export default App;
