@@ -1,34 +1,33 @@
-import './App.css'
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
-import {connect} from 'react-redux'
-import userActions from './redux/actions/userActions'
-import ProductsGallery from './pages/ProductsGallery'
-import ProductForm from './pages/ProductForm'
-import SignIn from './pages/SignIn'
-import SignUp from './pages/SignUp'
-import Home from './pages/Home'
+import "./App.css"
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom"
+import { connect } from "react-redux"
+import userActions from "./redux/actions/userActions"
+import ProductsGallery from "./pages/ProductsGallery"
+import ProductForm from "./pages/ProductForm"
+import SignIn from "./pages/SignIn"
+import SignUp from "./pages/SignUp"
+import Home from "./pages/Home"
 
-const App=()=>{
-
-  return(
+const App = () => {
+  return (
     <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={Home}/>
-          <Route path="/signin" component={SignIn}/>
-          <Route path="/signup" component={SignUp}/>
-          <Route exact path="/products" component={ProductsGallery}/>
-          <Route exact path="/productForm" component={ProductForm}/>
-          <Redirect to="/" />
-        </Switch>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/signin" component={SignIn} />
+        <Route path="/signup" component={SignUp} />
+        <Route exact path="/products" component={ProductsGallery} />
+        <Route exact path="/productForm" component={ProductForm} />
+        <Redirect to="/" />
+      </Switch>
     </BrowserRouter>
   )
 }
-const mapStateToProps=(state)=>{
-  return{
+const mapStateToProps = (state) => {
+  return {
     user: state.users.user,
   }
 }
-const mapDispatchToProps={
-  logFromSession:userActions.logFromSession
+const mapDispatchToProps = {
+  logFromSession: userActions.logFromSession,
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App)
