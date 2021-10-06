@@ -9,15 +9,17 @@ const handleError = (res,err) =>{
 const userControllers = {
     registerUser: (req, res) => {
         console.log("Received REGISTER USER Petition:" + Date())
-        const {lastName, firstName, password, eMail, google, admin, secretWord} = req.body
-        const {photo} = req.files
+        const {lastName, firstName, password, eMail, google, photo,  admin, secretWord} = req.body
         let owner = false
+        let photoUploaded = ''
+        let fileName = ''
         try{
+            if(!req.files && !google)throw new Error('Must upload a photo')
+            if(req.files){photoUploaded = req.files}
             if(admin === true){
                 if(secretWord === process.env.SECRETWORDOWNER){
                     owner = secretWord === process.env.SECRETWORDOWNER
                 }else{
-                    console.log('ENTRE ACA')
                     throw new Error("Can't be admin")
                 }
             }
@@ -25,15 +27,18 @@ const userControllers = {
             const newUser = new User({
                 firstName: firstName.trim(),
                 lastName: lastName.trim(),
-                password : hashedPass,
+                password: hashedPass,
                 eMail,
                 google,
                 admin,
-                owner
+                owner,
+                photo: google ? photo : ''
             })
-            const fileName = newUser._id + "." + photo.name.split('.')[photo.name.split(".").length-1]
-            newUser.photo = fileName
-            photo.mv(`${__dirname}/../storage/${fileName}`)
+            if(!google){
+                fileName = newUser._id + "." + photoUploaded.name.split('.')[photoUploaded.name.split(".").length-1]
+                newUser.photo = fileName
+                photoUploaded.mv(`${__dirname}/../storage/${fileName}`)
+            }
             newUser.save()
             .then(user => {
                 const token = jwt.sign({...newUser}, process.env.SECRETORKEY)
@@ -58,7 +63,7 @@ const userControllers = {
                     }
                     if(!bcryptjs.compareSync(password, userFound.password))throw new Error(errMessage)
                     const token = jwt.sign({...userFound}, process.env.SECRETORKEY)
-                    req.session.loggedUser = userFound 
+                    req.session.loggedUser = userFound
                     res.json({success: true, response: {photo: userFound.photo, token, firstName: userFound.firstName, admin: userFound.admin, owner: userFound.owner}})
                 })
                 .catch(err => handleError(res, err))
