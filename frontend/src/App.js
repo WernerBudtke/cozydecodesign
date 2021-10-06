@@ -10,10 +10,10 @@ import Home from './pages/Home'
 import Header from './components/Header'
 import { useEffect } from 'react'
 
-const App=({user, logFromSession})=>{
-
+const App=({token, logFromSession})=>{
+  console.log(token)
   useEffect(()=>{
-    if (!user){
+    if (!token){
       logFromSession()
     }
   },[])
@@ -34,7 +34,7 @@ const App=({user, logFromSession})=>{
 }
 const mapStateToProps=(state)=>{
   return{
-    user: state.users.user,
+    token: state.users.token,
   }
 }
 const mapDispatchToProps={

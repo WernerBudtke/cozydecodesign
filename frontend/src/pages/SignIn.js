@@ -30,6 +30,7 @@ const SignIn = (props) => {
       console.log(response)
         if (response.data.success) {
           alert("logged in")
+          props.history.push("/")
           return false
         } else {
         console.log(response)
