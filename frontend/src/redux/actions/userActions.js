@@ -1,4 +1,5 @@
 import axios from "axios"
+import toast from "react-hot-toast"
 
 const userActions = {
   signUp: (user) => {
@@ -7,9 +8,9 @@ const userActions = {
         let response = await axios.post("http://localhost:4000/api/user/register", user)
         if (!response.data.success) throw new Error(response.data.response)
         dispatch({ type: "LOG_IN_USER", payload: response.data.response })
-        return response
+        return {success: true, response: response.data.response}
       } catch (error) {
-        alert(error)
+        return {success: false, response: error.message}
       }
     }
   },
@@ -36,7 +37,7 @@ const userActions = {
         dispatch({type: "LOG_IN_USER", payload: response.data.response})
         return response
       } catch (error) {
-        alert(error)
+        toast.error("We found a "+error)
       }
     }
   },

@@ -3,6 +3,7 @@ import { GoogleLogin } from "react-google-login"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import userActions from "../redux/actions/userActions"
+import toast from "react-hot-toast"
 
 const SignIn = (props) => {
   const [user, setUser] = useState({
@@ -23,21 +24,14 @@ const SignIn = (props) => {
 
   const submitButton = async () => {
     if (Object.values(user).some((value) => !value)) {
-      alert("Empty fields")
+      return toast.error('Empty fields')
     }
-    try {
-      const response = await props.logIn(user)
-      console.log(response)
-        if (response.data.success) {
-          alert("logged in")
-          props.history.push("/")
-          return false
-        } else {
-        console.log(response)
-        }
-    } catch (error) {
-      console.log(error)
-    }
+    const response = await props.logIn(user)
+      if (response.data.success) {
+        toast.success('Welcome back!')
+        props.history.push("/")
+        return false
+      }
   }
 
   return (
