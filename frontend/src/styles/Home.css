@@ -1,0 +1,21 @@
+.home{
+    display: flex;
+    flex-direction: column;
+}
+.home div{
+  width: 100%;
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end
+  }
+.home button{
+  background-color: #d4c5bf;
+  width: 4vw;
+  height: 4vh;
+  position: absolute;
+  border-radius: 50%;
+}

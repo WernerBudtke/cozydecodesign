@@ -8,11 +8,20 @@ import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import Home from './pages/Home'
 import HoverCard from './pages/HoverCard'
+import Header from './components/Header'
+import { useEffect } from 'react'
 
-const App=()=>{
+const App=({user, logFromSession})=>{
+
+  useEffect(()=>{
+    if (!user){
+      logFromSession()
+    }
+  },[])
 
   return(
     <BrowserRouter>
+      <Header/>
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route path="/signin" component={SignIn}/>
@@ -20,6 +29,7 @@ const App=()=>{
           <Route exact path="/products" component={ProductsGallery}/>
           <Route exact path="/productForm" component={ProductForm}/>
           <Route exact path="/hover" component={HoverCard}/>
+          <Route exact path="/productform" component={ProductForm}/>
           <Redirect to="/" />
         </Switch>
     </BrowserRouter>
