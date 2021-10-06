@@ -1,9 +1,35 @@
-const express = require("express")
-const cors = require("cors")
-require("dotenv").config()
-
+const express = require('express')
+const cors = require('cors')
+require('dotenv').config()
+const session = require('express-session')
+const mongo = require('connect-mongodb-session')(session)
+const router = require('./routes/index')
+const store = new mongo({
+    uri: process.env.MONGODB,
+    collection: 'sessions'
+})
+require('./config/database')
+require('./config/passport')
+const path = require('path')
 const app = express()
 app.use(cors())
 app.use(express.json())
 
-const server = app.listen(4000, () => console.log("Server listening on port 4000"))
+app.use(session({
+    secret: process.env.SECRETORKEY,
+    resave: false,
+    saveUninitialized: false,
+    store: store
+}))
+app.use('/api', router)
+
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('client/build'))
+    app.get('*', (req, res)=>{
+        res.sendFile(path.join(__dirname + "/client/build/index.html"))
+    })
+}
+
+const PORT = process.env.PORT || 4000
+const HOST = process.env.MYHOST || '0.0.0.0'
+const server = app.listen(PORT,HOST, () => console.log(`Server listening on ${PORT} at ${HOST}!`))

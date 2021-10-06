@@ -1,24 +1,34 @@
+import './App.css'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
-import Home from './pages/home'
-import Footer from "./components/Footer"
-import Navegador from "./components/navegador"
-import { useEffect } from 'react'
+import {connect} from 'react-redux'
+import userActions from './redux/actions/userActions'
+import ProductsGallery from './pages/ProductsGallery'
+import ProductForm from './pages/ProductForm'
+import SignIn from './pages/SignIn'
+import SignUp from './pages/SignUp'
+import Home from './pages/Home'
 
+const App=()=>{
 
-const App = (props) => { 
-  
-  return (
+  return(
     <BrowserRouter>
-    <div>
-      <Route component={Navegador}/>
-      <Switch>
-        <Route exact path='/' component={Home}/>
-      </Switch>
-      <Route component={Footer}/>
-    </div>
+        <Switch>
+          <Route exact path="/" component={Home}/>
+          <Route path="/signin" component={SignIn}/>
+          <Route path="/signup" component={SignUp}/>
+          <Route exact path="/products" component={ProductsGallery}/>
+          <Route exact path="/productForm" component={ProductForm}/>
+          <Redirect to="/" />
+        </Switch>
     </BrowserRouter>
   )
 }
-
-
-export default App;
+const mapStateToProps=(state)=>{
+  return{
+    user: state.users.user,
+  }
+}
+const mapDispatchToProps={
+  logFromSession:userActions.logFromSession
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App)
