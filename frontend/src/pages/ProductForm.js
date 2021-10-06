@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import {connect} from "react-redux"
 import productsActions from "../redux/actions/productsActions"
 
-const ProductForm = (props) => {
+const ProductForm = ({addProduct}) => {
     const [newProduct, setNewProduct] = useState ({
         name: "",
         photo: null,
@@ -30,10 +30,6 @@ const ProductForm = (props) => {
             ...newProduct,
             [e.target.name]: e.target.name === "photo" ? e.target.files[0] : e.target.value
         })
-<<<<<<< HEAD
-        console.log(newProduct)
-=======
->>>>>>> origin/lucre
     }
 
     const submitForm = async () => {
@@ -43,42 +39,23 @@ const ProductForm = (props) => {
         fd.append("stock", newProduct.stock)
         fd.append("description", newProduct.description)
         fd.append("price", newProduct.price)
-<<<<<<< HEAD
         fd.append("forSale", newProduct.forSale)
         fd.append("category", newProduct.category)
         fd.append("subcategory", newProduct.subcategory)
         let empty = Object.values(newProduct).some((value) => value === "")
-=======
-        fd.append("forSale", newProduct.sale)
-        fd.append("category", newProduct.category)
-        fd.append("subcategory", newProduct.subcategory)
-        
-        let empty = Object.values(newProduct).some((value) => value === "")
-        console.log(empty)
->>>>>>> origin/lucre
         if (empty){
             alert ("complete all the fields")
         } else {
-            const response = await props.addProduct(newProduct, fd)
-<<<<<<< HEAD
-=======
+            const response = await addProduct(newProduct, fd)
             .then((response) => {
                 console.log(response)
             })
->>>>>>> origin/lucre
             if (response.data.success) {
                 alert("Producto cargado")
                 return false
             }
             alert("Todo salió mal!")
-<<<<<<< HEAD
-            props.addProduct(newProduct)
-            .then((response) => {
-                console.log(response)
-            })
-=======
             
->>>>>>> origin/lucre
             console.log(newProduct)
         }
 

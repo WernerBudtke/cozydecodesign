@@ -1,4 +1,4 @@
-.bottom {
+/* .bottom {
     flex-direction: column;
 }
 
@@ -23,11 +23,11 @@ box-shadow:  0 1px 6px rgb(0 0 0 / 20%);
     /* border-radius: 0 0 20px 20px;
 */
 
-.container:hover .cardButtons {   
+/* .container:hover .cardButtons {   
     visibility: visible;
     opacity: 1;
     transition: all 0.4s ease;
-}
+} */
 
 /*TOSTADAS CARRITO*/
 
@@ -119,4 +119,3 @@ box-shadow:  0 1px 6px rgb(0 0 0 / 20%);
     -webkit-transition: all 0.4s;
     transition: all 0.4s;
   }
-
