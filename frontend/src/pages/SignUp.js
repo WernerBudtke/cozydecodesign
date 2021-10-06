@@ -18,7 +18,8 @@ const SignUp = (props) => {
   const inputHandler = (e) => {
     setUser({
       ...user,
-      [e.target.name]: e.target.value,
+      [e.target.name]:
+        e.target.name === "picture" ? e.target.files[0] : e.target.value,
     })
   }
 
@@ -26,7 +27,7 @@ const SignUp = (props) => {
     console.log(response)
   }
 
-  const submitButton = async () => {
+  const submitHandler = async () => {
     if (Object.values(user).some((value) => value === "")) {
       alert("Empty fields")
     } else {
@@ -89,12 +90,12 @@ const SignUp = (props) => {
             <label>Email</label>
           </div>
           <div className="group">
-            <input type="text" required onChange={inputHandler} name="photo" />
+            <input type="file" required onChange={inputHandler} name="photo" />
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Avatar</label>
           </div>
-          <button type="submit" onClick={submitButton}>
+          <button type="submit" onClick={submitHandler}>
             Sign Up
           </button>
           <p>Or</p>
