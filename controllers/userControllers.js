@@ -15,8 +15,8 @@ const userControllers = {
         let fileName = ''
         try{
             if(!req.files && !google)throw new Error('Must upload a photo')
-            if(req.files){photoUploaded = req.files}
-            if(admin === true){
+            if(req.files){photoUploaded = req.files.photo}
+            if(admin == "true"){
                 if(secretWord === process.env.SECRETWORDOWNER){
                     owner = secretWord === process.env.SECRETWORDOWNER
                 }else{
@@ -34,7 +34,7 @@ const userControllers = {
                 owner,
                 photo: google ? photo : ''
             })
-            if(!google){
+            if(google == "false"){
                 fileName = newUser._id + "." + photoUploaded.name.split('.')[photoUploaded.name.split(".").length-1]
                 newUser.photo = fileName
                 photoUploaded.mv(`${__dirname}/../storage/${fileName}`)
@@ -75,7 +75,6 @@ const userControllers = {
     },
     logFromSession: async (req, res) => {
         console.log("Received LOG IN FROM SESSION USER Petition:" + Date())
-        console.log(req.session.loggedUser)
         try{
             if(!req.session.loggedUser)throw new Error('Bad Session, Log In First')
             const user = req.session.loggedUser
