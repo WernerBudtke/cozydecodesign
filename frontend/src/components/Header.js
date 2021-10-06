@@ -7,12 +7,14 @@ const Header=({user})=>{
     return(
         <header>
             <h1>COZY</h1>
-            <nav>
-                <NavLink exact to='/'>HOME</NavLink>
-                <NavLink to='/signin'>SIGN IN</NavLink>
-                <NavLink to='/signup'>SIGN UP</NavLink>
-                <NavLink to='/products'>STORE</NavLink>
-            </nav>
+            <div className="navContainer">
+                <nav>
+                    <NavLink active exact to='/'>HOME</NavLink>
+                    <NavLink active to='/signin'>SIGN IN</NavLink>
+                    <NavLink active to='/signup'>SIGN UP</NavLink>
+                    <NavLink active to='/products'>STORE</NavLink>
+                </nav>  
+            </div>
         </header>
     )
 }

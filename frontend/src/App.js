@@ -9,6 +9,7 @@ import SignUp from './pages/SignUp'
 import Home from './pages/Home'
 import Header from './components/Header'
 import { useEffect } from 'react'
+import Footer from './components/Footer'
 
 const App=({user, logFromSession})=>{
 
@@ -29,6 +30,7 @@ const App=({user, logFromSession})=>{
           <Route exact path="/productform" component={ProductForm}/>
           <Redirect to="/" />
         </Switch>
+      <Footer/>
     </BrowserRouter>
   )
 }

@@ -1,6 +1,7 @@
 import {useEffect} from 'react'
 import {Parallax} from 'react-parallax'
 import '../styles/Home.css'
+import Footer from '../components/Footer'
 
 const Home = () => {
     useEffect(()=>{
