@@ -2,7 +2,6 @@ import {useEffect} from 'react'
 import {Parallax} from 'react-parallax'
 import {Link} from 'react-router-dom'
 import '../styles/Home.css'
-import Footer from '../components/Footer'
 
 const Home = () => {
     const bestsellers=[

@@ -29,7 +29,11 @@ const productControllers = {
     try {
       // if (!req.session.loggedUser) throw new Error("Log In First")
       // if (!req.session.loggedUser.admin)
+<<<<<<< HEAD
         // throw new Error("You don't have permissions to do this")
+=======
+      //   throw new Error("You don't have permissions to do this")
+>>>>>>> origin/lucre
       const {
         name,
         photo,

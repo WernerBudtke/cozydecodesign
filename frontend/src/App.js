@@ -9,6 +9,7 @@ import ProductForm from './pages/ProductForm'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import Home from './pages/Home'
+import HoverCard from './pages/HoverCard'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Product from './pages/Product'
@@ -32,6 +33,7 @@ const App=({token, logFromSession})=>{
           <Route exact path="/products" component={ProductsGallery}/>
           <Route exact path="/product/:id" component={Product} />
           <Route exact path="/productform" component={ProductForm}/>
+          <Route exact path="/hover" component={HoverCard}/>
           <Redirect to="/" />
         </Switch>
       <Footer/>
