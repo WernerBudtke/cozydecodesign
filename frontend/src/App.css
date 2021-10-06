@@ -132,11 +132,9 @@ form {
   justify-content: center;
   flex-direction: column;
 }
-
 .productFormContainer h4{
     color: #bf988f;
 }
-
 .productFormContainer {
     min-height: 70vh;
     justify-content: space-around;
@@ -214,7 +212,7 @@ main.signin-main {
   justify-content: space-between;
   margin: auto;
   min-height: 50vh;
-  width: 400px;
+  width: 22%;
   color: #666;
   border-radius: 3px;
   background: #fff;
@@ -225,7 +223,7 @@ main.signin-main {
 .box h1 {
   margin-left: 1vw;
   padding: 2vh;
-  font-size: 3vmin;
+  font-size: 2.5vmin;
   font-weight: 300;
   color: #bf988f;
 }
@@ -234,11 +232,11 @@ main.signin-main {
   background: #d4c5bf;
   border: 0;
   color: #7e6661;
-  padding: 10px;
-  font-size: 16px;
+  padding: 1vh;
+  font-size: 1.5vmin;
   font-weight: 300;
-  width: 330px;
-  margin: 20px auto;
+  width: 80%;
+  margin: 2vh auto;
   display: block;
   cursor: pointer;
   -webkit-transition: all 0.4s;
@@ -259,35 +257,33 @@ main.signin-main {
 }
 
 .box p {
-  font-size: 14px;
+  font-size: 2vmin;
   text-align: center;
 }
 
 .group {
   position: relative;
-  margin-bottom: 35px;
-  margin-left: 40px;
+  margin-bottom: 3vh;
+  margin-left: 2vw;
 }
 
-.inputMaterial {
-  font-size: 18px;
-  padding: 10px 10px 10px 5px;
+.box div div input {
+  font-size: 1.5vmin;
+  padding: 1vh 1vw 1vh 0.5vw;
   display: block;
   width: 90%;
   border: none;
   border-bottom: 1px solid #757575;
 }
 
-.inputMaterial:focus {
+.box div div input:focus {
   outline: none;
 }
 
-.form-label {
+.group label {
   color: #999;
-  font-size: 14px;
-  font-weight: normal;
+  font-size: 1.5vmin;
   position: absolute;
-  pointer-events: none;
   left: 5px;
   top: 10px;
   transition: 0.2s ease all;
@@ -296,9 +292,9 @@ main.signin-main {
 }
 
 /* Active input */
-.inputMaterial:focus ~ label,
-.inputMaterial:valid ~ label {
-  top: -21px;
+.box div div input:focus ~ label,
+.box div div input:valid ~ label {
+  top: -1.5vh;
   font-size: 1.5vmin;
   color: #bf988f;
 }
@@ -329,12 +325,12 @@ main.signin-main {
 }
 
 /* Active input */
-.inputMaterial:focus ~ .bar:before,
-.inputMaterial:focus ~ .bar:after {
+.box div div input:focus ~ .bar:before,
+.box div div input:focus ~ .bar:after {
   width: 50%;
 }
 
-.inputMaterial:focus ~ .highlight {
+.box div div input:focus ~ .highlight {
   -webkit-animation: inputHighlighter 0.3s ease;
   -moz-animation: inputHighlighter 0.3s ease;
   animation: inputHighlighter 0.3s ease;
@@ -378,9 +374,9 @@ main.signin-main {
   justify-content: center;
 }
 
-.footer-text {
+.footer-box > a {
   color: #ffffff;
-  font-size: 1.5vmin;
+  font-size: 2vmin;
   font-weight: 500;
 }
 
@@ -393,7 +389,7 @@ main.signin-main {
   color: #bfc6d4;
 }
 
-.googleButton {
+.box div:last-child {
   display: flex;
   align-items: center;
 }
