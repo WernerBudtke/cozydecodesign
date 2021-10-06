@@ -28,11 +28,19 @@ const SignUp = (props) => {
   }
 
   const submitHandler = async () => {
+    const fd = new FormData()
+    fd.append("firstName", user.firstName)
+    fd.append("lastName", user.lastName)
+    fd.append("password", user.password)
+    fd.append("eMail", user.eMail)
+    fd.append("photo", user.photo)
+    fd.append("admin", user.admin)
+    fd.append("google", user.google)
     if (Object.values(user).some((value) => value === "")) {
       alert("Empty fields")
     } else {
       try {
-        const response = await props.signUp(user)
+        const response = await props.signUp(fd)
         if (response.data.success) {
           alert("Account created")
           return false
