@@ -9,13 +9,15 @@ const handleError = (res,err) =>{
 const userControllers = {
     registerUser: (req, res) => {
         console.log("Received REGISTER USER Petition:" + Date())
-        const {lastName, firstName, password, eMail, photo, google, admin, secretWord} = req.body
+        const {lastName, firstName, password, eMail, google, admin, secretWord} = req.body
+        const {photo} = req.files
         let owner = false
         try{
-            if(admin){
-                if(secretWord === process.env.SECRETWORDSTAFF || secretWord === process.env.SECRETWORDOWNER){
+            if(admin === true){
+                if(secretWord === process.env.SECRETWORDOWNER){
                     owner = secretWord === process.env.SECRETWORDOWNER
                 }else{
+                    console.log('ENTRE ACA')
                     throw new Error("Can't be admin")
                 }
             }
@@ -25,22 +27,24 @@ const userControllers = {
                 lastName: lastName.trim(),
                 password : hashedPass,
                 eMail,
-                photo, // HAY Q REVISAR ESTO Q VA
                 google,
                 admin,
                 owner
             })
+            const fileName = newUser._id + "." + photo.name.split('.')[photo.name.split(".").length-1]
+            newUser.photo = fileName
+            photo.mv(`${__dirname}/../storage/${fileName}`)
             newUser.save()
             .then(user => {
                 const token = jwt.sign({...newUser}, process.env.SECRETORKEY)
                 req.session.loggedUser = newUser
-                res.json({success: true, response: {photo: user.photo, token, firstName: user.firstName}})
+                res.json({success: true, response: {photo: user.photo, token, firstName: user.firstName, admin: user.admin, owner: user.owner}})
             })
             .catch(err => res.json({success: false, response: err.message.includes('duplicate key') ? 'eMail already in use' : err.message}))
         }catch(err){
             res.json({success: false, response: err.message})
         }
-    },
+    }, //token, firstName y Photo
     logUser: (req, res) => {
         console.log("Received LOG IN USER Petition:" + Date())
         const errMessage = "Invalid username or pass"
@@ -55,7 +59,7 @@ const userControllers = {
                     if(!bcryptjs.compareSync(password, userFound.password))throw new Error(errMessage)
                     const token = jwt.sign({...userFound}, process.env.SECRETORKEY)
                     req.session.loggedUser = userFound 
-                    res.json({success: true, response: {photoURL: userFound.photoURL, token, firstName: userFound.firstName}})
+                    res.json({success: true, response: {photo: userFound.photo, token, firstName: userFound.firstName, admin: userFound.admin, owner: userFound.owner}})
                 })
                 .catch(err => handleError(res, err))
             }else{
@@ -73,7 +77,7 @@ const userControllers = {
             if(userFound){
                 const token = jwt.sign({...userFound}, process.env.SECRETORKEY)
                 req.session.loggedUser = userFound
-                res.json({success: true, response: {photoURL: userFound.photoURL, token, firstName: userFound.firstName}})
+                res.json({success: true, response: {photo: userFound.photo, token, firstName: userFound.firstName, admin: userFound.admin, owner: userFound.ownergit}})
             }else{
                 throw new Error('User not found')
             }
