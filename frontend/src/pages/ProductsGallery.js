@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react"
+import "../styles/ProductsGallery.css"
+import { useEffect } from "react"
 import { connect } from "react-redux"
 import ProductCard from "../components/ProductCard"
 import productsActions from "../redux/actions/productsActions"
 
 const ProductsGallery = ({ products, getProducts }) => {
-  const [newProducts, setNewProducts] = useState([])
-
   useEffect(() => {
     getProducts().then((res) => {
       if (!res.success) {
@@ -15,17 +14,15 @@ const ProductsGallery = ({ products, getProducts }) => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  console.log(products)
 
   return (
-    <>
-      <div>aca va algo</div>
-      <div className="productsGallery">
+    <div className="productsGallery">
+      <div className="productsCards">
         {products.map((product) => {
           return <ProductCard key={product._id} product={product} />
         })}
       </div>
-    </>
+    </div>
   )
 }
 const mapStateTopProps = (state) => {

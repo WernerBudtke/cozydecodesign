@@ -18,11 +18,9 @@ const userActions = {
       }
     }
   },
-  logFromSession:()=>{
-    return()=>{
-        console.log('vermos la conec')
-    }
-}
+  logFromSession: () => {
+    return () => {}
+  },
 }
 
 export default userActions

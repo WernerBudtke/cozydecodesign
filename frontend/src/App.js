@@ -9,6 +9,7 @@ import SignUp from "./pages/SignUp"
 import Home from "./pages/Home"
 import Header from "./components/Header"
 import { useEffect } from "react"
+import Product from "./pages/Product"
 
 const App = ({ user, logFromSession }) => {
   useEffect(() => {
@@ -26,6 +27,7 @@ const App = ({ user, logFromSession }) => {
         <Route path="/signup" component={SignUp} />
         <Route exact path="/products" component={ProductsGallery} />
         <Route exact path="/productform" component={ProductForm} />
+        <Route exact path="/product/:id" component={Product} />
         <Redirect to="/" />
       </Switch>
     </BrowserRouter>
