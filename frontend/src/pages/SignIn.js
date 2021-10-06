@@ -1,11 +1,13 @@
 import { useState } from "react"
 import { GoogleLogin } from "react-google-login"
 import { Link } from "react-router-dom"
+import { connect } from "react-redux"
+import userActions from "../redux/actions/userActions"
 
-const SignIn = () => {
+const SignIn = (props) => {
   const [user, setUser] = useState({
     password: "",
-    email: "",
+    eMail: "",
   })
 
   const inputHandler = (e) => {
@@ -19,9 +21,21 @@ const SignIn = () => {
     console.log(response)
   }
 
-  const submitButton = () => {
+  const submitButton = async () => {
     if (Object.values(user).some((value) => !value)) {
       alert("Empty fields")
+    }
+    try {
+      const response = await props.logIn(user)
+      console.log(response)
+        if (response.data.success) {
+          alert("logged in")
+          return false
+        } else {
+        console.log(response)
+        }
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -33,7 +47,7 @@ const SignIn = () => {
         </div>
         <div>
           <div className="group">
-            <input type="text" required onChange={inputHandler} name="email" />
+            <input type="text" required onChange={inputHandler} name="eMail" />
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Email</label>
@@ -71,4 +85,8 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+const mapDispatchToProps = {
+  logIn: userActions.logIn,
+}
+
+export default connect(null, mapDispatchToProps)(SignIn)

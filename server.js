@@ -12,11 +12,12 @@ require("./config/database")
 require("./config/passport")
 const path = require("path")
 const app = express()
+const fileUpload = require('express-fileupload')
 app.use(cors())
 app.use(express.json())
-
-app.use(
-  session({
+app.use(express.static('storage'))
+app.use(fileUpload())
+app.use(session({
     secret: process.env.SECRETORKEY,
     resave: false,
     saveUninitialized: false,

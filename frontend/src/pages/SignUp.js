@@ -10,7 +10,7 @@ const SignUp = (props) => {
     lastName: "",
     password: "",
     eMail: "",
-    photo: "aa",
+    photo: "",
     admin: false,
     google: false,
   })
@@ -18,15 +18,14 @@ const SignUp = (props) => {
   const inputHandler = (e) => {
     setUser({
       ...user,
-      [e.target.name]:
-        e.target.name === "photo" ? e.target.files[0] : e.target.value,
+      [e.target.name]: e.target.name === "photo" ? e.target.files[0] : e.target.value,
     })
   }
 
   const responseGoogle = (response) => {
     console.log(response)
   }
-  console.log(user)
+
   const submitHandler = async () => {
     const fd = new FormData()
     fd.append("firstName", user.firstName)
@@ -36,7 +35,7 @@ const SignUp = (props) => {
     fd.append("photo", user.photo)
     fd.append("admin", user.admin)
     fd.append("google", user.google)
-    if (Object.values(fd).some((value) => value === "")) {
+    if (Object.values(user).some((value) => value === "")) {
       alert("Empty fields")
     } else {
       try {
@@ -45,6 +44,7 @@ const SignUp = (props) => {
           alert("Account created")
           return false
         } else {
+          console.log(response)
           throw new Error(response.data.response)
         }
       } catch (error) {
@@ -94,7 +94,6 @@ const SignUp = (props) => {
           <div className="group">
             <input
               type="text"
-              required
               onChange={inputHandler}
               name="eMail"
             />
@@ -103,7 +102,7 @@ const SignUp = (props) => {
             <label>Email</label>
           </div>
           <div className="group">
-            <input type="file" required onChange={inputHandler} name="photo" />
+            <input type="file" onChange={inputHandler} name="photo" />
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Avatar</label>

@@ -16,7 +16,10 @@ router.route('/user/logout')
 router.route('/user/validate')
 .get(userControllers.logFromSession)
 router.route('/user/admin/manage')
-.put(userControllers.manageAdmin)
+.put(
+    passport.authenticate('jwt', {session: false}),
+    userControllers.manageAdmin
+)
 router.route('/users/')
 .get(userControllers.getUsers)
 router.route('/user/manage')
