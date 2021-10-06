@@ -1,8 +1,8 @@
 .home{
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
-.home div{
+.home > div{
   width: 100%;
   height: 100vh;
   background-position: center;
@@ -10,12 +10,41 @@
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
-  justify-content: flex-end
-  }
-.home button{
-  background-color: #d4c5bf;
-  width: 4vw;
-  height: 4vh;
+}
+.home a{
+  border:none;
   position: absolute;
-  border-radius: 50%;
+  padding: 0 !important;
+  border-radius: 20px;
+  box-shadow: 2px 2px 34px -2px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 2px 2px 34px -2px rgba(0,0,0,0.5);
+  -moz-box-shadow: 2px 2px 34px -2px rgba(0,0,0,0.5);
+}
+.bestsellers{
+  background-color:#ecebe9;
+  justify-content: center;
+}
+.bestsellers h1{
+  margin-bottom: 4vw;
+  text-align: center;
+  font-family: 'Cormorant', serif;
+  letter-spacing: 1vw;
+  font-size: 7vw;
+}
+.gallery-wrap{
+  width: 80vw;
+  height: 60vh;
+  display: flex;
+  background-color:red;
+}
+.gallery-wrap div{
+  flex: 1;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: none;
+  transition: flex 0.8s ease;
+}
+.gallery-wrap div:hover{
+  flex: 7;
 }
