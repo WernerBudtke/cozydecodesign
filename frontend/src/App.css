@@ -1,0 +1,415 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+/* font-family: 'Cormorant', serif; */
+
+/*HEADER*/
+header{
+  display: flex;
+  align-items: center;
+  background-color:#dabea8;
+  padding: 0 1.5vw;
+  justify-content: flex-end;
+}
+header a{
+  text-decoration: none;
+  color: #000;
+  margin: 1.5vw;
+}
+header h1{
+  font-family: 'Cormorant', serif;
+  font-size: 7vh;
+  flex: 1;
+  text-align: center;
+}
+
+/* PRODUCTS GALLERY STYLES */
+.productsGallery {
+  margin-left: auto;
+  margin-right: auto;
+  height: 100vh;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+/*PRODUCT CARD STYLES */
+.wrapper {
+  width: 25%;
+  height: 50%;
+  margin: 4vh 0.5vw;
+  background: white;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px 20px 20px 20px;
+  transition: box-shadow 0.5s, transform 0.5s;
+}
+
+@media only screen and (max-width: 950px) {
+  .wrapper {
+    width: 40%;
+    margin: 4vh 3.5vw;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    width: 80%;
+    margin: 4vh 3.5vw;
+  }
+}
+
+.wrapper:hover {
+  transform: scale(1.1);
+  box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
+}
+.wrapper .container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.wrapper .container .top {
+  height: 75%;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.wrapper .container .bottom {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #91534c;
+}
+.wrapper .container .bottom .nameAndPrice {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.wrapper .container .bottom .cardButtons {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-right: 1vw;
+}
+.cardButtons .fas {
+  cursor: pointer;
+  color: #bfc6d4;
+}
+
+.cardButtons .fas:hover {
+  cursor: pointer;
+  color: #d4c5bf;
+}
+.nameAndPrice h1,
+.nameAndPrice p {
+  text-align: center;
+  font-size: 3vmin;
+  color: #bfc6d4;
+  margin: 0;
+  padding: 0;
+}
+.nameAndPrice p {
+  font-size: 2vmin;
+}
+.wrapper .container .bottom {
+  height: 100%;
+  width: 100%;
+}
+.wrapper .inside {
+  background: #91534c;
+  width: 140px;
+  height: 140px;
+  position: absolute;
+  top: -70px;
+  right: -70px;
+  border-radius: 0px 0px 200px 200px;
+  overflow: hidden;
+}
+.wrapper .inside .icon {
+  position: absolute;
+  right: 80px;
+  top: 80px;
+  color: white;
+}
+/* PRODUCT FORM */
+.main,
+.productFormContainer,
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.productFormContainer h4{
+    color: #bf988f;
+}
+.productFormContainer {
+    min-height: 70vh;
+    justify-content: space-around;
+    box-shadow: 0px 3px 5px 0px rgba(82,80,80,0.75);
+    width: 60%;
+    margin-top: 2rem;
+    padding: 0.5vw 0;
+}
+
+form.productForm{
+    min-height: 80vh;
+    justify-content: space-around;
+    width: 90%;
+    margin-top: 2rem;
+}
+
+form input, form textarea, form select {
+    width: 90%;
+    border: none;
+    background-color: transparent!important;
+    border-bottom: 1px solid black;
+    padding-left: .5rem;
+    height: 2rem;
+    resize: none;
+    outline: none;
+    background: transparent;
+}
+
+div.price, div.sale {
+    display: flex;
+    width: 90%;
+    gap: 1rem;
+}
+
+div.saleRadios {
+  display: flex;
+  width: 90%;
+  align-items: center;
+}
+
+div.saleRadios p {
+  padding: 0.5rem;
+}
+
+div.saleRadios input {
+  height: auto;
+  width: 20%;
+}
+
+.formButton {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: none;
+    background-color: black;
+    color: white;
+    background-color: #bf988f;
+}
+
+/* Sign up - Sign in */
+
+main.signup-main,
+main.signin-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url(https://i.imgur.com/Tc1vKCs.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: auto;
+  min-height: 50vh;
+  width: 22%;
+  color: #666;
+  border-radius: 3px;
+  background: #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  overflow: hidden;
+}
+
+.box h1 {
+  margin-left: 1vw;
+  padding: 2vh;
+  font-size: 2.5vmin;
+  font-weight: 300;
+  color: #bf988f;
+}
+
+.box button {
+  background: #d4c5bf;
+  border: 0;
+  color: #7e6661;
+  padding: 1vh;
+  font-size: 1.5vmin;
+  font-weight: 300;
+  width: 80%;
+  margin: 2vh auto;
+  display: block;
+  cursor: pointer;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  border-radius: 2px;
+}
+
+.box button:active {
+  background: #d4c5bf;
+  color: #263238;
+}
+
+.box button:hover {
+  background: #bf988f;
+  color: #fff;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.box p {
+  font-size: 2vmin;
+  text-align: center;
+}
+
+.group {
+  position: relative;
+  margin-bottom: 3vh;
+  margin-left: 2vw;
+}
+
+.box div div input {
+  font-size: 1.5vmin;
+  padding: 1vh 1vw 1vh 0.5vw;
+  display: block;
+  width: 90%;
+  border: none;
+  border-bottom: 1px solid #757575;
+}
+
+.box div div input:focus {
+  outline: none;
+}
+
+.group label {
+  color: #999;
+  font-size: 1.5vmin;
+  position: absolute;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+/* Active input */
+.box div div input:focus ~ label,
+.box div div input:valid ~ label {
+  top: -1.5vh;
+  font-size: 1.5vmin;
+  color: #bf988f;
+}
+
+/* Input bars on focus */
+.bar {
+  position: relative;
+  display: block;
+  width: 90%;
+}
+.bar:before,
+.bar:after {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #bf988f;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+.bar:before {
+  left: 50%;
+}
+.bar:after {
+  right: 50%;
+}
+
+/* Active input */
+.box div div input:focus ~ .bar:before,
+.box div div input:focus ~ .bar:after {
+  width: 50%;
+}
+
+.box div div input:focus ~ .highlight {
+  -webkit-animation: inputHighlighter 0.3s ease;
+  -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
+}
+
+/* SignUp > Animations */
+@-webkit-keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@-moz-keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+
+.footer-box {
+  width: 100%;
+  height: 5vh;
+  background: #bf988f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-box > a {
+  color: #ffffff;
+  font-size: 2vmin;
+  font-weight: 500;
+}
+
+.sign-up {
+  color: white;
+  cursor: pointer;
+}
+
+.sign-up:hover {
+  color: #bfc6d4;
+}
+
+.box div:last-child {
+  display: flex;
+  align-items: center;
+}
