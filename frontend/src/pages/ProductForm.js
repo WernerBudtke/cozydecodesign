@@ -42,7 +42,7 @@ const ProductForm = (props) => {
         fd.append("sale", newProduct.sale)
         fd.append("category", newProduct.category)
         fd.append("subcategory", newProduct.subcategory)
-        let empty = Object.values(fd).some((value) => value === "")
+        let empty = Object.values(newProduct).some((value) => value === "")
         if (empty){
             alert ("complete all the fields")
             console.log("hola")
