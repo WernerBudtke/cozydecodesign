@@ -1,13 +1,18 @@
 import { useState } from "react"
 import { GoogleLogin } from "react-google-login"
-// import { Link } from "react-router-dom"
+import { Link } from "react-router-dom"
+import { connect } from "react-redux"
+import userActions from "../redux/actions/userActions"
 
-const SignUp = () => {
+const SignUp = (props) => {
   const [user, setUser] = useState({
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     password: "",
-    email: "",
+    eMail: "",
+    photo: "",
+    admin: false,
+    google: false,
   })
 
   const inputHandler = (e) => {
@@ -16,58 +21,58 @@ const SignUp = () => {
       [e.target.name]: e.target.value,
     })
   }
-  console.log(user)
 
   const responseGoogle = (response) => {
     console.log(response)
   }
 
-  const submitButton = (e) => {
-    const { firstname, lastname, password, email } = user
-    if (
-      firstname === "" ||
-      lastname === "" ||
-      password === "" ||
-      email === ""
-    ) {
+  const submitButton = async () => {
+    if (Object.values(user).some((value) => value === "")) {
       alert("Empty fields")
+    } else {
+      try {
+        const response = await props.signUp(user)
+        if (response.data.success) {
+          alert("Account created")
+          return false
+        } else {
+          throw new Error(response.data.response)
+        }
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 
   return (
     <main className="signup-main">
       <div className="box">
-        <div>
-          <h1>Sign Up</h1>
-        </div>
+        <h1>Sign Up</h1>
         <div>
           <div className="group">
             <input
-              className="inputMaterial"
               type="text"
               required
               onChange={inputHandler}
-              name="firstname"
+              name="firstName"
             />
             <span className="highlight"></span>
             <span className="bar"></span>
-            <label className="form-label">Firstname</label>
+            <label>Firstname</label>
           </div>
           <div className="group">
             <input
-              className="inputMaterial"
               type="text"
               required
               onChange={inputHandler}
-              name="lastname"
+              name="lastName"
             />
             <span className="highlight"></span>
             <span className="bar"></span>
-            <label className="form-label">Lastname</label>
+            <label>Lastname</label>
           </div>
           <div className="group">
             <input
-              className="inputMaterial"
               type="password"
               required
               onChange={inputHandler}
@@ -75,25 +80,19 @@ const SignUp = () => {
             />
             <span className="highlight"></span>
             <span className="bar"></span>
-            <label className="form-label">Password</label>
+            <label>Password</label>
           </div>
           <div className="group">
-            <input
-              className="inputMaterial"
-              type="text"
-              required
-              onChange={inputHandler}
-              name="email"
-            />
+            <input type="text" required onChange={inputHandler} name="eMail" />
             <span className="highlight"></span>
             <span className="bar"></span>
-            <label className="form-label">Email</label>
+            <label>Email</label>
           </div>
           <div className="group">
-            <input className="inputMaterial" type="text" required />
+            <input type="text" required onChange={inputHandler} name="photo" />
             <span className="highlight"></span>
             <span className="bar"></span>
-            <label className="form-label">Avatar</label>
+            <label>Avatar</label>
           </div>
           <button type="submit" onClick={submitButton}>
             Sign Up
@@ -110,11 +109,15 @@ const SignUp = () => {
           </div>
         </div>
         <div className="footer-box">
-          <p className="footer-text">You have an account? Sign in now!</p>
+          <Link to="/signin">You have an account? Sign in now!</Link>
         </div>
       </div>
     </main>
   )
 }
 
-export default SignUp
+const mapDispatchToProps = {
+  signUp: userActions.signUp,
+}
+
+export default connect(null, mapDispatchToProps)(SignUp)

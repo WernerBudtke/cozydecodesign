@@ -1,8 +1,8 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 /* font-family: 'Cormorant', serif; */
 
@@ -15,7 +15,7 @@
 
 /*PRODUCT CARD STYLES */
 .wrapper {
-  width: 300px; 
+  width: 300px;
   height: 500px;
   background: white;
 
@@ -81,58 +81,62 @@
   color: white;
 }
 /* PRODUCT FORM */
-.main, .productFormContainer, form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.main,
+.productFormContainer,
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 .productFormContainer {
-    width: 100%;
+  width: 100%;
 }
-form.productForm{
-    min-height: 80vh;
-    justify-content: space-around;
-    background-color: #BFC6D4;
-    width: 80%;
-    margin-top: 2rem;
+form.productForm {
+  min-height: 80vh;
+  justify-content: space-around;
+  background-color: #bfc6d4;
+  width: 80%;
+  margin-top: 2rem;
 }
-form input, form textarea {
-    width: 90%;
-    border: none;
-    background-color: transparent!important;
-    border-bottom: 1px solid black;
-    padding-left: .5rem;
-    height: 2rem;
-    resize: none;
-    outline: none
+form input,
+form textarea {
+  width: 90%;
+  border: none;
+  background-color: transparent !important;
+  border-bottom: 1px solid black;
+  padding-left: 0.5rem;
+  height: 2rem;
+  resize: none;
+  outline: none;
 }
-div.price, div.sale {
-    display: flex;
-    width: 90%;
-    gap: 1rem;
+div.price,
+div.sale {
+  display: flex;
+  width: 90%;
+  gap: 1rem;
 }
 div.saleRadios {
-    display:flex;
-    width: 90%;
-    align-items: center;
+  display: flex;
+  width: 90%;
+  align-items: center;
 }
 div.saleRadios p {
-    padding: 0.5rem;
+  padding: 0.5rem;
 }
 div.saleRadios input {
-    height: auto;
-    width: 20%;
+  height: auto;
+  width: 20%;
 }
 .formButton {
-    padding: 0.5rem;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 20px;
-    border: none;
-    background-color: black;
-    color: white;
+  padding: 0.5rem;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+  border: none;
+  background-color: black;
+  color: white;
 }
 
 /* Sign up - Sign in */
@@ -154,7 +158,7 @@ main.signin-main {
   justify-content: space-between;
   margin: auto;
   min-height: 50vh;
-  width: 400px;
+  width: 22%;
   color: #666;
   border-radius: 3px;
   background: #fff;
@@ -165,7 +169,7 @@ main.signin-main {
 .box h1 {
   margin-left: 1vw;
   padding: 2vh;
-  font-size: 3vmin;
+  font-size: 2.5vmin;
   font-weight: 300;
   color: #bf988f;
 }
@@ -174,11 +178,11 @@ main.signin-main {
   background: #d4c5bf;
   border: 0;
   color: #7e6661;
-  padding: 10px;
-  font-size: 16px;
+  padding: 1vh;
+  font-size: 1.5vmin;
   font-weight: 300;
-  width: 330px;
-  margin: 20px auto;
+  width: 80%;
+  margin: 2vh auto;
   display: block;
   cursor: pointer;
   -webkit-transition: all 0.4s;
@@ -199,35 +203,33 @@ main.signin-main {
 }
 
 .box p {
-  font-size: 14px;
+  font-size: 2vmin;
   text-align: center;
 }
 
 .group {
   position: relative;
-  margin-bottom: 35px;
-  margin-left: 40px;
+  margin-bottom: 3vh;
+  margin-left: 2vw;
 }
 
-.inputMaterial {
-  font-size: 18px;
-  padding: 10px 10px 10px 5px;
+.box div div input {
+  font-size: 1.5vmin;
+  padding: 1vh 1vw 1vh 0.5vw;
   display: block;
   width: 90%;
   border: none;
   border-bottom: 1px solid #757575;
 }
 
-.inputMaterial:focus {
+.box div div input:focus {
   outline: none;
 }
 
-.form-label {
+.group label {
   color: #999;
-  font-size: 14px;
-  font-weight: normal;
+  font-size: 1.5vmin;
   position: absolute;
-  pointer-events: none;
   left: 5px;
   top: 10px;
   transition: 0.2s ease all;
@@ -236,9 +238,9 @@ main.signin-main {
 }
 
 /* Active input */
-.inputMaterial:focus ~ label,
-.inputMaterial:valid ~ label {
-  top: -21px;
+.box div div input:focus ~ label,
+.box div div input:valid ~ label {
+  top: -1.5vh;
   font-size: 1.5vmin;
   color: #bf988f;
 }
@@ -269,12 +271,12 @@ main.signin-main {
 }
 
 /* Active input */
-.inputMaterial:focus ~ .bar:before,
-.inputMaterial:focus ~ .bar:after {
+.box div div input:focus ~ .bar:before,
+.box div div input:focus ~ .bar:after {
   width: 50%;
 }
 
-.inputMaterial:focus ~ .highlight {
+.box div div input:focus ~ .highlight {
   -webkit-animation: inputHighlighter 0.3s ease;
   -moz-animation: inputHighlighter 0.3s ease;
   animation: inputHighlighter 0.3s ease;
@@ -318,9 +320,9 @@ main.signin-main {
   justify-content: center;
 }
 
-.footer-text {
+.footer-box > a {
   color: #ffffff;
-  font-size: 1.5vmin;
+  font-size: 2vmin;
   font-weight: 500;
 }
 
@@ -333,7 +335,7 @@ main.signin-main {
   color: #bfc6d4;
 }
 
-.googleButton {
+.box div:last-child {
   display: flex;
   align-items: center;
 }

@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { GoogleLogin } from "react-google-login"
+import { Link } from "react-router-dom"
 
 const SignIn = () => {
   const [user, setUser] = useState({
@@ -19,8 +20,7 @@ const SignIn = () => {
   }
 
   const submitButton = () => {
-    const { password, email } = user
-    if (password === "" || email === "") {
+    if (Object.values(user).some((value) => !value)) {
       alert("Empty fields")
     }
   }
@@ -33,20 +33,13 @@ const SignIn = () => {
         </div>
         <div>
           <div className="group">
-            <input
-              className="inputMaterial"
-              type="text"
-              required
-              onChange={inputHandler}
-              name="email"
-            />
+            <input type="text" required onChange={inputHandler} name="email" />
             <span className="highlight"></span>
             <span className="bar"></span>
-            <label className="form-label">Email</label>
+            <label>Email</label>
           </div>
           <div className="group">
             <input
-              className="inputMaterial"
               type="password"
               required
               onChange={inputHandler}
@@ -54,7 +47,7 @@ const SignIn = () => {
             />
             <span className="highlight"></span>
             <span className="bar"></span>
-            <label className="form-label">Password</label>
+            <label>Password</label>
           </div>
           <button type="submit" onClick={submitButton}>
             Sign In
@@ -71,7 +64,7 @@ const SignIn = () => {
           </div>
         </div>
         <div className="footer-box">
-          <p className="footer-text">You don't have an account? Sign up now!</p>
+          <Link to="/signup">You don't have an account? Sign up now!</Link>
         </div>
       </div>
     </main>
