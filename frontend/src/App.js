@@ -4,8 +4,8 @@ import {connect} from 'react-redux'
 import userActions from './redux/actions/userActions'
 import ProductsGallery from './pages/ProductsGallery'
 import ProductForm from './pages/ProductForm'
-import SignIn from './components/SignIn'
-import SignUp from './components/SignUp'
+import SignIn from './pages/SignIn'
+import SignUp from './pages/SignUp'
 import Home from './pages/Home'
 
 const App=()=>{
@@ -17,7 +17,7 @@ const App=()=>{
           <Route path="/signin" component={SignIn}/>
           <Route path="/signup" component={SignUp}/>
           <Route exact path="/products" component={ProductsGallery}/>
-          <Route exact path="/productForm/:id" component={ProductForm}/>
+          <Route exact path="/productForm" component={ProductForm}/>
           <Redirect to="/" />
         </Switch>
     </BrowserRouter>
