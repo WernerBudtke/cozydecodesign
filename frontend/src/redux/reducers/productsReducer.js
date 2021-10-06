@@ -1,4 +1,4 @@
-const productsReducer = (state = { products: [] }, action) => {
+const productsReducer = (state = {products:[], productsCategort:[]}, action) => {
   switch (action.type) {
     case "GET_ALL_PRODUCTS":
       return {

@@ -94,3 +94,4 @@ const productControllers = {
 }
 module.exports = productControllers
 //CRUD productos
+//para que  el borrar productos borrar console.llog
