@@ -75,6 +75,7 @@ const userControllers = {
     },
     logFromSession: async (req, res) => {
         console.log("Received LOG IN FROM SESSION USER Petition:" + Date())
+        console.log(req.session.loggedUser)
         try{
             if(!req.session.loggedUser)throw new Error('Bad Session, Log In First')
             const user = req.session.loggedUser

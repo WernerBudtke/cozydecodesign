@@ -5,7 +5,7 @@ const userActions = {
   signUp: (user) => {
     return async (dispatch) => {
       try {
-        let response = await axios.post("https://cozydecodesign.herokuapp.com/api/user/register", user)
+        let response = await axios.post("http://localhost:4000/api/user/register", user, {withCredentials: true})
         if (!response.data.success) throw new Error(response.data.response)
         dispatch({ type: "LOG_IN_USER", payload: response.data.response })
         return {success: true, response: response.data.response}
@@ -17,14 +17,14 @@ const userActions = {
   logFromSession: () => {
     return async (dispatch) => {
       try {
-        let response = await axios.get("https://cozydecodesign.herokuapp.com/api/user/validate")
+        let response = await axios.get("http://localhost:4000/api/user/validate", {withCredentials: true})
         console.log(response)
         if (!response.data.success) throw new Error(response.data.response)
         dispatch({type: "LOG_IN_USER", payload: response.data.response})
       } catch (error) {
         console.log(error)
         dispatch({type: "LOG_OUT"})
-        await axios.get("https://cozydecodesign.herokuapp.com/api/user/logout")
+        await axios.get("http://localhost:4000/api/user/logout")
       }
     }
   },
@@ -32,7 +32,7 @@ const userActions = {
     console.log(user)
     return async (dispatch) => {
       try {
-        let response = await axios.post("https://cozydecodesign.herokuapp.com/api/user/login", user, {withCredentials: true})
+        let response = await axios.post("http://localhost:4000/api/user/login", user, {withCredentials: true})
         if (!response.data.success) throw new Error(response.data.response)
         dispatch({type: "LOG_IN_USER", payload: response.data.response})
         return response
@@ -44,7 +44,7 @@ const userActions = {
   logOut: () => {
     return async (dispatch) => {
       try {
-        let response = axios.get("https://cozydecodesign.herokuapp.com/api/user/logout")
+        let response = axios.get("http://localhost:4000/api/user/logout", {withCredentials: true})
         if (!response.data.success) throw new Error(response.data.response)
         dispatch({type: "LOG_OUT"})
       } catch (error) {

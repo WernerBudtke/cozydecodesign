@@ -14,7 +14,7 @@ const path = require("path")
 const app = express()
 const fileUpload = require('express-fileupload')
 app.use(cors({
-  origin: "https://cozydecodesign.herokuapp.com/",
+  origin: "http://localhost:3000",
   methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "DELETE"],
   credentials: true,
 }))
