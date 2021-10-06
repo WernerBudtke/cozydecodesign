@@ -18,35 +18,35 @@ const userActions = {
     return async (dispatch) => {
       try {
         let response = await axios.get("http://localhost:4000/api/user/validate", {withCredentials: true})
-        console.log(response)
         if (!response.data.success) throw new Error(response.data.response)
         dispatch({type: "LOG_IN_USER", payload: response.data.response})
       } catch (error) {
-        console.log(error)
         dispatch({type: "LOG_OUT"})
         await axios.get("http://localhost:4000/api/user/logout")
       }
     }
   },
   logIn: (user) => {
-    console.log(user)
     return async (dispatch) => {
       try {
         let response = await axios.post("http://localhost:4000/api/user/login", user, {withCredentials: true})
         if (!response.data.success) throw new Error(response.data.response)
         dispatch({type: "LOG_IN_USER", payload: response.data.response})
-        return response
+        return {success: true, response: response.data.response}
       } catch (error) {
-        toast.error("We found a "+error)
+        return {success: false, response: error.message}
       }
     }
   },
   logOut: () => {
     return async (dispatch) => {
       try {
-        let response = axios.get("http://localhost:4000/api/user/logout", {withCredentials: true})
+        let response = await axios.get("http://localhost:4000/api/user/logout", {withCredentials: true})
         if (!response.data.success) throw new Error(response.data.response)
         dispatch({type: "LOG_OUT"})
+        toast('See you later!', {
+          icon: '👋',
+        });
       } catch (error) {
         alert(error)
       }

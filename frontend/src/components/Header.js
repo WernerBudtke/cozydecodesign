@@ -3,7 +3,7 @@ import {useState} from 'react'
 import {connect} from 'react-redux'
 import userActions from '../redux/actions/userActions'
 
-const Header=({user})=>{
+const Header=({token, logOut, firstName})=>{
     return(
         <header>
             <h1>COZY</h1>
@@ -20,9 +20,11 @@ const Header=({user})=>{
 }
 const mapStateToProps =(state)=>{
     return{
-        user:state.users.user
+        token:state.users.token,
+        firstName: state.users.firstName
     }
 }
 const mapDispatchToProps={
+    logOut: userActions.logOut
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Header)
