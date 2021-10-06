@@ -1,6 +1,7 @@
 const joi = require('joi')
 const validatorControllers ={
     validatorSignUp : (req, res, next) =>{
+        console.log(req)
         const schema = joi.object({
             firstName: joi.string().trim().min(2).max(35).pattern(new RegExp('[^0-9]+$')).required(), 
             lastName: joi.string().trim().min(2).max(35).pattern(new RegExp('[^0-9]+$')).required(),

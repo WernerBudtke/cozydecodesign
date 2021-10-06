@@ -9,13 +9,15 @@ const handleError = (res,err) =>{
 const userControllers = {
     registerUser: (req, res) => {
         console.log("Received REGISTER USER Petition:" + Date())
-        const {lastName, firstName, password, eMail, photo, google, admin, secretWord} = req.body
+        const {lastName, firstName, password, eMail, google, admin, secretWord} = req.body
+        const {photo} = req.files
         let owner = false
         try{
-            if(admin){
+            if(admin === true){
                 if(secretWord === process.env.SECRETWORDOWNER){
                     owner = secretWord === process.env.SECRETWORDOWNER
                 }else{
+                    console.log('ENTRE ACA')
                     throw new Error("Can't be admin")
                 }
             }
@@ -25,17 +27,16 @@ const userControllers = {
                 lastName: lastName.trim(),
                 password : hashedPass,
                 eMail,
-                photo, // HAY Q REVISAR ESTO Q VA
                 google,
                 admin,
                 owner
             })
             const fileName = newUser._id + "." + photo.name.split('.')[photo.name.split(".").length-1]
-            newUser.picture = fileName
+            newUser.photo = fileName
+            photo.mv(`${__dirname}/../storage/${fileName}`)
             newUser.save()
             .then(user => {
                 const token = jwt.sign({...newUser}, process.env.SECRETORKEY)
-                picture.mv(`${__dirname}/storage/${fileName}`)
                 req.session.loggedUser = newUser
                 res.json({success: true, response: {photo: user.photo, token, firstName: user.firstName, admin: user.admin, owner: user.owner}})
             })
