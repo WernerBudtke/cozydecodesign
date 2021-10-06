@@ -1,138 +1,181 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 /* font-family: 'Cormorant', serif; */
 
 /* PRODUCTS GALLERY STYLES */
 .productsGallery {
+  margin-left: auto;
+  margin-right: auto;
   height: 100vh;
-  width: 100%;
+  width: 80%;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 /*PRODUCT CARD STYLES */
 .wrapper {
-  width: 300px; 
-  height: 500px;
+  width: 25%;
+  height: 50%;
+  margin: 4vh 0.5vw;
   background: white;
-
   position: relative;
   overflow: hidden;
-  border-radius: 10px 10px 10px 10px;
-  box-shadow: 0;
-  transform: scale(0.95);
+  border-radius: 20px 20px 20px 20px;
   transition: box-shadow 0.5s, transform 0.5s;
 }
+
+@media only screen and (max-width: 950px) {
+  .wrapper {
+    width: 40%;
+    margin: 4vh 3.5vw;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    width: 80%;
+    margin: 4vh 3.5vw;
+  }
+}
+
 .wrapper:hover {
+  transform: scale(1.1);
   box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
 }
 .wrapper .container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
 }
 .wrapper .container .top {
-  height: 80%;
+  height: 75%;
   width: 100%;
-  background: url(https://www.ikea.com/kr/en/images/products/dinera-mug-dark-grey__0642538_pe701238_s5.jpg?f=s)
-    no-repeat center center;
-  background-size: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
+
 .wrapper .container .bottom {
-  width: 100%;
-  height: 20%;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #91534c;
 }
-.wrapper .container .bottom h1 {
-  margin: 0;
-  padding: 0;
-}
-.wrapper .container .bottom p {
-  margin: 0;
-  padding: 0;
-}
-.wrapper .container .bottom {
+.wrapper .container .bottom .nameAndPrice {
   height: 100%;
-  width: 100%;
-  background: #f4f4f4;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
-.wrapper .container .bottom .details {
-  padding: 20px;
-  float: left;
-  width: calc(70% - 40px);
+.wrapper .container .bottom .cardButtons {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-right: 1vw;
+}
+.cardButtons .fas {
+  cursor: pointer;
+  color: #bfc6d4;
+}
+
+.cardButtons .fas:hover {
+  cursor: pointer;
+  color: #d4c5bf;
+}
+.nameAndPrice h1,
+.nameAndPrice p {
+  text-align: center;
+  font-size: 3vmin;
+  color: #bfc6d4;
+  margin: 0;
+  padding: 0;
+}
+.nameAndPrice p {
+  font-size: 2vmin;
 }
 .wrapper .inside {
-  z-index: 9;
-  background: #92879b;
+  background: #91534c;
   width: 140px;
   height: 140px;
   position: absolute;
   top: -70px;
   right: -70px;
   border-radius: 0px 0px 200px 200px;
-  transition: all 0.5s, border-radius 2s, top 1s;
   overflow: hidden;
 }
 .wrapper .inside .icon {
   position: absolute;
-  right: 85px;
-  top: 85px;
+  right: 80px;
+  top: 80px;
   color: white;
 }
 /* PRODUCT FORM */
-.main, .productFormContainer, form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.main,
+.productFormContainer,
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 .productFormContainer {
-    width: 100%;
+  width: 100%;
 }
-form.productForm{
-    min-height: 80vh;
-    justify-content: space-around;
-    background-color: #BFC6D4;
-    width: 80%;
-    margin-top: 2rem;
+form.productForm {
+  min-height: 80vh;
+  justify-content: space-around;
+  background-color: #bfc6d4;
+  width: 80%;
+  margin-top: 2rem;
 }
-form input, form textarea {
-    width: 90%;
-    border: none;
-    background-color: transparent!important;
-    border-bottom: 1px solid black;
-    padding-left: .5rem;
-    height: 2rem;
-    resize: none;
-    outline: none
+form input,
+form textarea {
+  width: 90%;
+  border: none;
+  background-color: transparent !important;
+  border-bottom: 1px solid black;
+  padding-left: 0.5rem;
+  height: 2rem;
+  resize: none;
+  outline: none;
 }
-div.price, div.sale {
-    display: flex;
-    width: 90%;
-    gap: 1rem;
+div.price,
+div.sale {
+  display: flex;
+  width: 90%;
+  gap: 1rem;
 }
 div.saleRadios {
-    display:flex;
-    width: 90%;
-    align-items: center;
+  display: flex;
+  width: 90%;
+  align-items: center;
 }
 div.saleRadios p {
-    padding: 0.5rem;
+  padding: 0.5rem;
 }
 div.saleRadios input {
-    height: auto;
-    width: 20%;
+  height: auto;
+  width: 20%;
 }
 .formButton {
-    padding: 0.5rem;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 20px;
-    border: none;
-    background-color: black;
-    color: white;
+  padding: 0.5rem;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+  border: none;
+  background-color: black;
+  color: white;
 }
 
 /* Sign up - Sign in */
