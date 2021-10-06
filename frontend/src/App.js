@@ -1,9 +1,8 @@
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
-import Home from './pages/home';
-import Footer from "./components/footer";
-import Navegador from "./components/navegador";
-import { useEffect } from 'react';
-import "../src/App.js"
+import Home from './pages/home'
+import Footer from "./components/Footer"
+import Navegador from "./components/navegador"
+import { useEffect } from 'react'
 
 
 const App = (props) => { 
