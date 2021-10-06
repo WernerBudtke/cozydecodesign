@@ -26,8 +26,8 @@ const productControllers = {
     addProduct: async (req, res) => {
         console.log("Received ADD PRODUCT Petition:" + Date())
         try{
-            if(!req.session.loggedUser)throw new Error('Log In First')
-            if(!req.session.loggedUser.admin)throw new Error("You don't have permissions to do this")
+            // if(!req.session.loggedUser)throw new Error('Log In First')
+            // if(!req.session.loggedUser.admin)throw new Error("You don't have permissions to do this")
             const {name, photo, stock, description, price, forSale, discount, category, subcategory} = req.body
             let newProduct = new Product({
                 name,
@@ -49,8 +49,8 @@ const productControllers = {
     modifyProduct: async (req, res) => {
         console.log("Received MODIFY PRODUCT Petition:" + Date())
         try{
-            if(!req.session.loggedUser)throw new Error('Log In First')
-            if(!req.session.loggedUser.admin)throw new Error("You don't have permissions to do this")
+            // if(!req.session.loggedUser)throw new Error('Log In First')
+            // if(!req.session.loggedUser.admin)throw new Error("You don't have permissions to do this")
             const productId = req.params.id
             let modifiedProduct = await Product.findOneAndUpdate({_id: productId}, {...req.body}, {new: true})
             if(!modifiedProduct)throw new Error('Product not found')
