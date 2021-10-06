@@ -5,7 +5,7 @@ import productsActions from "../redux/actions/productsActions"
 const ProductForm = (props) => {
     const [newProduct, setNewProduct] = useState ({
         name: "",
-        photo: "",
+        photo: null,
         stock: "",
         description: "",
         price: "",
@@ -28,17 +28,41 @@ const ProductForm = (props) => {
     const inputHandler = (e) => {
         setNewProduct({
             ...newProduct,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.name === "photo" ? e.target.files[0] : e.target.value
         })
     }
 
-    const submitForm = () => {
-        props.addProduct(newProduct)
-        .then((response) => {
-            console.log(response)
-        })
-        console.log(newProduct)
-    }
+    const submitForm = async () => {
+        const fd = new FormData()
+        fd.append("name", newProduct.name)
+        fd.append("photo", newProduct.photo)
+        fd.append("stock", newProduct.stock)
+        fd.append("description", newProduct.description)
+        fd.append("price", newProduct.price)
+        fd.append("sale", newProduct.sale)
+        fd.append("category", newProduct.category)
+        fd.append("subcategory", newProduct.subcategory)
+        let empty = Object.values(fd).some((value) => value === "")
+        if (empty){
+            alert ("complete all the fields")
+            console.log("hola")
+        }
+        // } else {
+        //     const response = await props.addProduct(newProduct, fd)
+        //     if (response.data.success) {
+        //         alert("Producto cargado")
+        //         return false
+        //     }
+        //     alert("Todo salió mal!")
+            // props.addProduct(newProduct)
+            // .then((response) => {
+            //     console.log(response)
+            // })
+            // console.log(newProduct)
+        // }
+
+        }
+
     return (
             <main className="main">
                 <div className="productFormContainer">
