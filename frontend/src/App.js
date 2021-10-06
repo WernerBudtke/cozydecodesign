@@ -7,6 +7,7 @@ import ProductForm from './pages/ProductForm'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import Home from './pages/Home'
+import HoverCard from './pages/HoverCard'
 
 const App=()=>{
 
@@ -18,6 +19,7 @@ const App=()=>{
           <Route path="/signup" component={SignUp}/>
           <Route exact path="/products" component={ProductsGallery}/>
           <Route exact path="/productForm" component={ProductForm}/>
+          <Route exact path="/hover" component={HoverCard}/>
           <Redirect to="/" />
         </Switch>
     </BrowserRouter>
