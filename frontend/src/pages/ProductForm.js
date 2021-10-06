@@ -19,10 +19,10 @@ const ProductForm = (props) => {
         subcategories = ["Accesories", "Mirrors"]
     } else if (newProduct.category === "Kitchenware"){
         subcategories = ["Accesories", "Glassware", "Tableware"]
-    } else if (newProduct.category === "Miscellaneous"){
+    } else if (newProduct.category === "Decor"){
         subcategories = ["Accesories", "Home", "Lighting"]
     }
-    const categories = ["Bathroom","Kitchenware","Miscellaneous"]
+    const categories = ["Bathroom","Kitchenware","Decor"]
 
 
     const inputHandler = (e) => {

@@ -5,13 +5,11 @@ const HoverCard = () => {
 
 const toasting = () => {
   toast.custom((t) => (
-    <div
-      className={`${
+    <div className={`${
         t.visible ? 'animate-enter' : 'animate-leave'
-      } bg-black `}
-    >
+      } bg-black `}>
       <div className="addToCart">
-          <div className="topToast">
+        <div className="topToast">
             <div>
               <div style={{backgroundImage: `url("https://i.postimg.cc/g2dLtyDR/logOut.png")`, width: "70px", height: "70px", backgroundPosition: "center", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}className="h-4 w-4 rounded-full" >
               </div>
@@ -26,7 +24,7 @@ const toasting = () => {
               onClick={() => toast.dismiss(t.id)}
               >
               X
-      </button>
+              </button>
               </div>
           </div>
           <div className="bottomToast">
@@ -40,15 +38,14 @@ const toasting = () => {
           </div>
 
         </div>
-     </div>
+    </div>
   ))
 }
   
-
     return (
       <div style={{display: "flex"}}>
         <Toaster
-        position="top-right"
+          position="top-right"
           containerStyle={{
             top: 80,
             left: 20,
