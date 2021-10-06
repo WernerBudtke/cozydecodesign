@@ -1,26 +1,87 @@
-import { useEffect, useState } from 'react'
-import { Parallax,Background} from 'react-parallax'
+import {useEffect} from 'react'
+import {Parallax} from 'react-parallax'
+import '../styles/Home.css'
 
 const Home = () => {
+    useEffect(()=>{
+        window.scroll(0, 0)
+        document.title='COZY | Home'
+    },[])
 
     return (
         <div className="home">
-            {/* <Parallax 
-            bgImage={'https://i.postimg.cc/6QMPcbK1/home5.jpg'}
-            strength={800}
-            bgImageSize={500}>
-                <button>click</button>
+            <Parallax 
+            bgImage={'/assets/home1.jpg'}
+            strength={500}renderLayer={(percentage) => (
+                <div>
+                  <button
+                    style={{
+                      background: `rgba(212, 197, 191, ${percentage * 2})`,
+                      transform: "translate(-50%,-50%)",
+                      left: "80%",
+                      top: "60%",
+                      width: percentage * 90,
+                      height: percentage * 90
+                    }}>
+                        click
+                  </button>
+                </div>
+              )}>
             </Parallax>
-            <Parallax bgImage={'https://i.postimg.cc/3x7bTQJc/pexels-karolina-grabowska-4202919.jpg'}>
-                <button>click</button>
+            <Parallax bgImage={'/assets/home2.jpg'}
+            strength={-200}renderLayer={(percentage) => (
+                <div>
+                  <button
+                    style={{
+                      background: `rgba(212, 197, 191, ${percentage * 2})`,
+                      left: "20%",
+                      top: "50%",
+                      borderRadius: "50%",
+                      transform: "translate(-50%,-50%)",
+                      width: percentage * 100,
+                      height: percentage * 100
+                    }}>
+                        click
+                  </button>
+                </div>
+              )}>
             </Parallax>
-            <Parallax bgImage={'https://i.postimg.cc/6QMPcbK1/home5.jpg'}>
-                <button>click</button>
-            </Parallax> */}
-            <div style={{backgroundImage:"url('/assets/home1.jpg')",}}></div>
-            <div style={{backgroundImage:"url('/assets/home2.jpg')",}}></div>
-            <div style={{backgroundImage:"url('/assets/home3.jpg')",}}></div>
-            <div style={{backgroundImage:"url('/assets/home4.jpg')",}}></div>
+            <Parallax bgImage={'/assets/home5.jpg'}
+            strength={300}
+            renderLayer={(percentage) => (
+                <div>
+                  <button
+                    style={{
+                      background: `rgba(212, 197, 191, ${percentage * 2})`,
+                      left: "80%",
+                      top: "60%",
+                      transform: "translate(-50%,-50%)",
+                      width: percentage * 100,
+                      height: percentage * 100
+                    }}>
+                        click
+                  </button>
+                </div>
+              )}>
+            </Parallax>
+            <Parallax bgImage={'/assets/home4.jpg'}
+            strength={-400}renderLayer={(percentage) => (
+                <div>
+                  <button
+                    style={{
+                      background: `rgba(212, 197, 191, ${percentage * 2})`,
+                      left: "10%",
+                      top: "70%",
+                      borderRadius: "50%",
+                      transform: "translate(-50%,-50%)",
+                      width: percentage * 100,
+                      height: percentage * 100
+                    }}>
+                        click
+                  </button>
+                </div>
+              )}>
+            </Parallax>
         </div>
     )
 }
