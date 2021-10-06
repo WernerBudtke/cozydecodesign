@@ -1,11 +1,14 @@
 import { useState } from "react"
 import { GoogleLogin } from "react-google-login"
 import { Link } from "react-router-dom"
+import { connect } from "react-redux"
+import userActions from "../redux/actions/userActions"
+import toast from "react-hot-toast"
 
-const SignIn = () => {
+const SignIn = (props) => {
   const [user, setUser] = useState({
     password: "",
-    email: "",
+    eMail: "",
   })
 
   const inputHandler = (e) => {
@@ -19,10 +22,16 @@ const SignIn = () => {
     console.log(response)
   }
 
-  const submitButton = () => {
+  const submitButton = async () => {
     if (Object.values(user).some((value) => !value)) {
-      alert("Empty fields")
+      return toast.error('Empty fields')
     }
+    const response = await props.logIn(user)
+      if (response.data.success) {
+        toast.success('Welcome back!')
+        props.history.push("/")
+        return false
+      }
   }
 
   return (
@@ -33,7 +42,7 @@ const SignIn = () => {
         </div>
         <div>
           <div className="group">
-            <input type="text" required onChange={inputHandler} name="email" />
+            <input type="text" required onChange={inputHandler} name="eMail" />
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Email</label>
@@ -72,4 +81,8 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+const mapDispatchToProps = {
+  logIn: userActions.logIn,
+}
+
+export default connect(null, mapDispatchToProps)(SignIn)

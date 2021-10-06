@@ -10,17 +10,19 @@ import Home from './pages/Home'
 import Header from './components/Header'
 import { useEffect } from 'react'
 import Footer from './components/Footer'
+import { Toaster } from 'react-hot-toast';
 
-const App=({user, logFromSession})=>{
-
+const App=({token, logFromSession})=>{
+  console.log(token)
   useEffect(()=>{
-    if (!user){
+    if (!token){
       logFromSession()
     }
   },[])
 
   return(
     <BrowserRouter>
+      <Toaster />
       <Header/>
         <Switch>
           <Route exact path="/" component={Home}/>
@@ -36,7 +38,7 @@ const App=({user, logFromSession})=>{
 }
 const mapStateToProps=(state)=>{
   return{
-    user: state.users.user,
+    token: state.users.token,
   }
 }
 const mapDispatchToProps={

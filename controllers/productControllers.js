@@ -25,6 +25,7 @@ const productControllers = {
   },
   addProduct: async (req, res) => {
     console.log("Received ADD PRODUCT Petition:" + Date())
+    console.log(req.body)
     try {
       // if (!req.session.loggedUser) throw new Error("Log In First")
       // if (!req.session.loggedUser.admin)
