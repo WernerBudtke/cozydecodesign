@@ -44,6 +44,7 @@ const SignUp = (props) => {
           alert("Account created")
           return false
         } else {
+          console.log(response)
           throw new Error(response.data.response)
         }
       } catch (error) {
@@ -91,13 +92,17 @@ const SignUp = (props) => {
             <label>Password</label>
           </div>
           <div className="group">
-            <input type="text" required onChange={inputHandler} name="eMail" />
+            <input
+              type="text"
+              onChange={inputHandler}
+              name="eMail"
+            />
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Email</label>
           </div>
           <div className="group">
-            <input type="file" required onChange={inputHandler} name="photo" />
+            <input type="file" onChange={inputHandler} name="photo" />
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Avatar</label>

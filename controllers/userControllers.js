@@ -63,7 +63,7 @@ const userControllers = {
                     }
                     if(!bcryptjs.compareSync(password, userFound.password))throw new Error(errMessage)
                     const token = jwt.sign({...userFound}, process.env.SECRETORKEY)
-                    req.session.loggedUser = userFound 
+                    req.session.loggedUser = userFound
                     res.json({success: true, response: {photo: userFound.photo, token, firstName: userFound.firstName, admin: userFound.admin, owner: userFound.owner}})
                 })
                 .catch(err => handleError(res, err))
@@ -75,7 +75,9 @@ const userControllers = {
     },
     logFromSession: async (req, res) => {
         console.log("Received LOG IN FROM SESSION USER Petition:" + Date())
+        
         try{
+            console.log(req.session.loggedUser)
             if(!req.session.loggedUser)throw new Error('Bad Session, Log In First')
             const user = req.session.loggedUser
             let userFound = await User.findOne({_id: user._id})
