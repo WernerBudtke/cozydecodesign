@@ -1,8 +1,64 @@
 import "./HoverCard.css"
+import toast, { Toaster } from "react-hot-toast"
 
 const HoverCard = () => {
+
+const toasting = () => {
+  toast.custom((t) => (
+    <div
+      className={`${
+        t.visible ? 'animate-enter' : 'animate-leave'
+      } bg-black `}
+    >
+      <div className="addToCart">
+          <div className="topToast">
+            <div>
+              <div style={{backgroundImage: `url("https://i.postimg.cc/g2dLtyDR/logOut.png")`, width: "70px", height: "70px", backgroundPosition: "center", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}className="h-4 w-4 rounded-full" >
+              </div>
+            </div>
+            <div className="infoCart">
+              <p>*product name*</p>
+              <p>*num* x *price*</p>
+              <p className="bold">Successfully added to cart!</p>
+            </div>
+              <div  className="close">
+              <button
+              onClick={() => toast.dismiss(t.id)}
+              >
+              X
+      </button>
+              </div>
+          </div>
+          <div className="bottomToast">
+            <div className="total">
+              <p>Total ( *cant de prods* ):</p>
+              <p>$ *precio*</p>
+            </div>
+            <div className="buttonContainer">
+              <button>SEE CART</button>
+            </div>
+          </div>
+
+        </div>
+     </div>
+  ))
+}
+  
+
     return (
-      <>
+      <div style={{display: "flex"}}>
+        <Toaster
+        position="top-right"
+          containerStyle={{
+            top: 80,
+            left: 20,
+            bottom: 20,
+            right: 10,
+          }}
+          toastOptions={{
+            duration: 1500,
+          }}
+        />
         <div className="wrapper">
           <div className="container">
             <div
@@ -24,9 +80,11 @@ const HoverCard = () => {
             <div className="icon">SALE</div>
           </div>
         </div>
-      </>
+        <button onClick={toasting}>Carrito</button>
+
+        
+      </div>
     )
   }
   
   export default HoverCard
-  

@@ -9,7 +9,7 @@ const ProductForm = (props) => {
         stock: "",
         description: "",
         price: "",
-        sale: "",
+        forSale: "",
         category: "",
         subcategory: "",
     })
@@ -39,27 +39,27 @@ const ProductForm = (props) => {
         fd.append("stock", newProduct.stock)
         fd.append("description", newProduct.description)
         fd.append("price", newProduct.price)
-        fd.append("sale", newProduct.sale)
+        fd.append("forSale", newProduct.sale)
         fd.append("category", newProduct.category)
         fd.append("subcategory", newProduct.subcategory)
+        
         let empty = Object.values(newProduct).some((value) => value === "")
+        console.log(empty)
         if (empty){
             alert ("complete all the fields")
-            console.log("hola")
+        } else {
+            const response = await props.addProduct(newProduct, fd)
+            .then((response) => {
+                console.log(response)
+            })
+            if (response.data.success) {
+                alert("Producto cargado")
+                return false
+            }
+            alert("Todo salió mal!")
+            
+            console.log(newProduct)
         }
-        // } else {
-        //     const response = await props.addProduct(newProduct, fd)
-        //     if (response.data.success) {
-        //         alert("Producto cargado")
-        //         return false
-        //     }
-        //     alert("Todo salió mal!")
-            // props.addProduct(newProduct)
-            // .then((response) => {
-            //     console.log(response)
-            // })
-            // console.log(newProduct)
-        // }
 
         }
 
