@@ -1,5 +1,17 @@
-import axios from "axios";
+import axios from "axios"
 
-const productsActions = {};
+const productsActions = {
+  getProducts: () => {
+    return async (dispatch, getState) => {
+      try {
+        let res = await axios.post("http://localhost:4000/api/products", {})
+        dispatch({ type: "GET_ALL_PRODUCTS", payload: res.data.response })
+        return { success: true, res: res.data.response }
+      } catch (err) {
+        return { success: false, res: err }
+      }
+    }
+  },
+}
 
-export default productsActions;
+export default productsActions

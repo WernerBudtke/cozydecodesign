@@ -1,7 +1,7 @@
 const usersReducer = (state = {}, action) => {
   switch (action.type) {
     default:
-      return state;
+      return state
   }
-};
-export default usersReducer;
+}
+export default usersReducer
