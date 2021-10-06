@@ -1,6 +1,8 @@
 import './App.css'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import {connect} from 'react-redux'
+import { Toaster } from 'react-hot-toast'
+import { useEffect } from 'react'
 import userActions from './redux/actions/userActions'
 import ProductsGallery from './pages/ProductsGallery'
 import ProductForm from './pages/ProductForm'
@@ -8,19 +10,18 @@ import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import Home from './pages/Home'
 import Header from './components/Header'
-import { useEffect } from 'react'
 import Footer from './components/Footer'
-import { Toaster } from 'react-hot-toast';
+import Product from './pages/Product'
+
 
 const App=({token, logFromSession})=>{
-  console.log(token)
   useEffect(()=>{
     if (!token){
       logFromSession()
     }
-  },[])
+  }, [])
 
-  return(
+  return (
     <BrowserRouter>
       <Toaster />
       <Header/>
@@ -29,6 +30,7 @@ const App=({token, logFromSession})=>{
           <Route path="/signin" component={SignIn}/>
           <Route path="/signup" component={SignUp}/>
           <Route exact path="/products" component={ProductsGallery}/>
+          <Route exact path="/product/:id" component={Product} />
           <Route exact path="/productform" component={ProductForm}/>
           <Redirect to="/" />
         </Switch>
@@ -41,7 +43,7 @@ const mapStateToProps=(state)=>{
     token: state.users.token,
   }
 }
-const mapDispatchToProps={
-  logFromSession:userActions.logFromSession
+const mapDispatchToProps = {
+  logFromSession: userActions.logFromSession,
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App)

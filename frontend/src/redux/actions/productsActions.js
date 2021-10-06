@@ -20,13 +20,30 @@ const productsActions = {
                     dispatch({type: "ADD_PRODUCT", payload: response.data.respose})
                 }
                 return response
-            } catch(error) {
-                return {
-                    success: false, response: error
-                }
-            }
+      } catch (error) {
+        return {
+          success: false,
+          response: error,
         }
+      }
     }
+  },
+  getAProduct: (id) => {
+    return async (dispatch, getState) => {
+      try {
+        let res = await axios.get(`http://localhost:4000/api/product/${id}`)
+        dispatch({ type: "GET_PRODUCT", payload: res.data.response })
+        return { success: true, res: res.data.response }
+      } catch (err) {
+        return { success: false, res: err }
+      }
+    }
+  },
+  findAProduct: (id) => {
+    return (dispatch) => {
+      dispatch({ type: "FIND_A_PRODUCT", payload: id })
+    }
+  },
 }
 
 export default productsActions
