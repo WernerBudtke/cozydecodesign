@@ -1,6 +1,8 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import {connect} from "react-redux"
+import productsActions from "../redux/actions/productsActions"
 
-const ProductForm = () => {
+const ProductForm = (props) => {
     const [newProduct, setNewProduct] = useState ({
         name: "",
         photo: "",
@@ -11,6 +13,17 @@ const ProductForm = () => {
         category: "",
         subcategory: "",
     })
+    var subcategories = []
+
+    if(newProduct.category === "Bathroom"){
+        subcategories = ["Accesories", "Mirrors"]
+    } else if (newProduct.category === "Kitchenware"){
+        subcategories = ["Accesories", "Glassware", "Tableware"]
+    } else if (newProduct.category === "Miscellaneous"){
+        subcategories = ["Accesories", "Home", "Lighting"]
+    }
+    const categories = ["Bathroom","Kitchenware","Miscellaneous"]
+
 
     const inputHandler = (e) => {
         setNewProduct({
@@ -20,6 +33,10 @@ const ProductForm = () => {
     }
 
     const submitForm = () => {
+        props.addProduct(newProduct)
+        .then((response) => {
+            console.log(response)
+        })
         console.log(newProduct)
     }
     return (
@@ -44,15 +61,29 @@ const ProductForm = () => {
                             </div>
                             <input type="number" onChange={inputHandler} name="discount" placeholder="Discount" autoComplete="nope"/>
                         </div>
-                        <input type="text" onChange={inputHandler} name="category" placeholder="Category" autoComplete="nope"/>
-                        <input type="text" onChange={inputHandler} name="subcategory" placeholder="Subcategory" autoComplete="nope"/>
+                        <select name="category" onChange={inputHandler} placeholder="Category">
+                            <option>Category</option>
+                            {categories.map((category,index) => 
+                            <option key={index} value={category}> 
+                                {category}
+                            </option>)}
+                        </select>
+                        <select name="subcategory" onChange={inputHandler} placeholder="Subcategory">
+                            <option>Subcategory</option>
+                            {subcategories.map((subcategory,index) => 
+                            <option key={index} value={subcategory}> 
+                                {subcategory}
+                            </option>)}
+                        </select>
                     </form>
-                        <button className="formButton" 
-                        onClick={submitForm}
-                        >Send</button>
+                        <button className="formButton" onClick={submitForm}>Send</button>
                 </div>
             </main>
     )
 }
 
-export default ProductForm
+const mapDispatchToProps = {
+    addProduct: productsActions.addProduct
+}
+
+export default connect(null, mapDispatchToProps)(ProductForm)
