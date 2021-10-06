@@ -6,15 +6,7 @@ import userActions from "../redux/actions/userActions"
 import toast from "react-hot-toast"
 
 const SignUp = (props) => {
-  const [user, setUser] = useState({
-    firstName: "",
-    lastName: "",
-    password: "",
-    eMail: "",
-    photo: "",
-    admin: false,
-    google: false,
-  })
+  const [user, setUser] = useState({ firstName: "", lastName: "", password: "", eMail: "", photo: "", admin: false, google: false })
   const [renderError, setRenderError] = useState({error: ''})
 
   const inputHandler = (e) => {
@@ -24,22 +16,37 @@ const SignUp = (props) => {
     })
   }
 
-  const responseGoogle = (response) => {
-    // console.log(response)
+  const responseGoogle = async (response) => {
+    let user = {
+      firstName: response.profileObj.givenName,
+      lastName: response.profileObj.familyName,
+      password: response.profileObj.googleId,
+      photo: response.profileObj.imageUrl,
+      eMail: response.profileObj.email,
+      google: true,
+      admin: false
+    }
+    const res = await props.signUp(user)
+    if (res.success) {
+      toast.success('Account created!')
+      props.history.push("/")
+    } else {
+      res.response === "eMail already in use" && toast.error('Email already in use')
+    }
   }
 
   let myErrors = {
-    firstName: 'Firstname field cant be empty, must contain at least 2 characters and cannot exceed 25 characteers',
-    lastName: 'Lastname field cant be empty, must contain at least 2 characters and cannot exceed 25 characteers',
+    firstName: 'Firstname must contain at least 2 characters, only letters and cannot exceed 25 characteers and cann',
+    lastName: 'Lastname must contain at least 2 characters and cannot exceed 25 characteers',
     eMail: renderError.error.includes('eMail already in use') ? "Email already in use!" : "Email must be a valid one, for example jwb@gmail.com",
-    password: "The password field cant be empty, and must contain at least 8 characters",
-    photo: "You need to choose a picture"
+    password: "The password must contain at least 6 characters",
   }
+
   let myErrorsKeys = Object.keys(myErrors).filter(key => renderError.error.includes(key)) 
     const handleError = (string) =>{
       return renderError.error.includes(string) ? 'fieldError' : ''
     }
-    console.log(renderError)
+
   const submitHandler = async () => {
     const fd = new FormData()
     fd.append("firstName", user.firstName)
@@ -54,9 +61,10 @@ const SignUp = (props) => {
     } else {
       const response = await props.signUp(fd)
       if (response.success) {
-        alert('account created')
+        toast.success('Account created!')
+        props.history.push("/")
       } else {
-        console.log(response)
+        toast.error('Oops! Check the errors.')
         setRenderError({error: response.response})
       }
     }
@@ -77,7 +85,9 @@ const SignUp = (props) => {
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Firstname</label>
-            {renderError.error.includes('firstName') && <p>{myErrors.firstName}</p>}
+            <div>
+              {renderError.error.includes('firstName') && <p className="inputError">{myErrors.firstName}</p>}
+            </div>
           </div>
           <div className="group">
             <input
@@ -89,7 +99,9 @@ const SignUp = (props) => {
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Lastname</label>
-            {renderError.error.includes('lastName') && <p>{myErrors.lastName}</p>}
+            <div>
+              {renderError.error.includes('lastName') && <p className="inputError">{myErrors.lastName}</p>}
+            </div>
           </div>
           <div className="group">
             <input
@@ -101,7 +113,9 @@ const SignUp = (props) => {
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Password</label>
-            {renderError.error.includes('password') && <p>{myErrors.password}</p>}
+            <div>
+              {renderError.error.includes('password') && <p className="inputError">{myErrors.password}</p>}
+            </div>
           </div>
           <div className="group">
             <input
@@ -112,14 +126,13 @@ const SignUp = (props) => {
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Email</label>
-            {renderError.error.includes('eMail') && <p>{myErrors.eMail}</p>}
+            <div>
+              {renderError.error.includes('eMail') && <p className="inputError">{myErrors.eMail}</p>}
+            </div>
           </div>
           <div className="group">
             <input type="file" onChange={inputHandler} name="photo" />
-            <span className="highlight"></span>
-            <span className="bar"></span>
             <label>Avatar</label>
-            {renderError.error.includes('photo') && <p>{myErrors.photo}</p>}
           </div>
           <button type="submit" onClick={submitHandler}>
             Sign Up
@@ -127,7 +140,7 @@ const SignUp = (props) => {
           <p>Or</p>
           <div className="googleButton">
             <GoogleLogin
-              clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+              clientId="825531110504-5if5ceqkaqcvcu2dppipo8q3j7hvnn9k.apps.googleusercontent.com"
               buttonText="Sign up"
               onSuccess={responseGoogle}
               onFailure={responseGoogle}

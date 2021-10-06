@@ -13,7 +13,9 @@ require("./config/passport")
 const path = require("path")
 const app = express()
 const fileUpload = require('express-fileupload')
-app.use(cors())
+app.use(cors({origin: "http://localhost:3000",
+methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "DELETE"],
+credentials: true,}))
 app.use(express.json())
 app.use(express.static('storage'))
 app.use(fileUpload())
@@ -22,6 +24,11 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: store,
+    cookie: {
+      sameSite: false,
+      secure: false,
+      httpOnly: true,
+    }
   })
 )
 app.use("/api", router)

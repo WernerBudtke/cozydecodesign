@@ -18,19 +18,31 @@ const SignIn = (props) => {
     })
   }
 
-  const responseGoogle = (response) => {
-    console.log(response)
-  }
+  const responseGoogle = async (response) => {
+    let user = {
+      eMail: response.profileObj.email,
+      password: response.profileObj.googleId,
+      google: true,
+    }
+    let res = await props.logIn(user)
+    if (res.success) {
+        toast.success('Welcome back!')
+        props.history.push('/')
+    } else {
+      res.response === 'Invalid username or pass' && toast.error('That google account does not exists')
+    }
+}
 
-  const submitButton = async () => {
+  const submitHandler = async () => {
     if (Object.values(user).some((value) => !value)) {
-      return toast.error('Empty fields')
+      return toast.error('Fill the empty fields')
     }
     const response = await props.logIn(user)
-      if (response.data.success) {
+      if (response.success) {
         toast.success('Welcome back!')
         props.history.push("/")
-        return false
+      } else {
+        toast.error(response.response)
       }
   }
 
@@ -58,13 +70,13 @@ const SignIn = (props) => {
             <span className="bar"></span>
             <label>Password</label>
           </div>
-          <button type="submit" onClick={submitButton}>
+          <button type="submit" onClick={submitHandler}>
             Sign In
           </button>
           <p>Or</p>
           <div className="googleButton">
             <GoogleLogin
-              clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+              clientId="825531110504-5if5ceqkaqcvcu2dppipo8q3j7hvnn9k.apps.googleusercontent.com"
               buttonText="Sign in"
               onSuccess={responseGoogle}
               onFailure={responseGoogle}

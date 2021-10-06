@@ -5,7 +5,7 @@ const validatorControllers = {
       firstName: joi.string().trim().min(2).max(35).pattern(new RegExp("[^0-9]+$")).required(),
       lastName: joi.string().trim().min(2).max(35).pattern(new RegExp("[^0-9]+$")).required(),
       eMail: joi.string().trim().min(6).max(255).email().required(),
-      password: joi.string().alphanum().trim().min(4).max(255).required(),
+      password: joi.string().alphanum().trim().min(6).max(255).required(),
       google: joi.boolean().required(),
       admin: joi.boolean().required(),
       secretWord: joi.string(),

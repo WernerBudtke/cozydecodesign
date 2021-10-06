@@ -3,24 +3,28 @@ import {useState} from 'react'
 import {connect} from 'react-redux'
 import userActions from '../redux/actions/userActions'
 
-const Header=({user})=>{
+const Header=({token, logOut, firstName})=>{
     return(
         <header>
             <h1>COZY</h1>
             <nav>
                 <NavLink exact to='/'>HOME</NavLink>
-                <NavLink to='/signin'>SIGN IN</NavLink>
-                <NavLink to='/signup'>SIGN UP</NavLink>
+                {!token && <NavLink to='/signin'>SIGN IN</NavLink>}
+                {!token && <NavLink to='/signup'>SIGN UP</NavLink>}
                 <NavLink to='/products'>STORE</NavLink>
             </nav>
+                {token && <p onClick={logOut}>Log Out</p>}
+                {firstName && <p>{firstName}</p>}
         </header>
     )
 }
 const mapStateToProps =(state)=>{
     return{
-        user:state.users.user
+        token:state.users.token,
+        firstName: state.users.firstName
     }
 }
 const mapDispatchToProps={
+    logOut: userActions.logOut
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

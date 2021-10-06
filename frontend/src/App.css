@@ -413,3 +413,16 @@ main.signin-main {
   display: flex;
   align-items: center;
 }
+
+div.group div {
+  height: 2.5vh;
+  /* background-color: red; */
+}
+
+p.inputError {
+  font-size: 1.3vmin;
+  margin-top: 1vh;
+  text-align: center;
+  width: 90%;
+  color: rgb(218, 37, 37);
+}
