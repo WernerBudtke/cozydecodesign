@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 const ProductsGallery = () => {
   const [products, setProducts] = useState([]);
+  const [type, setType] = useState('all')
   
   useEffect(() => {
     axios
