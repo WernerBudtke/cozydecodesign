@@ -10,7 +10,7 @@ const SignUp = (props) => {
     lastName: "",
     password: "",
     eMail: "",
-    photo: "",
+    photo: "aa",
     admin: false,
     google: false,
   })
@@ -19,14 +19,14 @@ const SignUp = (props) => {
     setUser({
       ...user,
       [e.target.name]:
-        e.target.name === "picture" ? e.target.files[0] : e.target.value,
+        e.target.name === "photo" ? e.target.files[0] : e.target.value,
     })
   }
 
   const responseGoogle = (response) => {
     console.log(response)
   }
-
+  console.log(user)
   const submitHandler = async () => {
     const fd = new FormData()
     fd.append("firstName", user.firstName)
@@ -36,7 +36,7 @@ const SignUp = (props) => {
     fd.append("photo", user.photo)
     fd.append("admin", user.admin)
     fd.append("google", user.google)
-    if (Object.values(user).some((value) => value === "")) {
+    if (Object.values(fd).some((value) => value === "")) {
       alert("Empty fields")
     } else {
       try {
@@ -92,7 +92,12 @@ const SignUp = (props) => {
             <label>Password</label>
           </div>
           <div className="group">
-            <input type="text" required onChange={inputHandler} name="eMail" />
+            <input
+              type="text"
+              required
+              onChange={inputHandler}
+              name="eMail"
+            />
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Email</label>
