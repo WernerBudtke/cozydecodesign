@@ -12,7 +12,7 @@ const Header=({loginUser, logOut, userPhoto})=>{
         <header>
             {loginUser && (
                 <div>
-                    {/* <div style={{backgroundImage: `url('${userPhoto}')`,}}></div> */}
+                    {/* <div style={{backgroundImage: `url('${userPhoto}')`}}></div> */}
                 </div>
             )}
             <h1>COZY</h1>
