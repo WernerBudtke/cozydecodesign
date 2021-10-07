@@ -143,7 +143,6 @@ const userControllers = {
         }
     },
     getUsers: async (req, res) => {
-        console.log(req)
         console.log("Received GET USERS Petition:" + Date())
         try{
             if(!req.session.loggedUser)throw new Error('Log In First')
