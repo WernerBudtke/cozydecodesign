@@ -1,25 +1,24 @@
 import styles from "../styles/ProductsGallery.module.css"
 import { Link } from "react-router-dom"
-import { useState } from "react"
-import CartCard from "./CartCard"
 
-const ProductCard = ({ product, addToCartCard }) => {
-  const [showCartCard, setShowCartCard] = useState(false)
-  const addProdToCart = () => {
-    setShowCartCard(true)
-    console.log(showCartCard)
+const ProductCard = ({ product, addToCartCard, setProductAlert }) => {
+  const addToCartHandler = () => {
+    console.log("voy a la action")
+    let newProducts = {
+      product: product,
+      quantity: 1,
+    }
+    setProductAlert(newProducts)
+    addToCartCard()
   }
-
   const photo = product.photo.includes('http') ? product.photo : `http://localhost:4000/${product.photo}`
-  const addToCart = () => {
-    return <CartCard />
-  }
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <Link to={`/product/${product._id}`}>
           <div
-            className="top"
+            className={styles.top}
             style={{ backgroundImage:`url("${photo}")`}}
           ></div>
         </Link>
@@ -42,7 +41,7 @@ const ProductCard = ({ product, addToCartCard }) => {
             </div>
           </div>
           <div className={styles.cardButtons}>
-            <i className="fas fa-cart-plus fa-2x" onClick={addProdToCart}></i>
+            <i className="fas fa-cart-plus fa-2x" onClick={addToCartHandler}></i>
             <Link to={`/product/${product._id}`}>
               <i className="fas fa-eye fa-2x"></i>
             </Link>
