@@ -24,7 +24,7 @@ const App=({token, logFromSession})=>{
 
   return (
     <BrowserRouter>
-      <Toaster />
+    <Toaster/>
       <Header/>
         <Switch>
           <Route exact path="/" component={Home}/>

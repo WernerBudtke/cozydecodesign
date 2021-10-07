@@ -1,50 +1,55 @@
-import "./HoverCard.css"
+import "../styles/CartCard.css"
 import toast, { Toaster } from "react-hot-toast"
+import CartCard from "../components/CartCard"
 
 const HoverCard = () => {
 
-const toasting = () => {
-  toast.custom((t) => (
-    <div className={`${
-        t.visible ? 'animate-enter' : 'animate-leave'
-      } bg-black `}>
-      <div className="addToCart">
-        <div className="topToast">
-            <div>
-              <div style={{backgroundImage: `url("https://i.postimg.cc/g2dLtyDR/logOut.png")`, width: "70px", height: "70px", backgroundPosition: "center", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}className="h-4 w-4 rounded-full" >
-              </div>
-            </div>
-            <div className="infoCart">
-              <p>*product name*</p>
-              <p>*num* x *price*</p>
-              <p className="bold">Successfully added to cart!</p>
-            </div>
-              <div  className="close">
-              <button
-              onClick={() => toast.dismiss(t.id)}
-              >
-              X
-              </button>
-              </div>
-          </div>
-          <div className="bottomToast">
-            <div className="total">
-              <p>Total ( *cant de prods* ):</p>
-              <p>$ *precio*</p>
-            </div>
-            <div className="buttonContainer">
-              <button>SEE CART</button>
-            </div>
-          </div>
+  const toasting = () => {
+   
 
-        </div>
-    </div>
-  ))
-}
+    // toast.custom((t) => (
+    //   <div 
+    //   // className={`${
+    //   //     t.visible ? 'animate-enter' : 'animate-leave'
+    //   //   } bg-black `}
+    //       >
+    //     <div className="cartCard">
+    //       <div className="topToast">
+    //           <div>
+    //             <div style={{backgroundImage: `url("https://i.postimg.cc/g2dLtyDR/logOut.png")`, width: "70px", height: "70px", backgroundPosition: "center", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}className="h-4 w-4 rounded-full" >
+    //             </div>
+    //           </div>
+    //           <div className="infoCart">
+    //             <p>*product name*</p>
+    //             <p>*num* x *price*</p>
+    //             <p className="bold">Successfully added to cart!</p>
+    //           </div>
+    //             <div  className="close">
+    //             <button
+    //             onClick={() => toast.dismiss(t.id)}
+    //             >
+    //             X
+    //             </button>
+    //             </div>
+    //         </div>
+    //         <div className="bottomToast">
+    //           <div className="total">
+    //             <p>Total ( *cant de prods* ):</p>
+    //             <p>$ *precio*</p>
+    //           </div>
+    //           <div className="buttonContainer">
+    //             <button>SEE CART</button>
+    //           </div>
+    //         </div>
+
+    //       </div>
+    //   </div>
+    // ))
+  }
   
     return (
       <div style={{display: "flex"}}>
-        <Toaster
+        {/* <Toaster
           position="top-right"
           containerStyle={{
             top: 80,
@@ -53,9 +58,9 @@ const toasting = () => {
             right: 10,
           }}
           toastOptions={{
-            duration: 1500,
+            duration: 10500,
           }}
-        />
+        /> */}
         <div className="wrapper">
           <div className="container">
             <div
@@ -68,7 +73,7 @@ const toasting = () => {
                 <p>$1200</p>
               </div>
               <div className="cardButtons">
-                <i className="fas fa-cart-plus fa-2x"></i>
+                <i className="fas fa-cart-plus fa-2x" onClick={toasting}></i>
                 <i className="fas fa-eye fa-2x"></i>
               </div>
             </div>
@@ -79,7 +84,7 @@ const toasting = () => {
         </div>
         <button onClick={toasting}>Carrito</button>
 
-        
+        <CartCard/>
       </div>
     )
   }

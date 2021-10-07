@@ -104,6 +104,8 @@ form {
   width: 60%;
   margin-top: 2rem;
   padding: 0.5vw 0;
+  margin-bottom: 10vh; /*porque me pisa el form el footer para sacar después*/
+  margin-top: 15vh /*idem arriba con el header*/
 }
 
 form.productForm {
@@ -128,7 +130,7 @@ form select {
 }
 
 div.price,
-div.sale {
+div.saleInput {
   display: flex;
   width: 90%;
   gap: 1rem;
