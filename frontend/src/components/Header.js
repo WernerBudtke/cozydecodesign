@@ -1,7 +1,9 @@
-import {NavLink, Link} from 'react-router-dom'
-import {useState} from 'react'
+import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import userActions from '../redux/actions/userActions'
+import ReactCircleModal from "react-circle-modal"
+import Cart from "./Cart"
+
 
 const Header=({loginUser, logOut})=>{
     const outHandler = () => {
@@ -9,11 +11,14 @@ const Header=({loginUser, logOut})=>{
     }
     return(
         <header>
-            {loginUser && (
-                <div>
-                    <div style={{backgroundImage: `url('${loginUser.photo}')`, width:'8vh', height:'8vh'}}></div>
-                </div>
-            )}
+            <div>
+                {!loginUser && (
+                    <i class="iconSocial fas fa-user fa-2x"></i>
+                )}
+                {loginUser && (
+                    <div className="logoUser" style={{backgroundImage: `url('${loginUser.photo}')`}}></div>
+                )} 
+            </div>
             <h1>COZY</h1>
             <div className="navContainer">
                 <nav>
@@ -28,19 +33,36 @@ const Header=({loginUser, logOut})=>{
                     {loginUser && (
                         <NavLink active  onClick={outHandler} to="/">LOGOUT</NavLink>
                     )}
-                    <NavLink active to="/"><i class="iconSocial fas fa-shopping-cart fa-1x"></i></NavLink>
                     <NavLink to="/admin">Admin</NavLink>
+                    <ReactCircleModal
+                        style={{
+                        padding: "0",
+                        }}
+                        backgroundColor="#61605e8a"
+                        toogleComponent={(onClick) => (
+                        <i
+                            onClick={onClick}
+                            className="iconSocial fas fa-shopping-cart fa-1x"
+                        ></i>
+                        )}
+                        // Optional fields and their default values
+                        offsetX={0}
+                        offsetY={0}
+                        >
+                        {(onClick) => <Cart onClickHandler={onClick} />}
+                    </ReactCircleModal>
                 </nav>  
             </div>
+            
         </header>
     )
 }
-const mapStateToProps =(state)=>{
-    return{
-        loginUser:state.users.user,
-    }
+const mapStateToProps = (state) => {
+  return {
+    loginUser: state.users.user,
+  }
 }
-const mapDispatchToProps={
-    logOut: userActions.logOut
+const mapDispatchToProps = {
+  logOut: userActions.logOut,
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

@@ -2,7 +2,7 @@ import axios from "axios"
 
 const productsActions = {
   getProducts: () => {
-    return async (dispatch, getState) => {
+    return async (dispatch) => {
       try {
         let res = await axios.post("http://localhost:4000/api/products", {}, {withCredentials: true})
         dispatch({ type: "GET_ALL_PRODUCTS", payload: res.data.response })
@@ -13,7 +13,7 @@ const productsActions = {
     }
   },
     addProduct: (newProduct) => {
-        return async (dispatch, getState) => {
+        return async (dispatch) => {
             try {
                 let response = await axios.post("http://localhost:4000/api/product/add", newProduct, {withCredentials: true})
                 if (response.data.success){
@@ -31,7 +31,7 @@ const productsActions = {
     }
   },
   getAProduct: (id) => {
-    return async (dispatch, getState) => {
+    return async (dispatch) => {
       try {
         let res = await axios.get(`http://localhost:4000/api/product/${id}`)
         dispatch({ type: "GET_PRODUCT", payload: res.data.response })
@@ -46,6 +46,17 @@ const productsActions = {
       dispatch({ type: "FIND_A_PRODUCT", payload: id })
     }
   },
+  modifyProduct: (id, stock) => {
+    return async () => {
+      try {
+        let response = await axios.put(`http://localhost:4000/api/product/${id}`, stock, {withCredentials: true})
+        if (!response.data.success) throw new Error('Error trying to modify the stock')
+        return { success: true }
+      } catch (error) {
+        return { success: false }
+      }
+    }
+  }
 }
 
 export default productsActions

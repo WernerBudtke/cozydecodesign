@@ -1,16 +1,20 @@
-import "../styles/SignUp.css"
-import { useState } from "react"
+import { useState, useEffect} from "react"
 import { GoogleLogin } from "react-google-login"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import userActions from "../redux/actions/userActions"
+import '../styles/SignUp.css'
 
-const SignUp = ({signUp, history}) => {
+const SignUp = ({history, signUp}) => {
   const [user, setUser] = useState({ firstName: "", lastName: "", password: "", eMail: "", photo: "", admin: false, google: false })
   const [renderError, setRenderError] = useState({})
   const errorsInput = {
     firstName: null, lastName: null, eMail: null, password: null, emptyFields: null
   }
+
+  useEffect(()=>{
+    document.title='COZY | Sign Up'
+  },[])
 
   const inputHandler = (e) => {
     setUser({
@@ -53,7 +57,7 @@ const SignUp = ({signUp, history}) => {
       if (response.success) {
         history.push("/")
       } else {
-        response.response.map(error=> {
+        response.response.forEach(error=> {
           errorsInput[error.context.label]=error.message
         })
         setRenderError(errorsInput)
@@ -135,7 +139,6 @@ const SignUp = ({signUp, history}) => {
               clientId="825531110504-5if5ceqkaqcvcu2dppipo8q3j7hvnn9k.apps.googleusercontent.com"
               buttonText="Sign up"
               onSuccess={responseGoogle}
-              onFailure={responseGoogle}
               cookiePolicy={"single_host_origin"}
             />
           </div>

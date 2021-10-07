@@ -80,9 +80,9 @@ const productControllers = {
   deleteProduct: async (req, res) => {
     console.log("Received DELETE PRODUCT Petition:" + Date())
     try {
-      if (!req.session.loggedUser) throw new Error("Log In First")
-      if (!req.session.loggedUser.owner)
-        throw new Error("You don't have permissions to do this")
+      // if (!req.session.loggedUser) throw new Error("Log In First")
+      // if (!req.session.loggedUser.owner)
+      //   throw new Error("You don't have permissions to do this")
       const productToDelete = req.params.id
       let productDeleted = await Product.findOneAndDelete({
         _id: productToDelete,
