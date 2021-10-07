@@ -2,8 +2,11 @@ import "../styles/Product.css"
 import { connect } from "react-redux"
 import productsActions from "../redux/actions/productsActions"
 import { useEffect, useState } from "react"
+import ReactCircleModal from "react-circle-modal"
+import Cart from "../components/Cart"
 
 const Product = ({ getAProduct, product, match, products, findAProduct }) => {
+  const [quantity, setQuantity] = useState(0)
   const [loading, setLoading] = useState(true)
   useEffect(() => {
     if (!products.length) {
@@ -24,6 +27,10 @@ const Product = ({ getAProduct, product, match, products, findAProduct }) => {
   if (loading) {
     return <h1>LOADING...</h1>
   }
+  const finalPrice =
+    product.discount === 0
+      ? product.price
+      : (((100 - product.discount) / 100) * product.price).toFixed(2)
 
   return (
     <div className="productSection">
@@ -35,16 +42,34 @@ const Product = ({ getAProduct, product, match, products, findAProduct }) => {
         <div className="productInfo">
           <h2>{product.name}</h2>
           <p>{product.description}</p>
-          <p>${product.price}</p>
           <div>
-            <i class="far fa-credit-card fa-2x"></i>
-            <p>3 cuotas con tarjeta</p>
-            <p>
-              ${(product.price / 3 + (20 * product.price) / 100).toFixed(2)}
-            </p>
+            {product.discount !== 0 && (
+              <p className={product.discount !== 0 ? "sale" : null}>
+                ${product.price}
+              </p>
+            )}
+            <p>${finalPrice}</p>
           </div>
           <div>
-            <p>Contador</p>
+            <i class="far fa-credit-card fa-2x"></i>
+            <p>3 payments of ${((1.1 * finalPrice) / 3).toFixed(2)}</p>
+          </div>
+          <div>
+            <div className="counter">
+              <i
+                class="fas fa-minus"
+                onClick={quantity > 0 ? () => setQuantity(quantity - 1) : null}
+              ></i>
+              <p>{quantity}</p>
+              <i
+                class="fas fa-plus"
+                onClick={() => {
+                  product.stock === quantity
+                    ? alert("no hay stock")
+                    : setQuantity(quantity + 1)
+                }}
+              ></i>
+            </div>
             <button>Add to Cart</button>
           </div>
           <div className="shippingInfo">
@@ -52,6 +77,27 @@ const Product = ({ getAProduct, product, match, products, findAProduct }) => {
             <p>Free shipping on purchases from 200 dollars or more</p>
           </div>
           <p>calculo de envio - CP</p>
+          <ReactCircleModal
+            style={{
+              padding: "0",
+            }}
+            backgroundColor="#61605e8a"
+            toogleComponent={(onClick) => (
+              <button
+                style={{
+                  alignSelf: "center",
+                }}
+                onClick={onClick}
+              >
+                Open Cart
+              </button>
+            )}
+            // Optional fields and their default values
+            offsetX={0}
+            offsetY={0}
+          >
+            {(onClick) => <Cart onClickHandler={onClick} />}
+          </ReactCircleModal>
         </div>
       </div>
       <div className="suggestion"></div>

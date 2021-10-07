@@ -122,14 +122,14 @@
   align-items: center;
 }
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 991px) {
   .wrapper {
     width: 40%;
     margin: 4vh 3.5vw;
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 576px) {
   .wrapper {
     width: 80%;
     margin: 4vh 3.5vw;
@@ -141,7 +141,7 @@
     font-size: 5vmin;
   }
 }
- /* .wrapper:hover {
+/* .wrapper:hover {
   transform: scale(1.1); 
   box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
 }

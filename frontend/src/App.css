@@ -4,21 +4,21 @@
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
-a{
+a {
   text-decoration: none;
   color: #000;
 }
 /* font-family: 'Cormorant', serif; */
 
 /*HEADER*/
-header{
+header {
   position: absolute;
   z-index: 2;
   width: 100vw;
   display: flex;
   align-items: center;
-  background-color:#ead8ca5d ;
-  
+  background-color: #ead8ca5d;
+
   padding: 0 1.5vw;
   justify-content: flex-end;
 }
@@ -27,56 +27,54 @@ header a {
   color: rgb(83, 78, 78);
   margin: 1.5vw;
 }
-header .navContainer{
+header .navContainer {
   padding: 4vh;
 }
-header h1{
-  font-family: 'Cormorant', serif;
+header h1 {
+  font-family: "Cormorant", serif;
   font-size: 9vh;
   flex: 1;
   text-align: center;
   color: rgb(83, 78, 78);
-  letter-spacing: .5vw;
+  letter-spacing: 0.5vw;
 }
 
 /* FOOTER */
-footer{
+footer {
   width: 100vw;
   position: absolute;
   min-height: 30vh;
-  background-color: #ccc7c3;  
+  background-color: #ccc7c3;
   display: flex;
   justify-content: space-evenly;
   padding: 8vh;
 }
-footer div h3{
+footer div h3 {
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.781);
-  letter-spacing: .1vw;
+  letter-spacing: 0.1vw;
 }
 
-footer div p{
+footer div p {
   color: rgba(0, 0, 0, 0.637);
   padding: 0.5vh;
-  letter-spacing: .05vw;
+  letter-spacing: 0.05vw;
 }
-footer .socialNetworks{
+footer .socialNetworks {
   flex-direction: row;
 }
 
-footer .socialNetworks i{
+footer .socialNetworks i {
   height: 10vh;
 }
 
-footer .iconSocial{
+footer .iconSocial {
   color: rgb(97, 88, 88);
 }
 
 a:active {
   color: rgb(131, 119, 119);
   transition: all 0.2s ease-out;
-
-
 }
 
 /* PRODUCT FORM */
@@ -144,16 +142,16 @@ div.saleRadios input {
 }
 
 .formButton {
-    padding: 0.5rem 1rem;
-    border: none;
-    color: #7e6661;
-    background-color: #bf988f;
-    font-size: 1.5vmin;
-    font-weight: 300;
-    width: 80%;
-    cursor: pointer;
-    transition: all 0.4s;
-    border-radius: 2px;
+  padding: 0.5rem 1rem;
+  border: none;
+  color: #7e6661;
+  background-color: #bf988f;
+  font-size: 1.5vmin;
+  font-weight: 300;
+  width: 80%;
+  cursor: pointer;
+  transition: all 0.4s;
+  border-radius: 2px;
 }
 
 /* Sign up - Sign in */

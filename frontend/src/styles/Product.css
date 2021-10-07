@@ -7,8 +7,8 @@
 .mainContainer {
   display: flex;
   align-self: center;
-  width: 55vw;
-  height: 60vh;
+  width: 60vw;
+  height: 65vh;
   margin: 5vh 0;
   border-radius: 20px;
   box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
@@ -33,14 +33,25 @@
 
 .productInfo div {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
+  gap: 20px;
+  font-weight: bold;
+}
+.productInfo > p:nth-child(2) {
+  font-size: 2.5vmin;
+}
+.productInfo > p:nth-child(3) {
+  font-size: 3vmin;
+  font-weight: bold;
+}
+.productInfo > div:nth-child(3) {
+  justify-content: center;
+  font-size: 4vmin;
 }
 
-.suggestion {
-  width: 100%;
-  height: 30vh;
-  background-color: coral;
+.productInfo h2 {
+  font-size: 4vmin;
 }
 
 .productInfo button {
@@ -72,4 +83,24 @@
 
 .shippingInfo p {
   padding-left: 1vw;
+}
+
+.suggestion {
+  width: 100%;
+  height: 30vh;
+  background-color: coral;
+}
+
+.counter {
+  display: flex;
+  width: 50%;
+}
+
+.counter p {
+  width: 30%;
+}
+
+.sc-bdfBQB,
+.efwhzj {
+  padding: 0 !important;
 }
