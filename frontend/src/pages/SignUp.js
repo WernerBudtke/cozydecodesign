@@ -135,7 +135,6 @@ const SignUp = ({signUp, history}) => {
               clientId="825531110504-5if5ceqkaqcvcu2dppipo8q3j7hvnn9k.apps.googleusercontent.com"
               buttonText="Sign up"
               onSuccess={responseGoogle}
-              onFailure={responseGoogle}
               cookiePolicy={"single_host_origin"}
             />
           </div>

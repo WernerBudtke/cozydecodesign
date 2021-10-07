@@ -77,7 +77,6 @@ const SignIn = (props) => {
               clientId="825531110504-5if5ceqkaqcvcu2dppipo8q3j7hvnn9k.apps.googleusercontent.com"
               buttonText="Sign in"
               onSuccess={responseGoogle}
-              onFailure={responseGoogle}
               cookiePolicy={"single_host_origin"}
             />
           </div>

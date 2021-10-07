@@ -1,50 +1,41 @@
 import "../styles/Admin.css"
 import { connect } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import userActions from '../redux/actions/userActions'
-import adminActions from '../redux/actions/adminActions'
 import AdminUsers from "../components/AdminUsers"
+import AdminStock from "../components/AdminStock"
+import AdminStats from "../components/AdminStats"
 
-const Admin = ({getUsers, loginUser}) => {
-
+const Admin = ({loginUser}) => {
+    const [component, setComponent] = useState({screen: ''})
 
     useEffect(() => {
         document.title = 'COZY - Admin Dashboard'
     }, [])
 
-    const getUsersButton = async () => {
-        let response = await getUsers()
-        console.log(response)
-    }
-
     return (
         <main className="adminMain">
             <div>
                 <div className="topInfo">
-                    <div>
+                    <div onClick={() => setComponent({screen: 'statistics'})}>
                         <i class="fas fa-money-bill-wave fa-2x"></i>
                         <h4>Total sales: 23</h4>
                     </div>
-                    <div>
+                    {loginUser.owner && <div onClick={() => setComponent({screen: 'user'})}>
                         <i class="far fa-user fa-2x"></i>
                         <h4>Total users: 43</h4>
-                    </div>
-                    <div>
+                    </div>}
+                    <div onClick={() => setComponent({screen: 'stock'})}>
                         <i class="fas fa-cart-plus fa-2x"></i>
                         <h4>Total stock: 65</h4>
                     </div>
                 </div>
                 <hr />
                 <div className="midInfo">
-                    <div className="searchBar">
-                        <div>
-                            <button onClick={getUsersButton}>Ver usuarios</button>
-                            <button>Ver stock</button>
-                            <button>Cargar productos</button>
-                        </div>
-                    </div>
                     <div>
-                        <AdminUsers />
+                        {component.screen === 'statistics' && <AdminStats />}
+                        {component.screen === 'user' && <AdminUsers />}
+                        {component.screen === 'stock' && <AdminStock />}
                     </div>
                 </div>
             </div>
@@ -60,7 +51,6 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = {
     logFromSession: userActions.logFromSession,
-    getUsers: adminActions.getUsers
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Admin)

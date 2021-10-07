@@ -41,7 +41,6 @@ div.midInfo {
     display: flex;
     flex: 1;
     width: 100%;
-    /* background-color: red; */
 }
 
 div.searchBar {
@@ -49,3 +48,7 @@ div.searchBar {
     width: 30%;
 }
 
+
+div.userContainer {
+    text-align: center;
+}
