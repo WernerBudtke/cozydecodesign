@@ -73,7 +73,7 @@ const ProductForm = ({addProduct}) => {
                             <input type="number" onChange={inputHandler} name="stock" placeholder="Stock" autoComplete="nope"/>
                             <input type="number" onChange={inputHandler} name="price" placeholder="Price" autoComplete="nope"/>
                         </div>
-                        <div className="sale">
+                        <div className="saleInput">
                             <div className="saleRadios">
                             <p>For Sale</p>
                             <input type="radio" id="true" name="forSale" value="true" onChange={inputHandler}/>
