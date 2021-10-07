@@ -1,11 +1,14 @@
 import { useState } from "react"
 import { GoogleLogin } from "react-google-login"
 import { Link } from "react-router-dom"
+import { connect } from "react-redux"
+import userActions from "../redux/actions/userActions"
+import toast from "react-hot-toast"
 
-const SignIn = () => {
+const SignIn = (props) => {
   const [user, setUser] = useState({
     password: "",
-    email: "",
+    eMail: "",
   })
 
   const inputHandler = (e) => {
@@ -15,14 +18,32 @@ const SignIn = () => {
     })
   }
 
-  const responseGoogle = (response) => {
-    console.log(response)
-  }
-
-  const submitButton = () => {
-    if (Object.values(user).some((value) => !value)) {
-      alert("Empty fields")
+  const responseGoogle = async (response) => {
+    let user = {
+      eMail: response.profileObj.email,
+      password: response.profileObj.googleId,
+      google: true,
     }
+    let res = await props.logIn(user)
+    if (res.success) {
+        toast.success('Welcome back!')
+        props.history.push('/')
+    } else {
+      res.response === 'Invalid username or pass' && toast.error('That google account does not exists')
+    }
+}
+
+  const submitHandler = async () => {
+    if (Object.values(user).some((value) => !value)) {
+      return toast.error('Fill the empty fields')
+    }
+    const response = await props.logIn(user)
+      if (response.success) {
+        toast.success('Welcome back!')
+        props.history.push("/")
+      } else {
+        toast.error(response.response)
+      }
   }
 
   return (
@@ -33,7 +54,7 @@ const SignIn = () => {
         </div>
         <div>
           <div className="group">
-            <input type="text" required onChange={inputHandler} name="email" />
+            <input type="text" required onChange={inputHandler} name="eMail" />
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Email</label>
@@ -49,13 +70,13 @@ const SignIn = () => {
             <span className="bar"></span>
             <label>Password</label>
           </div>
-          <button type="submit" onClick={submitButton}>
+          <button type="submit" onClick={submitHandler}>
             Sign In
           </button>
           <p>Or</p>
           <div className="googleButton">
             <GoogleLogin
-              clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+              clientId="825531110504-5if5ceqkaqcvcu2dppipo8q3j7hvnn9k.apps.googleusercontent.com"
               buttonText="Sign in"
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
@@ -68,7 +89,12 @@ const SignIn = () => {
         </div>
       </div>
     </main>
+    
   )
 }
 
-export default SignIn
+const mapDispatchToProps = {
+  logIn: userActions.logIn,
+}
+
+export default connect(null, mapDispatchToProps)(SignIn)

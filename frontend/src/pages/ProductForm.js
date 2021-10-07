@@ -2,14 +2,14 @@ import { useEffect, useState } from "react"
 import {connect} from "react-redux"
 import productsActions from "../redux/actions/productsActions"
 
-const ProductForm = (props) => {
+const ProductForm = ({addProduct}) => {
     const [newProduct, setNewProduct] = useState ({
         name: "",
-        photo: "",
+        photo: null,
         stock: "",
         description: "",
         price: "",
-        sale: "",
+        forSale: "",
         category: "",
         subcategory: "",
     })
@@ -19,26 +19,48 @@ const ProductForm = (props) => {
         subcategories = ["Accesories", "Mirrors"]
     } else if (newProduct.category === "Kitchenware"){
         subcategories = ["Accesories", "Glassware", "Tableware"]
-    } else if (newProduct.category === "Miscellaneous"){
+    } else if (newProduct.category === "Decor"){
         subcategories = ["Accesories", "Home", "Lighting"]
     }
-    const categories = ["Bathroom","Kitchenware","Miscellaneous"]
+    const categories = ["Bathroom","Kitchenware","Decor"]
 
 
     const inputHandler = (e) => {
         setNewProduct({
             ...newProduct,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.name === "photo" ? e.target.files[0] : e.target.value
         })
     }
 
-    const submitForm = () => {
-        props.addProduct(newProduct)
-        .then((response) => {
-            console.log(response)
-        })
-        console.log(newProduct)
-    }
+    const submitForm = async () => {
+        const fd = new FormData()
+        fd.append("name", newProduct.name)
+        fd.append("photo", newProduct.photo)
+        fd.append("stock", newProduct.stock)
+        fd.append("description", newProduct.description)
+        fd.append("price", newProduct.price)
+        fd.append("forSale", newProduct.forSale)
+        fd.append("category", newProduct.category)
+        fd.append("subcategory", newProduct.subcategory)
+        let empty = Object.values(newProduct).some((value) => value === "")
+        if (empty){
+            alert ("complete all the fields")
+        } else {
+            const response = await addProduct(newProduct, fd)
+            .then((response) => {
+                console.log(response)
+            })
+            if (response.data.success) {
+                alert("Producto cargado")
+                return false
+            }
+            alert("Todo salió mal!")
+            
+            console.log(newProduct)
+        }
+
+        }
+
     return (
             <main className="main">
                 <div className="productFormContainer">
