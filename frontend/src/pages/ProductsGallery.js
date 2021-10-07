@@ -6,12 +6,13 @@ import productsActions from "../redux/actions/productsActions"
 
 const ProductsGallery = ({ products, getProducts }) => {
   useEffect(() => {
+    window.scroll(0, 0)
+    document.title='COZY | STORE'
     getProducts().then((res) => {
       if (!res.success) {
         console.log(res)
       }
     })
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

@@ -20,11 +20,11 @@
   -webkit-box-shadow: 2px 2px 34px -2px rgba(0,0,0,0.5);
   -moz-box-shadow: 2px 2px 34px -2px rgba(0,0,0,0.5);
 }
-.bestsellers{
+.categories{
   background-color:#ecebe9;
   justify-content: center;
 }
-.bestsellers h1{
+.categories h1{
   margin-bottom: 4vw;
   text-align: center;
   font-family: 'Cormorant', serif;
@@ -32,10 +32,9 @@
   font-size: 7vw;
 }
 .gallery-wrap{
-  width: 80vw;
+  width: 82vw;
   height: 60vh;
   display: flex;
-  background-color:red;
 }
 .gallery-wrap div{
   flex: 1;
@@ -43,8 +42,28 @@
   background-position: center;
   background-size: cover;
   background-repeat: none;
+  display: flex;
+  justify-content: center;
+  align-items:flex-end;
   transition: flex 0.8s ease;
 }
 .gallery-wrap div:hover{
   flex: 7;
+}
+.gallery-wrap div a{
+  transition: all 1s ease;
+  margin: 1vw;
+  padding: 1vw;
+  width: 9%;
+}
+.gallery-wrap div a button{
+  width: 100%;
+  border-radius: 10px;
+  border:none;
+  background-color: #AD9993;
+  color: #000;
+  text-transform: uppercase;
+}
+.gallery-wrap div:hover a{
+  width: 50%;
 }

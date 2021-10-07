@@ -4,41 +4,35 @@ import {Link} from 'react-router-dom'
 import '../styles/Home.css'
 
 const Home = () => {
-    const bestsellers=[
-        'https://i.postimg.cc/tR8xRKn9/bat.jpg',
-        'https://i.postimg.cc/nzm4F3LR/home8.jpg', 
-        'https://i.postimg.cc/J4Q2C5tc/deco.jpg', 
-        'https://i.postimg.cc/DZFGhLSL/unknown.png', 
-        'https://i.postimg.cc/R0mhJ9vz/sale.jpg']
+    const categories=[
+        {src:'https://i.postimg.cc/tR8xRKn9/bat.jpg',
+        category:'bathroom'},
+        {src:'https://i.postimg.cc/nzm4F3LR/home8.jpg',
+        category:'kitchenware'}, 
+        {src:'https://i.postimg.cc/J4Q2C5tc/deco.jpg',
+        category:'deco'}, 
+        {src:'https://i.postimg.cc/fRX0pB8B/unknown.png',
+        category:'giftcard'}, 
+        {src:'https://i.postimg.cc/R0mhJ9vz/sale.jpg',
+        category:'sale'}]
 
     useEffect(()=>{
         window.scroll(0, 0)
         document.title='COZY | Home'
     },[])
     
-    const items = bestsellers.map((obj, index)=><div key={index} style={{backgroundImage:`url('${obj}')`}}></div>)
+    const items = categories.map((obj, index)=><div key={index} style={{backgroundImage:`url('${obj.src}')`}}>
+      <Link to={`/pruducts/${obj.category}`}><button>{obj.category}</button></Link>
+    </div>)
+
     return (
         <div className="home">
-            <Parallax 
-            bgImage={'/assets/home1.jpg'}
-            strength={500}renderLayer={(percentage) => (
-                <Link to='/products'
-                    style={{
-                      background: `rgba(212, 197, 191, ${percentage * 2})`,
-                      transform: "translate(-50%,-50%)",
-                      right:'20%',
-                      bottom:'50%',
-                      width: percentage * 90,
-                      height: percentage * 90
-                    }}>
-                    STORE
-                </Link>
-              )}>
+            <Parallax bgImage={'/assets/home1.jpg'} strength={600}>
+              <Link to='/products'><button className='homeStore'>STORE</button></Link>
             </Parallax>
-            <Parallax
-            strength={-200} className='bestsellers'>
-                <h1>BESTSELLERS</h1>
-                <div class="gallery-wrap">
+            <Parallax strength={-200} className='categories'>
+                <h1>CATEGORIES</h1>
+                <div className="gallery-wrap">
                     {items}
                 </div>
             </Parallax>

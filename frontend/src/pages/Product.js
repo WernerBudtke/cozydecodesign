@@ -73,7 +73,7 @@ const Product = ({ getAProduct, product, match, products, findAProduct }) => {
             <button>Add to Cart</button>
           </div>
           <div className="shippingInfo">
-            <i class="fas fa-truck fa-2x"></i>
+            <i className="fas fa-truck fa-2x"></i>
             <p>Free shipping on purchases from 200 dollars or more</p>
           </div>
           <p>calculo de envio - CP</p>
