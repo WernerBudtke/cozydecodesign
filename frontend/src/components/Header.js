@@ -1,7 +1,8 @@
-import {NavLink, Link} from 'react-router-dom'
-import {useState} from 'react'
+import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import userActions from '../redux/actions/userActions'
+import ReactCircleModal from 'react-circle-modal'
+import Cart from '../components/Cart'
 
 const Header=({loginUser, logOut})=>{
     const outHandler = () => {

@@ -3,12 +3,13 @@ import { useState } from "react"
 import CartCard from "./CartCard"
 
 const ProductCard = ({ product, addToCartCard }) => {
-  console.log(addToCartCard)
   const [showCartCard, setShowCartCard] = useState(false)
   const addProdToCart = () => {
     setShowCartCard(true)
     console.log(showCartCard)
   }
+
+  const photo = product.photo.includes('http') ? product.photo : `http://localhost:4000/615dc76dbff92fd2e007555c.jpg`
   const addToCart = () => {
     return <CartCard/>
   }
@@ -18,7 +19,7 @@ const ProductCard = ({ product, addToCartCard }) => {
         <Link to={`/product/${product._id}`}>
           <div
             className="top"
-            style={{ backgroundImage: `url("${product.photo}")` }}
+            style={{ backgroundImage:`url("${photo}")`}}
           ></div>
         </Link>
 

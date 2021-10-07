@@ -6,8 +6,9 @@ import ReactCircleModal from "react-circle-modal"
 import Cart from "../components/Cart"
 
 const Product = ({ getAProduct, product, match, products, findAProduct }) => {
-  const [quantity, setQuantity] = useState(0)
+  const [quantity, setQuantity] = useState(1)
   const [loading, setLoading] = useState(true)
+
   useEffect(() => {
     if (!products.length) {
       getAProduct(match.params.id).then((res) => {
@@ -51,18 +52,18 @@ const Product = ({ getAProduct, product, match, products, findAProduct }) => {
             <p>${finalPrice}</p>
           </div>
           <div>
-            <i class="far fa-credit-card fa-2x"></i>
+            <i className="far fa-credit-card fa-2x"></i>
             <p>3 payments of ${((1.1 * finalPrice) / 3).toFixed(2)}</p>
           </div>
           <div>
             <div className="counter">
               <i
-                class="fas fa-minus"
-                onClick={quantity > 0 ? () => setQuantity(quantity - 1) : null}
+                className="fas fa-minus"
+                onClick={quantity > 1 ? () => setQuantity(quantity - 1) : null}
               ></i>
               <p>{quantity}</p>
               <i
-                class="fas fa-plus"
+                className="fas fa-plus"
                 onClick={() => {
                   product.stock === quantity
                     ? alert("no hay stock")

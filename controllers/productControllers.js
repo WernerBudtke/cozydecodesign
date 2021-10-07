@@ -97,4 +97,3 @@ const productControllers = {
   },
 }
 module.exports = productControllers
-//CRUD productos
