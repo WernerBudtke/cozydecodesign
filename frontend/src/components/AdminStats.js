@@ -6,6 +6,7 @@ import productsActions from "../redux/actions/productsActions"
 const AdminStats = ({getProducts, products}) => {
     const [productsSold, setProductSold] = useState(null)
     const [totalProfit, setTotalProfit] = useState(null)
+
     useEffect(() => {
         const res = async () => {
             let response = await getProducts()
@@ -23,13 +24,6 @@ const AdminStats = ({getProducts, products}) => {
     useEffect(() => {
         setProductSold(products.map((product) => product.sold).reduce(add,0))
         setTotalProfit(products.map((product) => product.discount > 0 ? product.sold * (product.price * (1-(product.discount / 100))) : product.sold * product.price).reduce(add, 0))
-        // products.map((product) => {
-        //     if (product.discount > 0) {
-        //         return product.sold * (product.price * (1-(product.discount / 100)))
-        //     } else {
-        //         return product.sold * product.price
-        //     }
-        // })
     }, [products])
 
     return (

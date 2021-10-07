@@ -3,6 +3,7 @@ import '../styles/Admin.css'
 import { useEffect, useState } from 'react'
 import productsActions from '../redux/actions/productsActions'
 import StockProduct from './StockProduct'
+
 const AdminStock = ({products, getProducts}) => {
     const [render, setRender] = useState(false)
 
