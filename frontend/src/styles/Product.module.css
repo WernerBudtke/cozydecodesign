@@ -29,6 +29,7 @@
   justify-content: space-around;
   padding: 1vh 2vw;
   text-align: center;
+  color: rgb(75, 69, 69);
 }
 
 .productInfo div {
@@ -37,6 +38,7 @@
   align-items: center;
   gap: 20px;
   font-weight: bold;
+  color: rgb(75, 69, 69);
 }
 .productInfo > p:nth-child(2) {
   font-size: 2.5vmin;
@@ -52,6 +54,7 @@
 
 .productInfo h2 {
   font-size: 4vmin;
+  color: #c58b7b;
 }
 
 .productInfo button {

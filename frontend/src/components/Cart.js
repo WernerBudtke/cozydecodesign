@@ -1,37 +1,33 @@
-import "../styles/Cart.css"
+import styles from "../styles/Cart.module.css"
+import { connect } from "react-redux"
+import ProductInCart from "./ProductInCart"
 
-const Cart = ({ onClickHandler }) => {
+const Cart = ({ onClickHandler, products }) => {
+  console.log(products)
   return (
-    <div className="cartContainer">
-      <div className="cartContainerHeader">
+    <div className={styles.cartContainer}>
+      <div className={styles.cartContainerHeader}>
         <p>Shopping Cart </p>
         <i onClick={onClickHandler} className="fas fa-times"></i>
       </div>
-      <div className="cartContainerMain">
-        <div
-          style={{ border: "1px solid black", width: "30vw", height: "20vh" }}
-        ></div>
-        <div
-          style={{ border: "1px solid black", width: "30vw", height: "20vh" }}
-        ></div>
-        <div
-          style={{ border: "1px solid black", width: "30vw", height: "20vh" }}
-        ></div>
-        <div
-          style={{ border: "1px solid black", width: "30vw", height: "20vh" }}
-        ></div>
-        <div
-          style={{ border: "1px solid black", width: "30vw", height: "20vh" }}
-        ></div>
-        <div
-          style={{ border: "1px solid black", width: "30vw", height: "20vh" }}
-        ></div>
-        <div
-          style={{ border: "1px solid black", width: "30vw", height: "20vh" }}
-        ></div>
+      <div className={styles.cartContainerMain}>
+        {products.map((obj) => (
+          <ProductInCart cartItem={obj} key={obj.product._id} />
+        ))}
+        <div>
+          <p>SUBTOTAL</p>
+          <p>PRICE</p>
+        </div>
       </div>
     </div>
   )
 }
 
-export default Cart
+const mapStateTopProps = (state) => {
+  return {
+    products: state.cart.products,
+  }
+}
+
+const mapDispatchToProps = {}
+export default connect(mapStateTopProps, mapDispatchToProps)(Cart)

@@ -34,9 +34,12 @@ header h1{
 a:active {
   color: rgb(131, 119, 119);
   transition: all 0.2s ease-out;
- 
 }
-header .userLogin{
+header .userLogin {
+  color: rgb(75, 69, 69);
+}
+.fa-shopping-cart {
+  cursor: pointer;
   color: rgb(75, 69, 69);
 }
 
@@ -49,45 +52,45 @@ header .logoUser{
   background-size: cover;
 }
 /* FOOTER */
-footer{
+footer {
   width: 100%;
   position: absolute;
   min-height: 30vh;
-  background-color: #ead8ca5d;  
+  background-color: #ead8ca5d;
   display: flex;
   justify-content: space-around;
   padding: 8vh;
 }
-footer div h3{
+footer div h3 {
   color: rgba(0, 0, 0, 0.781);
-  letter-spacing: .1vw;
+  letter-spacing: 0.1vw;
   margin-bottom: 2vh;
 }
-footer div p{
+footer div p {
   color: rgba(0, 0, 0, 0.637);
   padding: 0.5vh;
-  letter-spacing: .05vw;
+  letter-spacing: 0.05vw;
   margin-bottom: 1vh;
 }
 footer .socialNetworks {
   flex-direction: row;
 }
 
-footer .infoContact{
+footer .infoContact {
   display: flex;
   flex-direction: column;
 }
-footer .iconContact{
+footer .iconContact {
   display: flex;
   align-items: center;
   margin-right: 1vw;
 }
-footer div{
-  gap:2;
+footer div {
+  gap: 2;
 }
-footer .iconSocial{
+footer .iconSocial {
   color: rgb(97, 88, 88);
-  margin-right: .5vw;
+  margin-right: 0.5vw;
 }
 
 .iconSocial{
@@ -113,7 +116,7 @@ form {
   margin-top: 2rem;
   padding: 0.5vw 0;
   margin-bottom: 10vh; /*porque me pisa el form el footer para sacar después*/
-  margin-top: 15vh /*idem arriba con el header*/
+  margin-top: 15vh; /*idem arriba con el header*/
 }
 
 form.productForm {
