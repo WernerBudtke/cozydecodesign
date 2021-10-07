@@ -161,9 +161,7 @@ div.saleRadios input {
 main.signup-main,
 main.signin-main {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  min-height: 105vh;
   background-image: url(https://i.imgur.com/Tc1vKCs.jpg);
   background-position: center;
   background-size: cover;
@@ -175,7 +173,7 @@ main.signin-main {
   justify-content: space-between;
   margin: auto;
   min-height: 50vh;
-  width: 22%;
+  width: 35%;
   color: #666;
   border-radius: 3px;
   background: #fff;
@@ -186,7 +184,7 @@ main.signin-main {
 .box h1 {
   margin-left: 1vw;
   padding: 2vh;
-  font-size: 2.5vmin;
+  font-size: 3vmin;
   font-weight: 300;
   color: #bf988f;
 }
@@ -196,7 +194,7 @@ main.signin-main {
   border: 0;
   color: #7e6661;
   padding: 1vh;
-  font-size: 1.5vmin;
+  font-size: 2.5vmin;
   font-weight: 300;
   width: 80%;
   margin: 2vh auto;
@@ -245,7 +243,7 @@ main.signin-main {
 
 .group label {
   color: #999;
-  font-size: 1.5vmin;
+  font-size: 2vmin;
   position: absolute;
   left: 5px;
   top: 10px;
@@ -258,7 +256,7 @@ main.signin-main {
 .box div div input:focus ~ label,
 .box div div input:valid ~ label {
   top: -1.5vh;
-  font-size: 1.5vmin;
+  font-size: 2vmin;
   color: #bf988f;
 }
 
@@ -352,20 +350,24 @@ main.signin-main {
   color: #bfc6d4;
 }
 
-.box div:last-child {
+.googleButton {
   display: flex;
   align-items: center;
 }
 
 div.group div {
   height: 2.5vh;
-  /* background-color: red; */
 }
 
 p.inputError {
-  font-size: 1.3vmin;
+  font-size: 1.8vmin;
   margin-top: 1vh;
   text-align: center;
   width: 90%;
   color: rgb(218, 37, 37);
+}
+
+div.errorContainer {
+  height: 5vh;
+  color: red;
 }
