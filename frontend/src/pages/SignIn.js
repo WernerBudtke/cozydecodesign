@@ -3,6 +3,7 @@ import { GoogleLogin } from "react-google-login"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import userActions from "../redux/actions/userActions"
+import '../styles/SignUp.css'
 
 const SignIn = ({history,logIn}) => {
 

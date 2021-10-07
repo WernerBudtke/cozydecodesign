@@ -3,7 +3,7 @@ import styles from "../styles/CartCard.module.css"
 const CartCard = ({productAlert, showCard, addToCartCard}) => {
 
     return (
-        <div className = {!showCard ? "hideCard" : "showCard"}>
+        <div className = {!showCard ? styles.hideCard : styles.showCard}>
           <div className={styles.cartCard}>
             <div className={styles.topToast}>
                 <div>

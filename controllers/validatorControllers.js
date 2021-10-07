@@ -31,21 +31,12 @@ const validatorControllers = {
       photo: joi.string(),
     })
     const validation = schema.validate(req.body, {abortEarly: false})
-<<<<<<< HEAD
-    if(!validation.error){
-        next()
-    }else{
-        console.log(validation.error.details)
-        res.json({ success: false, response: validation.error.details })
-    }
-=======
       if(!validation.error){
           next()
       }else{
           console.log(validation.error.details)
           res.json({ success: false, response: validation.error.details})
       }
->>>>>>> origin/karla
   },
 }
 module.exports = validatorControllers
