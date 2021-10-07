@@ -9,6 +9,8 @@ const ProductCard = ({ product, addToCartCard }) => {
     setShowCartCard(true)
     console.log(showCartCard)
   }
+
+  const photo = product.photo.includes('http') ? product.photo : `http://localhost:4000/${product.photo}`
   const addToCart = () => {
     return <CartCard />
   }
@@ -17,8 +19,8 @@ const ProductCard = ({ product, addToCartCard }) => {
       <div className={styles.container}>
         <Link to={`/product/${product._id}`}>
           <div
-            className={styles.top}
-            style={{ backgroundImage: `url("${product.photo}")` }}
+            className="top"
+            style={{ backgroundImage:`url("${photo}")`}}
           ></div>
         </Link>
 

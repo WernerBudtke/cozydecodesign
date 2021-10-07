@@ -16,6 +16,7 @@ const Product = ({
 }) => {
   const [quantity, setQuantity] = useState(1)
   const [loading, setLoading] = useState(true)
+
   useEffect(() => {
     if (!products.length) {
       getAProduct(match.params.id).then((res) => {

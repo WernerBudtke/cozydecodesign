@@ -1,5 +1,4 @@
 import axios from "axios"
-import toast from "react-hot-toast"
 
 const userActions = {
   signUp: (user) => {
@@ -46,9 +45,6 @@ const userActions = {
         let response = await axios.get("http://localhost:4000/api/user/logout", {withCredentials: true})
         if (!response.data.success) throw new Error(response.data.response)
         dispatch({type: "LOG_OUT"})
-        toast('See you later!', {
-          icon: '👋',
-        });
       } catch (error) {
         alert(error)
       }

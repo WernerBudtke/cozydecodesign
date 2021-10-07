@@ -94,4 +94,8 @@ const productControllers = {
     }
   },
 }
+<<<<<<< HEAD
 module.exports = productControllers
+=======
+module.exports = productControllers
+>>>>>>> origin/karla

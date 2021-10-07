@@ -20,6 +20,28 @@
   -webkit-box-shadow: 2px 2px 34px -2px rgba(0,0,0,0.5);
   -moz-box-shadow: 2px 2px 34px -2px rgba(0,0,0,0.5);
 }
+.homeStore{
+  position: absolute;
+  left: 78vw;
+  transform: translate(-50%,-50%)
+}
+.homeStore > div{
+  display: flex;
+  align-items: center;
+  padding: 1vw;
+  width: 12vw;
+  height: 12vw;
+  border-radius: 20px;
+  background-color: #dabea8;
+}
+.homeStore > div >p{
+  font-family: 'Cormorant', serif;
+  text-align: center;
+  font-size: 3vmin;
+  text-transform: uppercase;
+  line-height: 4vh;
+}
+
 .categories{
   background-color:#ecebe9;
   justify-content: center;
@@ -31,12 +53,12 @@
   letter-spacing: 1vw;
   font-size: 7vw;
 }
-.gallery-wrap{
+.galleryWrap{
   width: 82vw;
   height: 60vh;
   display: flex;
 }
-.gallery-wrap div{
+.galleryWrap div{
   flex: 1;
   height: 100%;
   background-position: center;
@@ -47,23 +69,30 @@
   align-items:flex-end;
   transition: flex 0.8s ease;
 }
-.gallery-wrap div:hover{
+.galleryWrap div:hover{
   flex: 7;
 }
-.gallery-wrap div a{
+.galleryWrap div a{
   transition: all 1s ease;
   margin: 1vw;
   padding: 1vw;
   width: 9%;
 }
-.gallery-wrap div a button{
+.galleryWrap div a button{
   width: 100%;
   border-radius: 10px;
   border:none;
   background-color: #AD9993;
   color: #000;
   text-transform: uppercase;
+  cursor: pointer;
 }
-.gallery-wrap div:hover a{
+.galleryWrap div:hover a{
   width: 50%;
+}
+.info{
+  width: 50vh;
+  margin:0 5vw;
+  line-height: 4vh;
+  font-size: 2.5vh;
 }
