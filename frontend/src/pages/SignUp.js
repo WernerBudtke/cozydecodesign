@@ -7,7 +7,10 @@ import toast from "react-hot-toast"
 
 const SignUp = (props) => {
   const [user, setUser] = useState({ firstName: "", lastName: "", password: "", eMail: "", photo: "", admin: false, google: false })
-  const [renderError, setRenderError] = useState({error: ''})
+  const [renderError, setRenderError] = useState({})
+  const errorsInput = {
+    firstName: null, lastName: null, eMail: null, password: null, emptyFields: null
+  }
 
   const inputHandler = (e) => {
     setUser({
@@ -28,24 +31,11 @@ const SignUp = (props) => {
     }
     const res = await props.signUp(user)
     if (res.success) {
-      toast.success('Account created!')
       props.history.push("/")
     } else {
-      res.response === "eMail already in use" && toast.error('Email already in use')
+      setRenderError({emailGoogle: 'That google account is already in use'})
     }
   }
-
-  let myErrors = {
-    firstName: 'Firstname must contain at least 2 characters, only letters and cannot exceed 25 characteers and cann',
-    lastName: 'Lastname must contain at least 2 characters and cannot exceed 25 characteers',
-    eMail: renderError.error.includes('eMail already in use') ? "Email already in use!" : "Email must be a valid one, for example jwb@gmail.com",
-    password: "The password must contain at least 6 characters",
-  }
-
-  let myErrorsKeys = Object.keys(myErrors).filter(key => renderError.error.includes(key)) 
-    const handleError = (string) =>{
-      return renderError.error.includes(string) ? 'fieldError' : ''
-    }
 
   const submitHandler = async () => {
     const fd = new FormData()
@@ -57,15 +47,17 @@ const SignUp = (props) => {
     fd.append("admin", user.admin)
     fd.append("google", user.google)
     if (Object.values(user).some((value) => value === "")) {
-      toast.error('Empty fields')
+      setRenderError({emptyFields: "There cannot be empty fields"})
     } else {
       const response = await props.signUp(fd)
       if (response.success) {
         toast.success('Account created!')
         props.history.push("/")
       } else {
-        toast.error('Oops! Check the errors.')
-        setRenderError({error: response.response})
+        response.response.map(error=> {
+          errorsInput[error.context.label]=error.message
+        })
+        setRenderError(errorsInput)
       }
     }
   }
@@ -86,7 +78,7 @@ const SignUp = (props) => {
             <span className="bar"></span>
             <label>Firstname</label>
             <div>
-              {renderError.error.includes('firstName') && <p className="inputError">{myErrors.firstName}</p>}
+              {renderError.firstName && <p className="inputError">{renderError.firstName}</p>}
             </div>
           </div>
           <div className="group">
@@ -100,7 +92,7 @@ const SignUp = (props) => {
             <span className="bar"></span>
             <label>Lastname</label>
             <div>
-              {renderError.error.includes('lastName') && <p className="inputError">{myErrors.lastName}</p>}
+              {renderError.lastName && <p className="inputError">{renderError.lastName}</p>}
             </div>
           </div>
           <div className="group">
@@ -114,7 +106,7 @@ const SignUp = (props) => {
             <span className="bar"></span>
             <label>Password</label>
             <div>
-              {renderError.error.includes('password') && <p className="inputError">{myErrors.password}</p>}
+              {renderError.password && <p className="inputError">{renderError.password}</p>}
             </div>
           </div>
           <div className="group">
@@ -122,12 +114,13 @@ const SignUp = (props) => {
               type="text"
               onChange={inputHandler}
               name="eMail"
+              required
             />
             <span className="highlight"></span>
             <span className="bar"></span>
             <label>Email</label>
             <div>
-              {renderError.error.includes('eMail') && <p className="inputError">{myErrors.eMail}</p>}
+              {renderError.eMail && <p className="inputError">{renderError.eMail}</p>}
             </div>
           </div>
           <div className="group">
@@ -148,6 +141,10 @@ const SignUp = (props) => {
             />
           </div>
         </div>
+          <div className="errorContainer">
+            {<p>{renderError.emptyFields}</p>}
+            {<p>{renderError.emailGoogle}</p>}
+          </div>
         <div className="footer-box">
           <Link to="/signin">You have an account? Sign in now!</Link>
         </div>

@@ -15,11 +15,13 @@ const productsActions = {
     addProduct: (newProduct) => {
         return async (dispatch, getState) => {
             try {
-                let response = await axios.post("http://localhost:4000/api/product/add", {...newProduct}, {withCredentials: true})
+                let response = await axios.post("http://localhost:4000/api/product/add", newProduct, {withCredentials: true})
                 if (response.data.success){
                     dispatch({type: "ADD_PRODUCT", payload: response.data.respose})
+                    return response
+                }else{
+                  throw new Error(response.data.response)
                 }
-                return response
       } catch (error) {
         return {
           success: false,

@@ -1,12 +1,13 @@
+import { Link } from 'react-router-dom'
 
 const Footer=()=>{
     return(
         <footer>
             <div className="infoProduct">
                 <h3>Categories</h3>
-                <p>Bazaar</p>
-                <p>Illumination</p>
-                <p>Decor</p>
+                <Link to="/products/kitchenware"><p>Kitchenware</p></Link>
+                <Link to="/products/bathroom"><p>Bathroom</p></Link>
+                <Link to="/products/decor"><p>Decor</p></Link>
             </div>
             <div className="infoService">
                 <h3>Customer Service</h3>
@@ -16,10 +17,14 @@ const Footer=()=>{
             </div>
             <div className="infoContact">
                 <h3>Contact</h3>
-                <i className="iconSocial fas fa-envelope">  cozydecodesign@gmail.com</i>
-                <i className="iconSocial fas fa-phone-alt"> +54 11 6789 8270
-                </i>
-                
+                <div className="iconContact">
+                    <i className="iconSocial fas fa-envelope"></i>
+                    <p>cozydecodesign@gmail.com</p>
+                </div>
+                <div className="iconContact">
+                    <i className="iconSocial fas fa-phone-alt"></i>
+                    <p>+54 11 6789 8270</p>
+                </div>
                 <div className="socialNetworks">
                     <a href="https://www.facebook.com/" target="_blank">
                         <i className="iconSocial fab fa-facebook-square fa-2x"></i>

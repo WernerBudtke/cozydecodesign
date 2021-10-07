@@ -10,6 +10,7 @@ const ProductForm = ({addProduct}) => {
         description: "",
         price: "",
         forSale: "",
+        discount:"",
         category: "",
         subcategory: "",
     })
@@ -42,19 +43,19 @@ const ProductForm = ({addProduct}) => {
         fd.append("forSale", newProduct.forSale)
         fd.append("category", newProduct.category)
         fd.append("subcategory", newProduct.subcategory)
+        fd.append("discount", newProduct.discount)
         let empty = Object.values(newProduct).some((value) => value === "")
         if (empty){
             alert ("complete all the fields")
         } else {
-            const response = await addProduct(newProduct, fd)
-            .then((response) => {
-                console.log(response)
-            })
+            const response = await addProduct(fd)
             if (response.data.success) {
                 alert("Producto cargado")
                 return false
+            }else{
+                alert("Todo salió mal!")
+
             }
-            alert("Todo salió mal!")
             
             console.log(newProduct)
         }
@@ -73,7 +74,7 @@ const ProductForm = ({addProduct}) => {
                             <input type="number" onChange={inputHandler} name="stock" placeholder="Stock" autoComplete="nope"/>
                             <input type="number" onChange={inputHandler} name="price" placeholder="Price" autoComplete="nope"/>
                         </div>
-                        <div className="sale">
+                        <div className="saleInput">
                             <div className="saleRadios">
                             <p>For Sale</p>
                             <input type="radio" id="true" name="forSale" value="true" onChange={inputHandler}/>

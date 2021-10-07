@@ -25,14 +25,13 @@ const productControllers = {
   },
   addProduct: async (req, res) => {
     console.log("Received ADD PRODUCT Petition:" + Date())
-    console.log(req.body)
     try {
-      // if (!req.session.loggedUser) throw new Error("Log In First")
-      // if (!req.session.loggedUser.admin)
-        // throw new Error("You don't have permissions to do this")
+      if (!req.session.loggedUser) throw new Error("Log In First")
+      if (!req.session.loggedUser.admin) throw new Error("You don't have permissions to do this")
+      if(!req.files)throw new Error('Must upload a photo')
+      let photoUploaded = req.files.photo
       const {
         name,
-        photo,
         stock,
         description,
         price,
@@ -43,15 +42,19 @@ const productControllers = {
       } = req.body
       let newProduct = new Product({
         name,
-        photo,
+        photo: "",
         stock: parseInt(stock),
         description,
         price: parseFloat(price),
-        forSale: forSale == "true",
+        forSale,
         discount: parseInt(discount),
         category,
         subcategory,
       })
+      let hdp = req.files.photo.name.split('.')[1]
+      let fileName = newProduct._id + "." + hdp.toString()
+      newProduct.photo = fileName
+      photoUploaded.mv(`${__dirname}/../storage/${fileName}`)
       let savedProduct = await newProduct.save()
       res.json({ success: true, response: savedProduct })
     } catch (err) {

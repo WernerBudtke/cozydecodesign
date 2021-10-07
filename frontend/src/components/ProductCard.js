@@ -1,6 +1,17 @@
 import { Link } from "react-router-dom"
+import { useState } from "react"
+import CartCard from "./CartCard"
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, addToCartCard }) => {
+  console.log(addToCartCard)
+  const [showCartCard, setShowCartCard] = useState(false)
+  const addProdToCart = () => {
+    setShowCartCard(true)
+    console.log(showCartCard)
+  }
+  const addToCart = () => {
+    return <CartCard/>
+  }
   return (
     <div className="wrapper">
       <div className="container">
@@ -23,13 +34,13 @@ const ProductCard = ({ product }) => {
                   $
                   {(((100 - product.discount) / 100) * product.price).toFixed(
                     2
-                  )}{" "}
+                  )}
                 </p>
               )}
             </div>
           </div>
           <div className="cardButtons">
-            <i className="fas fa-cart-plus fa-2x"></i>
+            <i className="fas fa-cart-plus fa-2x" onClick={addProdToCart}></i>
             <Link to={`/product/${product._id}`}>
               <i className="fas fa-eye fa-2x"></i>
             </Link>
