@@ -1,11 +1,11 @@
+import "../styles/SignUp.css"
 import { useState } from "react"
 import { GoogleLogin } from "react-google-login"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import userActions from "../redux/actions/userActions"
-import toast from "react-hot-toast"
 
-const SignUp = (props) => {
+const SignUp = ({signUp, history}) => {
   const [user, setUser] = useState({ firstName: "", lastName: "", password: "", eMail: "", photo: "", admin: false, google: false })
   const [renderError, setRenderError] = useState({})
   const errorsInput = {
@@ -29,9 +29,9 @@ const SignUp = (props) => {
       google: true,
       admin: false
     }
-    const res = await props.signUp(user)
+    const res = await signUp(user)
     if (res.success) {
-      props.history.push("/")
+      history.push("/")
     } else {
       setRenderError({emailGoogle: 'That google account is already in use'})
     }
@@ -49,10 +49,9 @@ const SignUp = (props) => {
     if (Object.values(user).some((value) => value === "")) {
       setRenderError({emptyFields: "There cannot be empty fields"})
     } else {
-      const response = await props.signUp(fd)
+      const response = await signUp(fd)
       if (response.success) {
-        toast.success('Account created!')
-        props.history.push("/")
+        history.push("/")
       } else {
         response.response.map(error=> {
           errorsInput[error.context.label]=error.message
