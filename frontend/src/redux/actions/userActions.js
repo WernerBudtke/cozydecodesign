@@ -46,7 +46,7 @@ const userActions = {
         if (!response.data.success) throw new Error(response.data.response)
         dispatch({type: "LOG_OUT"})
       } catch (error) {
-        alert(error)
+        console.log(error)
       }
     }
   }

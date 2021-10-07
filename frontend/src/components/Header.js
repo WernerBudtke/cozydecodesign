@@ -33,6 +33,7 @@ const Header=({loginUser, logOut})=>{
                     {loginUser && (
                         <NavLink active  onClick={outHandler} to="/">LOGOUT</NavLink>
                     )}
+                    <NavLink to="/admin">Admin</NavLink>
                     <ReactCircleModal
                         style={{
                         padding: "0",

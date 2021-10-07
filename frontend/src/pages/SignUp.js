@@ -3,7 +3,6 @@ import { GoogleLogin } from "react-google-login"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import userActions from "../redux/actions/userActions"
-import toast from "react-hot-toast"
 
 const SignUp = ({history, signUp}) => {
   const [user, setUser] = useState({ firstName: "", lastName: "", password: "", eMail: "", photo: "", admin: false, google: false })
@@ -13,7 +12,7 @@ const SignUp = ({history, signUp}) => {
   }
 
   useEffect(()=>{
-    document.title='COZY |Sign Up'
+    document.title='COZY | Sign Up'
   },[])
 
   const inputHandler = (e) => {
@@ -55,10 +54,9 @@ const SignUp = ({history, signUp}) => {
     } else {
       const response = await signUp(fd)
       if (response.success) {
-        toast.success('Account created!')
         history.push("/")
       } else {
-        response.response.map(error=> {
+        response.response.forEach(error=> {
           errorsInput[error.context.label]=error.message
         })
         setRenderError(errorsInput)
@@ -140,7 +138,6 @@ const SignUp = ({history, signUp}) => {
               clientId="825531110504-5if5ceqkaqcvcu2dppipo8q3j7hvnn9k.apps.googleusercontent.com"
               buttonText="Sign up"
               onSuccess={responseGoogle}
-              onFailure={responseGoogle}
               cookiePolicy={"single_host_origin"}
             />
           </div>
