@@ -1,0 +1,51 @@
+main.adminMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+}
+
+main.adminMain > div {
+    background-color: #ead8ca5d;
+    height: 80vh;
+    width: 90%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+div.topInfo{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-bottom: 4vh;
+}
+
+div.topInfo div {
+    height: 10vh;
+    width: 20vw;
+    margin-top: 2vh;
+    background-color: yellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+div.topInfo div i {
+    margin-right: 1vw;
+}
+
+div.midInfo {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    /* background-color: red; */
+}
+
+div.searchBar {
+    border-right: 1px solid black;
+    width: 30%;
+}
+

@@ -13,6 +13,7 @@ import HoverCard from './pages/HoverCard'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Product from './pages/Product'
+import Admin from './pages/Admin'
 
 const App=({loginUser, logFromSession})=>{
   useEffect(()=>{
@@ -34,6 +35,7 @@ const App=({loginUser, logFromSession})=>{
           <Route path="/product/:id" component={Product} />
           <Route path="/productform" component={ProductForm}/>
           <Route exact path="/hover" component={HoverCard}/>
+          <Route path="/admin" component={loginUser && loginUser.admin ? Admin : Home} />
           <Redirect to="/" />
         </Switch>
       <Footer/>

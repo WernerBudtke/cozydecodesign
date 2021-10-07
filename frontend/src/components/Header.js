@@ -29,6 +29,7 @@ const Header=({loginUser, logOut})=>{
                         <NavLink active  onClick={outHandler} to="/">LOGOUT</NavLink>
                     )}
                     <NavLink active to="/"><i class="iconSocial fas fa-shopping-cart fa-1x"></i></NavLink>
+                    <NavLink to="/admin">Admin</NavLink>
                 </nav>  
             </div>
         </header>
