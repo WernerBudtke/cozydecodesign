@@ -14,7 +14,7 @@ const AdminStock = ({products, getProducts}) => {
                 alert('Error')
             }
         }
-        products.length === 0 && res()
+        res()
     }, [render])
 
     const fetchAgain = () => {
