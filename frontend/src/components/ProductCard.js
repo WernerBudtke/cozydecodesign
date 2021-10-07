@@ -23,7 +23,7 @@ const ProductCard = ({ product }) => {
                   $
                   {(((100 - product.discount) / 100) * product.price).toFixed(
                     2
-                  )}{" "}
+                  )}
                 </p>
               )}
             </div>
