@@ -1,20 +1,21 @@
-import {NavLink, Link} from 'react-router-dom'
-import {useState} from 'react'
+import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import userActions from '../redux/actions/userActions'
 
-const Header=({loginUser, logOut, userPhoto})=>{
+const Header=({loginUser, logOut})=>{
     const outHandler = () => {
         logOut()
     }
-
     return(
         <header>
-            {loginUser && (
-                <div>
-                    {/* <div style={{backgroundImage: `url('${userPhoto}')`}}></div> */}
-                </div>
-            )}
+            <div>
+                {!loginUser && (
+                    <i class="iconSocial fas fa-user fa-2x"></i>
+                )}
+                {loginUser && (
+                    <div className="logoUser" style={{backgroundImage: `url('${loginUser.photo}')`}}></div>
+                )} 
+            </div>
             <h1>COZY</h1>
             <div className="navContainer">
                 <nav>
@@ -37,8 +38,7 @@ const Header=({loginUser, logOut, userPhoto})=>{
 }
 const mapStateToProps =(state)=>{
     return{
-        loginUser:state.users.token,
-        userPhoto: state.users.photo
+        loginUser:state.users.user,
     }
 }
 const mapDispatchToProps={

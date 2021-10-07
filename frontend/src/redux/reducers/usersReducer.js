@@ -1,10 +1,4 @@
-const usersReducer = (state = {user:{
-  token: null,
-  firstName: null,
-  photo: null,
-  owner: null,
-  admin: null
-}}, action) => {
+const usersReducer = (state = {user:null}, action) => {
   switch (action.type) {
     case "LOG_IN_USER":
       console.log(action.payload)
