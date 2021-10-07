@@ -6,7 +6,9 @@ const userActions = {
     return async (dispatch) => {
       try {
         let response = await axios.post("http://localhost:4000/api/user/register", user, {withCredentials: true})
-        if (!response.data.success) throw new Error(response.data.response)
+        if (!response.data.success) { 
+          return response.data
+        }
         dispatch({ type: "LOG_IN_USER", payload: response.data.response })
         return {success: true, response: response.data.response}
       } catch (error) {

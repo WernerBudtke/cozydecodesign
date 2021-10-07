@@ -3,13 +3,13 @@ import { GoogleLogin } from "react-google-login"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import userActions from "../redux/actions/userActions"
-import toast from "react-hot-toast"
 
 const SignIn = (props) => {
   const [user, setUser] = useState({
     password: "",
     eMail: "",
   })
+  const [error, setError] = useState('')
 
   const inputHandler = (e) => {
     setUser({
@@ -26,23 +26,21 @@ const SignIn = (props) => {
     }
     let res = await props.logIn(user)
     if (res.success) {
-        toast.success('Welcome back!')
         props.history.push('/')
     } else {
-      res.response === 'Invalid username or pass' && toast.error('That google account does not exists')
+      res.response === 'Invalid username or pass' && setError('That google account does not exist')
     }
 }
 
   const submitHandler = async () => {
     if (Object.values(user).some((value) => !value)) {
-      return toast.error('Fill the empty fields')
+      return setError('Fill the empty fields')
     }
     const response = await props.logIn(user)
       if (response.success) {
-        toast.success('Welcome back!')
         props.history.push("/")
       } else {
-        toast.error(response.response)
+        setError(response.response)
       }
   }
 
@@ -84,6 +82,9 @@ const SignIn = (props) => {
             />
           </div>
         </div>
+        <div className="errorContainer">
+          {<p>{error}</p>}
+        </div>|
         <div className="footer-box">
           <Link to="/signup">You don't have an account? Sign up now!</Link>
         </div>
