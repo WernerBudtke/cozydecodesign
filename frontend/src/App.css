@@ -44,10 +44,12 @@ header .userLogin{
   color: rgb(75, 69, 69);
 }
 /* FOOTER */
+
+
 footer{
-  width: 100%;
+    width: 100%;
+    min-height: 30vh;
   position: absolute;
-  min-height: 30vh;
   background-color: #ead8ca5d;  
   display: flex;
   justify-content: space-around;
