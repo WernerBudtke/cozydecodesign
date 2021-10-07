@@ -31,8 +31,9 @@ const App=({token, logFromSession})=>{
           <Route path="/signin" component={SignIn}/>
           <Route path="/signup" component={SignUp}/>
           <Route exact path="/products" component={ProductsGallery}/>
-          <Route exact path="/product/:id" component={Product} />
-          <Route exact path="/productform" component={ProductForm}/>
+          <Route path="/products/:category" component={ProductsGallery} />
+          <Route path="/product/:id" component={Product} />
+          <Route path="/productform" component={ProductForm}/>
           <Route exact path="/hover" component={HoverCard}/>
           <Redirect to="/" />
         </Switch>

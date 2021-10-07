@@ -37,7 +37,7 @@ const Product = ({ getAProduct, product, match, products, findAProduct }) => {
           <p>{product.description}</p>
           <p>${product.price}</p>
           <div>
-            <i class="far fa-credit-card fa-2x"></i>
+            <i className="far fa-credit-card fa-2x"></i>
             <p>3 cuotas con tarjeta</p>
             <p>
               ${(product.price / 3 + (20 * product.price) / 100).toFixed(2)}
@@ -48,7 +48,7 @@ const Product = ({ getAProduct, product, match, products, findAProduct }) => {
             <button>Add to Cart</button>
           </div>
           <div className="shippingInfo">
-            <i class="fas fa-truck fa-2x"></i>
+            <i className="fas fa-truck fa-2x"></i>
             <p>Free shipping on purchases from 200 dollars or more</p>
           </div>
           <p>calculo de envio - CP</p>
