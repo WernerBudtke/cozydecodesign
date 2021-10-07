@@ -7,6 +7,7 @@ import productsActions from "../redux/actions/productsActions"
 
 const ProductsGallery = ({ products, getProducts }) => {
   const [showCartCard, setShowCartCard] = useState(false)
+  const [productAlert, setProductAlert] = useState(null)
   useEffect(() => {
     window.scroll(0, 0)
     document.title='COZY | STORE'
@@ -19,15 +20,15 @@ const ProductsGallery = ({ products, getProducts }) => {
   }, [])
 
   const addToCart = () => {
-    setShowCartCard(true)
+    setShowCartCard(!showCartCard)
   }
 
   return (
     <div className="productsGallery">
-      <CartCard products={products} showCartCard={showCartCard}/>
+      <CartCard productAlert={productAlert} showCard={showCartCard} addToCartCard={addToCart}/>
       <div className="productsCards">
         {products.map((product) => {
-          return <ProductCard key={product._id} product={product} addToCartCard={addToCart}/>
+          return <ProductCard key={product._id} product={product} addToCartCard={addToCart} setProductAlert={setProductAlert}/>
         })}
       </div>
     </div>

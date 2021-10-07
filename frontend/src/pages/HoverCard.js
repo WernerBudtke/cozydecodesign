@@ -1,5 +1,4 @@
-import "../styles/CartCard.css"
-import toast, { Toaster } from "react-hot-toast"
+// import "../styles/CartCard.css"
 import CartCard from "../components/CartCard"
 
 const HoverCard = () => {
