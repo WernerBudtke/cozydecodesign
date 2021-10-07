@@ -1,4 +1,4 @@
-import "../styles/ProductsGallery.css"
+import styles from "../styles/ProductsGallery.module.css"
 import { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import ProductCard from "../components/ProductCard"
@@ -9,7 +9,7 @@ const ProductsGallery = ({ products, getProducts }) => {
   const [showCartCard, setShowCartCard] = useState(false)
   useEffect(() => {
     window.scroll(0, 0)
-    document.title='COZY | STORE'
+    document.title = "COZY | STORE"
     getProducts().then((res) => {
       if (!res.success) {
         console.log(res)
@@ -23,11 +23,17 @@ const ProductsGallery = ({ products, getProducts }) => {
   }
 
   return (
-    <div className="productsGallery">
-      <CartCard products={products} showCartCard={showCartCard}/>
-      <div className="productsCards">
+    <div className={styles.productsGallery}>
+      <CartCard products={products} showCartCard={showCartCard} />
+      <div className={styles.productsCards}>
         {products.map((product) => {
-          return <ProductCard key={product._id} product={product} addToCartCard={addToCart}/>
+          return (
+            <ProductCard
+              key={product._id}
+              product={product}
+              addToCartCard={addToCart}
+            />
+          )
         })}
       </div>
     </div>
