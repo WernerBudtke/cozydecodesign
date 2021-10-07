@@ -14,10 +14,9 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Product from './pages/Product'
 
-
-const App=({token, logFromSession})=>{
+const App=({loginUser, logFromSession})=>{
   useEffect(()=>{
-    if (!token){
+    if (!loginUser){
       logFromSession()
     }
   }, [])
@@ -28,8 +27,8 @@ const App=({token, logFromSession})=>{
       <Header/>
         <Switch>
           <Route exact path="/" component={Home}/>
-          <Route path="/signin" component={SignIn}/>
-          <Route path="/signup" component={SignUp}/>
+          {!loginUser && <Route path="/signin" component={SignIn}/>}
+          {!loginUser && <Route path="/signup" component={SignUp}/>}
           <Route exact path="/products" component={ProductsGallery}/>
           <Route path="/products/:category" component={ProductsGallery} />
           <Route path="/product/:id" component={Product} />
@@ -43,7 +42,7 @@ const App=({token, logFromSession})=>{
 }
 const mapStateToProps=(state)=>{
   return{
-    token: state.users.token,
+    loginUser: state.users.user,
   }
 }
 const mapDispatchToProps = {

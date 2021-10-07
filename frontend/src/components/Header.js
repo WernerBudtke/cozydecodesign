@@ -3,16 +3,15 @@ import {useState} from 'react'
 import {connect} from 'react-redux'
 import userActions from '../redux/actions/userActions'
 
-const Header=({loginUser, logOut, userPhoto})=>{
+const Header=({loginUser, logOut})=>{
     const outHandler = () => {
         logOut()
     }
-
     return(
         <header>
             {loginUser && (
                 <div>
-                    {/* <div style={{backgroundImage: `url('${userPhoto}')`,}}></div> */}
+                    <div style={{backgroundImage: `url('${loginUser.photo}')`, width:'8vh', height:'8vh'}}></div>
                 </div>
             )}
             <h1>COZY</h1>
@@ -37,8 +36,7 @@ const Header=({loginUser, logOut, userPhoto})=>{
 }
 const mapStateToProps =(state)=>{
     return{
-        loginUser:state.users.token,
-        userPhoto: state.users.photo
+        loginUser:state.users.user,
     }
 }
 const mapDispatchToProps={

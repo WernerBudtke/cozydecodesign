@@ -1,8 +1,8 @@
-.bottom {
+/* .bottom {  cambiar
     flex-direction: column;
-}
+} */
 
-.cardButtons {
+/* .cardButtons { cambiar
     width: 100%;
     height: 100%;
     display: flex;
@@ -10,7 +10,7 @@
     justify-content: space-evenly;
     visibility: hidden;
     opacity: 0;
-}
+} */ 
 
 /* //overflow visible 
 transition: all 0.4s ease
@@ -22,12 +22,12 @@ box-shadow:  0 1px 6px rgb(0 0 0 / 20%);
     /* margin-top: -15px !important; */
     /* border-radius: 0 0 20px 20px;
 /* */
-
-.container:hover .cardButtons {   
+/* 
+.container:hover .cardButtons {   cambiar
     visibility: visible;
     opacity: 1;
     transition: all 0.4s ease;
-}
+} */
 
 /*TOSTADAS CARRITO*/
 
