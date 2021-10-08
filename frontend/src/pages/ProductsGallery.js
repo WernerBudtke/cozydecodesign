@@ -24,6 +24,12 @@ const ProductsGallery = ({ products, getProducts }) => {
     setShowCartCard(newState)
   }
 
+   if(productAlert){
+     setTimeout(() => {
+       setProductAlert(null)
+     },2500)
+   }
+
   return (
     <div className={styles.productsGallery}>
       {productAlert && (

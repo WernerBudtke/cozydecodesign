@@ -28,7 +28,7 @@ const CartCard = ({ productAlert, showCartCard, editShowCartCard }) => {
             <p className="bold">Successfully added to cart!</p>
           </div>
           <div className="close">
-            <button onClick={() => editShowCartCard(false)}>X</button>
+          <i onClick={()=>editShowCartCard(false)} className="fas fa-times"></i>
           </div>
         </div>
         <div className={styles.bottomToast}>
