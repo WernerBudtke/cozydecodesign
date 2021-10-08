@@ -1,6 +1,7 @@
 import { useState } from "react"
 import {connect} from "react-redux"
 import productsActions from "../redux/actions/productsActions"
+import styles from "../styles/ProductForm.module.css"
 
 const ProductForm = ({addProduct}) => {
     const [newProduct, setNewProduct] = useState ({
@@ -63,19 +64,19 @@ const ProductForm = ({addProduct}) => {
         }
 
     return (
-            <main className="main">
-                <div className="productFormContainer">
+            <main>
+                <div className={styles.formContainer}>
                     <h4>New Product</h4>
-                    <form className="productForm">
+                    <form className={styles.productForm}>
                         <input type="text" onChange={inputHandler} name="name" placeholder="Name" autoComplete="nope"/>
                         <input type="file" onChange={inputHandler} name="photo" placeholder="Photo" autoComplete="nope"/>
                         <textarea onChange={inputHandler} name="description" placeholder="Description" autoComplete="nope"/>
-                        <div className="price">
+                        <div className={styles.price}>
                             <input type="number" onChange={inputHandler} name="stock" placeholder="Stock" autoComplete="nope"/>
                             <input type="number" onChange={inputHandler} name="price" placeholder="Price" autoComplete="nope"/>
                         </div>
-                        <div className="saleInput">
-                            <div className="saleRadios">
+                        <div className={styles.saleInput}>
+                            <div className={styles.saleRadios}>
                             <p>For Sale</p>
                             <input type="radio" id="true" name="forSale" value="true" onChange={inputHandler}/>
                             <label htmlFor="true">Yes</label>
@@ -99,7 +100,7 @@ const ProductForm = ({addProduct}) => {
                             </option>)}
                         </select>
                     </form>
-                        <button className="formButton" onClick={submitForm}>Send</button>
+                        <button className={styles.formButton} onClick={submitForm}>Send</button>
                 </div>
             </main>
     )

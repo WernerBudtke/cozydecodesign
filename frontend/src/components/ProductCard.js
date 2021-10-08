@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 
 const ProductCard = ({ product, addToCartCard, setProductAlert }) => {
   const addToCartHandler = () => {
-    console.log("voy a la action")
     let newProducts = {
       product: product,
       quantity: 1,
