@@ -1,14 +1,10 @@
-import { useEffect } from "react"
+// import { useEffect } from "react"
 import styles from "../styles/CartCard.module.css"
 
-const CartCard = ({productAlert, showCard, addToCartCard}) => {
-  useEffect (() => {
-    //cdo se monte el comp me ejecute un setTimeOut
-    setTimeout(addToCartCard(), 3000);
-  }, [])
+const CartCard = ({productAlert, showCartCard, editShowCartCard}) => {
 
     return (
-        <div className = {!showCard ? styles.hideCard : styles.showCard}>
+        <div className = {!showCartCard ? styles.hideCard : styles.showCard}>
           <div className={styles.cartCard}>
             <div className={styles.topToast}>
                 <div>
@@ -21,8 +17,7 @@ const CartCard = ({productAlert, showCard, addToCartCard}) => {
                   <p className="bold">Successfully added to cart!</p>
                 </div>
                   <div  className="close">
-                    {/* <button onClick={addToCartCard}></button> */}
-                    <i onClick={addToCartCard} className="fas fa-times"></i>
+                    <i onClick={()=>editShowCartCard(false)} className="fas fa-times"></i>
                   </div>
               </div>
               <div className={styles.bottomToast}>
