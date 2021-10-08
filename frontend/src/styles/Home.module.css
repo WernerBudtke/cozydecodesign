@@ -91,8 +91,19 @@
   width: 50%;
 }
 .info{
-  width: 50vh;
-  margin:0 5vw;
+  background-color:#d9e2e7 ;
+  min-height: 60vh;
+  width: 25vw;
+  margin:0 3.5vw;
+  padding: 2.5vw;
   line-height: 4vh;
-  font-size: 2.5vh;
+  font-size: 3vmin;
+  text-align: center;
+  letter-spacing: 0.12vw;
+}
+.info h2{
+  padding-bottom: 2vw;
+}
+.fondoInfo{
+  height: 25vh !important;
 }

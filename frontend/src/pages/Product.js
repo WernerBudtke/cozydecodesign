@@ -59,6 +59,10 @@ const Product = ({
       ? product.price
       : (((100 - product.discount) / 100) * product.price).toFixed(2)
 
+  const photo = product.photo.includes("http")
+    ? product.photo
+    : `http://localhost:4000/${product.photo}`
+  
   return (
     <div className={styles.productSection}>
       {productAlert && (
@@ -72,7 +76,7 @@ const Product = ({
       <div className={styles.mainContainer}>
         <div
           className={styles.productImage}
-          style={{ backgroundImage: `url("${product.photo}")` }}
+          style={{ backgroundImage: `url("${photo}")` }}
         ></div>
         <div className={styles.productInfo}>
           <h2>{product.name}</h2>

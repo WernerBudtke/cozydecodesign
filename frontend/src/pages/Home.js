@@ -38,23 +38,21 @@ const Home = () => {
             <Parallax bgImage={'/assets/home5.jpg'}
             strength={300}>
               <div className={styles.info}>
+                <h2>There's no place like home. </h2>
                 <p>There's no place like home. In Cozy we offer a wide variety of well-designed, functional home products. Whether your home decor leans towards minimalist or maximalist aesthetic, you'll find something to suit your style.</p>
               </div>
             </Parallax>
+            <Parallax strength={-4}  className={styles.fondoInfo} bgImage={"https://i.postimg.cc/KzD7qN4y/banner9.png"}>
+            </Parallax>
             <Parallax bgImage={'/assets/home4.jpg'}
             strength={-400}renderLayer={(percentage) => (
-                <div>
-                  <button
-                    style={{
-                      background: `rgba(212, 197, 191, ${percentage * 2})`,
-                      left: "10%",
-                      top: "70%",
-                      transform: "translate(-50%,-50%)",
-                      width: percentage * 100,
-                      height: percentage * 100
-                    }}>
-                        click
-                  </button>
+                <div
+                  className={styles.finalInfo} 
+                  style={{
+                    background: `rgba(212, 197, 191, ${percentage * 2})`,
+                    width: percentage * 100,
+                    height: percentage * 100
+                  }}>
                 </div>
               )}>
             </Parallax>

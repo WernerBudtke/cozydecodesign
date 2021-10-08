@@ -3,18 +3,15 @@ import { connect } from "react-redux"
 import { useState } from "react"
 import cartActions from "../redux/actions/cartActions"
 
-const ProductInCart = ({ cartItem, deleteACartProduct, updateCartProduct }) => {
+const ProductInCart = ({ cartItem, deleteACartProduct, setPriceTotal, updateCartProduct }) => {
   const [enableCounter, setEnableCounter] = useState(true)
 
   const updateCartProductHandler = (operation) => {
     setEnableCounter(false)
-
     let updatedCartItem = {
       product: cartItem.product,
-      quantity:
-        operation === "+" ? cartItem.quantity + 1 : cartItem.quantity - 1,
+      quantity: operation === "+" ? cartItem.quantity + 1 : cartItem.quantity - 1,
     }
-
     updateCartProduct(updatedCartItem)
     setEnableCounter(true)
   }
@@ -64,12 +61,12 @@ const ProductInCart = ({ cartItem, deleteACartProduct, updateCartProduct }) => {
           </p>
           <p>
             $
-            {(
-              (cartItem.product.discount === 0
-                ? cartItem.product.price
-                : ((100 - cartItem.product.discount) / 100) *
-                  cartItem.product.price) * cartItem.quantity
-            ).toFixed(2)}
+            {((cartItem.product.discount === 0
+              ? cartItem.product.price
+              : (
+                  ((100 - cartItem.product.discount) / 100) *
+                  cartItem.product.price
+                )) * cartItem.quantity).toFixed(2)}
           </p>
         </div>
       </div>
