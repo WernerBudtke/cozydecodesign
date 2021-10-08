@@ -23,6 +23,7 @@ const Home = () => {
   }, []);
 
   const { height, width } = getWindowDimensions();
+  
 
   const categories = [
     { src: "https://i.postimg.cc/tR8xRKn9/bat.jpg", category: "bathroom" },
