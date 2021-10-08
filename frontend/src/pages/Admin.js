@@ -5,9 +5,10 @@ import userActions from '../redux/actions/userActions'
 import AdminUsers from "../components/AdminUsers"
 import AdminStock from "../components/AdminStock"
 import AdminStats from "../components/AdminStats"
+import AdminGuide from "../components/AdminGuide"
 
 const Admin = ({loginUser}) => {
-    const [component, setComponent] = useState({screen: ''})
+    const [component, setComponent] = useState({screen: "adminGuide"})
 
     useEffect(() => {
         document.title = 'COZY | Admin Dashboard'
@@ -32,6 +33,7 @@ const Admin = ({loginUser}) => {
                 </div>
                 <hr />
                 <div className={styles.midInfo}>
+                        {component.screen === 'adminGuide' && <AdminGuide />}
                         {component.screen === 'statistics' && <AdminStats />}
                         {component.screen === 'user' && <AdminUsers />}
                         {component.screen === 'stock' && <AdminStock />}
