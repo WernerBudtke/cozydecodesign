@@ -12,8 +12,10 @@ const cartActions = {
     }
   },
   updateCartProduct: (obj) => {
+    console.log(obj)
     return (dispatch) => {
       dispatch({ type: "UPDATE_CART_PRODUCT", payload: obj })
+      return { success: true }
     }
   },
   deleteCartProduct: (obj) => {
