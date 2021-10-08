@@ -4,7 +4,6 @@ import userActions from '../redux/actions/userActions'
 import ReactCircleModal from "react-circle-modal"
 import Cart from "./Cart"
 
-
 const Header=({loginUser, logOut})=>{
     const outHandler = () => {
         logOut()
@@ -33,6 +32,7 @@ const Header=({loginUser, logOut})=>{
                     {loginUser && (
                         <NavLink active  onClick={outHandler} to="/">LOGOUT</NavLink>
                     )}
+                    <NavLink to="/mercadopago">Merc</NavLink>
                     <NavLink to="/admin">Admin</NavLink>
                     <ReactCircleModal
                         style={{

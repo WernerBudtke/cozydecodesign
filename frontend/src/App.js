@@ -14,7 +14,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Product from './pages/Product'
 import Admin from './pages/Admin'
-
+import MercadoPagoForm from './components/MercadoPago/MercadoPagoForm'
 const App=({loginUser, logFromSession})=>{
   useEffect(()=>{
     if (!loginUser){
@@ -36,6 +36,7 @@ const App=({loginUser, logFromSession})=>{
           <Route path="/productform" component={ProductForm}/>
           <Route exact path="/hover" component={HoverCard}/>
           <Route path="/admin" component={loginUser && loginUser.admin ? Admin : Home} />
+          <Route path="/mercadopago" component={MercadoPagoForm}/>
           <Redirect to="/" />
         </Switch>
       <Footer/>
