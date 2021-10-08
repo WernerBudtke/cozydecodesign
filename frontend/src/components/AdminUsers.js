@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import '../styles/Admin.css'
+import styles from '../styles/Admin.module.css'
 import adminActions from '../redux/actions/adminActions'
 import { useEffect, useState } from 'react'
 
@@ -13,28 +13,44 @@ const [render, setRender] = useState(false)
             if (response.success) {
                 setUsers(response.response)
             } else {
-                console.log(response)
+                console.log(response) // Falta mostrar el error
             }
         }
         res()
     }, [render])
 
     const giveRol = async (e) => {
-        console.log(typeof e.target.dataset.admin)
         let action = e.target.dataset.admin === 'true'
         let response = await manageAdmin(e.target.id, loginUser.token, action)
         if (response.success) {
             setRender(!render)
         } else {
-            alert('error')
+            alert('error') // Cambiar esto
         }
     }
 
     return (
         <div>
-            <h2>User list</h2>
-            <div className="userContainer">
-                {users.map((user) => <p onClick={giveRol} data-admin={user.admin} id={user._id} key={user.eMail}>{user.eMail + ' is admin ' + user.admin}</p>)}
+            <div>
+                <h2>User list</h2>
+                <div className={styles.searchBar}>
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search user.." />
+                </div>
+            </div>
+            <div className={styles.userContainer}>
+                {users.map((user) => {
+                    return (
+                        <div className={styles.userCard}>
+                            <div>
+                                <p className={user.admin ? styles.admin : null}>{user.eMail}</p>
+                            </div>
+                            <div>
+                                <button onClick={giveRol} data-admin={user.admin} id={user._id} key={user.eMail}>{user.admin ? 'Remove admin' : 'Give admin'}</button>
+                            </div>
+                        </div>
+                    )
+                })}
             </div>
         </div>
     )

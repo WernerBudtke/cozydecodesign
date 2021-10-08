@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import '../styles/Admin.css'
+import styles from '../styles/Admin.module.css'
 import { useEffect, useState } from 'react'
 import productsActions from '../redux/actions/productsActions'
 import StockProduct from './StockProduct'
