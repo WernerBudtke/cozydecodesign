@@ -11,7 +11,7 @@ const ProductCard = ({ product, addToCartCard, setProductAlert }) => {
     setProductAlert(newProducts)
     addToCartCard()
   }
-  const photo = product.photo.includes('http') ? product.photo : `http://localhost:4000/${product.photo}`
+  const photo = product.photo.includes('http') ? product.photo : `https://cozydeco.herokuapp.com/${product.photo}`
 
   return (
     <div className={styles.wrapper}>

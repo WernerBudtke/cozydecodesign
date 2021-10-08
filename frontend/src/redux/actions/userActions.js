@@ -4,7 +4,7 @@ const userActions = {
   signUp: (user) => {
     return async (dispatch) => {
       try {
-        let response = await axios.post("http://localhost:4000/api/user/register", user, {withCredentials: true})
+        let response = await axios.post("https://cozydeco.herokuapp.com/api/user/register", user, {withCredentials: true})
         if (!response.data.success) { 
           return response.data
         }
@@ -18,19 +18,19 @@ const userActions = {
   logFromSession: () => {
     return async (dispatch) => {
       try {
-        let response = await axios.get("http://localhost:4000/api/user/validate", {withCredentials: true})
+        let response = await axios.get("https://cozydeco.herokuapp.com/api/user/validate", {withCredentials: true})
         if (!response.data.success) throw new Error(response.data.response)
         dispatch({type: "LOG_IN_USER", payload: response.data.response})
       } catch (error) {
         dispatch({type: "LOG_OUT"})
-        await axios.get("http://localhost:4000/api/user/logout")
+        await axios.get("https://cozydeco.herokuapp.com/api/user/logout")
       }
     }
   },
   logIn: (user) => {
     return async (dispatch) => {
       try {
-        let response = await axios.post("http://localhost:4000/api/user/login", user, {withCredentials: true})
+        let response = await axios.post("https://cozydeco.herokuapp.com/api/user/login", user, {withCredentials: true})
         if (!response.data.success) throw new Error(response.data.response)
         dispatch({type: "LOG_IN_USER", payload: response.data.response})
         return {success: true, response: response.data.response}
@@ -42,7 +42,7 @@ const userActions = {
   logOut: () => {
     return async (dispatch) => {
       try {
-        let response = await axios.get("http://localhost:4000/api/user/logout", {withCredentials: true})
+        let response = await axios.get("https://cozydeco.herokuapp.com/api/user/logout", {withCredentials: true})
         if (!response.data.success) throw new Error(response.data.response)
         dispatch({type: "LOG_OUT"})
       } catch (error) {
