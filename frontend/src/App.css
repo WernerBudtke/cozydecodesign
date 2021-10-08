@@ -4,12 +4,11 @@
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
+/*HEADER*/
 a {
   text-decoration: none;
   color: #000;
 }
-
-/*HEADER*/
 header{
   height: 10vh;
   display: flex;
@@ -51,12 +50,50 @@ header .logoUser{
   background-position: center;
   background-size: cover;
 }
+
+@media only screen and (max-width: 1124px) { 
+      
+      header .logoUser{
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 100%;
+        background-color: #000;
+        background-position: center;
+        background-size: cover;
+      }
+    
+}
+  
+@media (max-width: 1100px) {
+    .logo {
+      width: 30vw;
+      height: 12.5vw;
+    }
+}
+  
+@media (max-width: 768px) {
+    .menuResponsive {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .menuResponsive nav {
+      align-items: center;
+    }
+    
+  
+}
+
 /* FOOTER */
-footer {
-  width: 100%;
+
+
+footer{
+    width: 100%;
+    min-height: 30vh;
   position: absolute;
-  min-height: 30vh;
-  background-color: #ead8ca5d;
+  background-color: #ead8ca5d;  
   display: flex;
   justify-content: space-around;
   padding: 8vh;
@@ -95,4 +132,150 @@ footer .iconSocial {
 
 .iconSocial{
   color: rgb(97, 88, 88);
+}
+
+@media only screen and (max-width: 768px) { 
+      
+    footer{
+      max-height: 20vh;
+      padding: 4vh;
+    }
+    footer div h3 {
+      margin-bottom: 1vh;
+      font-size: .9rem;
+    }
+    footer div p {
+      padding: 0.3vh;
+      margin-bottom: 1vh;
+      font-size: .9rem;
+    }
+    
+    footer .iconContact {
+      margin-right: .5vw;
+      font-size: .9rem;
+    }
+    footer div {
+      gap: 1;
+    }
+    footer .iconSocial {
+      margin-right: 0.3vw;
+      
+    }
+    footer .socialNetworks {
+        display: none;
+    }
+  
+}
+
+
+
+@media (max-width: 600px) {
+    footer{
+        max-height: 20vh;
+        padding: 3vh;
+      }
+      footer div h3 {
+        margin-bottom: 1vh;
+        font-size: .7rem;
+      }
+      footer div p {
+        padding: 0.3vh;
+        margin-bottom: 1vh;
+        font-size: .7rem;
+      }
+      
+      footer .iconContact {
+        margin-right: .4vw;
+        font-size: .7rem;
+      }
+      footer div {
+        gap: 1;
+      }
+      footer .iconSocial {
+        margin-right: 0.3vw;
+        
+      }
+      footer .socialNetworks {
+          display: none;
+      }
+
+}
+
+/* PRODUCT FORM */
+.main,
+.productFormContainer,
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.productFormContainer h4 {
+  color: #bf988f;
+}
+.productFormContainer {
+  min-height: 70vh;
+  justify-content: space-around;
+  box-shadow: 0px 3px 5px 0px rgba(82, 80, 80, 0.75);
+  width: 60%;
+  margin-top: 2rem;
+  padding: 0.5vw 0;
+  margin-bottom: 10vh; /*porque me pisa el form el footer para sacar después*/
+  margin-top: 15vh; /*idem arriba con el header*/
+}
+
+form.productForm {
+  min-height: 80vh;
+  justify-content: space-around;
+  width: 90%;
+  margin-top: 2rem;
+}
+
+form input,
+form textarea,
+form select {
+  width: 90%;
+  border: none;
+  background-color: transparent !important;
+  border-bottom: 1px solid black;
+  padding-left: 0.5rem;
+  height: 2rem;
+  resize: none;
+  outline: none;
+  background: transparent;
+}
+
+div.price,
+div.saleInput {
+  display: flex;
+  width: 90%;
+  gap: 1rem;
+}
+
+div.saleRadios {
+  display: flex;
+  width: 90%;
+  align-items: center;
+}
+
+div.saleRadios p {
+  padding: 0.5rem;
+}
+
+div.saleRadios input {
+  height: auto;
+  width: 20%;
+}
+
+.formButton {
+  padding: 0.5rem 1rem;
+  border: none;
+  color: #7e6661;
+  background-color: #bf988f;
+  font-size: 1.5vmin;
+  font-weight: 300;
+  width: 80%;
+  cursor: pointer;
+  transition: all 0.4s;
+  border-radius: 2px;
 }
