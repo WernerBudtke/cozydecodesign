@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import productsActions from "../redux/actions/productsActions"
+import styles from '../styles/Admin.module.css'
 
 
 const AdminStats = ({getProducts, products}) => {
@@ -27,9 +28,15 @@ const AdminStats = ({getProducts, products}) => {
     }, [products])
 
     return (
-        <div>
-            <p>Total sales: {productsSold}</p>
-            <p>Total profit:{totalProfit && totalProfit.toFixed(2)}</p>
+        <div className={styles.statsContainer}>
+            <div>
+                <i class="fas fa-shopping-cart fa-2x"></i>
+                <p>Total sales: {productsSold}</p>
+            </div>
+            <div>
+                <i class="fas fa-hand-holding-usd fa-2x"></i>
+                <p>Total profit: ${totalProfit && totalProfit.toFixed(2)}</p>
+            </div>
         </div>
     )
 }

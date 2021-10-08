@@ -2,7 +2,7 @@ import './App.css'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import {connect} from 'react-redux'
 import { Toaster } from 'react-hot-toast'
-import { useEffect } from 'react'
+import { useEffect} from 'react'
 import userActions from './redux/actions/userActions'
 import ProductsGallery from './pages/ProductsGallery'
 import ProductForm from './pages/ProductForm'
@@ -14,11 +14,17 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Product from './pages/Product'
 import Admin from './pages/Admin'
+import cartActions from './redux/actions/cartActions'
+import MercadoPagoForm from './components/MercadoPago/MercadoPagoForm'
 
-const App=({loginUser, logFromSession})=>{
+const App=({loginUser, logFromSession, addCartLS})=>{
+
   useEffect(()=>{
     if (!loginUser){
       logFromSession()
+    }
+    if (localStorage.getItem('cart')){
+      addCartLS(JSON.parse(localStorage.getItem('cart')))
     }
   }, [])
 
@@ -33,10 +39,11 @@ const App=({loginUser, logFromSession})=>{
           <Route exact path="/products" component={ProductsGallery}/>
           <Route path="/products/:category" component={ProductsGallery} />
           <Route path="/product/:id" component={Product} />
-          <Route exact path="/productform" component={ProductForm}/>
-          <Route path="/productform/:id" component={ProductForm}/>
+          <Route exact path="/productform" component={loginUser && loginUser.admin ? ProductForm : Home}/>
+          <Route path="/productform/:id" component={loginUser && loginUser.admin ? ProductForm : Home} />
           <Route exact path="/hover" component={HoverCard}/>
-          <Route path="/admin" component={loginUser && loginUser.admin ? Admin : Home} />
+          <Route path="/mercadopago" component={MercadoPagoForm}/>
+          {loginUser && loginUser.admin && <Route path="/admin" component={Admin}/>}
           <Redirect to="/" />
         </Switch>
       <Footer/>
@@ -50,5 +57,6 @@ const mapStateToProps=(state)=>{
 }
 const mapDispatchToProps = {
   logFromSession: userActions.logFromSession,
+  addCartLS: cartActions.addCartLS
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App)

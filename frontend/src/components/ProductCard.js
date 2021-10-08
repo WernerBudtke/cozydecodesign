@@ -1,16 +1,22 @@
 import styles from "../styles/ProductsGallery.module.css"
 import { Link } from "react-router-dom"
-import {connect} from 'react-redux'
+import { connect } from "react-redux"
 import { useEffect, useState } from "react"
 import cartActions from "../redux/actions/cartActions"
 
-const ProductCard = ({ product, editShowCartCard, setProductAlert,addCartProduct, user }) => {
-  const[admin, setAdmin] = useState(null)
-  useEffect(()=>{
-    if(user){
+const ProductCard = ({
+  product,
+  editShowCartCard,
+  setProductAlert,
+  addCartProduct,
+  user,
+}) => {
+  const [admin, setAdmin] = useState(null)
+  useEffect(() => {
+    if (user) {
       setAdmin(user.admin)
     }
-  },[])
+  }, [])
 
   const addToCartHandler = () => {
     let newProducts = {
@@ -21,7 +27,9 @@ const ProductCard = ({ product, editShowCartCard, setProductAlert,addCartProduct
     editShowCartCard(true)
     addCartProduct(newProducts)
   }
-  const photo = product.photo.includes('http') ? product.photo : `http://localhost:4000/${product.photo}`
+  const photo = product.photo.includes("http")
+    ? product.photo
+    : `http://localhost:4000/${product.photo}`
 
   return (
     <div className={styles.wrapper}>
@@ -29,7 +37,7 @@ const ProductCard = ({ product, editShowCartCard, setProductAlert,addCartProduct
         <Link to={`/product/${product._id}`}>
           <div
             className={styles.top}
-            style={{ backgroundImage:`url("${photo}")`}}
+            style={{ backgroundImage: `url("${photo}")` }}
           ></div>
         </Link>
 
@@ -51,13 +59,22 @@ const ProductCard = ({ product, editShowCartCard, setProductAlert,addCartProduct
             </div>
           </div>
           <div className={styles.cardButtons}>
-          {!admin && <>
-            <i className="fas fa-cart-plus fa-2x" onClick={addToCartHandler}></i>
-            <Link to={`/product/${product._id}`}>
-              <i className="fas fa-eye fa-2x"></i>
-            </Link>
-            </>}
-          {admin && <Link to={`/productform/${product._id}`}><i className="fas fa-pen fa-2x"></i></Link>}
+            {!admin && (
+              <>
+                <i
+                  className="fas fa-cart-plus fa-2x"
+                  onClick={addToCartHandler}
+                ></i>
+                <Link to={`/product/${product._id}`}>
+                  <i className="fas fa-eye fa-2x"></i>
+                </Link>
+              </>
+            )}
+            {admin && (
+              <Link to={`/productform/${product._id}`}>
+                <i className="fas fa-pen fa-2x"></i>
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -70,14 +87,14 @@ const ProductCard = ({ product, editShowCartCard, setProductAlert,addCartProduct
   )
 }
 
-const mapStateTopProps=(states)=>{
-  return{
-    user:states.users.user
+const mapStateTopProps = (states) => {
+  return {
+    user: states.users.user,
   }
 }
 
-const mapDispatchToProps={
-  addCartProduct:cartActions.addCartProduct
+const mapDispatchToProps = {
+  addCartProduct: cartActions.addCartProduct,
 }
 
-export default connect(mapStateTopProps,mapDispatchToProps)(ProductCard)
+export default connect(mapStateTopProps, mapDispatchToProps)(ProductCard)

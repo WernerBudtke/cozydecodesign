@@ -1,10 +1,11 @@
 import styles from "../styles/Product.module.css"
 import { connect } from "react-redux"
-import productsActions from "../redux/actions/productsActions"
 import { useEffect, useState } from "react"
 import ReactCircleModal from "react-circle-modal"
 import Cart from "../components/Cart"
+import CartCard from "../components/CartCard"
 import cartActions from "../redux/actions/cartActions"
+import productsActions from "../redux/actions/productsActions"
 
 const Product = ({
   getAProduct,
@@ -16,6 +17,8 @@ const Product = ({
 }) => {
   const [quantity, setQuantity] = useState(1)
   const [loading, setLoading] = useState(true)
+  const [productAlert, setProductAlert] = useState(null)
+  const [showCartCard, setShowCartCard] = useState(false)
 
   useEffect(() => {
     if (!products.length) {
@@ -33,12 +36,18 @@ const Product = ({
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+  const editShowCartCard = (newState) => {
+    console.log("se ejecuta editshow")
+    setShowCartCard(newState)
+  }
 
   const addToCartHandler = () => {
+    setShowCartCard(true)
     let newProducts = {
       product: product,
       quantity: quantity,
     }
+    setProductAlert(newProducts)
     addCartProduct(newProducts)
   }
 
@@ -50,12 +59,24 @@ const Product = ({
       ? product.price
       : (((100 - product.discount) / 100) * product.price).toFixed(2)
 
+  const photo = product.photo.includes("http")
+    ? product.photo
+    : `http://localhost:4000/${product.photo}`
+  
   return (
     <div className={styles.productSection}>
+      {productAlert && (
+        <CartCard
+          productAlert={productAlert}
+          showCartCard={showCartCard}
+          editShowCartCard={editShowCartCard}
+        />
+      )}
+
       <div className={styles.mainContainer}>
         <div
           className={styles.productImage}
-          style={{ backgroundImage: `url("${product.photo}")` }}
+          style={{ backgroundImage: `url("${photo}")` }}
         ></div>
         <div className={styles.productInfo}>
           <h2>{product.name}</h2>
@@ -114,7 +135,7 @@ const Product = ({
             offsetX={0}
             offsetY={0}
           >
-            {(onClick) => <Cart onClickHandler={onClick}/>}
+            {(onClick) => <Cart onClickHandler={onClick} />}
           </ReactCircleModal>
         </div>
       </div>

@@ -62,9 +62,9 @@ const productControllers = {
   modifyProduct: async (req, res) => {
     console.log("Received MODIFY PRODUCT Petition:" + Date())
     try {
-      if (!req.session.loggedUser) throw new Error("Log In First")
-      if (!req.session.loggedUser.admin)
-        throw new Error("You don't have permissions to do this")
+      // if (!req.session.loggedUser) throw new Error("Log In First")
+      // if (!req.session.loggedUser.admin)
+      //   throw new Error("You don't have permissions to do this")
       const productId = req.params.id
       let modifiedProduct = await Product.findOneAndUpdate(
         { _id: productId },
