@@ -35,9 +35,7 @@ const Product = ({
   }, [])
 
   const addToCartHandler = () => {
-    console.log("voy a la action")
     let newProducts = {
-      // productId: product,
       product: product,
       quantity: quantity,
     }
@@ -116,7 +114,7 @@ const Product = ({
             offsetX={0}
             offsetY={0}
           >
-            {(onClick) => <Cart onClickHandler={onClick} />}
+            {(onClick) => <Cart onClickHandler={onClick}/>}
           </ReactCircleModal>
         </div>
       </div>
