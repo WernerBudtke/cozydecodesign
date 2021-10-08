@@ -15,6 +15,7 @@ import Footer from './components/Footer'
 import Product from './pages/Product'
 import Admin from './pages/Admin'
 import cartActions from './redux/actions/cartActions'
+import MercadoPagoForm from './components/MercadoPago/MercadoPagoForm'
 
 const App=({loginUser, logFromSession, addCartLS})=>{
 
@@ -41,6 +42,7 @@ const App=({loginUser, logFromSession, addCartLS})=>{
           <Route exact path="/productform" component={loginUser && loginUser.admin ? ProductForm : Home}/>
           <Route path="/productform/:id" component={loginUser && loginUser.admin ? ProductForm : Home} />
           <Route exact path="/hover" component={HoverCard}/>
+          <Route path="/mercadopago" component={MercadoPagoForm}/>
           {loginUser && loginUser.admin && <Route path="/admin" component={Admin}/>}
           <Redirect to="/" />
         </Switch>
