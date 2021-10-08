@@ -12,7 +12,7 @@ const Cart = ({ onClickHandler, products }) => {
       </div>
       <div className={styles.cartContainerMain}>
         {products.map((obj) => (
-          <ProductInCart cartItem={obj} key={obj.product._id} />
+          <ProductInCart cartItem={obj} key={obj.product._id}/>
         ))}
         <div>
           <p>SUBTOTAL</p>

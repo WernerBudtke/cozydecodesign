@@ -20,8 +20,8 @@ const ProductsGallery = ({ products, getProducts }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const addToCart = () => {
-    setShowCartCard(!showCartCard)
+  const editShowCartCard = (newState) => {
+    setShowCartCard(newState)
   }
 
   return (
@@ -29,8 +29,8 @@ const ProductsGallery = ({ products, getProducts }) => {
       {productAlert && (
         <CartCard
           productAlert={productAlert}
-          showCard={showCartCard}
-          // addToCartCard={addToCartCard}
+          showCartCard={showCartCard}
+          editShowCartCard={editShowCartCard}
         />
       )}
       <div className={styles.productsCards}>
@@ -39,7 +39,7 @@ const ProductsGallery = ({ products, getProducts }) => {
             <ProductCard
               key={product._id}
               product={product}
-              addToCart={addToCart}
+              editShowCartCard={editShowCartCard}
               setProductAlert={setProductAlert}
             />
           )

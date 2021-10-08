@@ -1,9 +1,9 @@
 import styles from "../styles/CartCard.module.css"
 
-const CartCard = ({productAlert, showCard, addToCartCard}) => {
+const CartCard = ({productAlert, showCartCard, editShowCartCard}) => {
 
     return (
-        <div className = {!showCard ? styles.hideCard : styles.showCard}>
+        <div className = {!showCartCard ? styles.hideCard : styles.showCard}>
           <div className={styles.cartCard}>
             <div className={styles.topToast}>
                 <div>
@@ -16,7 +16,7 @@ const CartCard = ({productAlert, showCard, addToCartCard}) => {
                   <p className="bold">Successfully added to cart!</p>
                 </div>
                   <div  className="close">
-                    <button onClick={addToCartCard}>X</button>
+                    <button onClick={()=>editShowCartCard(false)}>X</button>
                   </div>
               </div>
               <div className={styles.bottomToast}>
