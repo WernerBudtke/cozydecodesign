@@ -1,3 +1,4 @@
+// import { useEffect } from "react"
 import styles from "../styles/CartCard.module.css"
 
 const CartCard = ({ productAlert, showCartCard, editShowCartCard }) => {
