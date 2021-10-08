@@ -48,5 +48,12 @@ router.route('/order/:id')
 .get(orderControllers.getAnOrder)
 .put(orderControllers.modifyOrder)
 .delete(orderControllers.deleteOrder)
-
+const cardControllers = require('../controllers/cardControllers')
+router.route('/cards')
+.get(cardControllers.getCards)
+.post(cardControllers.addCard)
+router.route('/card/:id')
+.get(cardControllers.getCard)
+.put(cardControllers.editCard)
+.delete(cardControllers.deleteCard)
 module.exports = router

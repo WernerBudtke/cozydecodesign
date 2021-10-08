@@ -1,5 +1,4 @@
 // Crear Orden, Pedir x User / ALL (x fecha) + Send Mail after purchase
-// Bajar el STOCK en X cantidad de los productos que compró y sumar X cantidad a los vendidos de cada producto.
 const Order = require('../models/Order')
 const Product = require('../models/Product')
 const orderControllers = {
@@ -76,4 +75,3 @@ const orderControllers = {
     }
 }
 module.exports = orderControllers
-//CRUD orderos

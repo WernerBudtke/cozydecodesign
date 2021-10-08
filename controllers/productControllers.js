@@ -5,7 +5,6 @@ const productControllers = {
     try {
       const { filterBy } = req.body
       let willFilterFor = filterBy ? { ...filterBy } : ""
-      // console.log(willFilterFor)
       let products = await Product.find({ ...willFilterFor })
       res.json({ success: true, response: products })
     } catch (err) {
@@ -51,8 +50,7 @@ const productControllers = {
         category,
         subcategory,
       })
-      let hdp = req.files.photo.name.split('.')[1]
-      let fileName = newProduct._id + "." + hdp.toString()
+      let fileName = newProduct._id + "." + req.files.photo.name.split('.')[req.files.photo.name.split('.').length-1]
       newProduct.photo = fileName
       photoUploaded.mv(`${__dirname}/../storage/${fileName}`)
       let savedProduct = await newProduct.save()
@@ -82,9 +80,9 @@ const productControllers = {
   deleteProduct: async (req, res) => {
     console.log("Received DELETE PRODUCT Petition:" + Date())
     try {
-      if (!req.session.loggedUser) throw new Error("Log In First")
-      if (!req.session.loggedUser.owner)
-        throw new Error("You don't have permissions to do this")
+      // if (!req.session.loggedUser) throw new Error("Log In First")
+      // if (!req.session.loggedUser.owner)
+      //   throw new Error("You don't have permissions to do this")
       const productToDelete = req.params.id
       let productDeleted = await Product.findOneAndDelete({
         _id: productToDelete,
@@ -97,4 +95,3 @@ const productControllers = {
   },
 }
 module.exports = productControllers
-//CRUD productos

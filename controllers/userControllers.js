@@ -104,6 +104,7 @@ const userControllers = {
     },
     manageAdmin: async (req, res) => {
         console.log("Received MANAGE ADMIN Petition:" + Date())
+        console.log(req.body.actionToDo, req.body.userToChange)
         try{
             if(!req.session.loggedUser)throw new Error('Log In First')
             const user = req.session.loggedUser

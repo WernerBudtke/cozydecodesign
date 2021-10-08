@@ -1,10 +1,16 @@
-import { useState } from "react"
+import { useState , useEffect} from "react"
 import { GoogleLogin } from "react-google-login"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import userActions from "../redux/actions/userActions"
+import '../styles/SignUp.css'
 
-const SignIn = (props) => {
+const SignIn = ({history,logIn}) => {
+
+  useEffect(()=>{
+    document.title='COZY | Sign In'
+  },[])
+
   const [user, setUser] = useState({
     password: "",
     eMail: "",
@@ -24,9 +30,9 @@ const SignIn = (props) => {
       password: response.profileObj.googleId,
       google: true,
     }
-    let res = await props.logIn(user)
+    let res = await logIn(user)
     if (res.success) {
-        props.history.push('/')
+        history.push('/')
     } else {
       res.response === 'Invalid username or pass' && setError('That google account does not exist')
     }
@@ -36,9 +42,9 @@ const SignIn = (props) => {
     if (Object.values(user).some((value) => !value)) {
       return setError('Fill the empty fields')
     }
-    const response = await props.logIn(user)
+    const response = await logIn(user)
       if (response.success) {
-        props.history.push("/")
+        history.push("/")
       } else {
         setError(response.response)
       }
@@ -77,7 +83,6 @@ const SignIn = (props) => {
               clientId="825531110504-5if5ceqkaqcvcu2dppipo8q3j7hvnn9k.apps.googleusercontent.com"
               buttonText="Sign in"
               onSuccess={responseGoogle}
-              onFailure={responseGoogle}
               cookiePolicy={"single_host_origin"}
             />
           </div>

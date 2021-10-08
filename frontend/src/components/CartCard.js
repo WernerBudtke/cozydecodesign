@@ -1,38 +1,30 @@
-import "../styles/CartCard.css"
-import { useState } from "react"
+import styles from "../styles/CartCard.module.css"
 
-const CartCard = ({products, showCartCard}) => {
-    const [closed, setClosed] = useState(true)
-    
-    const closeCartCard = () => {
-        setClosed(!closed)
-    }
-    
+const CartCard = ({productAlert, showCard, addToCartCard}) => {
+
     return (
-        <div className = {closed ? "hideCard" : "showCard"}>
-          <div className="cartCard">
-            <div className="topToast">
+        <div className = {!showCard ? styles.hideCard : styles.showCard}>
+          <div className={styles.cartCard}>
+            <div className={styles.topToast}>
                 <div>
-                  <div style={{backgroundImage: `url("https://i.postimg.cc/g2dLtyDR/logOut.png")`, width: "70px", height: "70px", backgroundPosition: "center", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}className="h-4 w-4 rounded-full" >
+                  <div style={{backgroundImage: `url(${productAlert.product.photo})`, width: "70px", height: "70px", backgroundPosition: "center", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}className="h-4 w-4 rounded-full" >
                   </div>
                 </div>
-                <div className="infoCart">
-                  <p>*product name*</p>
-                  <p>*num* x *price*</p>
+                <div className={styles.infoCart}>
+                  <p>{productAlert.product.name}</p>
+                  <p>{productAlert.quantity} x ${productAlert.product.price}</p>
                   <p className="bold">Successfully added to cart!</p>
                 </div>
                   <div  className="close">
-                  <button
-                  onClick={closeCartCard}
-                  >X</button>
+                    <button onClick={addToCartCard}>X</button>
                   </div>
               </div>
-              <div className="bottomToast">
-                <div className="total">
-                  <p>Total ( *cant de prods* ):</p>
-                  <p>$ *precio*</p>
+              <div className={styles.bottomToast}>
+                <div className={styles.total}>
+                  <p>Total ({productAlert.quantity}products):</p>
+                  <p>$ {productAlert.product.price}</p>
                 </div>
-                <div className="buttonContainer">
+                <div className={styles.buttonContainer}>
                   <button>SEE CART</button>
                 </div>
               </div>

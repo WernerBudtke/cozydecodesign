@@ -30,18 +30,13 @@ const validatorControllers = {
       secretWord: joi.string(),
       photo: joi.string(),
     })
-    const validation = schema.validate(req.body, { abortEarly: false })
-    if (!validation.error) {
-      next()
-    } else {
-      const validation = schema.validate(req.body, {abortEarly: false})
-        if(!validation.error){
-            next()
-        }else{
-            console.log(validation.error.details)
-            res.json({ success: false, response: validation.error.details })
-        }
-    }
+    const validation = schema.validate(req.body, {abortEarly: false})
+      if(!validation.error){
+          next()
+      }else{
+          console.log(validation.error.details)
+          res.json({ success: false, response: validation.error.details})
+      }
   },
 }
 module.exports = validatorControllers
