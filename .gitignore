@@ -8,3 +8,6 @@
 .env
 /_update-notifier-last-checked
 _update-notifier-last-checked
+package-lock.json
+/package-lock.json
+
