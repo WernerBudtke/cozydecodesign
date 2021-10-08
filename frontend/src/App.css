@@ -4,12 +4,11 @@
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
+/*HEADER*/
 a {
   text-decoration: none;
   color: #000;
 }
-
-/*HEADER*/
 header{
   height: 10vh;
   display: flex;
@@ -51,6 +50,42 @@ header .logoUser{
   background-position: center;
   background-size: cover;
 }
+
+@media only screen and (max-width: 1124px) { 
+      
+      header .logoUser{
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 100%;
+        background-color: #000;
+        background-position: center;
+        background-size: cover;
+      }
+    
+}
+  
+@media (max-width: 1100px) {
+    .logo {
+      width: 30vw;
+      height: 12.5vw;
+    }
+}
+  
+@media (max-width: 768px) {
+    .menuResponsive {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .menuResponsive nav {
+      align-items: center;
+    }
+    
+  
+}
+
 /* FOOTER */
 
 
@@ -98,6 +133,74 @@ footer .iconSocial {
 .iconSocial{
   color: rgb(97, 88, 88);
 }
+
+@media only screen and (max-width: 768px) { 
+      
+    footer{
+      max-height: 20vh;
+      padding: 4vh;
+    }
+    footer div h3 {
+      margin-bottom: 1vh;
+      font-size: .9rem;
+    }
+    footer div p {
+      padding: 0.3vh;
+      margin-bottom: 1vh;
+      font-size: .9rem;
+    }
+    
+    footer .iconContact {
+      margin-right: .5vw;
+      font-size: .9rem;
+    }
+    footer div {
+      gap: 1;
+    }
+    footer .iconSocial {
+      margin-right: 0.3vw;
+      
+    }
+    footer .socialNetworks {
+        display: none;
+    }
+  
+}
+
+
+
+@media (max-width: 600px) {
+    footer{
+        max-height: 20vh;
+        padding: 3vh;
+      }
+      footer div h3 {
+        margin-bottom: 1vh;
+        font-size: .7rem;
+      }
+      footer div p {
+        padding: 0.3vh;
+        margin-bottom: 1vh;
+        font-size: .7rem;
+      }
+      
+      footer .iconContact {
+        margin-right: .4vw;
+        font-size: .7rem;
+      }
+      footer div {
+        gap: 1;
+      }
+      footer .iconSocial {
+        margin-right: 0.3vw;
+        
+      }
+      footer .socialNetworks {
+          display: none;
+      }
+
+}
+
 /* PRODUCT FORM */
 .main,
 .productFormContainer,

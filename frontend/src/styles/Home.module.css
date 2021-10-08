@@ -107,3 +107,75 @@
 .fondoInfo{
   height: 25vh !important;
 }
+
+@media (max-width: 1300px) {
+  .info{
+    width: 27vw;
+    font-size: 2.8vmin;
+  }
+}
+
+@media (max-width: 1200px) {
+  .info{
+    width: 28vw;
+    font-size: 2.6vmin;
+  }
+}
+
+@media only screen and (max-width: 1124px) { 
+      
+  .info{
+    width: 30vw;
+    font-size: 2.7vmin;
+  }
+}
+
+@media (max-width: 1000px) {
+  .info{
+    width: 30vw;
+    font-size: 2.5vmin;
+  }
+}
+
+@media (max-width: 880px) {
+  .info{
+    width: 32vw;
+    font-size: 2.3vmin;
+  }
+}
+
+@media (max-width: 768px) {
+  .info{
+    min-height: auto;
+    width: 80%;
+    margin:auto;
+    font-size: 2.3vmin;
+    text-align: center;
+  }
+  
+}
+
+@media (max-width: 668px) {
+  .info{
+    letter-spacing: 0vw;
+  }
+
+}
+
+@media (max-width: 600px) {
+  .info{
+    background-color:#d9e2e7bb ;
+    width: 80vw;
+    border-bottom-right-radius: 16px;
+    border-top-right-radius: 16px;
+
+  }
+  .info p{
+    display: none;
+  }
+  .info h2{
+    font-size: 4vw;
+    color:rgb(43, 43, 43)
+  }
+
+}
