@@ -7,11 +7,6 @@ const Cart = ({ onClickHandler, products }) => {
   const totalPrice = products.map(obj => obj.product.discount === 0 ? obj.product.price * obj.quantity 
     : (((100 - obj.product.discount) / 100) * obj.product.price) * obj.quantity)
 
-    
-
-  console.log()
- 
-
   return (
     <div className={styles.cartContainer}>
       <div className={styles.cartContainerHeader}>
