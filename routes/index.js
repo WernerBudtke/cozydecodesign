@@ -56,4 +56,7 @@ router.route('/card/:id')
 .get(cardControllers.getCard)
 .put(cardControllers.editCard)
 .delete(cardControllers.deleteCard)
+const paymentControllers = require('../controllers/paymentControllers')
+router.route('/process-payment')
+.post(paymentControllers.payWithMercadoPago)
 module.exports = router
