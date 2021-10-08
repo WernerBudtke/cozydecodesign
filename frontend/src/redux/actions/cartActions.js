@@ -1,5 +1,3 @@
-import axios from "axios"
-
 const cartActions = {
   addCartProduct: (obj) => {
     return (dispatch) => {
@@ -18,11 +16,16 @@ const cartActions = {
       return { success: true }
     }
   },
-  deleteCartProduct: (obj) => {
+  deleteAllCartProduct: (obj) => {
     return (dispatch) => {
       dispatch({ type: "DELETE_CART", payload: obj })
     }
   },
+  addCartLS:(obj)=>{
+    return async (dispatch)=>{
+    dispatch({ type: "ADD_CART_LS", payload:obj})
+    }
+  }
 }
 
 export default cartActions

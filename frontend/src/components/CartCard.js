@@ -1,7 +1,7 @@
 import styles from "../styles/CartCard.module.css"
 
 const CartCard = ({ productAlert, showCartCard, editShowCartCard }) => {
-  console.log(showCartCard)
+
   return (
     <div className={!showCartCard ? styles.hideCard : styles.showCard}>
       <div className={styles.cartCard}>

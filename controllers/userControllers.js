@@ -82,7 +82,7 @@ const userControllers = {
             if(userFound){
                 const token = jwt.sign({...userFound}, process.env.SECRETORKEY)
                 req.session.loggedUser = userFound
-                res.json({success: true, response: {photo: userFound.photo, token, firstName: userFound.firstName, admin: userFound.admin, owner: userFound.ownergit}})
+                res.json({success: true, response: {photo: userFound.photo, token, firstName: userFound.firstName, admin: userFound.admin, owner: userFound.owner}})
             }else{
                 throw new Error('User not found')
             }

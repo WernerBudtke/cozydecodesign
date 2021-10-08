@@ -7,24 +7,18 @@ import { useEffect, useState } from 'react'
 
 
 const Header=({loginUser, logOut})=>{
-    const [photo, setPhoto] = useState(null)
-    const [admin, setAdmin] = useState(null)
     const outHandler = () => {
         logOut()
     }
+    if(loginUser){
+        var photo = loginUser.photo.includes('http') ? loginUser.photo : `http://localhost:4000/${loginUser.photo}`
+    }
 
-    useEffect(()=>{
-        if(loginUser){
-            setPhoto(loginUser.photo.includes('http') ? loginUser.photo : `http://localhost:4000/${loginUser.photo}`)
-            setAdmin(loginUser.admin)
-        }
-    },[])
-    
     return(
         <header>
             <div>
                 {!loginUser && (
-                    <i class="iconSocial fas fa-user fa-2x"></i>
+                    <i className="iconSocial fas fa-user fa-2x"></i>
                 )}
                 {loginUser && (
                     <div className="logoUser" style={{backgroundImage: `url('${photo}')`}}></div>
@@ -44,7 +38,7 @@ const Header=({loginUser, logOut})=>{
                     {loginUser && (
                         <NavLink active  onClick={outHandler} to="/">SIGN OUT</NavLink>
                     )}
-                    {admin && <NavLink to="/admin">ADMIN</NavLink>}
+                    {loginUser && loginUser.admin && <NavLink to="/admin">ADMIN</NavLink>}
                     <ReactCircleModal
                         style={{
                         padding: "0",

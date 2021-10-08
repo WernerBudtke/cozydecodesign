@@ -18,15 +18,15 @@ const Admin = ({loginUser}) => {
             <div>
                 <div className="topInfo">
                     <div onClick={() => setComponent({screen: 'statistics'})}>
-                        <i class="fas fa-money-bill-wave fa-2x"></i>
+                        <i className="fas fa-money-bill-wave fa-2x"></i>
                         <h4>Total sales: 23</h4>
                     </div>
                     {loginUser.owner && <div onClick={() => setComponent({screen: 'user'})}>
-                        <i class="far fa-user fa-2x"></i>
+                        <i className="far fa-user fa-2x"></i>
                         <h4>Total users: 43</h4>
                     </div>}
                     <div onClick={() => setComponent({screen: 'stock'})}>
-                        <i class="fas fa-cart-plus fa-2x"></i>
+                        <i className="fas fa-cart-plus fa-2x"></i>
                         <h4>Total stock: 65</h4>
                     </div>
                 </div>
