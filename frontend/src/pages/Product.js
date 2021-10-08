@@ -1,10 +1,11 @@
 import styles from "../styles/Product.module.css"
 import { connect } from "react-redux"
-import productsActions from "../redux/actions/productsActions"
 import { useEffect, useState } from "react"
 import ReactCircleModal from "react-circle-modal"
 import Cart from "../components/Cart"
+import CartCard from "../components/CartCard"
 import cartActions from "../redux/actions/cartActions"
+import productsActions from "../redux/actions/productsActions"
 
 const Product = ({
   getAProduct,
@@ -16,6 +17,8 @@ const Product = ({
 }) => {
   const [quantity, setQuantity] = useState(1)
   const [loading, setLoading] = useState(true)
+  const [productAlert, setProductAlert] = useState(null)
+  const [showCartCard, setShowCartCard] = useState(false)
 
   useEffect(() => {
     if (!products.length) {
@@ -33,12 +36,18 @@ const Product = ({
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+  const editShowCartCard = (newState) => {
+    console.log("se ejecuta editshow")
+    setShowCartCard(newState)
+  }
 
   const addToCartHandler = () => {
+    setShowCartCard(true)
     let newProducts = {
       product: product,
       quantity: quantity,
     }
+    setProductAlert(newProducts)
     addCartProduct(newProducts)
   }
 
@@ -52,6 +61,14 @@ const Product = ({
 
   return (
     <div className={styles.productSection}>
+      {productAlert && (
+        <CartCard
+          productAlert={productAlert}
+          showCartCard={showCartCard}
+          editShowCartCard={editShowCartCard}
+        />
+      )}
+
       <div className={styles.mainContainer}>
         <div
           className={styles.productImage}
@@ -114,7 +131,7 @@ const Product = ({
             offsetX={0}
             offsetY={0}
           >
-            {(onClick) => <Cart onClickHandler={onClick}/>}
+            {(onClick) => <Cart onClickHandler={onClick} />}
           </ReactCircleModal>
         </div>
       </div>
