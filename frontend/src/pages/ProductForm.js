@@ -20,7 +20,7 @@ const ProductForm = ({addProduct, modifyProduct, findAProduct, match, product}) 
     useEffect(() => {
         findAProduct(productId)
     }, [productId])
-
+    console.log(productId)
     var subcategories = []
     
     if(newProduct.category === "Bathroom"){

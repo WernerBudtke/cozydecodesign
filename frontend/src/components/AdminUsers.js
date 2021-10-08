@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 const AdminUsers = ({getUsers, manageAdmin, loginUser}) => {
 const [users, setUsers] = useState([])
 const [render, setRender] = useState(false)
+const [filteredUsers, setFilteredUsers] = useState([])
 
     useEffect(() => {
         const res = async () => {
@@ -29,17 +30,24 @@ const [render, setRender] = useState(false)
         }
     }
 
+    const filterUsers = (e) => {
+        let filteredUsers = users.filter((user) => (user.eMail.toLowerCase().startsWith(e.target.value.trim().toLowerCase())))
+        setFilteredUsers(filteredUsers)
+    }
+
+    let aux = !filteredUsers.length ? users : filteredUsers
+
     return (
         <div>
             <div>
                 <h2>User list</h2>
                 <div className={styles.searchBar}>
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search user.." />
+                    <input type="text" placeholder="Search user.." onChange={filterUsers}/>
                 </div>
             </div>
             <div className={styles.userContainer}>
-                {users.map((user) => {
+                {aux.map((user) => {
                     return (
                         <div className={styles.userCard}>
                             <div>
