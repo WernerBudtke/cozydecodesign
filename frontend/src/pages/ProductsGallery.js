@@ -23,15 +23,25 @@ const ProductsGallery = ({ products, getProducts }) => {
   const addToCart = () => {
     setShowCartCard(!showCartCard)
   }
- 
 
   return (
     <div className={styles.productsGallery}>
-      {productAlert && <CartCard productAlert={productAlert} showCard={showCartCard} addToCartCard={addToCart}/>}
+      {productAlert && (
+        <CartCard
+          productAlert={productAlert}
+          showCard={showCartCard}
+          // addToCartCard={addToCartCard}
+        />
+      )}
       <div className={styles.productsCards}>
         {products.map((product) => {
           return (
-            <ProductCard key={product._id} product={product} addToCartCard={addToCart} setProductAlert={setProductAlert}/>
+            <ProductCard
+              key={product._id}
+              product={product}
+              addToCart={addToCart}
+              setProductAlert={setProductAlert}
+            />
           )
         })}
       </div>
