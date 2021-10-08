@@ -36,8 +36,8 @@ const Header=({loginUser, logOut})=>{
                     {loginUser && (
                         <NavLink active  onClick={outHandler} to="/">SIGN OUT</NavLink>
                     )}
-                    <NavLink to="/mercadopago">Merc</NavLink>
                     {loginUser && loginUser.admin && <NavLink to="/admin">ADMIN</NavLink>}
+                    <NavLink to="/mercadopago">Merc</NavLink>
                     <ReactCircleModal
                         style={{
                         padding: "0",

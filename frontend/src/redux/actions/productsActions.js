@@ -39,7 +39,6 @@ const productsActions = {
     }
   },
   getAProduct: (id) => {
-    console.log("action", id)
     return async (dispatch) => {
       try {
         let res = await axios.get(`http://localhost:4000/api/product/${id}`)
