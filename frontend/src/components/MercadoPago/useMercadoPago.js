@@ -62,7 +62,7 @@ export default function useMercadoPago(x) {
                     onSubmit: (event) => {
                         event.preventDefault();
                         const {paymentMethodId: payment_method_id,issuerId: issuer_id,cardholderEmail: email,amount,token,installments,identificationNumber,identificationType} = cardForm.getCardFormData();
-                        fetch(`http://localhost:4000/process-payment`,{
+                        fetch(`http://localhost:4000/api/process-payment`,{
                                 method: "POST",
                                 headers: {
                                     "Access-Control-Allow-Origin": "*",
