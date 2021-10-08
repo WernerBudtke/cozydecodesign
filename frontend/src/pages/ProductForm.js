@@ -26,14 +26,13 @@ const ProductForm = ({addProduct, modifyProduct, findAProduct, match, product}) 
         findAProduct(productId)
             
         setTimeout(()=>{
-            actualizarNewProduct()
+            refreshNewProduct()
             setLoading(false)
         },2000)
 
     }, [])
 
-    const actualizarNewProduct = ()=> {
-        console.log("QUE FUNCIONE")
+    const refreshNewProduct = ()=> {
         setNewProduct ({
             name: product.name ,
             photo: product.photo ,
