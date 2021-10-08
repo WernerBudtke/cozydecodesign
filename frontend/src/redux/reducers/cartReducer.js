@@ -2,10 +2,26 @@ const cartReducer = (state = { products: [] }, action) => {
   let cartLS = null
   switch (action.type) {
     case "ADD_CART_PRODUCT":
-      cartLS = [...state.products, action.payload ]
+      let productExists = state.products.find(
+        (obj) => obj.product._id === action.payload.product._id
+      )
+      cartLS = !productExists
+        ? state.products.concat(action.payload)
+        : state.products.map((obj) =>
+            obj.product._id === action.payload.product._id
+              ? { ...obj, quantity: obj.quantity + action.payload.quantity }
+              : obj
+          )
       localStorage.setItem("cart", JSON.stringify(cartLS))
+
       return {
-        products: state.products.concat(action.payload),
+        products: !productExists
+          ? state.products.concat(action.payload)
+          : state.products.map((obj) =>
+              obj.product._id === action.payload.product._id
+                ? { ...obj, quantity: obj.quantity + action.payload.quantity }
+                : obj
+            ),
       }
     case "DELETE_ONE_CART_PRODUCT":
       cartLS = state.products.filter(
@@ -33,8 +49,8 @@ const cartReducer = (state = { products: [] }, action) => {
       }
     case "ADD_CART_LS":
       console.log(action.payload)
-      return{
-        products:action.payload
+      return {
+        products: action.payload,
       }
     default:
       return state

@@ -27,7 +27,7 @@ const ProductCard = ({
     editShowCartCard(true)
     addCartProduct(newProducts)
   }
-  const photo = product.photo.includes("http")
+  const photo = product.photo?.includes("http")
     ? product.photo
     : `http://localhost:4000/${product.photo}`
 

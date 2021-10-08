@@ -1,0 +1,31 @@
+.gatewayContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.productInCart {
+  display: flex;
+}
+
+.productCartInfo {
+  background-color: bisque;
+}
+
+.productCartInfo:first-child {
+  display: flex;
+  flex-direction: row;
+}
+
+.productCartPhoto {
+  width: 10vw;
+  height: 10vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.personalInfo {
+  display: flex;
+  flex-direction: column;
+}
