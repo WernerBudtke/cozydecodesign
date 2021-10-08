@@ -33,7 +33,8 @@ const App=({loginUser, logFromSession})=>{
           <Route exact path="/products" component={ProductsGallery}/>
           <Route path="/products/:category" component={ProductsGallery} />
           <Route path="/product/:id" component={Product} />
-          <Route path="/productform" component={ProductForm}/>
+          <Route exact path="/productform" component={ProductForm}/>
+          <Route path="/productform/:id" component={ProductForm}/>
           <Route exact path="/hover" component={HoverCard}/>
           <Route path="/admin" component={loginUser && loginUser.admin ? Admin : Home} />
           <Route path="/mercadopago" component={MercadoPagoForm}/>

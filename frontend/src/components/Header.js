@@ -3,11 +3,22 @@ import {connect} from 'react-redux'
 import userActions from '../redux/actions/userActions'
 import ReactCircleModal from "react-circle-modal"
 import Cart from "./Cart"
+import { useEffect, useState } from 'react'
 
 const Header=({loginUser, logOut})=>{
+    const [photo, setPhoto] = useState(null)
+    const [admin, setAdmin] = useState(null)
     const outHandler = () => {
         logOut()
     }
+
+    useEffect(()=>{
+        if(loginUser){
+            setPhoto(loginUser.photo.includes('http') ? loginUser.photo : `http://localhost:4000/${loginUser.photo}`)
+            setAdmin(loginUser.admin)
+        }
+    },[])
+    
     return(
         <header>
             <div>
@@ -15,7 +26,7 @@ const Header=({loginUser, logOut})=>{
                     <i class="iconSocial fas fa-user fa-2x"></i>
                 )}
                 {loginUser && (
-                    <div className="logoUser" style={{backgroundImage: `url('${loginUser.photo}')`}}></div>
+                    <div className="logoUser" style={{backgroundImage: `url('${photo}')`}}></div>
                 )} 
             </div>
             <h1>COZY</h1>
@@ -30,10 +41,10 @@ const Header=({loginUser, logOut})=>{
                         <NavLink active to='/signup'>SIGN UP</NavLink>
                     )}
                     {loginUser && (
-                        <NavLink active  onClick={outHandler} to="/">LOGOUT</NavLink>
+                        <NavLink active  onClick={outHandler} to="/">SIGN OUT</NavLink>
                     )}
                     <NavLink to="/mercadopago">Merc</NavLink>
-                    <NavLink to="/admin">Admin</NavLink>
+                    {admin && <NavLink to="/admin">ADMIN</NavLink>}
                     <ReactCircleModal
                         style={{
                         padding: "0",
@@ -45,7 +56,6 @@ const Header=({loginUser, logOut})=>{
                             className="iconSocial fas fa-shopping-cart fa-1x"
                         ></i>
                         )}
-                        // Optional fields and their default values
                         offsetX={0}
                         offsetY={0}
                         >
@@ -53,7 +63,6 @@ const Header=({loginUser, logOut})=>{
                     </ReactCircleModal>
                 </nav>  
             </div>
-            
         </header>
     )
 }
