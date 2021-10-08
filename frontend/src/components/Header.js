@@ -5,7 +5,6 @@ import ReactCircleModal from "react-circle-modal"
 import Cart from "./Cart"
 import { useEffect, useState } from 'react'
 
-
 const Header=({loginUser, logOut})=>{
     const outHandler = () => {
         logOut()
@@ -39,6 +38,7 @@ const Header=({loginUser, logOut})=>{
                         <NavLink active  onClick={outHandler} to="/">SIGN OUT</NavLink>
                     )}
                     {loginUser && loginUser.admin && <NavLink to="/admin">ADMIN</NavLink>}
+                    <NavLink to="/mercadopago">Merc</NavLink>
                     <ReactCircleModal
                         style={{
                         padding: "0",

@@ -14,10 +14,10 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Product from './pages/Product'
 import Admin from './pages/Admin'
-import cartActions from './redux/actions/cartActions'
+import MercadoPagoForm from './components/MercadoPago/MercadoPagoForm'
 
-const App=({loginUser, logFromSession, addCartLS})=>{
 
+const App=({loginUser, logFromSession})=>{
   useEffect(()=>{
     if (!loginUser){
       logFromSession()
@@ -42,6 +42,7 @@ const App=({loginUser, logFromSession, addCartLS})=>{
           <Route path="/productform/:id" component={ProductForm}/>
           <Route exact path="/hover" component={HoverCard}/>
           {loginUser && loginUser.admin && <Route path="/admin" component={Admin}/>}
+          <Route path="/mercadopago" component={MercadoPagoForm}/>
           <Redirect to="/" />
         </Switch>
       <Footer/>
