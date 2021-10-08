@@ -64,12 +64,12 @@ const ProductInCart = ({ cartItem, deleteACartProduct, updateCartProduct }) => {
           </p>
           <p>
             $
-            {(cartItem.product.discount === 0
-              ? cartItem.product.price
-              : (
-                  ((100 - cartItem.product.discount) / 100) *
-                  cartItem.product.price
-                ).toFixed(2)) * cartItem.quantity}
+            {(
+              (cartItem.product.discount === 0
+                ? cartItem.product.price
+                : ((100 - cartItem.product.discount) / 100) *
+                  cartItem.product.price) * cartItem.quantity
+            ).toFixed(2)}
           </p>
         </div>
       </div>
