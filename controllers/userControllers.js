@@ -82,7 +82,7 @@ const userControllers = {
             if(userFound){
                 const token = jwt.sign({...userFound}, process.env.SECRETORKEY)
                 req.session.loggedUser = userFound
-                res.json({success: true, response: {photo: userFound.photo, token, firstName: userFound.firstName, admin: userFound.admin, owner: userFound.ownergit}})
+                res.json({success: true, response: {photo: userFound.photo, token, firstName: userFound.firstName, admin: userFound.admin, owner: userFound.owner}})
             }else{
                 throw new Error('User not found')
             }
@@ -104,7 +104,6 @@ const userControllers = {
     },
     manageAdmin: async (req, res) => {
         console.log("Received MANAGE ADMIN Petition:" + Date())
-        console.log(req.body.actionToDo, req.body.userToChange)
         try{
             if(!req.session.loggedUser)throw new Error('Log In First')
             const user = req.session.loggedUser
@@ -293,6 +292,5 @@ const userControllers = {
         })
         .catch((err) => handleError(res, err))
     },
-    // hacer 2 endpoint 1 para mandar mail de reset password y 1 para cambiarla directamente.
 }
 module.exports = userControllers
