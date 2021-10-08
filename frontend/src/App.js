@@ -15,9 +15,10 @@ import Footer from './components/Footer'
 import Product from './pages/Product'
 import Admin from './pages/Admin'
 import MercadoPagoForm from './components/MercadoPago/MercadoPagoForm'
+import cartActions from './redux/actions/cartActions'
 
 
-const App=({loginUser, logFromSession})=>{
+const App=({loginUser, logFromSession,addCartLS})=>{
   useEffect(()=>{
     if (!loginUser){
       logFromSession()

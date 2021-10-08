@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import userActions from '../redux/actions/userActions'
 import ReactCircleModal from "react-circle-modal"
 import Cart from "./Cart"
-import { useEffect, useState } from 'react'
 
 const Header=({loginUser, logOut})=>{
     const outHandler = () => {

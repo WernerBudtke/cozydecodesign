@@ -1,8 +1,9 @@
 import styles from "../styles/Cart.module.css"
 import { connect } from "react-redux"
 import ProductInCart from "./ProductInCart"
+import { useHistory } from "react-router"
 
-const Cart = ({ onClickHandler, products }) => {
+const Cart = ({ onClickHandler, products , history}) => {
 
   const totalPrice = products.map(obj => obj.product.discount === 0 ? obj.product.price * obj.quantity 
     : (((100 - obj.product.discount) / 100) * obj.product.price) * obj.quantity)
