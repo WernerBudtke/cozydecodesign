@@ -29,8 +29,10 @@ const ProductForm = ({addProduct, modifyProduct, findAProduct, match, product}) 
         subcategories = ["Accesories", "Glassware", "Tableware"]
     } else if (newProduct.category === "Decor"){
         subcategories = ["Accesories", "Home", "Lighting"]
-    }
-    const categories = ["Bathroom","Kitchenware","Decor"]
+    } else if (newProduct.category === "GiftCard"){
+        subcategories = ["GiftCard"]
+    } 
+    const categories = ["Bathroom","Kitchenware","Decor","GiftCard"]
 
     const inputHandler = (e) => {
         setNewProduct({
