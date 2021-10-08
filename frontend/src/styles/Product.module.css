@@ -107,3 +107,9 @@
 .efwhzj {
   padding: 0 !important;
 }
+
+.sale {
+  text-decoration: line-through;
+  color: red !important;
+  font-size: 3vmin !important;
+}
