@@ -97,7 +97,9 @@ const PaymentGateway = ({
       <div key={obj.product._id} className={styles.productInCart}>
         <div
           className={styles.productCartPhoto}
-          style={{ backgroundImage: `url("${obj.product.photo}")` }}
+          style={{ backgroundImage: `url("${obj.product.photo.includes("http")
+              ? obj.product.photo
+              : `http://localhost:4000/${obj.product.photo}`}")` }}
         ></div>
         <p>{obj.product.name}</p>
         <div className={styles.productCartInfo}>
