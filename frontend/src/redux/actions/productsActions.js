@@ -71,6 +71,12 @@ const productsActions = {
       }
     }
   },
+  getProductByCategory: (category) => {
+    return (dispatch) => {
+      console.log(category)
+      dispatch({ type: !category ? "GET_ALL" : "GET_BY_CATEGORY", payload: category })
+    }
+  }
 }
 
 export default productsActions

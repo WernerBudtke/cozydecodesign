@@ -38,6 +38,7 @@ const App = ({ loginUser, logFromSession, addCartLS }) => {
         {!loginUser && <Route path="/signup" component={SignUp} />}
         <Route exact path="/products" component={ProductsGallery} />
         <Route path="/products/:category" component={ProductsGallery} />
+        <Route path="/products/:subcategory" component={ProductsGallery} />
         <Route path="/product/:id" component={Product} />
         <Route
           exact
