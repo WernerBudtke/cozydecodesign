@@ -103,25 +103,6 @@ const Home = () => {
                 </div>
               )}>
             </Parallax>
-      <Parallax
-        strength={-4}
-        className={styles.fondoInfo}
-        bgImage={"https://i.postimg.cc/KzD7qN4y/banner9.png"}
-      ></Parallax>
-      <Parallax
-        bgImage={"/assets/home4.jpg"}
-        strength={-400}
-        renderLayer={(percentage) => (
-          <div
-            className={styles.finalInfo}
-            style={{
-              background: `rgba(212, 197, 191, ${percentage * 2})`,
-              width: percentage * 100,
-              height: percentage * 100,
-            }}
-          ></div>
-        )}
-      ></Parallax>
     </div>
   )
 }

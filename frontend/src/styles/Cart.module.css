@@ -106,9 +106,6 @@
   justify-content: space-evenly;
   margin-top: 1vw;
 }
-.iconCardIn{
-  cursor: pointer;
-}
 .warningButton button{
   width: 47%;
   margin: 0.5vw;

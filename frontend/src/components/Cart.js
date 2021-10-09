@@ -57,7 +57,6 @@ const Cart = ({ onClickHandler, products, loginUser }) => {
         ) : (
           <div className={styles.warning}>
             <p>
-              {" "}
               <i className="fas fa-exclamation"></i> You don't have any items in
               your cart.
             </p>

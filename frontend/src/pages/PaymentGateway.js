@@ -45,9 +45,8 @@ const PaymentGateway = ({
     eMail: loginUser.eMail,
   })
 
-  const validateGift = products.filter(
-    (obj) => obj.product.category === "GiftCard"
-  )
+  const validateGift = products.filter(obj=> obj.product.category === "GiftCard")
+  
 
   if (validateGift.length) {
     var giftCard = validateGift.map((obj) => ({ balance: obj.product.price }))
@@ -78,7 +77,7 @@ const PaymentGateway = ({
       ? obj.product.price * obj.quantity
       : ((100 - obj.product.discount) / 100) * obj.product.price * obj.quantity
   )
-  const validateGift= products.filter(obj => obj.product.category === 'GiftCard')
+  
 
   const [order, setOrder] = useState({
     products: products.map((obj) => ({

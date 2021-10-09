@@ -6,9 +6,9 @@ const Footer=()=>{
         <footer className={styles.footer}>
             <div className={styles.infoProduct}>
                 <h3>Categories</h3>
-                <Link to="/products/kitchenware"><p>Kitchenware</p></Link>
-                <Link to="/products/bathroom"><p>Bathroom</p></Link>
-                <Link to="/products/decor"><p>Decor</p></Link>
+                <Link to="/products/Kitchenware"><p>Kitchenware</p></Link>
+                <Link to="/products/Bathroom"><p>Bathroom</p></Link>
+                <Link to="/products/Decor"><p>Decor</p></Link>
             </div>
             <div className={styles.infoService}>
                 <h3>Customer Service</h3>
