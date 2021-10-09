@@ -50,97 +50,97 @@ const Home = () => {
   ));
   console.log(width);
   console.log(height);
-  //     return (
-  //       <div className={styles.home}>
-  //           <Parallax bgImage={'/assets/home1.jpg'} strength={600}>
-  //             <Link to='/products' className={styles.homeStore}>
-  //               <div>
-  //                 <p>Check out our latest trends</p>
-  //               </div>
-  //             </Link>
-  //           </Parallax>
-  //           <Parallax strength={-200} className={styles.categories}>
-  //               <h1>CATEGORIES</h1>
-  //               <div className={styles.galleryWrap}>
-  //                   {items}
-  //               </div>
-  //           </Parallax>
-  //           <Parallax bgImage={'/assets/home5.jpg'}
-  //           strength={300}>
-  //             <div className={styles.info}>
-  //               <h2>There's no place like home. </h2>
-  //               <p>There's no place like home. In Cozy we offer a wide variety of well-designed, functional home products. Whether your home decor leans towards minimalist or maximalist aesthetic, you'll find something to suit your style.</p>
-  //             </div>
-  //           </Parallax>
-  //           <Parallax strength={-4}  className={styles.fondoInfo} bgImage={"https://i.postimg.cc/KzD7qN4y/banner9.png"}>
-  //           </Parallax>
-  //           <Parallax bgImage={'/assets/home4.jpg'}
-  //           strength={-400}renderLayer={(percentage) => (
-  //               <div
-  //                 className={styles.finalInfo}
-  //                 style={{
-  //                   background: `rgba(212, 197, 191, ${percentage * 2})`,
-  //                   width: percentage * 100,
-  //                   height: percentage * 100
-  //                 }}>
-  //               </div>
-  //             )}>
-  //           </Parallax>
-  //       </div>
-  //   )
-  // }
-  // export default Home
-
-  return (
-    <div className={styles.home}>
-      <Parallax
-        bgImage={"/assets/home1a.jpg"}
-        strength={width > 700 ? width / 1.4 : height}
-      >
-        <Link to="/products" className={styles.homeStore}>
-          <div>
-            <p>Check out our latest trends</p>
-          </div>
-        </Link>
-      </Parallax>
-      <Parallax strength={height / 20} className={styles.categories}>
-        <h1>CATEGORIES</h1>
-        <div className={styles.galleryWrap}>{items}</div>
-      </Parallax>
-      <Parallax
-        bgImage={"/assets/home5a.jpg"}
-        strength={width > 700 ? -width / 8 : height}
-      >
-        <div className={styles.info}>
-          <h2>There's no place like home. </h2>
-          <p>
-            There's no place like home. In Cozy we offer a wide variety of
-            well-designed, functional home products. Whether your home decor
-            leans towards minimalist or maximalist aesthetic, you'll find
-            something to suit your style.
-          </p>
+      return (
+        <div className={styles.home}>
+            <Parallax bgImage={'/assets/home1.jpg'} strength={600}>
+              <Link to='/products' className={styles.homeStore}>
+                <div>
+                  <p>Check out our latest trends</p>
+                </div>
+              </Link>
+            </Parallax>
+            <Parallax strength={-200} className={styles.categories}>
+                <h1>CATEGORIES</h1>
+                <div className={styles.galleryWrap}>
+                    {items}
+                </div>
+            </Parallax>
+            <Parallax bgImage={'/assets/home5.jpg'}
+            strength={300}>
+              <div className={styles.info}>
+                <h2>There's no place like home. </h2>
+                <p>There's no place like home. In Cozy we offer a wide variety of well-designed, functional home products. Whether your home decor leans towards minimalist or maximalist aesthetic, you'll find something to suit your style.</p>
+              </div>
+            </Parallax>
+            <Parallax strength={-4}  className={styles.fondoInfo} bgImage={"https://i.postimg.cc/KzD7qN4y/banner9.png"}>
+            </Parallax>
+            <Parallax bgImage={'/assets/home4.jpg'}
+            strength={-400}renderLayer={(percentage) => (
+                <div
+                  className={styles.finalInfo}
+                  style={{
+                    background: `rgba(212, 197, 191, ${percentage * 2})`,
+                    width: percentage * 100,
+                    height: percentage * 100
+                  }}>
+                </div>
+              )}>
+            </Parallax>
         </div>
-      </Parallax>
-      <Parallax
-        strength={height / 20}
-        className={styles.fondoInfo}
-        bgImage={"https://i.postimg.cc/KzD7qN4y/banner9.png"}
-      ></Parallax>
-      <Parallax
-        bgImage={"/assets/home4a.jpg"}
-        strength={width > 700 ? width / 1.4 : height}
-        renderLayer={(percentage) => (
-          <div
-            className={styles.finalInfo}
-            style={{
-              background: `rgba(212, 197, 191, ${percentage * 2})`,
-              width: percentage * 100,
-              height: percentage * 100,
-            }}
-          ></div>
-        )}
-      ></Parallax>
-    </div>
-  );
-};
-export default Home;
+    )
+  }
+  export default Home
+
+//   return (
+//     <div className={styles.home}>
+//       <Parallax
+//         bgImage={"/assets/home1a.jpg"}
+//         strength={width > 700 ? width / 1.4 : height}
+//       >
+//         <Link to="/products" className={styles.homeStore}>
+//           <div>
+//             <p>Check out our latest trends</p>
+//           </div>
+//         </Link>
+//       </Parallax>
+//       <Parallax strength={height / 20} className={styles.categories}>
+//         <h1>CATEGORIES</h1>
+//         <div className={styles.galleryWrap}>{items}</div>
+//       </Parallax>
+//       <Parallax
+//         bgImage={"/assets/home5a.jpg"}
+//         strength={width > 700 ? -width / 8 : height}
+//       >
+//         <div className={styles.info}>
+//           <h2>There's no place like home. </h2>
+//           <p>
+//             There's no place like home. In Cozy we offer a wide variety of
+//             well-designed, functional home products. Whether your home decor
+//             leans towards minimalist or maximalist aesthetic, you'll find
+//             something to suit your style.
+//           </p>
+//         </div>
+//       </Parallax>
+//       <Parallax
+//         strength={height / 20}
+//         className={styles.fondoInfo}
+//         bgImage={"https://i.postimg.cc/KzD7qN4y/banner9.png"}
+//       ></Parallax>
+//       <Parallax
+//         bgImage={"/assets/home4a.jpg"}
+//         strength={width > 700 ? width / 1.4 : height}
+//         renderLayer={(percentage) => (
+//           <div
+//             className={styles.finalInfo}
+//             style={{
+//               background: `rgba(212, 197, 191, ${percentage * 2})`,
+//               width: percentage * 100,
+//               height: percentage * 100,
+//             }}
+//           ></div>
+//         )}
+//       ></Parallax>
+//     </div>
+//   );
+// };
+// export default Home;
