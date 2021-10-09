@@ -9,7 +9,7 @@ main, .formContainer, form {
 main {
   background-position: center;
   background-size: cover;
-  min-height: 105vh;
+  min-height: 100vh;
   background-image: url(https://i.postimg.cc/0jbZdZKt/formbackground.jpg);
   padding-left: 5vw;
   flex-direction: row;
