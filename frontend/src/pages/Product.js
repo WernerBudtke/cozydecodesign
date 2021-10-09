@@ -36,6 +36,7 @@ const Product = ({
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+  
   const editShowCartCard = (newState) => {
     console.log("se ejecuta editshow")
     setShowCartCard(newState)
