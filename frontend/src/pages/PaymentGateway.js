@@ -25,7 +25,12 @@ const PaymentGateway = ({
   addNewOrder,
   history,
   addCard,
+  getCard,
 }) => {
+  const [sharedPayment, setSharedPayment] = useState(false)
+  const [code, setCode] = useState(null)
+  const [balance, setBalance] = useState(null)
+  const [hideRadio, setHideRadio] = useState(true)
   const [enableInput, setEnableInput] = useState(false)
   const [enablePayment, setEnablePayment] = useState(true)
   const [renderError, setRenderError] = useState(null)
@@ -45,8 +50,9 @@ const PaymentGateway = ({
     eMail: loginUser.eMail,
   })
 
-  const validateGift = products.filter(obj=> obj.product.category === "GiftCard")
-  
+  const validateGift = products.filter(
+    (obj) => obj.product.category === "GiftCard"
+  )
 
   if (validateGift.length) {
     var giftCard = validateGift.map((obj) => ({ balance: obj.product.price }))
@@ -54,6 +60,7 @@ const PaymentGateway = ({
   console.log(validateGift)
   console.log(giftCard)
   const validate = () => {
+    setHideRadio(false)
     setEnableInput(true)
     setEnablePayment(true)
     if (Object.values(info).some((value) => value === !value)) {
@@ -77,28 +84,31 @@ const PaymentGateway = ({
       ? obj.product.price * obj.quantity
       : ((100 - obj.product.discount) / 100) * obj.product.price * obj.quantity
   )
-  
 
   const [order, setOrder] = useState({
     products: products.map((obj) => ({
       productId: obj.product._id,
       quantity: obj.quantity,
     })),
-    paymenMethod: {
+    paymentMethod: {
       type: "",
       extraInfo: "",
     },
     totalPrice: totalPrice.reduce((a, b) => a + b, 0).toFixed(2),
   })
-  console.log("hola hola")
+
   const sideProducts = products.map((obj) => {
     return (
       <div key={obj.product._id} className={styles.productInCart}>
         <div
           className={styles.productCartPhoto}
-          style={{ backgroundImage: `url("${obj.product.photo.includes("http")
-              ? obj.product.photo
-              : `http://localhost:4000/${obj.product.photo}`}")` }}
+          style={{
+            backgroundImage: `url("${
+              obj.product.photo.includes("http")
+                ? obj.product.photo
+                : `http://localhost:4000/${obj.product.photo}`
+            }")`,
+          }}
         ></div>
         <p>{obj.product.name}</p>
         <div className={styles.productCartInfo}>
@@ -135,23 +145,32 @@ const PaymentGateway = ({
     })
   }
 
-  const fillOrderInfo = (e) => {
+  const fillOrderInfo = (e, add) => {
     setOrder({
       ...order,
-      paymenMethod: {
-        ...order.paymenMethod,
-        type: e.target.value,
+      paymentMethod: {
+        ...order.paymentMethod,
+        type: !add
+          ? e.target.value
+          : `${order.paymentMethod.type} - ${e.target.value}`,
       },
     })
-    setChosenMethod({ ...chosenMethod, type: e.target.value })
+    setChosenMethod({
+      ...chosenMethod,
+      type: !add ? e.target.value : `${chosenMethod.type} - ${e.target.value}`,
+    })
+    add && setSharedPayment(true)
   }
 
+  console.log(order)
   const addNewOrderHandler = () => {
     if (giftCard) {
       addCard(...giftCard).then((res) => console.log(res))
     }
     addNewOrder(order).then((res) => {
       if (res.success) {
+        localStorage.removeItem("cart")
+        //MANDAR ACTION PARA LIMPIAR CARRITO EN STORE REDUX
         history.push("/")
       } else {
         alert("algo fue mal con el pago")
@@ -161,6 +180,24 @@ const PaymentGateway = ({
 
   let date = new Date()
 
+  const fillCode = (e) => {
+    setCode({ code: e.target.value })
+  }
+  const getCardHandler = () => {
+    getCard(code).then((res) => {
+      if (res.success) {
+        setBalance(res.res.balance)
+      } else {
+        setBalance("Tu tarjeta no es valida")
+      }
+    })
+  }
+
+  const checkBalance =
+    typeof balance === "number" ? balance - order.totalPrice : null
+  const sharedPaymentPrice = Math.abs(checkBalance)
+  // console.log(order)
+  console.log(String(sharedPaymentPrice))
   return (
     <div className={styles.gatewayContainer}>
       <div className={styles.clientInfo}>
@@ -259,57 +296,105 @@ const PaymentGateway = ({
 
           <div>
             <h1>Payment</h1>
-            <label>Paypal</label>
-            <input
-              type="radio"
-              id="paypal"
-              name="payMethod"
-              defaultValue="paypal"
-              onChange={fillOrderInfo}
-              onClick={() => setEnablePayment(false)}
-              disabled={enableInput}
-            />
-            <label>Credit/Debit Card</label>
-            <input
-              type="radio"
-              id="mercadoPago"
-              name="payMethod"
-              defaultValue="mercadoPago"
-              onChange={fillOrderInfo}
-              onClick={() => setEnablePayment(false)}
-              disabled={enableInput}
-            />
-            <label>Gift Card</label>
-            <input
-              type="radio"
-              id="giftCard"
-              name="payMethod"
-              defaultValue="giftCard"
-              onChange={fillOrderInfo}
-              onClick={() => setEnablePayment(false)}
-              disabled={enableInput}
-            />
+            {hideRadio && (
+              <div className={styles.switchField}>
+                <input
+                  type="radio"
+                  id="paypal"
+                  name="payMethod"
+                  defaultValue="paypal"
+                  onChange={fillOrderInfo}
+                  onClick={() => setEnablePayment(false)}
+                  disabled={enableInput}
+                />
+                <label for="paypal">Paypal</label>
+                <input
+                  type="radio"
+                  id="mercadopago"
+                  name="payMethod"
+                  defaultValue="mercadoPago"
+                  onChange={fillOrderInfo}
+                  onClick={() => setEnablePayment(false)}
+                  disabled={enableInput}
+                />
+                <label for="mercadopago">Credit/Debit Card</label>
+                <input
+                  type="radio"
+                  id="giftcard"
+                  name="payMethod"
+                  defaultValue="giftCard"
+                  onChange={fillOrderInfo}
+                  onClick={() => setEnablePayment(false)}
+                  disabled={enableInput}
+                />
+                <label for="giftcard">Gift Card</label>
+              </div>
+            )}
           </div>
         </div>
         <button disabled={enablePayment} onClick={validate}>
           Completar Pago
         </button>
-        {chosenMethod.enable && chosenMethod.type === "paypal" && (
+        {chosenMethod.enable && chosenMethod.type.includes("giftCard") && (
+          <div>
+            <label>Enter your Giftcard Code</label>
+            <input
+              type="text"
+              required
+              name="giftCardCode"
+              defaultValue=" "
+              onChange={fillCode}
+            />
+            <button onClick={getCardHandler}>Check balance</button>
+            {typeof balance === "string" && <p>{balance}</p>}
+            {typeof balance === "number" && (
+              <p>el saldo de tu giftcard es de ${balance}</p>
+            )}
+            {checkBalance < 0 && (
+              <div className={styles.switchField}>
+                <p>
+                  el valor de tu compra ${order.totalPrice} supera el saldo que
+                  tienes en tu giftcard, el saldo que queda por pagar es de $
+                  {Math.abs(checkBalance)}.
+                </p>
+                <input
+                  type="radio"
+                  id="paypal"
+                  name="payMethod"
+                  defaultValue="paypal"
+                  onChange={(e) => fillOrderInfo(e, "add")}
+                  onClick={() => setEnablePayment(false)}
+                  disabled={sharedPayment}
+                />
+                <label for="paypal">Paypal</label>
+                <input
+                  type="radio"
+                  id="mercadopago"
+                  name="payMethod"
+                  defaultValue="mercadoPago"
+                  onChange={(e) => fillOrderInfo(e, "add")}
+                  onClick={() => setEnablePayment(false)}
+                  disabled={sharedPayment}
+                />
+                <label for="mercadopago">Credit/Debit Card</label>
+              </div>
+            )}
+          </div>
+        )}
+
+        {chosenMethod.enable && chosenMethod.type.includes("paypal") && (
           <Paypal
             description={`Cozy  ${date.toLocaleDateString()}`}
-            total={order.totalPrice}
+            total={!sharedPayment ? order.totalPrice : sharedPaymentPrice}
             order={order}
             info={info}
           />
         )}
-        {chosenMethod.enable && chosenMethod.type === "mercadoPago" && (
+        {chosenMethod.enable && chosenMethod.type.includes("mercadoPago") && (
           <MercadoPagoForm
             addNewOrderHandler={addNewOrderHandler}
-            total={order.totalPrice}
+            total={String(sharedPaymentPrice)}
           />
-        )}
-        {chosenMethod.enable && chosenMethod.type === "giftCard" && (
-          <GiftCard total={order.totalPrice} />
         )}
       </div>
       <div>
@@ -331,6 +416,7 @@ const mapDispatchToProps = {
   manageUser: userActions.manageUser,
   addNewOrder: cartActions.addNewOrder,
   addCard: cartActions.addCard,
+  getCard: cartActions.getCard,
 }
 
 export default connect(mapStateTopProps, mapDispatchToProps)(PaymentGateway)
