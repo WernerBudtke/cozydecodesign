@@ -16,24 +16,28 @@ const ProductInCart = ({ cartItem, deleteACartProduct, setPriceTotal, updateCart
     setEnableCounter(true)
   }
 
+  const photo = cartItem.product.photo.includes("http")
+    ? cartItem.product.photo
+    : `http://localhost:4000/${cartItem.product.photo}`
+
   return (
     <div className={styles.productInCart}>
       <div
         className={styles.productCartPhoto}
-        style={{ backgroundImage: `url("${cartItem.product.photo}")` }}
+        style={{ backgroundImage: `url("${photo}")` }}
       ></div>
       <div className={styles.productCartInfo}>
         <div>
-          <p>{cartItem.product.name}</p>
+          <h5>{cartItem.product.name}</h5>
           <i
             onClick={() => deleteACartProduct(cartItem.product._id)}
-            className="fas fa-trash-alt fa-2x"
+            className="fas fa-trash-alt fa-1x"
           ></i>
         </div>
         <div>
           <div className={styles.counter}>
             <i
-              className="iconCardIn fas fa-minus"
+              className="fas fa-minus"
               onClick={
                 cartItem.quantity > 1 && enableCounter
                   ? () => updateCartProductHandler("-")
@@ -42,7 +46,7 @@ const ProductInCart = ({ cartItem, deleteACartProduct, setPriceTotal, updateCart
             ></i>
             <p>{cartItem.quantity}</p>
             <i
-              className="iconCardIn fas fa-plus"
+              className="fas fa-plus"
               onClick={
                 cartItem.product.stock > cartItem.quantity && enableCounter
                   ? () => updateCartProductHandler("+")

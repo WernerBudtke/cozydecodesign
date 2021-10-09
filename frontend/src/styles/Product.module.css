@@ -5,6 +5,9 @@
   justify-content: center;
   align-items: center;
 }
+.productSection i{
+  cursor: pointer;
+}
 .mainContainer {
   display: flex;
   align-self: center;
@@ -45,7 +48,7 @@
 }
 .productInfo > p:nth-child(3) {
   font-size: 3vmin;
-  /* font-weight: bold; */
+  font-weight: bold;
 }
 .productInfo > div:nth-child(3) {
   justify-content: center;
@@ -97,7 +100,6 @@
 .counter {
   display: flex;
   width: 50%;
-  text-align: center;
 }
 
 .counter p {

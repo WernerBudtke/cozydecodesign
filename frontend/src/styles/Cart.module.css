@@ -13,40 +13,100 @@
 .cartContainerHeader {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   height: 7vh;
-  background-color: red;
+  background-color: #ad9993;
   padding: 2vh;
 }
-
-.cartContainer:last-child {
-  flex: 1;
-  background-color: royalblue;
+.cartContainerHeader h3{
+  font-family: 'Cormorant', serif;
+  font-size: 2vw;
+  padding-left: 2vw;
 }
-
 .productCartPhoto {
-  width: 35%;
+  width: 37%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 .cartContainerMain {
-  background-color: azure;
+  background-color: #e4e6e5;
   flex: 1;
   width: 100%;
+  padding: 2vw;
 }
-.productInCart {
+.divPrice{
   display: flex;
+  justify-content: space-between;
+  font-size: 4vmin;
+}
+.cartContainerMain button{
+  margin: 1vw auto;
+  width: 60%;
+  font-size: 2vmin;
+  padding: 1vw;
+}
+.divSpan{
+  margin: 1vw;
+  min-height: 3vh;
+  text-align: center;
+  color:brown
+}
+.divSpan span{
+  padding-right: 1vw;
+}
+.divSpan a{
+  color: red;
+}
+.divButton{
+  display: flex;
+  justify-content: center;
+}
+.productInCart{
+  display: flex;
+  width: 100%;
+  height: 17vh;
+  justify-content: space-between;
+  margin-bottom: 1vw;
+  border: 1px solid #d0d1d1;
 }
 
 .productCartInfo {
-  background-color: bisque;
-}
-
-.productCartInfo:first-child {
+  background-color: #d0d1d1e7;
+  padding: 1vw;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
 }
-.iconCardIn{
-  cursor: pointer;
+.productCartInfo div{
+  display: flex;
+  padding: .5vw;
+  justify-content: space-between;
+  align-items: center;
+}
+.productCartInfo h5{
+  font-weight: bold;
+  font-size: 3vmin;
+}
+.counter p{
+  padding: 0 1vw;
+}
+.warning{
+  border:1px solid #ad9993;
+  padding: 2vw 1vw;
+  text-align: center;
+  line-height: 4vh;
+}
+.warning p i{
+  color: #fc2929;
+}
+.warningButton{
+  justify-content: space-evenly;
+  margin-top: 1vw;
+}
+.warningButton button{
+  width: 47%;
+  margin: 0.5vw;
 }

@@ -1,9 +1,11 @@
 import { useState } from "react"
 import styles from "../styles/PaymentGateway.module.css"
 import { connect } from "react-redux"
-import cartActions from "../redux/actions/cartActions"
 import userActions from "../redux/actions/userActions"
+import cartActions from "../redux/actions/cartActions"
 import Paypal from "../components/Paypal"
+import MercadoPagoForm from "../components/MercadoPago/MercadoPagoForm"
+import GiftCard from "../components/GiftCard"
 
 //VENDEDOR
 //sb-imkhe8058198@business.example.com
@@ -16,7 +18,21 @@ import Paypal from "../components/Paypal"
 //CLIENT ID
 //AWRVu1dvYAIDrl-vZ5_ST31KBhCxaoAr8-IIsNOYSwlWwMJBoUGiEsrc5H9dLg5DAoWyrhsjE3-UqEMw
 
-const PaymentGateway = ({ loginUser, products }) => {
+const PaymentGateway = ({
+  loginUser,
+  products,
+  manageUser,
+  addNewOrder,
+  history,
+  addCard,
+}) => {
+  const [enableInput, setEnableInput] = useState(false)
+  const [enablePayment, setEnablePayment] = useState(true)
+  const [renderError, setRenderError] = useState(null)
+  const [chosenMethod, setChosenMethod] = useState({
+    type: null,
+    enable: false,
+  })
   const [info, setInfo] = useState({
     zipCode: "",
     number: "",
@@ -28,9 +44,32 @@ const PaymentGateway = ({ loginUser, products }) => {
     lastName: loginUser.lastName,
     eMail: loginUser.eMail,
   })
-  const [paypal, setPaypal] = useState(false)
+
+  const validateGift = products.filter(obj=> obj.product.category === "GiftCard")
+  
+
+  if (validateGift.length) {
+    var giftCard = validateGift.map((obj) => ({ balance: obj.product.price }))
+  }
+  console.log(validateGift)
+  console.log(giftCard)
   const validate = () => {
-    setPaypal(true)
+    setEnableInput(true)
+    setEnablePayment(true)
+    if (Object.values(info).some((value) => value === !value)) {
+      setRenderError(
+        "necesitas completar todos los campos para continuar con el pago"
+      )
+      alert("completar campos")
+    } else {
+      manageUser(info).then((res) => {
+        if (res.success) {
+          setChosenMethod({ ...chosenMethod, enable: true })
+        } else {
+          alert("ERROR")
+        }
+      })
+    }
   }
 
   const totalPrice = products.map((obj) =>
@@ -38,6 +77,7 @@ const PaymentGateway = ({ loginUser, products }) => {
       ? obj.product.price * obj.quantity
       : ((100 - obj.product.discount) / 100) * obj.product.price * obj.quantity
   )
+  
 
   const [order, setOrder] = useState({
     products: products.map((obj) => ({
@@ -50,12 +90,15 @@ const PaymentGateway = ({ loginUser, products }) => {
     },
     totalPrice: totalPrice.reduce((a, b) => a + b, 0).toFixed(2),
   })
+  console.log("hola hola")
   const sideProducts = products.map((obj) => {
     return (
-      <div className={styles.productInCart}>
+      <div key={obj.product._id} className={styles.productInCart}>
         <div
           className={styles.productCartPhoto}
-          style={{ backgroundImage: `url("${obj.product.photo}")` }}
+          style={{ backgroundImage: `url("${obj.product.photo.includes("http")
+              ? obj.product.photo
+              : `http://localhost:4000/${obj.product.photo}`}")` }}
         ></div>
         <p>{obj.product.name}</p>
         <div className={styles.productCartInfo}>
@@ -89,6 +132,30 @@ const PaymentGateway = ({ loginUser, products }) => {
     setInfo({
       ...info,
       [e.target.name]: e.target.value,
+    })
+  }
+
+  const fillOrderInfo = (e) => {
+    setOrder({
+      ...order,
+      paymenMethod: {
+        ...order.paymenMethod,
+        type: e.target.value,
+      },
+    })
+    setChosenMethod({ ...chosenMethod, type: e.target.value })
+  }
+
+  const addNewOrderHandler = () => {
+    if (giftCard) {
+      addCard(...giftCard).then((res) => console.log(res))
+    }
+    addNewOrder(order).then((res) => {
+      if (res.success) {
+        history.push("/")
+      } else {
+        alert("algo fue mal con el pago")
+      }
     })
   }
 
@@ -133,6 +200,7 @@ const PaymentGateway = ({ loginUser, products }) => {
               name="dni"
               defaultValue={info.dni}
               onChange={fillUserInfo}
+              disabled={enableInput}
             />
             <label>Phone Number</label>
             <input
@@ -141,11 +209,12 @@ const PaymentGateway = ({ loginUser, products }) => {
               name="phone"
               defaultValue={info.phone}
               onChange={fillUserInfo}
+              disabled={enableInput}
             />
           </div>
         </div>
         <div className={styles.shipmentInfo}>
-          <h1>Domicilio de entrega</h1>
+          <h1>Shipment Info</h1>
           <div>
             <label>Calle</label>
             <input
@@ -154,6 +223,7 @@ const PaymentGateway = ({ loginUser, products }) => {
               name="street"
               defaultValue={info.street}
               onChange={fillUserInfo}
+              disabled={enableInput}
             />
 
             <label>Number - piso/depto:</label>
@@ -163,6 +233,7 @@ const PaymentGateway = ({ loginUser, products }) => {
               name="number"
               defaultValue={info.number}
               onChange={fillUserInfo}
+              disabled={enableInput}
             />
           </div>
           <div>
@@ -173,27 +244,76 @@ const PaymentGateway = ({ loginUser, products }) => {
               name="city"
               defaultValue={info.city}
               onChange={fillUserInfo}
+              disabled={enableInput}
+            />
+            <label>Zip Code</label>
+            <input
+              type="text"
+              required
+              name="zipCode"
+              defaultValue={info.zipCode}
+              onChange={fillUserInfo}
+              disabled={enableInput}
             />
           </div>
 
           <div>
             <h1>Payment</h1>
             <label>Paypal</label>
-            <input type="radio" id="true" name="" value="" />
+            <input
+              type="radio"
+              id="paypal"
+              name="payMethod"
+              defaultValue="paypal"
+              onChange={fillOrderInfo}
+              onClick={() => setEnablePayment(false)}
+              disabled={enableInput}
+            />
             <label>Credit/Debit Card</label>
-            <input type="radio" id="true" name="" value="" />
+            <input
+              type="radio"
+              id="mercadoPago"
+              name="payMethod"
+              defaultValue="mercadoPago"
+              onChange={fillOrderInfo}
+              onClick={() => setEnablePayment(false)}
+              disabled={enableInput}
+            />
+            <label>Gift Card</label>
+            <input
+              type="radio"
+              id="giftCard"
+              name="payMethod"
+              defaultValue="giftCard"
+              onChange={fillOrderInfo}
+              onClick={() => setEnablePayment(false)}
+              disabled={enableInput}
+            />
           </div>
         </div>
-        <button onClick={validate}>Completar Pago</button>
-        {paypal && (
+        <button disabled={enablePayment} onClick={validate}>
+          Completar Pago
+        </button>
+        {chosenMethod.enable && chosenMethod.type === "paypal" && (
           <Paypal
-            description={`Compra del dia ${date.toLocaleDateString()}`}
-            total={32}
+            description={`Cozy  ${date.toLocaleDateString()}`}
+            total={order.totalPrice}
+            order={order}
+            info={info}
           />
+        )}
+        {chosenMethod.enable && chosenMethod.type === "mercadoPago" && (
+          <MercadoPagoForm
+            addNewOrderHandler={addNewOrderHandler}
+            total={order.totalPrice}
+          />
+        )}
+        {chosenMethod.enable && chosenMethod.type === "giftCard" && (
+          <GiftCard total={order.totalPrice} />
         )}
       </div>
       <div>
-        <h1>CARRITO</h1>
+        <h1>Shopping Cart</h1>
         {sideProducts}
       </div>
     </div>
@@ -207,6 +327,10 @@ const mapStateTopProps = (state) => {
   }
 }
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+  manageUser: userActions.manageUser,
+  addNewOrder: cartActions.addNewOrder,
+  addCard: cartActions.addCard,
+}
 
 export default connect(mapStateTopProps, mapDispatchToProps)(PaymentGateway)

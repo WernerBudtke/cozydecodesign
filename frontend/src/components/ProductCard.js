@@ -62,17 +62,17 @@ const ProductCard = ({
             {!admin && (
               <>
                 <i
-                  className="iconCard fas fa-cart-plus fa-lg"
+                  className="fas fa-cart-plus fa-lg"
                   onClick={addToCartHandler}
                 ></i>
                 <Link to={`/product/${product._id}`}>
-                  <i className="iconCard fas fa-eye fa-lg"></i>
+                  <i className="fas fa-eye fa-lg"></i>
                 </Link>
               </>
             )}
             {admin && (
               <Link to={`/productform/${product._id}`}>
-                <i className="iconCard fas fa-pen fa-lg"></i>
+                <i className="fas fa-pen fa-lg"></i>
               </Link>
             )}
           </div>
