@@ -17,6 +17,7 @@ import Admin from "./pages/Admin"
 import cartActions from "./redux/actions/cartActions"
 import MercadoPagoForm from "./components/MercadoPago/MercadoPagoForm"
 import PaymentGateway from "./pages/PaymentGateway"
+import NavResponsive from "./components/NavResponsive"
 
 const App = ({ loginUser, logFromSession, addCartLS }) => {
   useEffect(() => {
@@ -31,7 +32,7 @@ const App = ({ loginUser, logFromSession, addCartLS }) => {
   return (
     <BrowserRouter>
       <Toaster />
-      <Header />
+      <NavResponsive />
       <Switch>
         <Route exact path="/" component={Home} />
         {!loginUser && <Route path="/signin" component={SignIn} />}

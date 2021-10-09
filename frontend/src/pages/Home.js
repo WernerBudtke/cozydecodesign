@@ -36,6 +36,13 @@ const Home = () => {
     { src: "https://i.postimg.cc/R0mhJ9vz/sale.jpg", category: "sale" },
   ];
 
+  const info = [
+    { src: "./assets/6.png"},
+    { src: "./assets/7.png"},
+    { src: "./assets/8.png"},
+    { src: "./assets/9.png"},
+  ]
+
   useEffect(() => {
     window.scroll(0, 0);
     document.title = "COZY | Home";
@@ -46,6 +53,11 @@ const Home = () => {
       <Link to={`/products/${obj.category}`}>
         <button>{obj.category}</button>
       </Link>
+    </div>
+  ));
+
+  const infoItems = info.map((obj, index) => (
+    <div key={index} className={styles.infoItem} style={{ backgroundImage: `url('${obj.src}')` }}>
     </div>
   ));
 
@@ -66,12 +78,16 @@ const Home = () => {
             </Parallax>
             <Parallax bgImage={'/assets/home5.jpg'}
             strength={width > 700 ? height/1 : width/0.85}>
-              <div className={styles.info}>
+              <div className={styles.quote}>
                 <h2>There's no place like home. </h2>
-                <p>There's no place like home. In Cozy we offer a wide variety of well-designed, functional home products. Whether your home decor leans towards minimalist or maximalist aesthetic, you'll find something to suit your style.</p>
+                <i class="fas fa-quote-right"></i>
+                <p>In Cozy we offer a wide variety of well-designed, functional home products. Whether your home decor leans towards minimalist or maximalist aesthetic, you'll find something to suit your style.</p>
               </div>
             </Parallax>
-            <Parallax strength={-4}  className={styles.fondoInfo} bgImage={"https://i.postimg.cc/KzD7qN4y/banner9.png"}>
+            <Parallax strength={height/10} className={styles.fondoInfo}>
+                <div className={styles.fondoInfo}>
+                    {infoItems}
+                </div>
             </Parallax>
             <Parallax bgImage={'/assets/home4.jpg'}
             strength={width > 700 ? -width/4 : -width/11}
