@@ -18,7 +18,7 @@ const Product = ({
   const [quantity, setQuantity] = useState(1)
   const [loading, setLoading] = useState(true)
   const [productAlert, setProductAlert] = useState(null)
-  const [showCartCard, setShowCartCard] = useState(false)
+  const [showCartCard, setShowCartCard] = useState(false) 
 
   useEffect(() => {
     if (!products.length) {
@@ -36,6 +36,22 @@ const Product = ({
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  console.log(products)
+
+  products.map((prod) => {
+    // let prodcateg = prod.category
+    let coincidencia = products.category === prod.category
+    return (
+      // (prodcateg.map((categ) => {
+      //   return (
+         console.log(coincidencia)
+        // )
+      // })
+      )
+    // )
+  })
+
   const editShowCartCard = (newState) => {
     console.log("se ejecuta editshow")
     setShowCartCard(newState)
@@ -139,11 +155,11 @@ const Product = ({
           </ReactCircleModal>
         </div>
       </div>
-      <div className={styles.suggestion}></div>
+      <div className={styles.suggestion}>
+      </div>
     </div>
   )
 }
-
 const mapStateTopProps = (state) => {
   return {
     product: state.products.product,
