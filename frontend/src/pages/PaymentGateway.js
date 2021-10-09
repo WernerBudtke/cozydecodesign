@@ -90,7 +90,7 @@ const PaymentGateway = ({
     },
     totalPrice: totalPrice.reduce((a, b) => a + b, 0).toFixed(2),
   })
-
+  console.log("hola hola")
   const sideProducts = products.map((obj) => {
     return (
       <div key={obj.product._id} className={styles.productInCart}>
