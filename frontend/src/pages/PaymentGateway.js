@@ -52,7 +52,7 @@ const PaymentGateway = ({ loginUser, products }) => {
   })
   const sideProducts = products.map((obj) => {
     return (
-      <div className={styles.productInCart}>
+      <div key={obj.product._id} className={styles.productInCart}>
         <div
           className={styles.productCartPhoto}
           style={{ backgroundImage: `url("${obj.product.photo}")` }}
@@ -94,6 +94,8 @@ const PaymentGateway = ({ loginUser, products }) => {
 
   let date = new Date()
 
+  console.log(order)
+  console.log(info)
   return (
     <div className={styles.gatewayContainer}>
       <div className={styles.clientInfo}>
@@ -179,16 +181,18 @@ const PaymentGateway = ({ loginUser, products }) => {
           <div>
             <h1>Payment</h1>
             <label>Paypal</label>
-            <input type="radio" id="true" name="" value="" />
+            <input type="radio" id="true" name="payMethod" value="1" />
             <label>Credit/Debit Card</label>
-            <input type="radio" id="true" name="" value="" />
+            <input type="radio" id="true" name="payMethod" value="2" />
           </div>
         </div>
         <button onClick={validate}>Completar Pago</button>
         {paypal && (
           <Paypal
-            description={`Compra del dia ${date.toLocaleDateString()}`}
-            total={32}
+            description={`Cozy  ${date.toLocaleDateString()}`}
+            total={order.totalPrice}
+            order={order}
+            info={info}
           />
         )}
       </div>

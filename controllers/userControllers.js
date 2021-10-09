@@ -133,8 +133,8 @@ const userControllers = {
         res.json({
           success: true,
           response: {
-            lastName:  userFound.lastName,
-            eMail:  userFound.eMail,
+            lastName: userFound.lastName,
+            eMail: userFound.eMail,
             photo: userFound.photo,
             token,
             firstName: userFound.firstName,
