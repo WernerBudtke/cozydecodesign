@@ -15,8 +15,8 @@ import Footer from "./components/Footer"
 import Product from "./pages/Product"
 import Admin from "./pages/Admin"
 import cartActions from "./redux/actions/cartActions"
-import MercadoPagoForm from "./components/MercadoPago/MercadoPagoForm"
 import PaymentGateway from "./pages/PaymentGateway"
+import HeaderResponsive from "./components/HeaderResponsive"
 
 const App = ({ loginUser, logFromSession, addCartLS }) => {
   useEffect(() => {
@@ -31,14 +31,13 @@ const App = ({ loginUser, logFromSession, addCartLS }) => {
   return (
     <BrowserRouter>
       <Toaster />
-      <Header />
+      <HeaderResponsive />
       <Switch>
         <Route exact path="/" component={Home} />
         {!loginUser && <Route path="/signin" component={SignIn} />}
         {!loginUser && <Route path="/signup" component={SignUp} />}
         <Route exact path="/products" component={ProductsGallery} />
         <Route path="/products/:category" component={ProductsGallery} />
-        <Route path="/products/:subcategory" component={ProductsGallery} />
         <Route path="/product/:id" component={Product} />
         <Route
           exact
@@ -50,7 +49,6 @@ const App = ({ loginUser, logFromSession, addCartLS }) => {
           component={loginUser && loginUser.admin ? ProductForm : Home}
         />
         <Route exact path="/hover" component={HoverCard} />
-        <Route path="/mercadopago" component={MercadoPagoForm} />
         {loginUser && loginUser.admin && (
           <Route path="/admin" component={Admin} />
         )}

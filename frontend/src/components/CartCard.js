@@ -1,7 +1,12 @@
-// import { useEffect } from "react"
+import { useEffect } from "react"
 import styles from "../styles/CartCard.module.css"
 
 const CartCard = ({ productAlert, showCartCard, editShowCartCard }) => {
+  
+ 
+  const photo = productAlert.product.photo.includes("http")
+    ? productAlert.product.photo
+    : `http://localhost:4000/${productAlert.product.photo}`
 
   return (
     <div className={!showCartCard ? styles.hideCard : styles.showCard}>
@@ -10,7 +15,7 @@ const CartCard = ({ productAlert, showCartCard, editShowCartCard }) => {
           <div>
             <div
               style={{
-                backgroundImage: `url(${productAlert.product.photo})`,
+                backgroundImage: `url(${photo})`,
                 width: "70px",
                 height: "70px",
                 backgroundPosition: "center",

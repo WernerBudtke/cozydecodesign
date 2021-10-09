@@ -18,7 +18,7 @@ const Product = ({
   const [quantity, setQuantity] = useState(1)
   const [loading, setLoading] = useState(true)
   const [productAlert, setProductAlert] = useState(null)
-  const [showCartCard, setShowCartCard] = useState(false)
+  const [showCartCard, setShowCartCard] = useState(false) 
 
   useEffect(() => {
     if (!products.length) {
@@ -36,6 +36,22 @@ const Product = ({
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  console.log(products)
+
+  products.map((prod) => {
+    // let prodcateg = prod.category
+    let coincidencia = products.category === prod.category
+    return (
+      // (prodcateg.map((categ) => {
+      //   return (
+         console.log(coincidencia)
+        // )
+      // })
+      )
+    // )
+  })
+
   const editShowCartCard = (newState) => {
     console.log("se ejecuta editshow")
     setShowCartCard(newState)
@@ -90,8 +106,8 @@ const Product = ({
             <p>${finalPrice}</p>
           </div>
           <div>
-            <i className="far fa-credit-card fa-2x"></i>
-            <p>3 payments of ${((1.1 * finalPrice) / 3).toFixed(2)}</p>
+            <i className="far fa-credit-card fa-lg"></i>
+            <p className={styles.interestCard}>3 payments of ${((1.1 * finalPrice) / 3).toFixed(2)}</p>
           </div>
           <div>
             <div className={styles.counter}>
@@ -112,8 +128,8 @@ const Product = ({
             <button onClick={addToCartHandler}>Add to Cart</button>
           </div>
           <div className={styles.shippingInfo}>
-            <i className="fas fa-truck fa-2x"></i>
-            <p>Free shipping on purchases from 200 dollars or more</p>
+            <i className="fas fa-truck fa-lg"></i>
+            <p>Free shipping on purchases from 200 dollars or more.</p>
           </div>
           <p>calculo de envio - CP</p>
           <ReactCircleModal
@@ -131,7 +147,6 @@ const Product = ({
                 Open Cart
               </button>
             )}
-            // Optional fields and their default values
             offsetX={0}
             offsetY={0}
           >
@@ -139,11 +154,11 @@ const Product = ({
           </ReactCircleModal>
         </div>
       </div>
-      <div className={styles.suggestion}></div>
+      <div className={styles.suggestion}>
+      </div>
     </div>
   )
 }
-
 const mapStateTopProps = (state) => {
   return {
     product: state.products.product,

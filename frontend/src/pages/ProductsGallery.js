@@ -79,7 +79,7 @@ const ProductsGallery = ({ products, getProducts, productsCategory, match, getPr
       <div className={styles.filterContainer}>
         <div className={styles.inputContainer}>
           <div>
-            <Link to="/products">All</Link>
+            <Link to="/products">All products</Link>
           </div>
           <div>
             <Link to="/products/Kitchenware">Kitchenware</Link>

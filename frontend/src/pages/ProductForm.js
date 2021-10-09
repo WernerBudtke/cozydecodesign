@@ -19,32 +19,32 @@ const ProductForm = ({addProduct, modifyProduct, findAProduct, match, product}) 
         subcategory: "",
     })
     console.log(productId)
-    console.log(product.name)
+    // console.log(product.name)
  
     useEffect(() => {
         window.scrollTo(0,0)
         findAProduct(productId)
             
         setTimeout(()=>{
-            refreshNewProduct()
+            // refreshNewProduct()
             setLoading(false)
         },2000)
 
     }, [])
 
-    const refreshNewProduct = ()=> {
-        setNewProduct ({
-            name: product.name ,
-            photo: product.photo ,
-            stock: product.stock ,
-            description: product.description ,
-            price: product.price ,
-            forSale: product.forSale ,
-            discount:product.discount ,
-            category: product.category ,
-            subcategory: product.subcategory ,
-        })
-    }
+    // const refreshNewProduct = ()=> {
+    //     setNewProduct ({
+    //         name: product.name ,
+    //         photo: product.photo ,
+    //         stock: product.stock ,
+    //         description: product.description ,
+    //         price: product.price ,
+    //         forSale: product.forSale ,
+    //         discount:product.discount ,
+    //         category: product.category ,
+    //         subcategory: product.subcategory ,
+    //     })
+    // }
 
     var subcategories = []
     let history = useHistory()
@@ -114,7 +114,7 @@ const ProductForm = ({addProduct, modifyProduct, findAProduct, match, product}) 
                 <div className={styles.formContainer}>
                     {productId ? <h4>Edit Product</h4> : <h4>New Product</h4>}
                     <form className={styles.productForm}>
-                        <input type="text" onChange={inputHandler} name="name" placeholder="Name" autoComplete="nope" defaultValue={product.name}/>
+                        <input type="text" onChange={inputHandler} name="name" placeholder="Name" autoComplete="nope" defaultValue={product?.name}/>
                         <div className={styles.picture}>
                             <input type="file" onChange={inputHandler} name="photo" placeholder="Photo" autoComplete="nope" />
                             <div className={styles.productPic} style={{backgroundImage: `url(${product?.photo})`}}></div>
