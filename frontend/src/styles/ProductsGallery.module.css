@@ -1,6 +1,7 @@
 /* PRODUCTS GALLERY STYLES */
 .productsGallery {
   background-color: #f8f6f4;
+  display: flex;
 }
 .productsCards {
   margin-left: auto;
@@ -199,6 +200,54 @@
   }
   
 }
+div.filterContainer {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 80vh;
+  width: 12%;
+  background-color: #ead8ca;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin-top: 4vh;
+  padding: 1vh .5vw;
+}
+
+div.filterContainer div div {
+  display: flex;
+  width: 80%;
+  margin-top: 2vh;
+}
+
+div.filterContainer div div label {
+  margin-left: 1vw;
+}
+
+div.filterContainer div div .inputSearch {
+  width: 100%;
+}
+
+div.filterContainer div h1 {
+  font-family: 'Cormorant', serif;
+  font-size: 5.5vmin;
+  flex: 1;
+  text-align: center;
+  color: rgb(83, 78, 78);
+  letter-spacing: 0.5vw;
+}
+
+div.filterContainer div div i {
+  margin-right: .5vw;
+}
+
+
+
+
+
+
+
 
 /* .wrapper:hover {
   transform: scale(1.1); 

@@ -4,6 +4,7 @@ main.adminMain {
     align-items: center;
     justify-content: center;
     min-height: 90vh;
+    background: none;
 }
 main.adminMain > div {
     background-color: #ead8ca5d;

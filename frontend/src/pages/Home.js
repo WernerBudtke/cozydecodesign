@@ -26,12 +26,12 @@ const Home = () => {
   const { height, width } = getWindowDimensions()
 
   const categories = [
-    { src: "https://i.postimg.cc/tR8xRKn9/bat.jpg", category: "bathroom" },
-    { src: "https://i.postimg.cc/nzm4F3LR/home8.jpg", category: "kitchenware" },
-    { src: "https://i.postimg.cc/J4Q2C5tc/deco.jpg", category: "deco" },
+    { src: "https://i.postimg.cc/tR8xRKn9/bat.jpg", category: "Bathroom" },
+    { src: "https://i.postimg.cc/nzm4F3LR/home8.jpg", category: "Kitchenware" },
+    { src: "https://i.postimg.cc/J4Q2C5tc/deco.jpg", category: "Decor" },
     {
       src: "https://i.postimg.cc/3wdn2zCV/gitfcard-Home.png",
-      category: "giftcard",
+      category: "GiftCard",
     },
     { src: "https://i.postimg.cc/R0mhJ9vz/sale.jpg", category: "sale" },
   ]
