@@ -3,11 +3,10 @@ const cardControllers = {
     addCard: async (req, res) => {
         try{
             if(!req.session.loggedUser)throw new Error('Log In First')
-            if(!req.session.loggedUser.owner)throw new Error("You don't have permissions to do this")
             const {balance} = req.body
             let newCode = Date.now()
             let newCard = new Card({
-                balance: parseInt(balance),
+                balance,
                 code: newCode 
             })
             let savedCard = await newCard.save()
@@ -20,8 +19,6 @@ const cardControllers = {
         try{ 
             let card = await Card.findOne({code: req.params.id})
             if(!card)throw new Error("Card not found")
-            console.log(card.code.getTime())
-            console.log(new Date(card.code.getTime()))
             res.json({success: true, response: card})
         }catch(e){
             res.json({success: false, response: e.message})
