@@ -38,6 +38,7 @@ const PaymentGateway = ({ loginUser, products }) => {
       ? obj.product.price * obj.quantity
       : ((100 - obj.product.discount) / 100) * obj.product.price * obj.quantity
   )
+  const validateGift= products.filter(obj => obj.product.category === 'GiftCard')
 
   const [order, setOrder] = useState({
     products: products.map((obj) => ({
@@ -187,8 +188,8 @@ const PaymentGateway = ({ loginUser, products }) => {
         <button onClick={validate}>Completar Pago</button>
         {paypal && (
           <Paypal
-            description={`Compra del dia ${date.toLocaleDateString()}`}
-            total={32}
+            description={`Cozy ${date.toLocaleDateString()}`}
+            total={order.totalPrice}
           />
         )}
       </div>
