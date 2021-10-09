@@ -3,37 +3,55 @@ import { connect } from "react-redux"
 import { useState } from "react"
 import cartActions from "../redux/actions/cartActions"
 
-const ProductInCart = ({ cartItem, deleteACartProduct }) => {
-  const [quantity, setQuantity] = useState(cartItem.quantity)
+const ProductInCart = ({ cartItem, deleteACartProduct, setPriceTotal, updateCartProduct }) => {
+  const [enableCounter, setEnableCounter] = useState(true)
+
+  const updateCartProductHandler = (operation) => {
+    setEnableCounter(false)
+    let updatedCartItem = {
+      product: cartItem.product,
+      quantity: operation === "+" ? cartItem.quantity + 1 : cartItem.quantity - 1,
+    }
+    updateCartProduct(updatedCartItem)
+    setEnableCounter(true)
+  }
+
+  const photo = cartItem.product.photo.includes("http")
+    ? cartItem.product.photo
+    : `http://localhost:4000/${cartItem.product.photo}`
 
   return (
     <div className={styles.productInCart}>
       <div
         className={styles.productCartPhoto}
-        style={{ backgroundImage: `url("${cartItem.product.photo}")` }}
+        style={{ backgroundImage: `url("${photo}")` }}
       ></div>
       <div className={styles.productCartInfo}>
         <div>
-          <p>{cartItem.product.name}</p>
+          <h5>{cartItem.product.name}</h5>
           <i
             onClick={() => deleteACartProduct(cartItem.product._id)}
-            className="fas fa-trash-alt fa-2x"
+            className="fas fa-trash-alt fa-1x"
           ></i>
         </div>
         <div>
           <div className={styles.counter}>
             <i
               className="fas fa-minus"
-              onClick={quantity > 1 ? () => setQuantity(quantity - 1) : null}
+              onClick={
+                cartItem.quantity > 1 && enableCounter
+                  ? () => updateCartProductHandler("-")
+                  : null
+              }
             ></i>
-            <p>{quantity}</p>
+            <p>{cartItem.quantity}</p>
             <i
               className="fas fa-plus"
-              onClick={() => {
-                cartItem.product.stock === quantity
-                  ? alert("no hay stock")
-                  : setQuantity(quantity + 1)
-              }}
+              onClick={
+                cartItem.product.stock > cartItem.quantity && enableCounter
+                  ? () => updateCartProductHandler("+")
+                  : null
+              }
             ></i>
           </div>
           <p>
@@ -47,12 +65,12 @@ const ProductInCart = ({ cartItem, deleteACartProduct }) => {
           </p>
           <p>
             $
-            {(cartItem.product.discount === 0
+            {((cartItem.product.discount === 0
               ? cartItem.product.price
               : (
                   ((100 - cartItem.product.discount) / 100) *
                   cartItem.product.price
-                ).toFixed(2)) * cartItem.quantity}
+                )) * cartItem.quantity).toFixed(2)}
           </p>
         </div>
       </div>
@@ -62,5 +80,6 @@ const ProductInCart = ({ cartItem, deleteACartProduct }) => {
 
 const mapDispatchToProps = {
   deleteACartProduct: cartActions.deleteACartProduct,
+  updateCartProduct: cartActions.updateCartProduct,
 }
 export default connect(null, mapDispatchToProps)(ProductInCart)

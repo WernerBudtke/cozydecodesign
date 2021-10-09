@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import '../styles/Admin.css'
+import styles from '../styles/Admin.module.css'
 import { useEffect, useState } from 'react'
 import productsActions from '../redux/actions/productsActions'
 import StockProduct from './StockProduct'
@@ -22,11 +22,9 @@ const AdminStock = ({products, getProducts}) => {
     }
 
     return (
-        <div>
-            <h4>Stock</h4>
-            <div>
-                {products.map((product) => <StockProduct fetch={fetchAgain} key={product._id} product={product} />)}
-            </div>
+        <div className={styles.stockContainer}>
+            <h1>Stock</h1>
+            {products.map((product) => <StockProduct fetch={fetchAgain} key={product._id} product={product} />)}
         </div>
     )
 }

@@ -7,6 +7,7 @@ const productsReducer = (
       return {
         ...state,
         products: action.payload,
+        productsCategory: action.payload
       }
 
     case "GET_PRODUCT":
@@ -20,6 +21,17 @@ const productsReducer = (
         ...state,
         product: state.products.find((obj) => obj._id === action.payload),
       }
+      case "GET_ALL":
+        return {
+          ...state,
+          productsCategory: state.products
+        }
+      case "GET_BY_CATEGORY":
+        console.log(action)
+        return {
+          ...state,
+          productsCategory: state.products.filter((product) => product.category === action.payload)
+        }
     default:
       return state
   }

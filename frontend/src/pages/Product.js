@@ -1,10 +1,11 @@
 import styles from "../styles/Product.module.css"
 import { connect } from "react-redux"
-import productsActions from "../redux/actions/productsActions"
 import { useEffect, useState } from "react"
 import ReactCircleModal from "react-circle-modal"
 import Cart from "../components/Cart"
+import CartCard from "../components/CartCard"
 import cartActions from "../redux/actions/cartActions"
+import productsActions from "../redux/actions/productsActions"
 
 const Product = ({
   getAProduct,
@@ -16,6 +17,8 @@ const Product = ({
 }) => {
   const [quantity, setQuantity] = useState(1)
   const [loading, setLoading] = useState(true)
+  const [productAlert, setProductAlert] = useState(null)
+  const [showCartCard, setShowCartCard] = useState(false) 
 
   useEffect(() => {
     if (!products.length) {
@@ -34,13 +37,33 @@ const Product = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  console.log(products)
+
+  products.map((prod) => {
+    // let prodcateg = prod.category
+    let coincidencia = products.category === prod.category
+    return (
+      // (prodcateg.map((categ) => {
+      //   return (
+         console.log(coincidencia)
+        // )
+      // })
+      )
+    // )
+  })
+
+  const editShowCartCard = (newState) => {
+    console.log("se ejecuta editshow")
+    setShowCartCard(newState)
+  }
+
   const addToCartHandler = () => {
-    console.log("voy a la action")
+    setShowCartCard(true)
     let newProducts = {
-      // productId: product,
       product: product,
       quantity: quantity,
     }
+    setProductAlert(newProducts)
     addCartProduct(newProducts)
   }
 
@@ -52,12 +75,24 @@ const Product = ({
       ? product.price
       : (((100 - product.discount) / 100) * product.price).toFixed(2)
 
+  const photo = product.photo.includes("http")
+    ? product.photo
+    : `http://localhost:4000/${product.photo}`
+  
   return (
     <div className={styles.productSection}>
+      {productAlert && (
+        <CartCard
+          productAlert={productAlert}
+          showCartCard={showCartCard}
+          editShowCartCard={editShowCartCard}
+        />
+      )}
+
       <div className={styles.mainContainer}>
         <div
           className={styles.productImage}
-          style={{ backgroundImage: `url("${product.photo}")` }}
+          style={{ backgroundImage: `url("${photo}")` }}
         ></div>
         <div className={styles.productInfo}>
           <h2>{product.name}</h2>
@@ -71,8 +106,8 @@ const Product = ({
             <p>${finalPrice}</p>
           </div>
           <div>
-            <i className="far fa-credit-card fa-2x"></i>
-            <p>3 payments of ${((1.1 * finalPrice) / 3).toFixed(2)}</p>
+            <i className="far fa-credit-card fa-lg"></i>
+            <p className={styles.interestCard}>3 payments of ${((1.1 * finalPrice) / 3).toFixed(2)}</p>
           </div>
           <div>
             <div className={styles.counter}>
@@ -93,8 +128,8 @@ const Product = ({
             <button onClick={addToCartHandler}>Add to Cart</button>
           </div>
           <div className={styles.shippingInfo}>
-            <i className="fas fa-truck fa-2x"></i>
-            <p>Free shipping on purchases from 200 dollars or more</p>
+            <i className="fas fa-truck fa-lg"></i>
+            <p>Free shipping on purchases from 200 dollars or more.</p>
           </div>
           <p>calculo de envio - CP</p>
           <ReactCircleModal
@@ -112,7 +147,6 @@ const Product = ({
                 Open Cart
               </button>
             )}
-            // Optional fields and their default values
             offsetX={0}
             offsetY={0}
           >
@@ -120,11 +154,11 @@ const Product = ({
           </ReactCircleModal>
         </div>
       </div>
-      <div className={styles.suggestion}></div>
+      <div className={styles.suggestion}>
+      </div>
     </div>
   )
 }
-
 const mapStateTopProps = (state) => {
   return {
     product: state.products.product,
