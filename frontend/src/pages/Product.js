@@ -90,8 +90,8 @@ const Product = ({
             <p>${finalPrice}</p>
           </div>
           <div>
-            <i className="far fa-credit-card fa-2x"></i>
-            <p>3 payments of ${((1.1 * finalPrice) / 3).toFixed(2)}</p>
+            <i className="far fa-credit-card fa-lg"></i>
+            <p className={styles.interestCard}>3 payments of ${((1.1 * finalPrice) / 3).toFixed(2)}</p>
           </div>
           <div>
             <div className={styles.counter}>
@@ -112,8 +112,8 @@ const Product = ({
             <button onClick={addToCartHandler}>Add to Cart</button>
           </div>
           <div className={styles.shippingInfo}>
-            <i className="fas fa-truck fa-2x"></i>
-            <p>Free shipping on purchases from 200 dollars or more</p>
+            <i className="fas fa-truck fa-lg"></i>
+            <p>Free shipping on purchases from 200 dollars or more.</p>
           </div>
           <p>calculo de envio - CP</p>
           <ReactCircleModal

@@ -33,7 +33,7 @@ const ProductInCart = ({ cartItem, deleteACartProduct, setPriceTotal, updateCart
         <div>
           <div className={styles.counter}>
             <i
-              className="fas fa-minus"
+              className="iconCardIn fas fa-minus"
               onClick={
                 cartItem.quantity > 1 && enableCounter
                   ? () => updateCartProductHandler("-")
@@ -42,7 +42,7 @@ const ProductInCart = ({ cartItem, deleteACartProduct, setPriceTotal, updateCart
             ></i>
             <p>{cartItem.quantity}</p>
             <i
-              className="fas fa-plus"
+              className="iconCardIn fas fa-plus"
               onClick={
                 cartItem.product.stock > cartItem.quantity && enableCounter
                   ? () => updateCartProductHandler("+")
