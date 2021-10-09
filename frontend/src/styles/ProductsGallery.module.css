@@ -84,7 +84,7 @@
 .nameAndPrice p {
   text-align: center;
   font-size: 3vmin;
-  color: rgb(51, 50, 50);
+  color: black; /*fjkdgnsahgiusnvkjsadnvoaergnvjadsvnoarenvadjbadgha*/
   margin: 0;
   padding: 0;
 }
@@ -133,12 +133,14 @@
     width: 35%;
     margin: 4vh 3.5vw;
   }
-  .nameAndPrice p {
+  /* .nameAndPrice p {
     font-size: 3.7vmin;
-  }
+  } */
+  
   .nameAndPrice h1 {
     font-size: 3.3vmin;
   }
+  
   .wrapper .inside .icon {
     padding-left: 4.5vw;
   }

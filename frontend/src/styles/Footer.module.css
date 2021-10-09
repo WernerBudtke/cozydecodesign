@@ -8,12 +8,12 @@
   justify-content: space-around;
   padding: 8vh;
 }
-div h3 {
+.footer div h3 {
   color: rgba(0, 0, 0, 0.781);
   letter-spacing: 0.1vw;
   margin-bottom: 2vh;
 }
-div p {
+.footer div p {
   color: rgba(0, 0, 0, 0.637);
   padding: 0.5vh;
   letter-spacing: 0.05vw;
@@ -38,9 +38,9 @@ div {
   margin-right: 0.5vw;
 } */
 
-.iconSocial{
+/* .iconSocial{
   color: rgb(97, 88, 88);
-}
+} */
 
 @media only screen and (max-width: 768px) { 
       

@@ -42,7 +42,6 @@
   line-height: 4vh;
 }
 
-/*Categories Section*/
 .categories{
   background-color:#ecebe9;
   justify-content: center;
@@ -91,11 +90,8 @@
 .galleryWrap div:hover a{
   width: 50%;
 }
-
-/*Quote Section*/
-.quote{
-  background-color:#d9e2e7c7 ;
-  border-radius: 10px;
+.info{
+  background-color:#d9e2e7 ;
   min-height: 60vh;
   width: 25vw;
   margin:0 3.5vw;
@@ -104,50 +100,23 @@
   font-size: 3vmin;
   text-align: center;
   letter-spacing: 0.12vw;
-  box-shadow: 0px 0px 2px 0px rgba(125, 123, 123, 0.26);
 }
-.quote h2{
+.info h2{
   padding-bottom: 2vw;
-  color:rgb(58, 57, 57);
-  font-size: 2.8rem;
-  font-family: 'Cormorant', serif;
-  line-height : 2.3rem;
 }
-
-div i {
-  font-size: 3rem;
-  color: rgba(77, 75, 75, 0.234);
-  margin:1rem;
-}
-
-/*infoSection*/
-
 .fondoInfo{
-  height: 10rem !important;
-  display: flex;
-  justify-content: space-around;
-  justify-content: center;
-  align-items:center;
-}
-
-.infoItem{
-  background-position: center;
-  background-size: cover;
-  background-repeat: none;
-  width: 10rem;
-  height: 10rem;
-  margin:1rem;
+  height: 25vh !important;
 }
 
 @media (max-width: 1300px) {
-  .quote{
+  .info{
     width: 27vw;
     font-size: 2.8vmin;
   }
 }
 
 @media (max-width: 1200px) {
-  .quote{
+  .info{
     width: 28vw;
     font-size: 2.6vmin;
   }
@@ -155,103 +124,58 @@ div i {
 
 @media only screen and (max-width: 1124px) { 
       
-  .quote{
+  .info{
     width: 30vw;
     font-size: 2.7vmin;
   }
 }
 
 @media (max-width: 1000px) {
-  .quote{
+  .info{
     width: 30vw;
     font-size: 2.5vmin;
   }
 }
 
 @media (max-width: 880px) {
-  .quote{
+  .info{
     width: 32vw;
     font-size: 2.3vmin;
-  }
-  .quote h2{
-    font-size: 2.7rem;
-  }
-  div i {
-    font-size: 2.7rem;
   }
 }
 
 @media (max-width: 768px) {
-  .quote{
+  .info{
     min-height: auto;
     width: 80%;
     margin:auto;
     font-size: 2.3vmin;
     text-align: center;
   }
-  .quote h2{
-    font-size: 2.6rem;
-  }
-  div i {
-    font-size: 2.5rem;
-    margin:.7rem;
-  }
-  
-  .infoItem{
-    width: 9rem;
-    height: 9rem;
-  }
   
 }
 
 @media (max-width: 668px) {
-  .quote{
+  .info{
     letter-spacing: 0vw;
   }
-  .quote h2{
-    font-size: 2.5rem;
-  }
-  div i {
-    font-size: 2.4rem;
-    margin:.5rem;
-  }
-  .fondoInfo{
-    height: auto !important;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
 
 }
 
 @media (max-width: 600px) {
-  .quote{
+  .info{
     background-color:#d9e2e7bb ;
     width: 80vw;
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 0;
+    border-bottom-right-radius: 16px;
+    border-top-right-radius: 16px;
+
   }
-  .quote p{
+  .info p{
     display: none;
   }
-  .quote h2{
-    font-size: 2rem;
-  }
-  div i {
-    font-size: 2.2rem;
-    margin:.5rem;
-  }
-  
-  .infoItem{
-    width: 10rem;
-    height: 10rem;
-  }
-  
-  div i {
-    font-size: 2rem;
-    color: rgba(77, 75, 75, 0.234);
-    margin:1rem;
+  .info h2{
+    font-size: 4vw;
+    color:rgb(43, 43, 43)
   }
 
 }
-

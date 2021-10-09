@@ -51,7 +51,7 @@ const Cart = ({ onClickHandler, products, loginUser }) => {
               )}
             </div>
             <div className={styles.divButton}>
-              <button onClick={redirectHandler}>FINISH SHOPPING</button>
+              <button onClick={redirectHandler}>END PURCHASE</button>
             </div>
           </>
         ) : (
