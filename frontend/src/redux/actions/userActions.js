@@ -4,25 +4,32 @@ const userActions = {
   signUp: (user) => {
     return async (dispatch) => {
       try {
-        let response = await axios.post("http://localhost:4000/api/user/register", user, {withCredentials: true})
-        if (!response.data.success) { 
+        let response = await axios.post(
+          "http://localhost:4000/api/user/register",
+          user,
+          { withCredentials: true }
+        )
+        if (!response.data.success) {
           return response.data
         }
         dispatch({ type: "LOG_IN_USER", payload: response.data.response })
-        return {success: true, response: response.data.response}
+        return { success: true, response: response.data.response }
       } catch (error) {
-        return {success: false, response: error.message}
+        return { success: false, response: error.message }
       }
     }
   },
   logFromSession: () => {
     return async (dispatch) => {
       try {
-        let response = await axios.get("http://localhost:4000/api/user/validate", {withCredentials: true})
+        let response = await axios.get(
+          "http://localhost:4000/api/user/validate",
+          { withCredentials: true }
+        )
         if (!response.data.success) throw new Error(response.data.response)
-        dispatch({type: "LOG_IN_USER", payload: response.data.response})
+        dispatch({ type: "LOG_IN_USER", payload: response.data.response })
       } catch (error) {
-        dispatch({type: "LOG_OUT"})
+        dispatch({ type: "LOG_OUT" })
         await axios.get("http://localhost:4000/api/user/logout")
       }
     }
@@ -30,26 +37,48 @@ const userActions = {
   logIn: (user) => {
     return async (dispatch) => {
       try {
-        let response = await axios.post("http://localhost:4000/api/user/login", user, {withCredentials: true})
+        let response = await axios.post(
+          "http://localhost:4000/api/user/login",
+          user,
+          { withCredentials: true }
+        )
         if (!response.data.success) throw new Error(response.data.response)
-        dispatch({type: "LOG_IN_USER", payload: response.data.response})
-        return {success: true, response: response.data.response}
+        dispatch({ type: "LOG_IN_USER", payload: response.data.response })
+        return { success: true, response: response.data.response }
       } catch (error) {
-        return {success: false, response: error.message}
+        return { success: false, response: error.message }
       }
     }
   },
   logOut: () => {
     return async (dispatch) => {
       try {
-        let response = await axios.get("http://localhost:4000/api/user/logout", {withCredentials: true})
+        let response = await axios.get(
+          "http://localhost:4000/api/user/logout",
+          { withCredentials: true }
+        )
         if (!response.data.success) throw new Error(response.data.response)
-        dispatch({type: "LOG_OUT"})
+        dispatch({ type: "LOG_OUT" })
       } catch (error) {
         console.log(error)
       }
     }
-  }
+  },
+  manageUser: (obj) => {
+    return async (dispatch) => {
+      try {
+        let response = await axios.put(
+          "http://localhost:4000/api/user/manage",
+          { ...obj },
+          { withCredentials: true }
+        )
+        if (!response.data.success) throw new Error(response.data.response)
+        return { success: true }
+      } catch (error) {
+        return { success: false }
+      }
+    }
+  },
 }
 
 export default userActions

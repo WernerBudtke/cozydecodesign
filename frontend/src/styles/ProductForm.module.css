@@ -11,9 +11,9 @@ main {
   background-size: cover;
   min-height: 100vh;
   background-image: url(https://i.postimg.cc/0jbZdZKt/formbackground.jpg);
-  padding-left: 5vw;
   flex-direction: row;
   gap: 5vw;
+  padding-left: 5vw;
 }
 
 .picture {

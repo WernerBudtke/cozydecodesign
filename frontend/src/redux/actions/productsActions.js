@@ -42,7 +42,6 @@ const productsActions = {
     return async (dispatch) => {
       try {
         let res = await axios.get(`http://localhost:4000/api/product/${id}`)
-        console.log(res.data.response)
         dispatch({ type: "GET_PRODUCT", payload: res.data.response })
         return { success: true, res: res.data.response }
       } catch (err) {
@@ -71,6 +70,12 @@ const productsActions = {
       }
     }
   },
+  getProductByCategory: (category) => {
+    return (dispatch) => {
+      console.log(category)
+      dispatch({ type: !category ? "GET_ALL" : "GET_BY_CATEGORY", payload: category })
+    }
+  }
 }
 
 export default productsActions
