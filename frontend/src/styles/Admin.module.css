@@ -43,6 +43,9 @@ div.midInfo {
 div.midInfo > div {
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+    height: 50vh;
+    text-align: center;
 }
 div.midInfo div div h2 {
     margin-bottom: 2vh;
@@ -78,7 +81,7 @@ div.statsContainer div {
 div.statsContainer div i {
     margin-right: 2vw;
 }
-div.userCard {
+div.userCard, div.stockCard {
     margin: 1vh 1vw;
     padding: 2vh 0;
     border: 1px solid black;
@@ -96,7 +99,7 @@ div.userCard div:last-child {
     align-items: center;
     justify-content: center;
 }
-div.userCard button {
+div.userCard button, div.manageStock button {
     background: #d4c5bf;
     border: 0;
     color: #7e6661;
@@ -117,4 +120,44 @@ div.userCard button:hover {
 }  
 p.admin {
     color: green;
+}
+div.stockContainer {
+   width: 60vw;
+}
+div.stockCard div {
+    width: 35%;
+}
+div.manageStock {
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+}
+div.manageStock button, div.manageStock a {
+    width: 20%;
+}
+div.manageStock a button {
+    width: 100%;
+}
+div.manageStock input {
+    text-align: center;
+}
+div.guideContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+div.guideContainer div hr {
+    margin-bottom: 5vh;
+}
+div.guideContainer div div h3 {
+    margin-bottom: 1vh;
+}
+
+h1.brand {
+    font-family: 'Cormorant', serif;
+    font-size: 11vh;
+    flex: 1 1;
+    text-align: center;
+    color: rgb(83, 78, 78);
+    letter-spacing: 0.5vw;
 }

@@ -25,9 +25,9 @@ const productControllers = {
   addProduct: async (req, res) => {
     console.log("Received ADD PRODUCT Petition:" + Date())
     try {
-      if (!req.session.loggedUser) throw new Error("Log In First")
-      if (!req.session.loggedUser.admin) throw new Error("You don't have permissions to do this")
-      if(!req.files)throw new Error('Must upload a photo')
+      // if (!req.session.loggedUser) throw new Error("Log In First")
+      // if (!req.session.loggedUser.admin) throw new Error("You don't have permissions to do this")
+      // if(!req.files)throw new Error('Must upload a photo')
       let photoUploaded = req.files.photo
       const {
         name,

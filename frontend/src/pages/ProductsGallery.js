@@ -8,7 +8,7 @@ import productsActions from "../redux/actions/productsActions"
 const ProductsGallery = ({ products, getProducts }) => {
   const [showCartCard, setShowCartCard] = useState(false)
   const [productAlert, setProductAlert] = useState(null)
-
+  console.log(products)
   useEffect(() => {
     window.scroll(0, 0)
     document.title = "COZY | STORE"
@@ -23,6 +23,12 @@ const ProductsGallery = ({ products, getProducts }) => {
   const editShowCartCard = (newState) => {
     setShowCartCard(newState)
   }
+
+   if(productAlert){
+     setTimeout(() => {
+       setProductAlert(null)
+     },2500)
+   }
 
   return (
     <div className={styles.productsGallery}>
