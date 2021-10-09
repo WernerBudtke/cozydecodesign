@@ -77,14 +77,14 @@ const ProductsGallery = ({ products, getProducts, productsCategory, match, getPr
         })}
       </div>
       <div className={styles.filterContainer}>
-        <div>
+        <div className={styles.inputContainer}>
           <div>
             <Link to="/products">All</Link>
           </div>
           <div>
             <Link to="/products/Kitchenware">Kitchenware</Link>
             {view.category === 'Kitchenware' && 
-            <div style={{display: "flex", flexDirection: "column"}}>
+            <div>
               <input type="button" value="Accesories" onClick={viewHandler} />
               <input type="button" value="Glassware" onClick={viewHandler} />
               <input type="button" value="Tableware" onClick={viewHandler} />
@@ -93,7 +93,7 @@ const ProductsGallery = ({ products, getProducts, productsCategory, match, getPr
           <div>
             <Link to="/products/Bathroom">Bathroom</Link>
             {view.category === 'Bathroom' && 
-            <div style={{display: "flex", flexDirection: "column"}}>
+            <div>
               <input type="button" value="Accesories" onClick={viewHandler} />
               <input type="button" value="Mirrors" onClick={viewHandler} />
             </div>}
@@ -101,7 +101,7 @@ const ProductsGallery = ({ products, getProducts, productsCategory, match, getPr
           <div>
             <Link to="/products/Decor">Decor</Link>
             {view.category === 'Decor' && 
-            <div style={{display: "flex", flexDirection: "column"}}>
+            <div>
               <input type="button" value="Accesories" onClick={viewHandler} />
               <input type="button" value="Home" onClick={viewHandler} />
               <input type="button" value="Lighting" onClick={viewHandler} />
