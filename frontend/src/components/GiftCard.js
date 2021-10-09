@@ -5,7 +5,7 @@ import { useState } from "react"
 import { connect } from "react-redux"
 import cartActions from "../redux/actions/cartActions"
 
-const GiftCard = ({ getCard }) => {
+const GiftCard = ({ getCard, total }) => {
   const [enableButton, setEnableButton] = useState(false)
   const [code, setCode] = useState(null)
   const [balance, setBalance] = useState(null)
