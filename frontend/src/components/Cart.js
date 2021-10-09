@@ -24,38 +24,54 @@ const Cart = ({ onClickHandler, products, loginUser }) => {
     loginUser ? redirectPayment() : setView(true)
   }
 
-
   return (
     <div className={styles.cartContainer}>
       <div className={styles.cartContainerHeader}>
         <h3>SHOPPING CART</h3>
         <i onClick={onClickHandler} className="fas fa-times"></i>
       </div>
-     <div className={styles.cartContainerMain}>
-     {products.map((obj) => (
+      <div className={styles.cartContainerMain}>
+        {products.map((obj) => (
           <ProductInCart cartItem={obj} key={obj.product._id} />
         ))}
-       {products.length ? <><div className={styles.divPrice}>
-          <h4>SUBTOTAL</h4>
-          <h4>$ {totalPrice.reduce((a, b) => a + b,).toFixed(2)}</h4>
-        </div>
-            <div className={styles.divSpan}>
-             {view && <>
-              <span>You must be logged in to make a purchase</span>
-              <Link to="/signin" onClick={onClickHandler}>Sign In</Link> 
-              </>}
+        {products.length ? (
+          <>
+            <div className={styles.divPrice}>
+              <h4>SUBTOTAL</h4>
+              <h4>$ {totalPrice.reduce((a, b) => a + b).toFixed(2)}</h4>
             </div>
-        <div className={styles.divButton}>
-          <button onClick={redirectHandler}>FINISH SHOPPING</button>
-        </div></> 
-         :<div className={styles.warning}>
-           <p> <i class="fas fa-exclamation"></i> You don't have any items in your cart.</p>
-           <p>Many products are waiting for you!</p>
-           <div className={styles.warningButton}>
-            <Link to="/products" onClick={onClickHandler}><button>START SHOPPING</button></Link>
-            <Link to="/signin" onClick={onClickHandler}><button>SIGN IN</button></Link> 
-           </div>
-          </div>}
+            <div className={styles.divSpan}>
+              {view && (
+                <>
+                  <span>You must be logged in to make a purchase</span>
+                  <Link to="/signin" onClick={onClickHandler}>
+                    Sign In
+                  </Link>
+                </>
+              )}
+            </div>
+            <div className={styles.divButton}>
+              <button onClick={redirectHandler}>FINISH SHOPPING</button>
+            </div>
+          </>
+        ) : (
+          <div className={styles.warning}>
+            <p>
+              {" "}
+              <i className="fas fa-exclamation"></i> You don't have any items in
+              your cart.
+            </p>
+            <p>Many products are waiting for you!</p>
+            <div className={styles.warningButton}>
+              <Link to="/products" onClick={onClickHandler}>
+                <button>START SHOPPING</button>
+              </Link>
+              <Link to="/signin" onClick={onClickHandler}>
+                <button>SIGN IN</button>
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
