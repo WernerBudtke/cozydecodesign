@@ -22,9 +22,7 @@ const cardControllers = {
     try {
       let card = await Card.findOne({ code: req.params.id })
       if (!card) throw new Error("Card not found")
-
-      //   console.log(card.code.getTime())
-      //   console.log(new Date(card.code.getTime()))
+      if (card.balance === 0) throw new Error("Your balance is 0")
       res.json({ success: true, response: card })
     } catch (e) {
       res.json({ success: false, response: e.message })
@@ -62,3 +60,7 @@ const cardControllers = {
   },
 }
 module.exports = cardControllers
+// ver tema del editado
+// mail de order cuando se crea
+// ver el tema de si puedo sacar los numeros de la tarjeta los ultimos 4 para mandarles en el mail.
+//
