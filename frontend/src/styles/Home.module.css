@@ -20,6 +20,7 @@
   -webkit-box-shadow: 2px 2px 34px -2px rgba(0,0,0,0.5);
   -moz-box-shadow: 2px 2px 34px -2px rgba(0,0,0,0.5);
 }
+
 .homeStore{
   position: absolute;
   left: 78vw;
@@ -86,10 +87,15 @@
   background-color: #AD9993;
   color: #000;
   text-transform: uppercase;
+  padding:.7rem;
   cursor: pointer;
 }
 .galleryWrap div:hover a{
   width: 50%;
+}
+.textButton{
+  font-size: 1rem;
+  font-weight: bolder;
 }
 
 /*Quote Section*/
@@ -114,7 +120,7 @@
   line-height : 2.3rem;
 }
 
-div i {
+.quote div i {
   font-size: 3rem;
   color: rgba(77, 75, 75, 0.234);
   margin:1rem;
@@ -122,21 +128,24 @@ div i {
 
 /*infoSection*/
 
+.infoContainer{
+  height: 15rem !important;
+  justify-content: space-evenly;
+}
 .fondoInfo{
-  height: 10rem !important;
-  display: flex;
+  display:flex;
   justify-content: space-around;
-  justify-content: center;
-  align-items:center;
+ 
 }
 
 .infoItem{
   background-position: center;
   background-size: cover;
   background-repeat: none;
-  width: 10rem;
-  height: 10rem;
-  margin:1rem;
+  align-items:center;
+  width: 15rem;
+  height: 15rem;
+  margin:4rem;
 }
 
 @media (max-width: 1300px) {
@@ -144,12 +153,22 @@ div i {
     width: 27vw;
     font-size: 2.8vmin;
   }
+  .infoItem{
+    width: 13rem;
+    height: 13rem;
+    margin:3rem;
+  }
 }
 
 @media (max-width: 1200px) {
   .quote{
     width: 28vw;
     font-size: 2.6vmin;
+  }
+  .infoItem{
+    width: 12rem;
+    height: 12rem;
+    margin:2.6rem;
   }
 }
 
@@ -159,12 +178,22 @@ div i {
     width: 30vw;
     font-size: 2.7vmin;
   }
+  .infoItem{
+    width: 11rem;
+    height: 11rem;
+    margin:2.6rem;
+  }
 }
 
 @media (max-width: 1000px) {
   .quote{
     width: 30vw;
     font-size: 2.5vmin;
+  }
+  .infoItem{
+    width: 9rem;
+    height: 9rem;
+    margin:2.4rem;
   }
 }
 
@@ -178,6 +207,11 @@ div i {
   }
   div i {
     font-size: 2.7rem;
+  }
+  .infoItem{
+    width: 9rem;
+    height: 9rem;
+    margin:2rem;
   }
 }
 
@@ -200,6 +234,7 @@ div i {
   .infoItem{
     width: 9rem;
     height: 9rem;
+    margin:1.8rem;
   }
   
 }
@@ -215,10 +250,17 @@ div i {
     font-size: 2.4rem;
     margin:.5rem;
   }
-  .fondoInfo{
+  .infoContainer{
     height: auto !important;
+  }
+  .fondoInfo{
     display: flex;
     flex-wrap: wrap;
+  }
+  .infoItem{
+    width: 9rem;
+    height: 9rem;
+    margin:1.5rem;
   }
   
 

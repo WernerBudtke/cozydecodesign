@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Parallax } from "react-parallax";
 import { Link } from "react-router-dom";
 import styles from "../styles/Home.module.css";
+import Button1 from "../components/Button1"
 
 const Home = () => {
   const [windowDimensions, setWindowDimensions] = useState(
@@ -51,7 +52,7 @@ const Home = () => {
   const items = categories.map((obj, index) => (
     <div key={index} style={{ backgroundImage: `url('${obj.src}')` }}>
       <Link to={`/products/${obj.category}`}>
-        <button>{obj.category}</button>
+        <button className={styles.textButton}>{obj.category}</button>
       </Link>
     </div>
   ));
@@ -65,9 +66,10 @@ const Home = () => {
         <div className={styles.home}>
             <Parallax bgImage={'/assets/home1.jpg'} strength={height}>
               <Link to='/products' className={styles.homeStore}>
-                <div>
+                {/* <div>
                   <p>Check out our latest trends</p>
-                </div>
+                </div> */}
+                <Button1>Check out our latest trends</Button1>
               </Link>
             </Parallax>
             <Parallax strength={-200} className={styles.categories}>
@@ -84,13 +86,13 @@ const Home = () => {
                 <p>In Cozy we offer a wide variety of well-designed, functional home products. Whether your home decor leans towards minimalist or maximalist aesthetic, you'll find something to suit your style.</p>
               </div>
             </Parallax>
-            <Parallax strength={height/10} className={styles.fondoInfo}>
+            <Parallax strength={height/10} className={styles.infoContainer}>
                 <div className={styles.fondoInfo}>
                     {infoItems}
                 </div>
             </Parallax>
             <Parallax bgImage={'/assets/home4.jpg'}
-            strength={width > 700 ? -width/4 : -width/11}
+            strength={width > 700 ? -width/5.5 : width/11}
             renderLayer={(percentage) => (
                 <div
                   className={styles.finalInfo}
