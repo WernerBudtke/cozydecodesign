@@ -1,6 +1,7 @@
 // Crear Orden, Pedir x User / ALL (x fecha) + Send Mail after purchase
 const Order = require("../models/Order")
 const Product = require("../models/Product")
+const transport = require("../config/transport")
 const orderControllers = {
   getOrders: async (req, res) => {
     console.log("Received GET ORDERS Petition:" + Date())
@@ -26,8 +27,6 @@ const orderControllers = {
     }
   },
   newOrder: async (req, res) => {
-    console.log(req.session)
-    console.log(req.body)
     console.log("Received NEW ORDER Petition:" + Date())
     try {
       if (!req.session.loggedUser) throw new Error("Log In First")
@@ -48,7 +47,61 @@ const orderControllers = {
           { $inc: { stock: -product.quantity, sold: product.quantity } }
         )
       })
-      res.json({ success: true, response: savedOrder })
+      let message = `
+                    <table style="max-width: 700px; padding: 10px; margin:0 auto; border-collapse: collapse;">
+                        <div style="width: 100%;margin:20px 0; text-align: center;">
+                            <img src="https://i.postimg.cc/s2Z5nX3q/logo.png" />
+                        </div>
+                        <tr>
+                            <td style="background-color: #F0F3F5">
+                                <div style="color: #34495e; margin: 4% 10% 2%; text-align: justify;font-family: sans-serif">
+                                    <h1 style="color: #19b1bc; margin: 0 0 7px">Hello!</h1>
+                                    <h2 style="color: #000; margin: 0 0 7px">Dear ${user.firstName} ${user.lastName}:</h2>
+                                    <p style="margin: 2px; font-size: 15px; color: #000">
+                                            We sent you this e-mail to let you know your purchase was successfully done<br>
+                                    </p>
+                                    <h2 style="color: #19b1bc;">Details of your Purchase(products):</h2>
+                                    <ul style="font-size: 15px;  margin: 10px 0">
+                                        ${savedOrder.products.map(product => product)}
+                                        <li style="color: #000;"></li>
+                                        <li style="color: #000;">Products: ${user.lastName}</li>
+                                        <li style="color: #000;">Email: ${user.eMail}</li>
+                                        <a href="https://cozydecodesign.herokuapp.com/user/resetpassword/${user._id}" style="font-size:25px;color: #000;text-align:center;display:block;">CHANGE YOUR PASSWORD!</a>
+                                    </ul>
+                                    <h2 style="color: #19b1bc;">IMPORTANT INFORMATION - PROTECT YOUR ACCOUNT:</h2>
+                                    <p style="margin: 2px; font-size: 15px; color: #000">
+                                        Our website encrypt your password to protect your information, but even if we do that, is your responsability to protect your account using a secure password, here are some tips to do so:
+                                    </p>
+                                    <ul style="font-size: 15px;  margin: 10px 0; color: #000">
+                                        <li>Use non easy to guess combinations (for example don't use birthdays)</li>
+                                        <li>Use symbols, numbers and / or uppercase letters.</li>
+                                        <li>Don't tell anyone your password.</li>
+                                        <li>NO ONE will ask from this company your password to assist you.</li>
+                                    </ul>
+                                    <h2 style="margin: 0 0 7px; color: #19b1bc">Also:</h2>
+                                    <p style="margin: 2px; font-size: 15px; color: #000;">
+                                        If you didn't request a password change, dismiss this email.
+                                    </p>
+                                    <div style="width: 100%;margin:20px 0; display: inline-block;text-align: center; background-color: #19b1bc;">
+                                    <a style="text-decoration: none; color: white;" href=""><p style="color: #fff; font-size: 14px; text-align: center;">© Copyright 2021 | Cozy Deco.</p></a>	
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                `
+      let mailOptions = {
+        from: "Cozy <cozydecodesign@gmail.com>",
+        to: `${user.firstName} <${user.eMail}>`,
+        subject: `Thank you for your purchase ${user.firstName}!`,
+        html: message,
+      }
+      transport.sendMail(mailOptions, (err, data) => {
+        if(err){
+          throw new Error('Order placed, mail not sent')
+        }else{
+          res.json({ success: true, response: data })
+        }
+      })
     } catch (err) {
       res.json({ success: false, response: err.message })
     }

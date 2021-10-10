@@ -66,9 +66,12 @@ const productControllers = {
       // if (!req.session.loggedUser.admin)
       //   throw new Error("You don't have permissions to do this")
       const productId = req.params.id
+      let photoUploaded = req.files.photo
+      let fileName = newProduct._id + "." + req.files.photo.name.split('.')[req.files.photo.name.split('.').length-1]
+      photoUploaded.mv(`${__dirname}/../storage/${fileName}`)
       let modifiedProduct = await Product.findOneAndUpdate(
         { _id: productId },
-        { ...req.body },
+        { ...req.body, photo: fileName },
         { new: true }
       )
       if (!modifiedProduct) throw new Error("Product not found")
