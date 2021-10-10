@@ -18,23 +18,26 @@ const Footer=()=>{
             </div>
             <div className={styles.infoContact}>
                 <h3>Contact</h3>
-                <div className={styles.iconContact}>
-                    <i className="fas fa-envelope" className={styles.iconSocial}></i>
-                    <p>cozydecodesign@gmail.com</p>
+                <div className={styles.iconResponsive}>
+                   <div  className={styles.iconSocial} >
+                <i class="fas fa-envelope fa-lg"></i>
+                  <p>cozydecodesign@gmail.com</p>
                 </div>
-                <div className={styles.iconContact}>
-                    <i className="fas fa-phone-alt" className={styles.iconSocial}></i>
+                <div className={styles.iconSocial}>
+                <i class="fas fa-phone-square-alt fa-lg"></i>
                     <p>+54 11 6789 8270</p>
+                </div> 
                 </div>
-                <div className={styles.socialNetworks}>
-                    <a href="https://www.facebook.com/" target="_blank">
-                        <i className="fab fa-facebook-square fa-2x" className={styles.iconSocial}></i>
+                
+                <div className={styles.iconSocial}>
+                    <a href="https://www.facebook.com/" target="_blank" className={styles.iconSocial}>
+                    <i class="fab fa-facebook-square fa-lg"></i>
                     </a> 
-                    <a href="https://www.instagram.com/" target="_blank">
-                        <i className="fab fa-instagram-square fa-2x" className={styles.iconSocial}></i>
+                    <a href="https://www.instagram.com/" target="_blank" className={styles.iconSocial}>
+                    <i class="fab fa-instagram-square fa-lg"></i>                    
                     </a> 
-                    <a href="https://www.whatsapp.com/" target="_blank">
-                        <i className="fab fa-whatsapp-square fa-2x" className={styles.iconSocial}></i>
+                    <a href="https://www.whatsapp.com/" target="_blank" className={styles.iconSocial}>
+                    <i class="fab fa-whatsapp-square fa-lg"></i>
                     </a>
                 </div>
             </div>
