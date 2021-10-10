@@ -5,9 +5,10 @@ const productControllers = {
     try {
       const { filterBy } = req.body
       let willFilterFor = filterBy ? { ...filterBy } : ""
-      let products = await Product.find({ ...willFilterFor })
+      let products = await Product.find({forSale:false},{ ...willFilterFor })
       res.json({ success: true, response: products })
     } catch (err) {
+      console.log(err)
       res.json({ success: false, response: err.message })
     }
   },

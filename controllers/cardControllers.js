@@ -39,7 +39,7 @@ const cardControllers = {
   editCard: async (req, res) => {
     try {
       let editedCard = await Card.findOneAndUpdate(
-        { _id: req.params.id },
+        { code: req.params.id },
         { ...req.body },
         { new: true }
       )
