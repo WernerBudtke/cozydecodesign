@@ -24,8 +24,9 @@ const ProductCard = ({
       product: product,
       quantity: 1,
     }
-    setProductAlert(newProducts)
+
     editShowCartCard(true)
+    setProductAlert(newProducts)
     addCartProduct(newProducts)
   }
   const photo = product.photo?.includes("http")
@@ -63,6 +64,7 @@ const ProductCard = ({
             {!admin && (
               <>
                 <i
+                  style={{ cursor: "pointer" }}
                   className="fas fa-cart-plus fa-lg"
                   onClick={addToCartHandler}
                 ></i>
@@ -82,8 +84,8 @@ const ProductCard = ({
       {product.discount !== 0 && (
         <div className={styles.inside}>
           <div className={newClass ? styles.newClass : styles.icon}>
-          {newClass ? `- ${product.discount}%`  : `${product.discount}% OFF` }
-        </div>
+            {newClass ? `- ${product.discount}%` : `${product.discount}% OFF`}
+          </div>
         </div>
       )}
     </div>

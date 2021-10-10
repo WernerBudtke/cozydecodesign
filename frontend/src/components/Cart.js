@@ -22,7 +22,7 @@ const Cart = ({ onClickHandler, products, loginUser }) => {
   const redirectHandler = () => {
     loginUser ? redirectPayment() : setView(true)
   }
-  const onclickAndSetView=()=>{
+  const onclickAndSetView = () => {
     setView(false)
     onClickHandler()
   }
@@ -54,7 +54,10 @@ const Cart = ({ onClickHandler, products, loginUser }) => {
               )}
             </div>
             <div className={styles.divButton}>
-              <button onClick={redirectHandler}>END PURCHASE</button>
+              <button onClick={redirectHandler}>FINALIZE PURCHASE</button>
+              <Link to="/products">
+                <button onClick={redirectHandler}>KEEP SHOPPING</button>
+              </Link>
             </div>
           </>
         ) : (
@@ -68,9 +71,11 @@ const Cart = ({ onClickHandler, products, loginUser }) => {
               <Link to="/products" onClick={onclickAndSetView}>
                 <button>START SHOPPING</button>
               </Link>
-              <Link to="/signin" onClick={onclickAndSetView}>
-                <button>SIGN IN</button>
-              </Link>
+              {!loginUser && (
+                <Link to="/signin" onClick={onclickAndSetView}>
+                  <button>SIGN IN</button>
+                </Link>
+              )}
             </div>
           </div>
         )}
@@ -86,5 +91,4 @@ const mapStateTopProps = (state) => {
   }
 }
 
-const mapDispatchToProps = {}
-export default connect(mapStateTopProps, mapDispatchToProps)(Cart)
+export default connect(mapStateTopProps)(Cart)

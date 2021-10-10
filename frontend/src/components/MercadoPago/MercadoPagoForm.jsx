@@ -14,14 +14,14 @@ const INITIAL_STATE = {
     issuer: "",
 };
 
-export default function MercadoPagoForm({total, addNewOrderHandler}) {
+export default function MercadoPagoForm({total, addNewOrderHandler, catchMercadoPagoErr}) {
     const [state, setState] = useState(INITIAL_STATE);
     const resultPayment = useMercadoPago(total);
     const evaluatePayment = (obj) =>{
         if(obj.status === "approved"){
             addNewOrderHandler()
         }else{
-            alert("intenta de nuevo")
+            catchMercadoPagoErr()
         }
     }
 

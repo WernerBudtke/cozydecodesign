@@ -21,14 +21,14 @@ const Product = ({
   const [quantity, setQuantity] = useState(1)
   const [loading, setLoading] = useState(true)
   const [productAlert, setProductAlert] = useState(null)
-  const [showCartCard, setShowCartCard] = useState(false) 
+  const [showCartCard, setShowCartCard] = useState(false)
   const [refresh, setRefresh] = useState(false)
 
   useEffect(() => {
+    window.scroll(0, 0)
     if (!products.length) {
-      getProducts()
-      .then((res) => {
-        if (res.success){
+      getProducts().then((res) => {
+        if (res.success) {
           findAProduct(match.params.id)
           getProductByCategory(product.category)
           setLoading(false)
@@ -41,7 +41,6 @@ const Product = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh])
-
 
   const editShowCartCard = (newState) => {
     console.log("se ejecuta editshow")
@@ -62,10 +61,10 @@ const Product = ({
     return <h1>LOADING...</h1>
   }
 
-  if(productAlert){
+  if (productAlert) {
     setTimeout(() => {
       setProductAlert(null)
-    },2500)
+    }, 2500)
   }
 
   const finalPrice =
@@ -76,7 +75,7 @@ const Product = ({
   const photo = product.photo.includes("http")
     ? product.photo
     : `http://localhost:4000/${product.photo}`
-  
+
   return (
     <div className={styles.productSection}>
       {productAlert && (
@@ -105,7 +104,9 @@ const Product = ({
           </div>
           <div>
             <i className="far fa-credit-card fa-lg"></i>
-            <p className={styles.interestCard}>3 payments of ${((1.1 * finalPrice) / 3).toFixed(2)}</p>
+            <p className={styles.interestCard}>
+              3 payments of ${((1.1 * finalPrice) / 3).toFixed(2)}
+            </p>
           </div>
           <div>
             <div className={styles.counter}>
@@ -154,18 +155,25 @@ const Product = ({
       </div>
       <div className={styles.suggestionContainer}>
         <h3>Related Products</h3>
-      <div className={styles.suggestion}>
-          {productsCategory.map((productCateg) => {
-            if(productCateg._id !== match.params.id){
+        <div className={styles.suggestion}>
+          {productsCategory.map((obj) => {
+            if (obj._id !== match.params.id) {
               return (
-                <div onClick={() => setRefresh(!refresh)} className={styles.productCardContainer}>
-                  <ProductCard product={productCateg} newClass={"newClass"}/> 
+                <div
+                  onClick={() => setRefresh(!refresh)}
+                  className={styles.productCardContainer}
+                >
+                  <ProductCard
+                    setProductAlert={setProductAlert}
+                    product={obj}
+                    newClass={"newClass"}
+                    editShowCartCard={editShowCartCard}
+                  />
                 </div>
               )
             }
-          }
-        )}
-      </div>
+          })}
+        </div>
       </div>
     </div>
   )
@@ -173,8 +181,8 @@ const Product = ({
 const mapStateTopProps = (state) => {
   return {
     product: state.products.product,
-    products: state.products.products,    
-    productsCategory: state.products.productsCategory
+    products: state.products.products,
+    productsCategory: state.products.productsCategory,
   }
 }
 
@@ -182,6 +190,6 @@ const mapDispatchToProps = {
   findAProduct: productsActions.findAProduct,
   addCartProduct: cartActions.addCartProduct,
   getProductByCategory: productsActions.getProductByCategory,
-  getProducts: productsActions.getProducts
-} 
+  getProducts: productsActions.getProducts,
+}
 export default connect(mapStateTopProps, mapDispatchToProps)(Product)
