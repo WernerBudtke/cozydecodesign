@@ -29,6 +29,7 @@
     "express-session": "^1.17.2",
     "joi": "^17.4.2",
     "jsonwebtoken": "^8.5.1",
+    "mercadopago": "^1.5.8",
     "mongoose": "^6.0.8",
     "nodemailer": "^6.6.5",
     "passport": "^0.4.1",

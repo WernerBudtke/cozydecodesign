@@ -1,6 +1,8 @@
 import productsActions from '../redux/actions/productsActions'
 import { connect } from 'react-redux'
 import { useState, useEffect } from 'react'
+import styles from '../styles/Admin.module.css'
+import { Link } from 'react-router-dom'
 const StockProduct = ({modifyProduct, product, fetch}) => {
     const [stock, setStock] = useState(0)
     
@@ -20,13 +22,17 @@ const StockProduct = ({modifyProduct, product, fetch}) => {
             alert('Falló')
         }
     }
-
     return (
-        <div>
-            <p>{product.name + ' el stock es ' + product.stock}</p>
-            <input value={stock} onChange={inputHandler} type="number" />
-            <button id={product._id} onClick={submitChange}>SET</button>
-        </div>
+            <div className={styles.stockCard}>
+                <div>
+                    <p>{product.name}</p>
+                </div>
+                <div className={styles.manageStock}>
+                    <input value={stock} onChange={inputHandler} type="number" />
+                    <button id={product._id} onClick={submitChange}>SET</button>
+                    <Link to={`/productform/${product._id}`}><button id={product._id} onClick={submitChange}>EDIT</button></Link>
+                </div>
+            </div>  
     )
 }
 

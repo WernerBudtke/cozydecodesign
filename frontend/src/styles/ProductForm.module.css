@@ -1,0 +1,103 @@
+/* PRODUCT FORM */
+main, .formContainer, form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+main.mainForm {
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  background-image: url(https://i.postimg.cc/0jbZdZKt/formbackground.jpg);
+  flex-direction: row;
+  gap: 5vw;
+  padding-left: 5vw;
+}
+
+.picture {
+  display: flex;
+  align-items: end;
+  width: 90%;
+}
+
+.productPic {    
+  border: 1px solid #ad9993;
+  width: 10vw;
+  height: 15vh;
+  align-self: flex-start;
+  background-color: #ad9993;
+  background-position: center;
+  background-size: cover;
+}
+
+.formContainer h4 {
+  color: #bf988f;
+}
+
+.formContainer {
+  min-height: 70vh;
+  justify-content: space-around;
+  box-shadow: 0px 3px 5px 0px rgba(82, 80, 80, 0.75);
+  width: 60%;
+  margin-top: 2rem;
+  padding: 0.5vw 0;
+  background-color: #f8f6f4;
+}
+
+form.productForm {
+  min-height: 80vh;
+  justify-content: space-around;
+  width: 90%;
+  margin-top: 2rem;
+}
+
+form input,
+form textarea,
+form select {
+  width: 90%;
+  border: none;
+  background-color: transparent !important;
+  border-bottom: 1px solid black;
+  padding-left: 0.5rem;
+  height: 2rem;
+  resize: none;
+  outline: none;
+  background: transparent;
+}
+
+div.price,
+div.saleInput {
+  display: flex;
+  width: 90%;
+  gap: 1rem;
+}
+
+div.saleRadios {
+  display: flex;
+  width: 90%;
+  align-items: center;
+}
+
+div.saleRadios p {
+  padding: 0.5rem;
+}
+
+div.saleRadios input {
+  height: auto;
+  width: 20%;
+}
+
+.formButton {
+  padding: 0.5rem 1rem;
+  border: none;
+  color: #7e6661;
+  background-color: #bf988f;
+  font-size: 1.5vmin;
+  font-weight: 300;
+  width: 80%;
+  cursor: pointer;
+  transition: all 0.4s;
+  border-radius: 2px;
+}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import useScript from "./useScript"
 
-export default function useMercadoPago(x) {
+export default function useMercadoPago(amountOfPurchase) {
     const [resultPayment, setResultPayment] = useState(undefined)
     const { MercadoPago } = useScript(
         "https://sdk.mercadopago.com/js/v2",
@@ -54,7 +54,7 @@ export default function useMercadoPago(x) {
         if(MercadoPago){
             const mp = new MercadoPago("TEST-17812741-dd00-4207-b735-b9d1d47d8d96")
             const cardForm = mp.cardForm({
-                amount: x,
+                amount: amountOfPurchase,
                 autoMount: true,
                 form: formConfig,
                 callbacks:{
@@ -62,7 +62,7 @@ export default function useMercadoPago(x) {
                     onSubmit: (event) => {
                         event.preventDefault();
                         const {paymentMethodId: payment_method_id,issuerId: issuer_id,cardholderEmail: email,amount,token,installments,identificationNumber,identificationType} = cardForm.getCardFormData();
-                        fetch(`https://cozydeco.herokuapp.com/process-payment`,{
+                        fetch(`https://cozydeco.herokuapp.com/api/process-payment`,{
                                 method: "POST",
                                 headers: {
                                     "Access-Control-Allow-Origin": "*",
@@ -74,7 +74,7 @@ export default function useMercadoPago(x) {
                                     token,
                                     issuer_id,
                                     payment_method_id,
-                                    transaction_amount: parseInt(x),
+                                    transaction_amount: parseInt(amountOfPurchase),
                                     installments: Number(installments),
                                     description: "Descripción del producto",
                                     payer: {

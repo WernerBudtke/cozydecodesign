@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Card from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 import useMercadoPago from "./useMercadoPago";
+import styles from "../../styles/MercadoPagoForm.module.css"
 
 const INITIAL_STATE = {
     cvc: "",
@@ -13,9 +14,17 @@ const INITIAL_STATE = {
     issuer: "",
 };
 
-export default function MercadoPagoForm() {
+export default function MercadoPagoForm({total, addNewOrderHandler}) {
     const [state, setState] = useState(INITIAL_STATE);
-    const resultPayment = useMercadoPago("2000");
+    const resultPayment = useMercadoPago(total);
+    const evaluatePayment = (obj) =>{
+        if(obj.status === "approved"){
+            addNewOrderHandler()
+        }else{
+            alert("intenta de nuevo")
+        }
+    }
+
     const handleInputChange = (e) => {
         setState({
             ...state,
@@ -28,7 +37,7 @@ export default function MercadoPagoForm() {
     };
 
     return (
-        <div className="container">
+        <div className={styles.container}>
             <Card
                 cvc={state.cvc}
                 expiry={state.cardExpirationMonth + state.cardExpirationYear}
@@ -36,6 +45,7 @@ export default function MercadoPagoForm() {
                 number={state.cardNumber}
                 focused={state.focus}
                 brand={state.issuer}
+                
             />
 
             <form id="form-checkout">
@@ -112,14 +122,15 @@ export default function MercadoPagoForm() {
                 </div>
                 <div className="form-control">
                     <button type="submit" id="form-checkout__submit">
-                        Pagar
+                        Make the Payment
                     </button>
                 </div>
                 <progress value="0" className="progress-bar">
                     Cargando...
                 </progress>
             </form>
-            {resultPayment && <p>{JSON.stringify(resultPayment)}</p>}
+            
+            {resultPayment && evaluatePayment(resultPayment)}
         </div>
     );
 }

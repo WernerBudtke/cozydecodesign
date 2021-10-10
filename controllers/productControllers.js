@@ -8,6 +8,7 @@ const productControllers = {
       let products = await Product.find({ ...willFilterFor })
       res.json({ success: true, response: products })
     } catch (err) {
+      console.log(err)
       res.json({ success: false, response: err.message })
     }
   },
@@ -66,9 +67,12 @@ const productControllers = {
       if (!req.session.loggedUser.admin)
         throw new Error("You don't have permissions to do this")
       const productId = req.params.id
+      let photoUploaded = req.files.photo
+      let fileName = newProduct._id + "." + req.files.photo.name.split('.')[req.files.photo.name.split('.').length-1]
+      photoUploaded.mv(`${__dirname}/../storage/${fileName}`)
       let modifiedProduct = await Product.findOneAndUpdate(
         { _id: productId },
-        { ...req.body },
+        { ...req.body, photo: fileName },
         { new: true }
       )
       if (!modifiedProduct) throw new Error("Product not found")
@@ -80,9 +84,9 @@ const productControllers = {
   deleteProduct: async (req, res) => {
     console.log("Received DELETE PRODUCT Petition:" + Date())
     try {
-      // if (!req.session.loggedUser) throw new Error("Log In First")
-      // if (!req.session.loggedUser.owner)
-      //   throw new Error("You don't have permissions to do this")
+      if (!req.session.loggedUser) throw new Error("Log In First")
+      if (!req.session.loggedUser.owner)
+        throw new Error("You don't have permissions to do this")
       const productToDelete = req.params.id
       let productDeleted = await Product.findOneAndDelete({
         _id: productToDelete,
