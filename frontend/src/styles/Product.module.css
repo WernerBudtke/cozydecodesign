@@ -90,10 +90,44 @@
   padding-left: 1vw;
 }
 
-.suggestion {
+div.suggestionContainer {
+  background-color: #d4c5bf;
+  padding-left: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+div.suggestionContainer h3 {
+  color: rgba(0, 0, 0, 0.781);
+  letter-spacing: 0.1vw;
+  margin-bottom: 2vh;
+  margin-left: 0.5rem;
+}
+
+div.suggestion {
   width: 100%;
-  height: 30vh;
-  background-color: coral;
+  min-height: 65vh;
+  background-color: #d4c5bf;
+  display: flex;
+  overflow-y: auto;
+}
+
+div.suggestion::-webkit-scrollbar {
+  height: 0.5rem!important;
+
+}
+
+div.suggestion::-webkit-scrollbar-thumb{
+  background-color: #ad9993;
+  border-radius: 10px;
+}
+
+div.productCardContainer {
+  padding: 0.5rem;
+  height: 50vh
+}
+
+div.productCardContainer > div{
+  width: 20rem;
 }
 
 .counter {

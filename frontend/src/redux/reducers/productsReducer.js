@@ -27,7 +27,6 @@ const productsReducer = (
           productsCategory: state.products
         }
       case "GET_BY_CATEGORY":
-        console.log(action)
         return {
           ...state,
           productsCategory: state.products.filter((product) => product.category === action.payload)
