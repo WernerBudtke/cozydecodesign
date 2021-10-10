@@ -95,7 +95,7 @@ const PaymentGateway = ({ loginUser, products, manageUser, getProducts, editCard
             backgroundImage: `url("${
               obj.product.photo.includes("http")
                 ? obj.product.photo
-                : `http://localhost:4000/${obj.product.photo}`
+                : `https://cozydeco.herokuapp.com/${obj.product.photo}`
             }")`,
           }}
         ></div>

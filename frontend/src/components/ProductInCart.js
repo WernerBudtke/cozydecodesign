@@ -18,7 +18,7 @@ const ProductInCart = ({ cartItem, deleteACartProduct, setPriceTotal, updateCart
 
   const photo = cartItem.product.photo.includes("http")
     ? cartItem.product.photo
-    : `http://localhost:4000/${cartItem.product.photo}`
+    : `https://cozydeco.herokuapp.com/${cartItem.product.photo}`
 
   return (
     <div className={styles.productInCart}>
