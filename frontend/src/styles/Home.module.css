@@ -92,10 +92,6 @@
 .galleryWrap div:hover a{
   width: 50%;
 }
-<<<<<<< HEAD
-.info{
-  background-color:#d9e2e7 ;
-=======
 .textButton{
   font-size: 1rem;
   font-weight: bolder;
@@ -105,7 +101,6 @@
 .quote{
   background-color:#d9e2e7c7 ;
   border-radius: 10px;
->>>>>>> origin/sabrina
   min-height: 60vh;
   width: 25vw;
   margin:0 3.5vw;
@@ -117,11 +112,6 @@
 }
 .info h2{
   padding-bottom: 2vw;
-<<<<<<< HEAD
-}
-.fondoInfo{
-  height: 25vh !important;
-=======
   color:rgb(58, 57, 57);
   font-size: 2.8rem;
   font-family: 'Cormorant', serif;
@@ -154,7 +144,6 @@
   width: 15rem;
   height: 15rem;
   margin:4rem;
->>>>>>> origin/sabrina
 }
 
 @media (max-width: 1300px) {
@@ -211,8 +200,6 @@
     width: 32vw;
     font-size: 2.3vmin;
   }
-<<<<<<< HEAD
-=======
   .quote h2{
     font-size: 2.7rem;
   }
@@ -224,7 +211,6 @@
     height: 9rem;
     margin:2rem;
   }
->>>>>>> origin/sabrina
 }
 
 @media (max-width: 768px) {
@@ -235,8 +221,6 @@
     font-size: 2.3vmin;
     text-align: center;
   }
-<<<<<<< HEAD
-=======
   .quote h2{
     font-size: 2.6rem;
   }
@@ -250,7 +234,6 @@
     height: 9rem;
     margin:1.8rem;
   }
->>>>>>> origin/sabrina
   
 }
 
@@ -258,8 +241,6 @@
   .info{
     letter-spacing: 0vw;
   }
-<<<<<<< HEAD
-=======
   .quote h2{
     font-size: 2.5rem;
   }
@@ -280,7 +261,6 @@
     margin:1.5rem;
   }
   
->>>>>>> origin/sabrina
 
 }
 
