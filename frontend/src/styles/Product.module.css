@@ -110,7 +110,6 @@ div.suggestion {
 
 div.suggestion::-webkit-scrollbar {
   height: 0.5rem!important;
-
 }
 
 div.suggestion::-webkit-scrollbar-thumb{
