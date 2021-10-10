@@ -1,6 +1,7 @@
 const mercadopago = require("mercadopago")
 const paymentControllers = {
     payWithMercadoPago: (req, res) => {
+        console.log(req)
         console.log('MercadoPago Petition')
         mercadopago.configurations.setAccessToken(process.env.ACCESS_TOKEN_MP)
         const payment_data = {

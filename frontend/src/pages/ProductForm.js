@@ -113,7 +113,7 @@ const ProductForm = ({addProduct, modifyProduct, findAProduct, match, product, g
     }
 
     return (
-            <main style={{backgroundImage: "/assets/home1.jpg"}}>
+            <main calssName={styles.mainForm} style={{backgroundImage: "/assets/home1.jpg"}}>
                 <div className={styles.formContainer}>
                     {productId ? <h4>Edit Product</h4> : <h4>New Product</h4>}
                     <form className={styles.productForm}>

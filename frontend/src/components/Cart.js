@@ -2,12 +2,11 @@ import styles from "../styles/Cart.module.css"
 import { connect } from "react-redux"
 import ProductInCart from "./ProductInCart"
 import { Link } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useHistory } from "react-router-dom"
 
 const Cart = ({ onClickHandler, products, loginUser }) => {
   const [view, setView] = useState(false)
-
   let history = useHistory()
 
   const totalPrice = products.map((obj) =>
@@ -23,12 +22,16 @@ const Cart = ({ onClickHandler, products, loginUser }) => {
   const redirectHandler = () => {
     loginUser ? redirectPayment() : setView(true)
   }
+  const onclickAndSetView=()=>{
+    setView(false)
+    onClickHandler()
+  }
 
   return (
     <div className={styles.cartContainer}>
       <div className={styles.cartContainerHeader}>
         <h3>SHOPPING CART</h3>
-        <i onClick={onClickHandler} className="fas fa-times"></i>
+        <i onClick={onclickAndSetView} className="fas fa-times"></i>
       </div>
       <div className={styles.cartContainerMain}>
         {products.map((obj) => (
@@ -44,7 +47,7 @@ const Cart = ({ onClickHandler, products, loginUser }) => {
               {view && (
                 <>
                   <span>You must be logged in to make a purchase</span>
-                  <Link to="/signin" onClick={onClickHandler}>
+                  <Link to="/signin" onClick={onclickAndSetView}>
                     Sign In
                   </Link>
                 </>
@@ -62,10 +65,10 @@ const Cart = ({ onClickHandler, products, loginUser }) => {
             </p>
             <p>Many products are waiting for you!</p>
             <div className={styles.warningButton}>
-              <Link to="/products" onClick={onClickHandler}>
+              <Link to="/products" onClick={onclickAndSetView}>
                 <button>START SHOPPING</button>
               </Link>
-              <Link to="/signin" onClick={onClickHandler}>
+              <Link to="/signin" onClick={onclickAndSetView}>
                 <button>SIGN IN</button>
               </Link>
             </div>
