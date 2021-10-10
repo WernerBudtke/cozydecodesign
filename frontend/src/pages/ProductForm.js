@@ -4,7 +4,7 @@ import productsActions from "../redux/actions/productsActions"
 import styles from "../styles/ProductForm.module.css"
 import { useHistory } from "react-router"
 
-const ProductForm = ({addProduct, modifyProduct, findAProduct, match, product}) => {
+const ProductForm = ({addProduct, modifyProduct, findAProduct, match, product, getProducts}) => {
     var productId = match.params.id
     const [loading, setLoading] = useState(true)
     const [newProduct, setNewProduct] = useState ({
@@ -18,33 +18,33 @@ const ProductForm = ({addProduct, modifyProduct, findAProduct, match, product}) 
         category: "",
         subcategory: "",
     })
-    console.log(productId)
-    // console.log(product.name)
- 
+    
     useEffect(() => {
         window.scrollTo(0,0)
         findAProduct(productId)
-            
-        setTimeout(()=>{
-            // refreshNewProduct()
-            setLoading(false)
-        },2000)
 
     }, [])
 
-    // const refreshNewProduct = ()=> {
-    //     setNewProduct ({
-    //         name: product.name ,
-    //         photo: product.photo ,
-    //         stock: product.stock ,
-    //         description: product.description ,
-    //         price: product.price ,
-    //         forSale: product.forSale ,
-    //         discount:product.discount ,
-    //         category: product.category ,
-    //         subcategory: product.subcategory ,
-    //     })
-    // }
+    useEffect(() => {
+        if (product){
+            refreshNewProduct()
+            setLoading(false)
+        }
+    }, [product])
+
+    const refreshNewProduct = ()=> {
+        setNewProduct ({
+            name: product.name ,
+            photo: product.photo ,
+            stock: product.stock ,
+            description: product.description ,
+            price: product.price ,
+            forSale: product.forSale ,
+            discount:product.discount ,
+            category: product.category ,
+            subcategory: product.subcategory ,
+        })
+    }
 
     var subcategories = []
     let history = useHistory()
@@ -96,8 +96,12 @@ const ProductForm = ({addProduct, modifyProduct, findAProduct, match, product}) 
     const editProduct = (id, stock) => {
         modifyProduct(id, stock)
         .then((res)=> {
-        console.log(res)
-        history.push("/products")
+            if(!res.success) throw new Error("Product wasn't updated")
+            getProducts()
+            .then((res) => {
+                if(!res.success) throw new Error("Products weren't updated")
+                history.push("/products")
+            })
         })
         .catch(error =>console.log(error))
     }
@@ -110,7 +114,6 @@ const ProductForm = ({addProduct, modifyProduct, findAProduct, match, product}) 
 
     return (
             <main style={{backgroundImage: "/assets/home1.jpg"}}>
-                {   console.log(newProduct)}
                 <div className={styles.formContainer}>
                     {productId ? <h4>Edit Product</h4> : <h4>New Product</h4>}
                     <form className={styles.productForm}>
@@ -164,7 +167,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
     addProduct: productsActions.addProduct,
     findAProduct: productsActions.findAProduct,
-    modifyProduct: productsActions.modifyProduct
+    modifyProduct: productsActions.modifyProduct,
+    getProducts: productsActions.getProducts
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductForm)
