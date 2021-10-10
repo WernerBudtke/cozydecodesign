@@ -7,7 +7,7 @@ import styles from "../styles/MenuResponsive.module.css";
 import { useState} from "react"
 
 
-const NavResponsive=({loginUser, logOut})=>{
+const HeaderResponsive=({loginUser, logOut})=>{
     const [userMenu, setUserMenu] = useState(false)
 
     const menuHandler = (e) => {
@@ -87,6 +87,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   logOut: userActions.logOut,
 }
-export default connect(mapStateToProps, mapDispatchToProps)(NavResponsive)
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderResponsive)
 
 

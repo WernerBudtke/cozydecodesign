@@ -1,3 +1,5 @@
+import axios from "axios"
+
 const cartActions = {
   addCartProduct: (obj) => {
     return (dispatch) => {
@@ -10,7 +12,6 @@ const cartActions = {
     }
   },
   updateCartProduct: (obj) => {
-    console.log(obj)
     return (dispatch) => {
       dispatch({ type: "UPDATE_CART_PRODUCT", payload: obj })
       return { success: true }
@@ -21,11 +22,63 @@ const cartActions = {
       dispatch({ type: "DELETE_CART", payload: obj })
     }
   },
-  addCartLS:(obj)=>{
-    return async (dispatch)=>{
-    dispatch({ type: "ADD_CART_LS", payload:obj})
+  addCartLS: (obj) => {
+    return async (dispatch) => {
+      dispatch({ type: "ADD_CART_LS", payload: obj })
     }
-  }
+  },
+  addNewOrder: (obj) => {
+    return async (dispatch) => {
+      try {
+        let response = await axios.post(
+          "http://localhost:4000/api/order/new",
+          {
+            ...obj,
+          },
+          { withCredentials: true }
+        )
+        if (!response.data.success) throw new Error(response.data.response)
+        return { success: true }
+      } catch (error) {
+        return { success: false, res: error }
+      }
+    }
+  },
+  addCard: (obj) => {
+    return async (dispatch) => {
+      try {
+        let response = await axios.post(
+          "http://localhost:4000/api/cards",
+          {
+            ...obj,
+          },
+          { withCredentials: true }
+        )
+        if (!response.data.success) throw new Error(response.data.response)
+        return { success: true, res: response.data.response }
+      } catch (error) {
+        return { success: false, res: error }
+      }
+    }
+  },
+  getCard: (obj) => {
+    console.log("entre a get card en actions")
+    console.log(obj.code)
+    return async (dispatch) => {
+      try {
+        let response = await axios.get(
+          `http://localhost:4000/api/card/${obj.code}`,
+
+          { withCredentials: true }
+        )
+        console.log(response)
+        if (!response.data.success) throw new Error(response.data.response)
+        return { success: true, res: response.data.response }
+      } catch (error) {
+        return { success: false, res: error }
+      }
+    }
+  },
 }
 
 export default cartActions
