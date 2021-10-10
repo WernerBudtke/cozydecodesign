@@ -101,7 +101,7 @@ div.suggestionContainer h3 {
 }
 
 div.suggestion {
-  width: 98.5vw;
+  width: 98vw;
   min-height: 65vh;
   background-color: #d4c5bf;
   display: flex;
