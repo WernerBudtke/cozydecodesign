@@ -40,13 +40,16 @@ const orderControllers = {
         paymentMethod,
         totalPrice: parseFloat(totalPrice),
       })
-      let savedOrder = await newOrder.save()
-      products.forEach(async (product) => {
-        await Product.findOneAndUpdate(
+      await newOrder.save()
+      let productsBought = []
+      productsBought = await Promise.all(products.map(async (product) => {
+        let foundProduct = await Product.findOneAndUpdate(
           { _id: product.productId },
-          { $inc: { stock: -product.quantity, sold: product.quantity } }
+          { $inc: { stock: -product.quantity, sold: product.quantity } },
+          {new: true}
         )
-      })
+        return foundProduct
+      }))
       let message = `
                     <table style="max-width: 700px; padding: 10px; margin:0 auto; border-collapse: collapse;">
                         <div style="width: 100%;margin:20px 0; text-align: center;">
@@ -60,27 +63,26 @@ const orderControllers = {
                                     <p style="margin: 2px; font-size: 15px; color: #000">
                                             We sent you this e-mail to let you know your purchase was successfully done<br>
                                     </p>
-                                    <h2 style="color: #19b1bc;">Details of your Purchase(products):</h2>
-                                    <ul style="font-size: 15px;  margin: 10px 0">
-                                        ${savedOrder.products.map(product => product)}
-                                        <li style="color: #000;"></li>
-                                        <li style="color: #000;">Products: ${user.lastName}</li>
-                                        <li style="color: #000;">Email: ${user.eMail}</li>
-                                        <a href="https://cozydecodesign.herokuapp.com/user/resetpassword/${user._id}" style="font-size:25px;color: #000;text-align:center;display:block;">CHANGE YOUR PASSWORD!</a>
-                                    </ul>
-                                    <h2 style="color: #19b1bc;">IMPORTANT INFORMATION - PROTECT YOUR ACCOUNT:</h2>
+                                    <h2 style="color: #19b1bc;">Details of your purchase:</h2>
+                                        ${productsBought.map(product => {
+                                        return (
+                                          `<ul style="font-size: 15px;  margin: 10px 0">
+                                            <li style="color: #000;">Name: ${product.name}</li>
+                                            <li style="color: #000;">Price: ${product.discount > 0 ? (product.price * (1 - product.discount / 100)).toFixed(2) : product.price.toFixed(2)}</li>
+                                            <li style="color: #000;">Quantity: ${products.filter(element => element.productId == product._id)[0].quantity}</li>
+                                          </ul>`
+                                        )
+                                      })}
+                                    <h2 style="color: #19b1bc;">Information about your purchase:</h2>
                                     <p style="margin: 2px; font-size: 15px; color: #000">
-                                        Our website encrypt your password to protect your information, but even if we do that, is your responsability to protect your account using a secure password, here are some tips to do so:
+                                        Bought with ${paymentMethod.type}
                                     </p>
                                     <ul style="font-size: 15px;  margin: 10px 0; color: #000">
-                                        <li>Use non easy to guess combinations (for example don't use birthdays)</li>
-                                        <li>Use symbols, numbers and / or uppercase letters.</li>
-                                        <li>Don't tell anyone your password.</li>
-                                        <li>NO ONE will ask from this company your password to assist you.</li>
+                                        <li>Total price: ${totalPrice.toFixed(2)}</li>
                                     </ul>
                                     <h2 style="margin: 0 0 7px; color: #19b1bc">Also:</h2>
                                     <p style="margin: 2px; font-size: 15px; color: #000;">
-                                        If you didn't request a password change, dismiss this email.
+                                        Have a good day and continue shopping anytime soon!
                                     </p>
                                     <div style="width: 100%;margin:20px 0; display: inline-block;text-align: center; background-color: #19b1bc;">
                                     <a style="text-decoration: none; color: white;" href=""><p style="color: #fff; font-size: 14px; text-align: center;">© Copyright 2021 | Cozy Deco.</p></a>	
