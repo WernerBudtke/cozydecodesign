@@ -22,6 +22,7 @@ const Cart = ({ onClickHandler, products, loginUser }) => {
   const redirectHandler = () => {
     loginUser ? redirectPayment() : setView(true)
   }
+  
   const onclickAndSetView = () => {
     setView(false)
     onClickHandler()
@@ -56,7 +57,7 @@ const Cart = ({ onClickHandler, products, loginUser }) => {
             <div className={styles.divButton}>
               <button onClick={redirectHandler}>FINALIZE PURCHASE</button>
               <Link to="/products">
-                <button onClick={redirectHandler}>KEEP SHOPPING</button>
+                <button onClick={onClickHandler}>KEEP SHOPPING</button>
               </Link>
             </div>
           </>

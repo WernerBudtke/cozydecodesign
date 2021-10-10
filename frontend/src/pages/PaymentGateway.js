@@ -284,7 +284,7 @@ const PaymentGateway = ({
                   type="radio"
                   id="paypal"
                   name="payMethod"
-                  defaultValue="paypal"
+                  defaultValue="PayPal"
                   onChange={fillOrderInfo}
                   onClick={() => setEnablePayment(false)}
                   disabled={enableInput}
@@ -294,7 +294,7 @@ const PaymentGateway = ({
                   type="radio"
                   id="mercadopago"
                   name="payMethod"
-                  defaultValue="mercadoPago"
+                  defaultValue="MercadoPago"
                   onChange={fillOrderInfo}
                   onClick={() => setEnablePayment(false)}
                   disabled={enableInput}
@@ -304,7 +304,7 @@ const PaymentGateway = ({
                   type="radio"
                   id="giftcard"
                   name="payMethod"
-                  defaultValue="giftCard"
+                  defaultValue="GiftCard"
                   onChange={fillOrderInfo}
                   onClick={() => setEnablePayment(false)}
                   disabled={enableInput}
@@ -318,7 +318,7 @@ const PaymentGateway = ({
           Checkout Order
         </button>
         <p>{renderError}</p>
-        {chosenMethod.enable && chosenMethod.type.includes("giftCard") && (
+        {chosenMethod.enable && chosenMethod.type.includes("GiftCard") && (
           <div>
             <label>Enter your Giftcard Code</label>
             <input
@@ -331,7 +331,7 @@ const PaymentGateway = ({
             <button onClick={getCardHandler}>Check balance</button>
             {typeof balance === "string" && <p>{balance}</p>}
             {typeof balance === "number" && (
-              <p>The abailable amount in your Giftcard is ${balance}</p>
+              <p>The available amount in your Giftcard is ${balance}</p>
             )}
             {checkBalance < 0 && (
               <div className={styles.switchField}>
@@ -344,7 +344,7 @@ const PaymentGateway = ({
                   type="radio"
                   id="paypal"
                   name="payMethod"
-                  defaultValue="paypal"
+                  defaultValue="PayPal"
                   onChange={(e) => fillOrderInfo(e, "add")}
                   onClick={() => setEnablePayment(false)}
                   disabled={sharedPayment}
@@ -354,7 +354,7 @@ const PaymentGateway = ({
                   type="radio"
                   id="mercadopago"
                   name="payMethod"
-                  defaultValue="mercadoPago"
+                  defaultValue="MercadoPago"
                   onChange={(e) => fillOrderInfo(e, "add")}
                   onClick={() => setEnablePayment(false)}
                   disabled={sharedPayment}
@@ -374,7 +374,7 @@ const PaymentGateway = ({
           </div>
         )}
 
-        {chosenMethod.enable && chosenMethod.type.includes("paypal") && (
+        {chosenMethod.enable && chosenMethod.type.includes("PayPal") && (
           <Paypal
             description={`Cozy  ${date.toLocaleDateString()}`}
             total={!sharedPayment ? order.totalPrice : sharedPaymentPrice}
@@ -383,7 +383,7 @@ const PaymentGateway = ({
             addNewOrderHandler={addNewOrderHandler}
           />
         )}
-        {chosenMethod.enable && chosenMethod.type.includes("mercadoPago") && (
+        {chosenMethod.enable && chosenMethod.type.includes("MercadoPago") && (
           <MercadoPagoForm
             addNewOrderHandler={addNewOrderHandler}
             total={
