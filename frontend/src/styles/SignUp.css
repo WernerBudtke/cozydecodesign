@@ -34,7 +34,7 @@ main.signin-main {
   border: 0;
   color: #7e6661;
   padding: 1vh;
-  font-size: 2.5vmin;
+  font-size: 2.8vmin;
   font-weight: 300;
   width: 80%;
   margin: 2vh auto;
@@ -58,7 +58,7 @@ main.signin-main {
 }
 
 .box p {
-  font-size: 2vmin;
+  font-size: 2.3vmin;
   text-align: center;
 }
 
@@ -69,7 +69,7 @@ main.signin-main {
 }
 
 .box div div input {
-  font-size: 1.5vmin;
+  font-size: 2.9vmin;
   padding: 1vh 1vw 1vh 0.5vw;
   display: block;
   width: 90%;
@@ -83,7 +83,7 @@ main.signin-main {
 
 .group label {
   color: #999;
-  font-size: 2vmin;
+  font-size: 2.4vmin;
   position: absolute;
   left: 5px;
   top: 5px;
@@ -177,7 +177,7 @@ main.signin-main {
 
 .footer-box > a {
   color: #ffffff;
-  font-size: 2vmin;
+  font-size: 2.3vmin;
   font-weight: 500;
 }
 
@@ -209,4 +209,32 @@ p.inputError {
 div.errorContainer {
   height: 5vh;
   color: red;
+}
+
+@media only screen and (max-width: 425px) {
+  .box {
+    margin: auto;
+    min-height: 50vh;
+    width: 60%;
+  }
+  
+  .box h1 {
+    font-size: 3.5vmin;
+  }
+  
+  .box button {
+    font-size: 3vmin;
+  }
+  .box div div input {
+    font-size: 3.2vmin;
+  }
+  .group label {
+    font-size: 2.7vmin;
+  }
+  .footer-box > a {
+    font-size: 2.6vmin;
+  }
+  .box p {
+    font-size: 2.8vmin;
+  }
 }
