@@ -1,19 +1,18 @@
 import { useEffect, useRef } from "react"
 
-const Paypal = (props) => {
-  console.log(props)
+const Paypal = ({description, total, order , addNewOrderHandler }) => {
   const paypal = useRef()
   useEffect(() => {
-    window.paypal
-      .Buttons({
+    if (window.myButton) window.myButton.close()
+    window.myButton = window.paypal.Buttons({
         createOrder: (data, actions, err) => {
           return actions.order.create({
             intent: "CAPTURE",
             purchase_units: [
               {
-                description: props.description,
+                description: description,
                 amount: {
-                  value: props.total,
+                  value: total,
                   currency_code: "USD",
                 },
               },
@@ -22,16 +21,13 @@ const Paypal = (props) => {
         },
         onApprove: async (data, actions) => {
           await actions.order.capture()
-          console.log("entro al on aprove")
-
-          //   props.history.push("/")
+          addNewOrderHandler()
         },
         onError: (err) => {
           alert("Hubo un error!")
-          console.log(err)
         },
       })
-      .render(paypal.current)
+      window.myButton.render(paypal.current)
   })
 
   return <div ref={paypal}></div>
