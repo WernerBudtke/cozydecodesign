@@ -66,7 +66,6 @@ const PaymentGateway = ({ loginUser, products, manageUser, getProducts, editCard
   }
 
   const validate = () => {
-    setEnablePayment(true) ///////////////
     if (Object.values(info).some((value) => value === "")){
       setRenderError(
         "necesitas completar todos los campos para continuar con el pago"
@@ -77,7 +76,7 @@ const PaymentGateway = ({ loginUser, products, manageUser, getProducts, editCard
           setChosenMethod({ ...chosenMethod, enable: true })
           setEnableInput(true)
           setHideRadio(false)
-          setEnablePayment(true) ///////////////////////
+          setEnablePayment(true)
           setRenderError('')
         } else {
           setRenderError('Los datos son incorrectos!')
@@ -378,7 +377,6 @@ const PaymentGateway = ({ loginUser, products, manageUser, getProducts, editCard
               <p>el valor de tu compra ${order.totalPrice} te queda un saldo de {checkBalance}</p>
               <button onClick={addNewOrderHandler}>pagar</button>
             </div>}
-            {checkBalance > 0 && <p></p>}
           </div>
         )}
 
@@ -388,6 +386,7 @@ const PaymentGateway = ({ loginUser, products, manageUser, getProducts, editCard
             total={!sharedPayment ? order.totalPrice : sharedPaymentPrice}
             order={order}
             info={info}
+            addNewOrderHandler={addNewOrderHandler}
           />
         )}
         {chosenMethod.enable && chosenMethod.type.includes("mercadoPago") && (
