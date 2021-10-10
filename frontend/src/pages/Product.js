@@ -154,7 +154,7 @@ const Product = ({
         </div>
       </div>
       <div className={styles.suggestionContainer}>
-        <h3>Our Suggetstions</h3>
+        <h3>Related Products</h3>
       <div className={styles.suggestion}>
           {productsCategory.map((productCateg) => {
             if(productCateg._id !== match.params.id){
