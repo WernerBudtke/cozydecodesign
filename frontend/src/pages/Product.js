@@ -6,51 +6,42 @@ import Cart from "../components/Cart"
 import CartCard from "../components/CartCard"
 import cartActions from "../redux/actions/cartActions"
 import productsActions from "../redux/actions/productsActions"
+import ProductCard from "../components/ProductCard"
 
 const Product = ({
-  getAProduct,
   product,
   match,
   products,
+  getProducts,
   findAProduct,
   addCartProduct,
+  productsCategory,
+  getProductByCategory,
 }) => {
   const [quantity, setQuantity] = useState(1)
   const [loading, setLoading] = useState(true)
   const [productAlert, setProductAlert] = useState(null)
   const [showCartCard, setShowCartCard] = useState(false) 
+  const [refresh, setRefresh] = useState(false)
 
   useEffect(() => {
     if (!products.length) {
-      getAProduct(match.params.id).then((res) => {
-        if (!res.success) {
-          console.log(res)
-        } else {
+      getProducts()
+      .then((res) => {
+        if (res.success){
+          findAProduct(match.params.id)
+          getProductByCategory(product.category)
           setLoading(false)
         }
       })
     } else {
+      getProductByCategory(product.category)
       findAProduct(match.params.id)
       setLoading(false)
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [refresh])
 
-  console.log(products)
-
-  products.map((prod) => {
-    // let prodcateg = prod.category
-    let coincidencia = products.category === prod.category
-    return (
-      // (prodcateg.map((categ) => {
-      //   return (
-         console.log(coincidencia)
-        // )
-      // })
-      )
-    // )
-  })
 
   const editShowCartCard = (newState) => {
     console.log("se ejecuta editshow")
@@ -70,6 +61,13 @@ const Product = ({
   if (loading) {
     return <h1>LOADING...</h1>
   }
+
+  if(productAlert){
+    setTimeout(() => {
+      setProductAlert(null)
+    },2500)
+  }
+
   const finalPrice =
     product.discount === 0
       ? product.price
@@ -131,7 +129,7 @@ const Product = ({
             <i className="fas fa-truck fa-lg"></i>
             <p>Free shipping on purchases from 200 dollars or more.</p>
           </div>
-          <p>calculo de envio - CP</p>
+          <p className={styles.calculateSend}>Calculo de envio - CP</p>
           <ReactCircleModal
             style={{
               padding: "0",
@@ -154,7 +152,20 @@ const Product = ({
           </ReactCircleModal>
         </div>
       </div>
+      <div className={styles.suggestionContainer}>
+        <h3>Related Products</h3>
       <div className={styles.suggestion}>
+          {productsCategory.map((productCateg) => {
+            if(productCateg._id !== match.params.id){
+              return (
+                <div onClick={() => setRefresh(!refresh)} className={styles.productCardContainer}>
+                  <ProductCard product={productCateg} newClass={"newClass"}/> 
+                </div>
+              )
+            }
+          }
+        )}
+      </div>
       </div>
     </div>
   )
@@ -162,13 +173,15 @@ const Product = ({
 const mapStateTopProps = (state) => {
   return {
     product: state.products.product,
-    products: state.products.products,
+    products: state.products.products,    
+    productsCategory: state.products.productsCategory
   }
 }
 
 const mapDispatchToProps = {
-  getAProduct: productsActions.getAProduct,
   findAProduct: productsActions.findAProduct,
   addCartProduct: cartActions.addCartProduct,
-}
+  getProductByCategory: productsActions.getProductByCategory,
+  getProducts: productsActions.getProducts
+} 
 export default connect(mapStateTopProps, mapDispatchToProps)(Product)

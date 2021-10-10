@@ -3,7 +3,6 @@ import Card from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 import useMercadoPago from "./useMercadoPago";
 import styles from "../../styles/MercadoPagoForm.module.css"
-import { useHistory } from "react-router-dom"
 
 const INITIAL_STATE = {
     cvc: "",
@@ -18,7 +17,6 @@ const INITIAL_STATE = {
 export default function MercadoPagoForm({total, addNewOrderHandler}) {
     const [state, setState] = useState(INITIAL_STATE);
     const resultPayment = useMercadoPago(total);
-    let history = useHistory()
     const evaluatePayment = (obj) =>{
         if(obj.status === "approved"){
             addNewOrderHandler()

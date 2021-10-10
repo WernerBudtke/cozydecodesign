@@ -16,6 +16,8 @@ const Home = () => {
     }
   }
   useEffect(() => {
+    window.scroll(0, 0)
+    document.title = "COZY | Home"
     function handleResize() {
       setWindowDimensions(getWindowDimensions())
     }
@@ -43,11 +45,6 @@ const Home = () => {
     { src: "./assets/8.png"},
     { src: "./assets/9.png"},
   ]
-
-  useEffect(() => {
-    window.scroll(0, 0)
-    document.title = "COZY | Home"
-  }, [])
 
   const items = categories.map((obj, index) => (
     <div key={index} style={{ backgroundImage: `url('${obj.src}')` }}>
@@ -93,7 +90,7 @@ const Home = () => {
                 </div>
             </Parallax>
             <Parallax bgImage={'/assets/home4.jpg'}
-            strength={width > 700 ? -width/5.5 : width/11}
+            strength={width > 700 ? -width/5.5 : width/15}
             renderLayer={(percentage) => (
                 <div
                   className={styles.finalInfo}
@@ -109,4 +106,3 @@ const Home = () => {
   )
 }
 export default Home
-
