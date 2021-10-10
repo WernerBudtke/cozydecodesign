@@ -99,7 +99,7 @@ const orderControllers = {
       }
       transport.sendMail(mailOptions, (err, data) => {
         if(err){
-          res.json({ success: false, response: err})
+          res.json({ success: false, response: err })
         }else{
           res.json({ success: true, response: data })
         }
