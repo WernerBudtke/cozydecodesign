@@ -37,8 +37,6 @@ const Product = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  console.log(products)
-
   products.map((prod) => {
     // let prodcateg = prod.category
     let coincidencia = products.category === prod.category
