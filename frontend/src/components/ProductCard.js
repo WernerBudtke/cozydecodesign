@@ -10,6 +10,7 @@ const ProductCard = ({
   setProductAlert,
   addCartProduct,
   user,
+  newClass,
 }) => {
   const [admin, setAdmin] = useState(null)
   useEffect(() => {
@@ -80,7 +81,9 @@ const ProductCard = ({
       </div>
       {product.discount !== 0 && (
         <div className={styles.inside}>
-          <div className={styles.icon}>{product.discount}% OFF</div>
+          <div className={newClass ? styles.newClass : styles.icon}>
+          {newClass ? `- ${product.discount}%`  : `${product.discount}% OFF` }
+        </div>
         </div>
       )}
     </div>

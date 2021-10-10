@@ -3,14 +3,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-.productSection i{
-  cursor: pointer;
+  align-items: center;
 }
 .mainContainer {
   display: flex;
   align-self: center;
-  width: 60vw;
+  width: 80vw;
   min-height: 65vh;
   margin: 5vh 0;
   border-radius: 20px;
@@ -43,11 +41,10 @@
   color: rgb(75, 69, 69);
 }
 .productInfo > p:nth-child(2) {
-  font-size: 2.5vmin;
+  font-size: 4vmin;
 }
 .productInfo > p:nth-child(3) {
   font-size: 3vmin;
-  font-weight: bold;
 }
 .productInfo > div:nth-child(3) {
   justify-content: center;
@@ -90,19 +87,55 @@
   padding-left: 1vw;
 }
 
-.suggestion {
+div.suggestionContainer {
+  background-color: #d4c5bf;
+  padding-left: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+div.suggestionContainer h3 {
+  color: rgba(0, 0, 0, 0.781);
+  letter-spacing: 0.1vw;
+  margin-bottom: 2vh;
+  margin-left: 0.5rem;
+}
+
+div.suggestion {
   width: 100%;
-  height: 30vh;
-  background-color: coral;
+  min-height: 65vh;
+  background-color: #d4c5bf;
+  display: flex;
+  overflow-y: auto;
+}
+
+div.suggestion::-webkit-scrollbar {
+  height: 0.5rem!important;
+
+}
+
+div.suggestion::-webkit-scrollbar-thumb{
+  background-color: #ad9993;
+  border-radius: 10px;
+}
+
+div.productCardContainer {
+  padding: 0.5rem;
+  height: 50vh
+}
+
+div.productCardContainer > div{
+  width: 20rem;
 }
 
 .counter {
   display: flex;
   width: 50%;
+  text-align: center;
 }
 
 .counter p {
   width: 30%;
+  align-items: center;
 }
 
 .sc-bdfBQB,
@@ -113,13 +146,16 @@
   color: rgb(114, 107, 107);
   margin: 1vh 0;
 }
+.calculateSend{
+  font-size: 3vmin;
+}
 .sale {
   text-decoration: line-through;
   color: #dd3e2c !important;
-  font-size: 3vmin !important;
+  font-size: 5vmin !important;
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 425px) {
   .mainContainer {
     flex-direction: column;
     width: 90%;
@@ -133,8 +169,10 @@
     font-size: 3.8vmin;
     margin: 1vh 0;
   }
+  .productImage {
+    width: 100%;
+  }
   .productInfo > div:nth-child(3) {
-    justify-content:space-evenly;
     font-size: 7vmin;
     margin-bottom: 2vh 0;
   }
@@ -157,58 +195,277 @@
     margin: 2vh 0;
   }
 }
-@media only screen and (max-width: 425px) {
+@media only screen and (min-width: 425px) {
   .mainContainer {
+    align-items: center;
     flex-direction: column;
-    width: 70%;
+    width: 100%;
     min-height: 80vh;
   }
-  /* .productInfo {
+  .productInfo {
     text-align:justify;
-    padding: 1.5vh 2.5vw;
-  } */
-  /* .productInfo > p:nth-child(2) {
-    font-size: 3.8vmin;
-    margin: 1vh 0;
-  } */
-  /* .productInfo > div:nth-child(3) {
+    padding: 2vh 1.5vw;
+  }
+  .productImage {
+    width: 100%;
+  }
+  .productInfo > p:nth-child(2) {
+    width: 100%;
+    font-size: 4.6vmin;
+    margin: 2vh 0;
+  }
+  .productInfo > div:nth-child(3) {
     justify-content:space-evenly;
-    font-size: 7vmin;
+    font-size: 8.5vmin;
     margin-bottom: 2vh 0;
-  } */
-  /* .productInfo h2 {
-    font-size: 5vmin;
-  } */
-  /* .productInfo button {
-    padding: 2vh;
-    font-size: 4vmin;
+  }
+  .productInfo h2 {
+    font-size: 5.3vmin;
+  }
+  .productInfo button {
+    padding: 1.5vh;
+    font-size: 3.5vmin;
     width: 40%;
-    margin: 1vh 0;
-  } */
-  /* .shippingInfo p {
-    padding-left: .2vw;
-    font-size: 4.2vmin;
     margin: 2vh 0;
-  } */
-  /* .sale {
-    font-size: 5vmin !important;
+  }
+  .shippingInfo p {
+    padding-left: .1vw;
+    font-size: 3.5vmin;
     margin: 2vh 0;
-  } */
+  }
+  .sale {
+    font-size: 3.2vmin !important;
+    margin: 2vh 0;
+  }
 }
 
-@media only screen and (min-width: 576px) {
+@media only screen and (max-width: 767px) {
+  .mainContainer {
+    flex-direction: column;
+    width: 100%;
+    min-height: 90vh;
+  }
+  .productImage {
+    min-width: 100%;
+    height: 25rem;
+  }
+  .productInfo {
+    text-align:justify;
+    padding: 3vh 2.7vw;
+    min-width: 100%;
+  }
+  .productInfo > p:nth-child(2) {
+    font-size: 3.2vmin;
+    margin: 2vh 0;
+  }
+  .productInfo > div:nth-child(3) {
+    justify-content:space-evenly;
+    font-size: 6.5vmin;
+    margin-bottom: 2vh 0;
+  }
+  .productInfo h2 {
+    font-size: 5.7vmin;
+  }
+  .productInfo button {
+    padding: 1.5vh;
+    font-size: 3vmin;
+    width: 40%;
+    margin: 2vh 0;
+  }
+  .shippingInfo p {
+    padding-left: .1vw;
+    font-size: 3vmin;
+    margin: 2vh 0;
+  }
+  .sale {
+    font-size: 3vmin !important;
+    margin: 2vh 0;
+  }
 }
 
 @media only screen and (min-width: 768px) {
+  .mainContainer {
+    width: 80%;
+    min-height: 50vh;
+    flex-direction: row;
+  }
+  .productImage {
+    width: 50%;
+    height: 30rem;
+  }
+  .productInfo {
+    text-align:justify;
+    padding: 1vh 2.5vw;
+  }
+  .productInfo > p:nth-child(2) {
+    font-size: 2vmin;
+    margin: 2vh 0;
+  }
+  .productInfo > div:nth-child(3) {
+    justify-content:space-evenly;
+    font-size: 5.5vmin;
+    margin-bottom: 2vh 0;
+  }
+  .productInfo h2 {
+    font-size: 5vmin;
+  }
+  .productInfo button {
+    padding: 1.5vh;
+    font-size: 2.5vmin;
+    width: 40%;
+    margin: 2vh 0;
+  }
+  .shippingInfo p {
+    padding-left: .1vw;
+    font-size: 2.5vmin;
+    margin: 2vh 0;
+  }
+  .sale {
+    font-size: 5.2vmin !important;
+    margin: 2vh 0;
+  }
+  .interestCard{
+    font-size: 2.7vmin;
+  }
+  .counter p{
+    font-size: 2vmin;
+  }
+  .calculateSend{
+    font-size: 2.5vmin;
+  }
 }
 
-@media only screen and (min-width: 991px) {
+@media only screen and (max-width: 991px) { 
+  .mainContainer {
+    width: 80%;
+    min-height: 60vh;
+  }
+  .productImage {
+    min-width: 50%;
+    height: 25rem; 
+  } 
+  .productInfo {
+    text-align:justify;
+    padding: 1vh 2.5vw;
+    width: 50%;
+  }
+  .productInfo > p:nth-child(2) {
+    font-size: 3vmin;
+    margin: 2vh 0;
+  }
+  .productInfo > div:nth-child(3) {
+    justify-content:space-evenly;
+    font-size: 5.5vmin;
+    margin-bottom: 2vh 0;
+  }
+  .productInfo h2 {
+    font-size: 5vmin;
+  }
+  .productInfo button {
+    padding: 1.5vh;
+    font-size: 2.5vmin;
+    width: 40%;
+    margin: 2vh 0;
+  }
+  .shippingInfo p {
+    padding-left: .1vw;
+    font-size: 3.5vmin;
+    margin: 2vh 0;
+  }
+  .sale {
+    font-size: 5.2vmin !important;
+    margin: 2vh 0;
+  }
 }
-@media only screen and (min-width: 1024px) {
+ @media only screen and (max-width: 1024px) {
+  .mainContainer {
+    width: 80%;
+    min-height: 60vh;
+  } 
+  .productImage {
+    min-width: 50%;
+    height: 25rem;
+  }
+  .productInfo {
+    text-align:justify;
+    padding: 1vh 2.5vw;
+    width: 50%;
+  }
+  .productInfo > p:nth-child(2) {
+    font-size: 3vmin;
+    margin: 2vh 0;
+  }
+  .productInfo > div:nth-child(3) {
+    justify-content:space-evenly;
+    font-size: 5.5vmin;
+    margin-bottom: 2vh 0;
+  }
+  .productInfo h2 {
+    font-size: 5vmin;
+  }
+  .productInfo button {
+    padding: 1.5vh;
+    font-size: 2.5vmin;
+    width: 40%;
+    margin: 2vh 0;
+  }
+  .shippingInfo p {
+    padding-left: .1vw;
+    font-size: 3.5vmin;
+    margin: 2vh 0;
+  }
+  .sale {
+    font-size: 5.2vmin !important;
+    margin: 2vh 0;
+  }
 }
 
-@media only screen and (min-width: 1440px) {
-}
 
-@media only screen and (min-width: 2560px) {
+@media only screen and (max-width: 2560px) {
+  .mainContainer {
+    width: 70%;
+    min-height: 60vh;
+  } 
+  .productImage {
+    min-width: 50%;
+    height: 70vh;
+  }
+  .productInfo {
+    text-align:justify;
+    padding: 1vh 2.5vw;
+    width: 50%;
+  }
+  .productInfo > p:nth-child(2) {
+    font-size: 3vmin;
+    margin: 2vh 0;
+  }
+  .productInfo > div:nth-child(3) {
+    justify-content:space-evenly;
+    font-size: 5vmin;
+    margin-bottom: 2vh 0;
+  }
+  .productInfo h2 {
+    font-size: 4.5vmin;
+  }
+  .productInfo button {
+    padding: 1.5vh;
+    font-size: 2.5vmin;
+    width: 40%;
+    margin: 2vh 0;
+  }
+  .shippingInfo p {
+    padding-left: .1vw;
+    font-size: 3vmin;
+    margin: 2vh 0;
+  }
+  .sale {
+    font-size: 3.2vmin !important;
+    margin: 2vh 0;
+  }
+  .interestCard{
+    font-size: 2.7vmin;
+  }
+  .counter p{
+    font-size: 2.5vmin;
+  }
 }

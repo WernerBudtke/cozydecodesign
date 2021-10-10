@@ -17,9 +17,9 @@ const cartActions = {
       return { success: true }
     }
   },
-  deleteAllCartProduct: (obj) => {
+  deleteAllCartProduct: () => {
     return (dispatch) => {
-      dispatch({ type: "DELETE_CART", payload: obj })
+      dispatch({type: "DELETE_CART"})
     }
   },
   addCartLS: (obj) => {
@@ -55,30 +55,40 @@ const cartActions = {
           { withCredentials: true }
         )
         if (!response.data.success) throw new Error(response.data.response)
-        return { success: true, res: response.data.response }
+        return { success: true}
       } catch (error) {
         return { success: false, res: error }
       }
     }
   },
-  getCard: (obj) => {
-    console.log("entre a get card en actions")
-    console.log(obj.code)
+  getCard: (code) => {
     return async (dispatch) => {
       try {
         let response = await axios.get(
-          `http://localhost:4000/api/card/${obj.code}`,
-
+          `http://localhost:4000/api/card/${code}`,
           { withCredentials: true }
         )
-        console.log(response)
-        if (!response.data.success) throw new Error(response.data.response)
+        if (!response.data.success) throw new Error()
         return { success: true, res: response.data.response }
       } catch (error) {
         return { success: false, res: error }
       }
     }
   },
+  editCard:(obj)=>{
+    return async(dispatch)=>{
+      try {
+        let response = await axios.put( `http://localhost:4000/api/card/${obj.code}`,
+          { ...obj },
+          { withCredentials: true }
+        )
+        if (!response.data.success) throw new Error()
+        return { success: true, res: response.data.response }
+      } catch (error) {
+        return { success: false, res: error }
+      }
+    }
+  }
 }
 
 export default cartActions

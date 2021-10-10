@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react"
-import { Parallax } from "react-parallax"
-import { Link } from "react-router-dom"
-import styles from "../styles/Home.module.css"
+import { useEffect, useState } from "react";
+import { Parallax } from "react-parallax";
+import { Link } from "react-router-dom";
+import styles from "../styles/Home.module.css";
+import Button1 from "../components/Button1"
 
 const Home = () => {
   const [windowDimensions, setWindowDimensions] = useState(
@@ -15,6 +16,8 @@ const Home = () => {
     }
   }
   useEffect(() => {
+    window.scroll(0, 0)
+    document.title = "COZY | Home"
     function handleResize() {
       setWindowDimensions(getWindowDimensions())
     }
@@ -43,15 +46,10 @@ const Home = () => {
     { src: "./assets/9.png"},
   ]
 
-  useEffect(() => {
-    window.scroll(0, 0)
-    document.title = "COZY | Home"
-  }, [])
-
   const items = categories.map((obj, index) => (
     <div key={index} style={{ backgroundImage: `url('${obj.src}')` }}>
       <Link to={`/products/${obj.category}`}>
-        <button>{obj.category}</button>
+        <button className={styles.textButton}>{obj.category}</button>
       </Link>
     </div>
   ))
@@ -66,9 +64,10 @@ const Home = () => {
     <div className={styles.home}>
             <Parallax bgImage={'/assets/home1.jpg'} strength={height}>
               <Link to='/products' className={styles.homeStore}>
-                <div>
+                {/* <div>
                   <p>Check out our latest trends</p>
-                </div>
+                </div> */}
+                <Button1>Check out our latest trends</Button1>
               </Link>
             </Parallax>
             <Parallax strength={-200} className={styles.categories}>
@@ -85,13 +84,13 @@ const Home = () => {
                 <p>In Cozy we offer a wide variety of well-designed, functional home products. Whether your home decor leans towards minimalist or maximalist aesthetic, you'll find something to suit your style.</p>
               </div>
             </Parallax>
-            <Parallax strength={height/10} className={styles.fondoInfo}>
+            <Parallax strength={height/10} className={styles.infoContainer}>
                 <div className={styles.fondoInfo}>
                     {infoItems}
                 </div>
             </Parallax>
             <Parallax bgImage={'/assets/home4.jpg'}
-            strength={width > 700 ? -width/4 : -width/11}
+            strength={width > 700 ? -width/5.5 : width/11}
             renderLayer={(percentage) => (
                 <div
                   className={styles.finalInfo}
@@ -107,94 +106,3 @@ const Home = () => {
   )
 }
 export default Home
-
-
-  {/* return (          <div className={styles.home}>
-     <Parallax
-        bgImage={"/assets/home1.jpg"}
-        strength={height}
-      >
-        <Link to="/products" className={styles.homeStore}>
-          <div>
-            <p>Check out our latest trends</p>
-          </div>
-        </Link>
-      </Parallax>
-      <Parallax strength={height / 20} className={styles.categories}>
-        <h1>CATEGORIES</h1>
-        <div className={styles.galleryWrap}>{items}</div>
-      </Parallax>
-      <Parallax
-        bgImage={"/assets/home5.jpg"}
-        strength={width > 700 ? -width / 8 : height}
-      >
-        <div className={styles.info}>
-          <h2>There's no place like home. </h2>
-          <p>
-            There's no place like home. In Cozy we offer a wide variety of
-            well-designed, functional home products. Whether your home decor
-            leans towards minimalist or maximalist aesthetic, you'll find
-            something to suit your style.
-          </p>
-        </div>
-      </Parallax>
-      <Parallax
-        strength={height / 20}
-        className={styles.fondoInfo}
-        renderLayer={(percentage) => (
-          <div  className={styles.row}>
-            <div
-            className={styles.finalInfo}
-            style={{
-              backgroundImage: 'url("/assets/6.png")',
-              width: width/8,
-              height: width/8,
-            }}
-          ></div>
-          <div
-          className={styles.finalInfo}
-          style={{
-            backgroundImage: 'url("/assets/7.png")',
-            width: width/8,
-            height: width/8,
-          }}
-          ></div>
-          <div
-          className={styles.finalInfo}
-          style={{
-            backgroundImage: 'url("/assets/8.png")',
-            width: width/8,
-            height: width/8,
-          }}
-          ></div>
-          <div
-          className={styles.finalInfo}
-          style={{
-            backgroundImage: 'url("/assets/9.png")',
-            width: width/8,
-            height: width/8,
-          }}
-          ></div>
-          </div>
-          
-          
-        )}
-      ></Parallax>
-      <Parallax
-        bgImage={"/assets/home4a.jpg"}
-        strength={height}
-        renderLayer={(percentage) => (
-          <div
-            className={styles.finalInfo}
-            style={{
-              background: `rgba(212, 197, 191, ${percentage * 2})`,
-              width: percentage * 100,
-              height: percentage * 100,
-            }}
-          ></div>
-        )}
-      ></Parallax>
-    </div>
-  );
-};
-export default Home; */}
