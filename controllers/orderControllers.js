@@ -58,12 +58,12 @@ const orderControllers = {
                         <tr>
                             <td style="background-color: #F0F3F5">
                                 <div style="color: #34495e; margin: 4% 10% 2%; text-align: justify;font-family: sans-serif">
-                                    <h1 style="color: #19b1bc; margin: 0 0 7px">Hello!</h1>
+                                    <h1 style="color: #dabea8; margin: 0 0 7px">Hello!</h1>
                                     <h2 style="color: #000; margin: 0 0 7px">Dear ${user.firstName} ${user.lastName}:</h2>
                                     <p style="margin: 2px; font-size: 15px; color: #000">
                                             We sent you this e-mail to let you know your purchase was successfully done<br>
                                     </p>
-                                    <h2 style="color: #19b1bc;">Details of your purchase:</h2>
+                                    <h2 style="color: #dabea8;">Details of your purchase:</h2>
                                         ${productsBought.map(product => {
                                         return (
                                           `<ul style="font-size: 15px;  margin: 10px 0">
@@ -73,18 +73,18 @@ const orderControllers = {
                                           </ul>`
                                         )
                                       })}
-                                    <h2 style="color: #19b1bc;">Information about your purchase:</h2>
+                                    <h2 style="color: #dabea8;">Information about your purchase:</h2>
                                     <p style="margin: 2px; font-size: 15px; color: #000">
                                         Bought with ${paymentMethod.type}
                                     </p>
                                     <ul style="font-size: 15px;  margin: 10px 0; color: #000">
                                         <li>Total price: ${totalPrice.toFixed(2)}</li>
                                     </ul>
-                                    <h2 style="margin: 0 0 7px; color: #19b1bc">Also:</h2>
+                                    <h2 style="margin: 0 0 7px; color: #dabea8">Also:</h2>
                                     <p style="margin: 2px; font-size: 15px; color: #000;">
                                         Have a good day and continue shopping anytime soon!
                                     </p>
-                                    <div style="width: 100%;margin:20px 0; display: inline-block;text-align: center; background-color: #19b1bc;">
+                                    <div style="width: 100%;margin:20px 0; display: inline-block;text-align: center; background-color: #dabea8;">
                                     <a style="text-decoration: none; color: white;" href=""><p style="color: #fff; font-size: 14px; text-align: center;">© Copyright 2021 | Cozy Deco.</p></a>	
                                 </div>
                             </td>
@@ -99,7 +99,7 @@ const orderControllers = {
       }
       transport.sendMail(mailOptions, (err, data) => {
         if(err){
-          throw new Error('Order placed, mail not sent')
+          res.json({ success: false, response: err})
         }else{
           res.json({ success: true, response: data })
         }
