@@ -23,7 +23,7 @@
   overflow: hidden;
   border-radius: 20px 20px 20px 20px;
   transition: box-shadow 0.5s, transform 0.5s;
-  box-shadow: 0px 0px 3px .5px #cac5c5;
+  box-shadow: 0px 0px 3px 0.5px #cac5c5;
 }
 
 .wrapper:hover {
@@ -120,7 +120,7 @@
   position: absolute;
   top: 80px;
   color: white;
-  padding-left: 1.5vw; 
+  padding-left: 1.5vw;
 }
 
 .sale {
@@ -143,12 +143,12 @@ div.filterContainer {
   background-color: #ead8ca;
   border-radius: 20px;
   margin-top: 4vh;
-  padding: 1vh .5vw;
+  padding: 1vh 0.5vw;
   margin-left: 1vw;
 }
 div.inputContainer {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   justify-content: space-evenly;
   flex: 1;
   width: 100%;
@@ -158,7 +158,7 @@ div.inputContainer div div {
   display: flex;
   flex-direction: column;
 }
-div.filterContainer div div{
+div.filterContainer div div {
   display: flex;
   margin-top: 2vh;
   height: 5vh;
@@ -166,9 +166,9 @@ div.filterContainer div div{
 div.filterContainer div div a {
   width: 100%;
   font-size: 1.9vmin;
-} 
+}
 div.filterContainer div h1 {
-  font-family: 'Cormorant', serif;
+  font-family: "Cormorant", serif;
   font-size: 5.5vmin;
   flex: 1;
   text-align: center;
@@ -186,7 +186,7 @@ div.filterContainer div div div input {
   right: 35px;
   font-size: 1.8vmin;
   cursor: pointer;
-  margin-bottom: .5vh;
+  margin-bottom: 0.5vh;
 }
 div.filterContainer div div div input:hover {
   border-bottom: 1px solid black;
@@ -204,11 +204,11 @@ div.inputContainer div select {
   /* .nameAndPrice p {
     font-size: 3.7vmin;
   } */
-  
+
   .nameAndPrice h1 {
     font-size: 3.3vmin;
   }
-  
+
   .wrapper .inside .icon {
     padding-left: 4.5vw;
   }
@@ -268,7 +268,6 @@ div.inputContainer div select {
   .wrapper .inside .icon {
     padding-left: 7vw;
   }
-  
 }
 
 @media only screen and (max-width: 991px) {

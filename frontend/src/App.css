@@ -9,21 +9,21 @@ a {
   text-decoration: none;
   color: #000;
 }
-header{
+header {
   height: 10vh;
   display: flex;
   justify-content: space-between;
   padding: 2vw;
   align-items: center;
-  background-color:#ead8ca5d;
+  background-color: #ead8ca5d;
 }
 header a {
   text-decoration: none;
   color: rgb(75, 69, 69);
   margin: 1.5vw;
 }
-header h1{
-  font-family: 'Cormorant', serif;
+header h1 {
+  font-family: "Cormorant", serif;
   font-size: 11vh;
   flex: 1;
   text-align: center;
@@ -42,7 +42,7 @@ header .userLogin {
   color: rgb(75, 69, 69);
 }
 
-header .logoUser{
+header .logoUser {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 100%;
@@ -129,12 +129,18 @@ div.saleRadios input {
   transition: all 0.4s;
   border-radius: 2px;
 }
-.sc-bdfBQB{
+.sc-bdfBQB {
   padding: 0 !important;
 }
 
-@media only screen and (max-width: 1124px) { 
-  header .logoUser{
+.fa-plus,
+.fa-minus,
+.fa-trash {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 1124px) {
+  header .logoUser {
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 100%;
@@ -144,7 +150,8 @@ div.saleRadios input {
   }
 }
 @media (max-width: 1100px) {
-.logo {
-  width: 30vw;
-  height: 12.5vw;}
+  .logo {
+    width: 30vw;
+    height: 12.5vw;
+  }
 }

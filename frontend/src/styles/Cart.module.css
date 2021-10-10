@@ -19,8 +19,8 @@
   background-color: #ad9993;
   padding: 2vh;
 }
-.cartContainerHeader h3{
-  font-family: 'Cormorant', serif;
+.cartContainerHeader h3 {
+  font-family: "Cormorant", serif;
   font-size: 2vw;
   padding-left: 2vw;
 }
@@ -36,34 +36,43 @@
   width: 100%;
   padding: 2vw;
 }
-.divPrice{
+.divPrice {
   display: flex;
   justify-content: space-between;
   font-size: 4vmin;
 }
-.cartContainerMain button{
-  margin: 1vw auto;
-  width: 60%;
+.cartContainerMain button {
+  /* margin: 1vw; */
+  width: 47%;
   font-size: 2vmin;
   padding: 1vw;
 }
-.divSpan{
+
+.cartContainerMain a button {
+  width: 100%;
+}
+
+.divSpan {
   margin: 1vw;
   min-height: 3vh;
   text-align: center;
-  color:brown
+  color: brown;
 }
-.divSpan span{
+.divSpan span {
   padding-right: 1vw;
 }
-.divSpan a{
+.divSpan a {
   color: red;
 }
-.divButton{
+.divButton {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
-.productInCart{
+
+.divButton a {
+  width: 47%;
+}
+.productInCart {
   display: flex;
   width: 100%;
   height: 9vw;
@@ -80,33 +89,33 @@
   justify-content: space-between;
   flex: 1;
 }
-.productCartInfo div{
+.productCartInfo div {
   display: flex;
-  padding: .5vw;
+  padding: 0.5vw;
   justify-content: space-between;
   align-items: center;
 }
-.productCartInfo h5{
+.productCartInfo h5 {
   font-weight: bold;
   font-size: 3vmin;
 }
-.counter p{
+.counter p {
   padding: 0 1vw;
 }
-.warning{
-  border:1px solid #ad9993;
+.warning {
+  border: 1px solid #ad9993;
   padding: 2vw 1vw;
   text-align: center;
   line-height: 4vh;
 }
-.warning p i{
+.warning p i {
   color: #fc2929;
 }
-.warningButton{
+.warningButton {
   justify-content: space-evenly;
   margin-top: 1vw;
 }
-.warningButton button{
+.warningButton button {
   width: 47%;
   margin: 0.5vw;
 }

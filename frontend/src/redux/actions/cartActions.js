@@ -19,7 +19,7 @@ const cartActions = {
   },
   deleteAllCartProduct: () => {
     return (dispatch) => {
-      dispatch({type: "DELETE_CART"})
+      dispatch({ type: "DELETE_CART" })
     }
   },
   addCartLS: (obj) => {
@@ -37,6 +37,7 @@ const cartActions = {
           },
           { withCredentials: true }
         )
+        console.log(response)
         if (!response.data.success) throw new Error(response.data.response)
         return { success: true }
       } catch (error) {
@@ -55,7 +56,7 @@ const cartActions = {
           { withCredentials: true }
         )
         if (!response.data.success) throw new Error(response.data.response)
-        return { success: true}
+        return { success: true }
       } catch (error) {
         return { success: false, res: error }
       }
@@ -75,10 +76,11 @@ const cartActions = {
       }
     }
   },
-  editCard:(obj)=>{
-    return async(dispatch)=>{
+  editCard: (obj) => {
+    return async (dispatch) => {
       try {
-        let response = await axios.put( `http://localhost:4000/api/card/${obj.code}`,
+        let response = await axios.put(
+          `http://localhost:4000/api/card/${obj.code}`,
           { ...obj },
           { withCredentials: true }
         )
@@ -88,7 +90,7 @@ const cartActions = {
         return { success: false, res: error }
       }
     }
-  }
+  },
 }
 
 export default cartActions
