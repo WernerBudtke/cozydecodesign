@@ -33,14 +33,14 @@
 div {
   gap: 2;
 }  
-/* .iconSocial {
+.iconSocial {
   color: rgb(97, 88, 88);
   margin-right: 0.5vw;
-} */
+}
 
-/* .iconSocial{
+.iconSocial{
   color: rgb(97, 88, 88);
-} */
+}
 
 @media only screen and (max-width: 768px) { 
       
@@ -57,18 +57,18 @@ div {
       margin-bottom: 1vh;
       font-size: .9rem;
     }
-/*     
+    
     .iconContact {
       margin-right: .5vw;
       font-size: .9rem;
-    } */
+    }
     div {
       gap: 1;
     }
-    /* .iconSocial {
+    .iconSocial {
       margin-right: 0.3vw;
       
-    } */
+    }
     .socialNetworks {
         display: none;
     }
@@ -92,19 +92,19 @@ div {
         font-size: .7rem;
       }
       
-    /* .iconContact {
+    .iconContact {
         margin-right: .4vw;
         font-size: .7rem;
-      } */
+      }
     div {
         gap: 1;
       }
-    /* .iconSocial {
+    .iconSocial {
         margin-right: 0.3vw;
         
-      } */
-    /* .socialNetworks {
+      }
+    .socialNetworks {
           display: none;
-      } */
+      }
 
 }
