@@ -1,14 +1,13 @@
 // Crear Orden, Pedir x User / ALL (x fecha) + Send Mail after purchase
 const Order = require("../models/Order")
 const Product = require("../models/Product")
-const transport = require("../config/transport")
+const wrapedSendMail = require("../config/sendMail")
 const orderControllers = {
   getOrders: async (req, res) => {
     console.log("Received GET ORDERS Petition:" + Date())
     try {
       const { filterBy } = req.body
       let willFilterFor = filterBy ? { ...filterBy } : ""
-      // console.log(willFilterFor)
       let orders = await Order.find({ ...willFilterFor })
       res.json({ success: true, response: orders })
     } catch (err) {
@@ -31,7 +30,6 @@ const orderControllers = {
     try {
       if (!req.session.loggedUser) throw new Error("Log In First")
       const user = req.session.loggedUser
-      console.log(user)
       let numberOfOrders = await Order.count()
       const { products, paymentMethod, totalPrice } = req.body
       let newOrder = new Order({
@@ -42,7 +40,6 @@ const orderControllers = {
         totalPrice: parseFloat(totalPrice),
       })
       await newOrder.save()
-      console.log("Entré aca")
       let productsBought = []
       productsBought = await Promise.all(products.map(async (product) => {
         let foundProduct = await Product.findOneAndUpdate(
@@ -52,7 +49,6 @@ const orderControllers = {
         )
         return foundProduct
       }))
-      console.log("Entre aca 2")
       let message = `
                     <table style="max-width: 700px; padding: 10px; margin:0 auto; border-collapse: collapse;">
                         <div style="width: 100%;margin:20px 0; text-align: center;">
@@ -100,32 +96,10 @@ const orderControllers = {
         subject: `Thank you for your purchase ${user.firstName}!`,
         html: message,
       }
-      async function wrapedSendMail(mailOptions){
-        return new Promise((resolve,reject)=>{
-        transport.sendMail(mailOptions, function(error, info){
-          if (error) {
-            console.log("error is "+error);
-            resolve(false); 
-          }else {
-            console.log('Email sent: ' + info.response);
-            resolve(true);
-          }
-        })})}
       let mailResp= await wrapedSendMail(mailOptions);
       if(!mailResp)throw new Error('Order creater, mail not sent')
       res.json({success: true, response: 'Order created, mail sent'})
-      // transport.sendMail(mailOptions, (err, data) => {
-      //   console.log("Mande el mail?")
-      //   if(err){
-      //     console.log(err)
-      //     res.json({ success: false, response: err })
-      //   }else{
-      //     console.log(data)
-      //     res.json({ success: true, response: data })
-      //   }
-      // })
     } catch (err) {
-      console.log(err)
       res.json({ success: false, response: err.message })
     }
   },

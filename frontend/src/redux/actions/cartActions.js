@@ -30,6 +30,7 @@ const cartActions = {
   addNewOrder: (obj) => {
     return async (dispatch) => {
       try {
+        console.log("entré al add new order al post")
         let response = await axios.post(
           "http://localhost:4000/api/order/new",
           {

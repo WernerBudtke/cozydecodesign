@@ -1,7 +1,7 @@
 const User = require("../models/User")
 const bcryptjs = require("bcryptjs")
 const jwt = require("jsonwebtoken")
-const transport = require("../config/transport")
+const wrapedSendMail = require("../config/sendMail")
 const handleError = (res, err) => {
   console.log(err.message)
   res.json({ success: false, response: err.message })
@@ -240,7 +240,7 @@ const userControllers = {
     console.log("Received Send Reset Password Mail Petition:" + Date())
     const { eMail } = req.body
     User.findOne({ eMail: eMail })
-      .then((user) => {
+      .then(async (user) => {
         if (user) {
           let message = `
                     <table style="max-width: 700px; padding: 10px; margin:0 auto; border-collapse: collapse;">
@@ -289,6 +289,9 @@ const userControllers = {
             subject: `Password Reset ${user.firstName}!`,
             html: message,
           }
+          let mailResp = await wrapedSendMail(mailOptions);
+          if(!mailResp)throw new Error('Password changed changed but email did not send')
+          res.json({success: true, response: 'Password changed and email sent'})
           transport.sendMail(mailOptions, (err, data) => {
             err
               ? res.json({ success: false, response: err })
@@ -306,7 +309,7 @@ const userControllers = {
     const { password } = req.body
     let hashedPass = bcryptjs.hashSync(password)
     User.findOneAndUpdate({ _id: req.params.id }, { password: hashedPass })
-      .then((user) => {
+      .then(async (user) => {
         if (user) {
           let message = `
                     <table style="max-width: 700px; padding: 10px; margin:0 auto; border-collapse: collapse;">
@@ -354,17 +357,9 @@ const userControllers = {
             subject: `Password changed ${user.firstName}!`,
             html: message,
           }
-          transport.sendMail(mailOptions, (err, data) => {
-            err
-              ? res.json({
-                  success: true,
-                  response: "password changed but email did not send",
-                })
-              : res.json({
-                  success: true,
-                  response: "password changed and email sent",
-                })
-          })
+          let mailResp = await wrapedSendMail(mailOptions);
+          if(!mailResp)throw new Error('Password changed changed but email did not send')
+          res.json({success: true, response: 'Password changed and email sent'})
         } else {
           throw new Error("User not found")
         }
