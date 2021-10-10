@@ -81,7 +81,7 @@
 }
 .galleryWrap div a button{
   width: 100%;
-  border-radius: 10px;
+  border-radius: 6px;
   border:none;
   background-color: #AD9993;
   color: #000;
@@ -93,9 +93,10 @@
   width: 50%;
 }
 .textButton{
-  font-size: 1rem;
+  font-size: .65rem;
   font-weight: bolder;
 }
+
 
 /*Quote Section*/
 .quote{
@@ -145,6 +146,8 @@
   height: 15rem;
   margin:4rem;
 }
+
+
 
 @media (max-width: 1300px) {
   .info{

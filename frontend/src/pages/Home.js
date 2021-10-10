@@ -90,7 +90,7 @@ const Home = () => {
                 </div>
             </Parallax>
             <Parallax bgImage={'/assets/home4.jpg'}
-            strength={width > 700 ? -width/5.5 : width/11}
+            strength={width > 700 ? -width/5.5 : width/15}
             renderLayer={(percentage) => (
                 <div
                   className={styles.finalInfo}

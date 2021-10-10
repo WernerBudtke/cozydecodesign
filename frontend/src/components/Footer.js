@@ -30,13 +30,13 @@ const Footer=()=>{
                 </div>
                 
                 <div className={styles.iconSocial}>
-                    <a href="https://www.facebook.com/" target="_blank" className={styles.iconSocial}>
+                    <a href="https://www.facebook.com/" target="_blank" className={styles.iconFooter}>
                     <i class="fab fa-facebook-square fa-lg"></i>
                     </a> 
-                    <a href="https://www.instagram.com/" target="_blank" className={styles.iconSocial}>
+                    <a href="https://www.instagram.com/" target="_blank" className={styles.iconFooter}>
                     <i class="fab fa-instagram-square fa-lg"></i>                    
                     </a> 
-                    <a href="https://www.whatsapp.com/" target="_blank" className={styles.iconSocial}>
+                    <a href="https://www.whatsapp.com/" target="_blank" className={styles.iconFooter}>
                     <i class="fab fa-whatsapp-square fa-lg"></i>
                     </a>
                 </div>
