@@ -5,7 +5,6 @@ import userActions from "../redux/actions/userActions"
 import cartActions from "../redux/actions/cartActions"
 import Paypal from "../components/Paypal"
 import MercadoPagoForm from "../components/MercadoPago/MercadoPagoForm"
-import GiftCard from "../components/GiftCard"
 
 //VENDEDOR
 //sb-imkhe8058198@business.example.com
@@ -61,17 +60,17 @@ const PaymentGateway = ({
   console.log(giftCard)
   const validate = () => {
     setHideRadio(false)
-    setEnableInput(true)
-    setEnablePayment(true)
-    if (Object.values(info).some((value) => value === !value)) {
+
+    if (Object.values(info).some((value) => value === "")) {
       setRenderError(
         "necesitas completar todos los campos para continuar con el pago"
       )
-      alert("completar campos")
     } else {
       manageUser(info).then((res) => {
         if (res.success) {
           setChosenMethod({ ...chosenMethod, enable: true })
+          setEnableInput(true)
+          setEnablePayment(true)
         } else {
           alert("ERROR")
         }
@@ -335,6 +334,7 @@ const PaymentGateway = ({
         <button disabled={enablePayment} onClick={validate}>
           Completar Pago
         </button>
+        <p>{renderError}</p>
         {chosenMethod.enable && chosenMethod.type.includes("giftCard") && (
           <div>
             <label>Enter your Giftcard Code</label>
