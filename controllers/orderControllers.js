@@ -99,7 +99,7 @@ const orderControllers = {
       }
       transport.sendMail(mailOptions, (err, data) => {
         if(err){
-          throw new Error('Order placed, mail not sent')
+          res.json({ success: false, response: err })
         }else{
           res.json({ success: true, response: data })
         }
