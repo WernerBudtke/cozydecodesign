@@ -126,7 +126,7 @@ const ProductsGallery = ({ products, getProducts, productsCategory, match, getPr
     </div>
   )
 }
-const mapStateTopProps = (state) => {
+const mapStateToProps = (state) => {
   return {
     products: state.products.products,
     productsCategory: state.products.productsCategory
@@ -137,4 +137,4 @@ const mapDispatchToProps = {
   getProducts: productsActions.getProducts,
   getProductByCategory: productsActions.getProductByCategory
 }
-export default connect(mapStateTopProps, mapDispatchToProps)(ProductsGallery)
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsGallery)

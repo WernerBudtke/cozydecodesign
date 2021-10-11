@@ -92,7 +92,7 @@ const ProductCard = ({
   )
 }
 
-const mapStateTopProps = (states) => {
+const mapStateToProps = (states) => {
   return {
     user: states.users.user,
   }
@@ -102,4 +102,4 @@ const mapDispatchToProps = {
   addCartProduct: cartActions.addCartProduct,
 }
 
-export default connect(mapStateTopProps, mapDispatchToProps)(ProductCard)
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCard)
