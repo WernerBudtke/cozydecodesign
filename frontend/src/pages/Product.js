@@ -8,15 +8,7 @@ import cartActions from "../redux/actions/cartActions"
 import productsActions from "../redux/actions/productsActions"
 import ProductCard from "../components/ProductCard"
 
-const Product = ({
-  product,
-  match,
-  products,
-  getProducts,
-  findAProduct,
-  addCartProduct,
-  productsCategory,
-  getProductByCategory,
+const Product = ({ product, match, products, getProducts, findAProduct, addCartProduct, productsCategory, getProductByCategory,
 }) => {
   const [quantity, setQuantity] = useState(1)
   const [loading, setLoading] = useState(true)
@@ -43,7 +35,6 @@ const Product = ({
   }, [refresh])
 
   const editShowCartCard = (newState) => {
-    console.log("se ejecuta editshow")
     setShowCartCard(newState)
   }
 
