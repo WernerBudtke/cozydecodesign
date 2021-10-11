@@ -9,6 +9,7 @@ const productsActions = {
           {},
           { withCredentials: true }
         )
+        if(!res.data.success)throw new Error('Failed to get new products')
         dispatch({ type: "GET_ALL_PRODUCTS", payload: res.data.response })
         return { success: true, res: res.data.response }
       } catch (err) {
@@ -42,6 +43,7 @@ const productsActions = {
     return async (dispatch) => {
       try {
         let res = await axios.get(`http://localhost:4000/api/product/${id}`)
+        if(!res.data.success)throw new Error('Failed to get new product')
         dispatch({ type: "GET_PRODUCT", payload: res.data.response })
         return { success: true, res: res.data.response }
       } catch (err) {

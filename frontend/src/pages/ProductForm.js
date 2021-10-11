@@ -85,7 +85,7 @@ const ProductForm = ({addProduct, modifyProduct, findAProduct, match, product, g
             const response = await addProduct(fd)
             if (response.data.success) {
                 alert("Producto cargado")
-
+                await getProducts()
                 return false
             }else{
                 alert("Todo salió mal!")
@@ -93,17 +93,33 @@ const ProductForm = ({addProduct, modifyProduct, findAProduct, match, product, g
         }
     }
 
-    const editProduct = (id, stock) => {
-        modifyProduct(id, stock)
-        .then((res)=> {
-            if(!res.success) throw new Error("Product wasn't updated")
-            getProducts()
-            .then((res) => {
-                if(!res.success) throw new Error("Products weren't updated")
-                history.push("/products")
-            })
-        })
-        .catch(error =>console.log(error))
+    const editProduct = async () => {
+        const fd = new FormData()
+        fd.append("name", newProduct.name)
+        fd.append("photo", newProduct.photo)
+        fd.append("stock", newProduct.stock)
+        fd.append("description", newProduct.description)
+        fd.append("price", newProduct.price)
+        fd.append("forSale", newProduct.forSale)
+        fd.append("category", newProduct.category)
+        fd.append("subcategory", newProduct.subcategory)
+        fd.append("discount", newProduct.discount)
+        let empty = Object.values(newProduct).some((value) => value === "")
+        if (empty){
+            alert ("complete all the fields")
+        } else {
+            let response = await modifyProduct(productId, fd)
+            if (response.success) {
+                let res = await getProducts()
+                console.log(res)
+                if(res.success){
+                    history.push("/products")
+                }
+                return false
+            }else{
+                alert("Todo salió mal!")
+            }
+        }
     }
 
     if(loading) {
@@ -152,7 +168,7 @@ const ProductForm = ({addProduct, modifyProduct, findAProduct, match, product, g
                             </option>)}
                         </select>
                     </form>
-                        <button className={styles.formButton} onClick={productId ? () => editProduct(productId, newProduct) : () => submitForm()}>Send</button>
+                        <button className={styles.formButton} onClick={productId ? () => editProduct() : () => submitForm()}>Send</button>
                 </div>
             </main>
     )
