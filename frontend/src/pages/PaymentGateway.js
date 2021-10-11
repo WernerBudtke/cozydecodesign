@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import styles from "../styles/PaymentGateway.module.css"
 import { connect } from "react-redux"
 import userActions from "../redux/actions/userActions"
@@ -53,6 +53,11 @@ const PaymentGateway = ({
     lastName: loginUser.lastName,
     eMail: loginUser.eMail,
   })
+
+  useEffect(() => {
+    window.scroll(0, 0)
+    document.title = "COZY | PAYMENT"
+  }, [])
 
   const totalPrice = products.map((obj) =>
     obj.product.discount === 0
@@ -182,9 +187,9 @@ const PaymentGateway = ({
 
   return (
     <div className={styles.gatewayContainer}>
-      <div className={styles.clientInfo}>
-        <div className={styles.personalInfo}>
-          <h1>Personal Info</h1>
+      <div className={styles.checkoutInfo}>
+        <h1>Personal Info</h1>
+        <div className={styles.inputMail}>
           <label>Email</label>
           <input
             type="text"
@@ -193,6 +198,8 @@ const PaymentGateway = ({
             defaultValue={info.eMail}
             disabled
           />
+        </div>
+        <div className={styles.inputDiv}>
           <div>
             <label>Name</label>
             <input
@@ -202,6 +209,8 @@ const PaymentGateway = ({
               defaultValue={info.firstName}
               disabled
             />
+          </div>
+          <div>
             <label>Lastname</label>
             <input
               type="text"
@@ -211,75 +220,105 @@ const PaymentGateway = ({
               disabled
             />
           </div>
+        </div>
+        <div className={styles.inputDiv}>
           <div>
             <label>DNI</label>
-            <input
-              type="text"
-              required
-              name="dni"
-              defaultValue={info.dni}
-              onChange={fillUserInfo}
-              disabled={enableInput}
-            />
+            <div>
+              <input
+                type="text"
+                required
+                name="dni"
+                defaultValue={info.dni}
+                onChange={fillUserInfo}
+                disabled={enableInput}
+              />
+              <span className={styles.bar}></span>
+            </div>
+          </div>
+          <div>
             <label>Phone Number</label>
-            <input
-              type="text"
-              required
-              name="phone"
-              defaultValue={info.phone}
-              onChange={fillUserInfo}
-              disabled={enableInput}
-            />
+            <div>
+              <input
+                type="text"
+                required
+                name="phone"
+                defaultValue={info.phone}
+                onChange={fillUserInfo}
+                disabled={enableInput}
+              />
+              <span className={styles.bar}></span>
+            </div>
           </div>
         </div>
-        <div className={styles.shipmentInfo}>
-          <h1>Shipment Info</h1>
+
+        <h1>Shipment Info</h1>
+        <div className={styles.inputDiv}>
           <div>
             <label>Adress</label>
-            <input
-              type="text"
-              required
-              name="street"
-              defaultValue={info.street}
-              onChange={fillUserInfo}
-              disabled={enableInput}
-            />
-
-            <label>Number - Floor/depto:</label>
-            <input
-              type="text"
-              required
-              name="number"
-              defaultValue={info.number}
-              onChange={fillUserInfo}
-              disabled={enableInput}
-            />
+            <div>
+              <input
+                type="text"
+                required
+                name="street"
+                defaultValue={info.street}
+                onChange={fillUserInfo}
+                disabled={enableInput}
+              />
+              <span className={styles.bar}></span>
+            </div>
           </div>
+          <div>
+            <label>Number:</label>
+            <div>
+              <input
+                type="text"
+                required
+                name="number"
+                defaultValue={info.number}
+                onChange={fillUserInfo}
+                disabled={enableInput}
+              />
+              <span className={styles.bar}></span>
+            </div>
+          </div>
+        </div>
+        <div className={styles.inputDiv}>
           <div>
             <label>City</label>
-            <input
-              type="text"
-              required
-              name="city"
-              defaultValue={info.city}
-              onChange={fillUserInfo}
-              disabled={enableInput}
-            />
-            <label>Zip Code</label>
-            <input
-              type="text"
-              required
-              name="zipCode"
-              defaultValue={info.zipCode}
-              onChange={fillUserInfo}
-              disabled={enableInput}
-            />
+            <div>
+              <input
+                type="text"
+                required
+                name="city"
+                defaultValue={info.city}
+                onChange={fillUserInfo}
+                disabled={enableInput}
+              />
+              <span className={styles.bar}></span>
+            </div>
           </div>
-
           <div>
-            <h1>Payment</h1>
-            {hideRadio && (
-              <div className={styles.switchField}>
+            <label>Zip Code</label>
+            <div>
+              <input
+                type="text"
+                required
+                name="zipCode"
+                defaultValue={info.zipCode}
+                onChange={fillUserInfo}
+                disabled={enableInput}
+              />
+              <span className={styles.bar}></span>
+            </div>
+          </div>
+        </div>
+
+        <h1>Payment</h1>
+        <div className={styles.radioButtons}>
+          {hideRadio ? (
+            <div className={styles.switchField}>
+              <div>
                 <input
                   type="radio"
                   id="paypal"
@@ -290,6 +329,8 @@ const PaymentGateway = ({
                   disabled={enableInput}
                 />
                 <label for="paypal">Paypal</label>
+              </div>
+              <div>
                 <input
                   type="radio"
                   id="mercadopago"
@@ -299,7 +340,9 @@ const PaymentGateway = ({
                   onClick={() => setEnablePayment(false)}
                   disabled={enableInput}
                 />
-                <label for="mercadopago">Credit/Debit Card</label>
+                <label for="mercadopago">Credit/Mercado Pago </label>
+              </div>
+              <div>
                 <input
                   type="radio"
                   id="giftcard"
@@ -311,35 +354,50 @@ const PaymentGateway = ({
                 />
                 <label for="giftcard">Gift Card</label>
               </div>
-            )}
-          </div>
+            </div>
+          ) : (
+            <h2>{order.paymentMethod.type} </h2>
+          )}
         </div>
-        <button disabled={enablePayment} onClick={validate}>
+
+        <button
+          className={styles.checkOut}
+          disabled={enablePayment}
+          onClick={validate}
+        >
           Checkout Order
         </button>
-        <p>{renderError}</p>
+        <p className={styles.error}>{renderError}</p>
         {chosenMethod.enable && chosenMethod.type.includes("GiftCard") && (
           <div>
-            <label>Enter your Giftcard Code</label>
-            <input
-              type="text"
-              required
-              name="giftCardCode"
-              defaultValue=" "
-              onChange={fillCode}
-            />
-            <button onClick={getCardHandler}>Check balance</button>
-            {typeof balance === "string" && <p>{balance}</p>}
-            {typeof balance === "number" && (
-              <p>The available amount in your Giftcard is ${balance}</p>
+            <div className={styles.giftCardCode}>
+              <label>Enter your Giftcard Code</label>
+              <div>
+                <input
+                  type="text"
+                  required
+                  name="giftCardCode"
+                  defaultValue=" "
+                  onChange={fillCode}
+                />
+                <span className={styles.bar}></span>
+              </div>
+              <button onClick={getCardHandler}>Check balance</button>
+            </div>
+
+            {typeof balance === "string" && (
+              <p className={styles.error}>{balance}</p>
             )}
             {checkBalance < 0 && (
               <div className={styles.switchField}>
-                <p>
-                  The total amount of your order (${order.totalPrice}) is higher
-                  than the balance left in your GiftCard, the remaining amount
-                  is ${Math.abs(checkBalance)}.
-                </p>
+                <div className={styles.giftCardText}>
+                  <p>The available amount in your Giftcard is ${balance}</p>
+                  <p>
+                    The total amount of your order (${order.totalPrice}) is
+                    higher than the balance left in your GiftCard, the remaining
+                    amount is ${Math.abs(checkBalance)}.
+                  </p>
+                </div>
                 <input
                   type="radio"
                   id="paypal"
@@ -364,10 +422,13 @@ const PaymentGateway = ({
             )}
             {checkBalance > 0 && (
               <div>
-                <p>
-                  The total amount of your order is ${order.totalPrice} you have
-                  a remaining balance of {checkBalance}
-                </p>
+                <div className={styles.giftCardText}>
+                  <p>The available amount in your Giftcard is ${balance}</p>
+                  <p>
+                    The total amount of your order is ${order.totalPrice} you
+                    have a remaining balance of ${checkBalance}
+                  </p>
+                </div>
                 <button onClick={addNewOrderHandler}>pagar</button>
               </div>
             )}
@@ -401,7 +462,7 @@ const PaymentGateway = ({
   )
 }
 
-const mapStateTopProps = (state) => {
+const mapStateToProps = (state) => {
   return {
     products: state.cart.products,
     loginUser: state.users.user,
@@ -418,4 +479,4 @@ const mapDispatchToProps = {
   deleteAllCartProduct: cartActions.deleteAllCartProduct,
 }
 
-export default connect(mapStateTopProps, mapDispatchToProps)(PaymentGateway)
+export default connect(mapStateToProps, mapDispatchToProps)(PaymentGateway)
