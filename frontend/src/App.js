@@ -16,7 +16,6 @@ import Product from "./pages/Product"
 import Admin from "./pages/Admin"
 import cartActions from "./redux/actions/cartActions"
 import PaymentGateway from "./pages/PaymentGateway"
-import HeaderResponsive from "./components/HeaderResponsive"
 
 const App = ({ loginUser, logFromSession, addCartLS }) => {
   useEffect(() => {
@@ -31,7 +30,7 @@ const App = ({ loginUser, logFromSession, addCartLS }) => {
   return (
     <BrowserRouter>
       <Toaster />
-      <HeaderResponsive />
+      <Header />
       <Switch>
         <Route exact path="/" component={Home} />
         {!loginUser && <Route path="/signin" component={SignIn} />}
