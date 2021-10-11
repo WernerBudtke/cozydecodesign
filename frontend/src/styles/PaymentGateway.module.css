@@ -4,32 +4,68 @@
   justify-content: space-around;
 }
 
-.productInCart {
-  display: flex;
-}
-
-.productCartInfo {
-  background-color: bisque;
-}
-
-.productCartInfo:first-child {
-  display: flex;
-  flex-direction: row;
-}
-
-.productCartPhoto {
-  width: 10vw;
-  height: 10vw;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.personalInfo {
+/*FORM STYLES */
+.checkoutInfo {
   display: flex;
   flex-direction: column;
+  width: 50%;
+  background-color: red;
 }
 
+.checkoutHeader,
+.checkoutButton {
+  border: 1px solid;
+  background: #444444;
+  color: #ffffff;
+  width: 100%;
+  height: 5vh;
+}
+
+.checkoutHeader {
+  text-align: center;
+  display: flex;
+  vertical-align: middle;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.checkoutInfo input {
+  width: 100%;
+  height: 35px;
+  background-image: linear-gradient(to bottom, #f1f1f1, #ffffff);
+  border: 1px solid #e5e5e5;
+}
+
+.checkoutInfo div {
+  display: flex;
+}
+
+.checkoutInfo div div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.formButton {
+  border-radius: 5px;
+  height: 35px;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  position: relative;
+  top: 17px;
+  left: 35px;
+  padding: 10px 15px;
+  margin-left: 3px;
+  cursor: pointer;
+}
+
+/*RADIO BUTTONS STYLES */
 .switchField {
   display: flex;
   margin-bottom: 36px;
@@ -74,4 +110,27 @@
 
 .switchField label:last-of-type {
   border-radius: 0 4px 4px 0;
+}
+
+/*SIDE PRODUCTS STYLES*/
+
+.productInCart {
+  display: flex;
+}
+
+.productCartInfo {
+  background-color: bisque;
+}
+
+.productCartInfo:first-child {
+  display: flex;
+  flex-direction: row;
+}
+
+.productCartPhoto {
+  width: 10vw;
+  height: 10vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

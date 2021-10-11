@@ -2,7 +2,7 @@ import styles from "../styles/PaymentGateway.module.css"
 
 const SideProducts = ({ products, total }) => {
   return (
-    <>
+    <div>
       {products.map((obj) => {
         return (
           <div key={obj.product._id} className={styles.productInCart}>
@@ -44,7 +44,7 @@ const SideProducts = ({ products, total }) => {
           </div>
         )
       })}
-    </>
+    </div>
   )
 }
 
