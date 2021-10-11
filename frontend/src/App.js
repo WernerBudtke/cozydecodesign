@@ -9,7 +9,6 @@ import ProductForm from "./pages/ProductForm"
 import SignIn from "./pages/SignIn"
 import SignUp from "./pages/SignUp"
 import Home from "./pages/Home"
-import HoverCard from "./pages/HoverCard"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 import Product from "./pages/Product"
@@ -47,7 +46,6 @@ const App = ({ loginUser, logFromSession, addCartLS }) => {
           path="/productform/:id"
           component={loginUser && loginUser.admin ? ProductForm : Home}
         />
-        <Route exact path="/hover" component={HoverCard} />
         {loginUser && loginUser.admin && (
           <Route path="/admin" component={Admin} />
         )}
