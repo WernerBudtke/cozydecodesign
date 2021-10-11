@@ -2,6 +2,7 @@
 .productsGallery {
   background-color: #f8f6f4;
   display: flex;
+  gap: 2vw;
 }
 .productsCards {
   margin-left: auto;
@@ -16,7 +17,7 @@
 /*PRODUCT CARD STYLES */
 .wrapper {
   width: 25%;
-  height: 50vh;
+  height: 40vh;
   margin: 4vh 0.5vw;
   background: white;
   position: relative;
@@ -24,6 +25,7 @@
   border-radius: 20px 20px 20px 20px;
   transition: box-shadow 0.5s, transform 0.5s;
   box-shadow: 0px 0px 3px 0.5px #cac5c5;
+  margin-left: 5vw;
 }
 
 .wrapper:hover {
@@ -84,15 +86,15 @@
 .nameAndPrice h1,
 .nameAndPrice p {
   text-align: center;
-  font-size: 3vmin;
-  color: black; /*fjkdgnsahgiusnvkjsadnvoaergnvjadsvnoarenvadjbadgha*/
+  font-size: 2.5vmin;
+  color: black; 
   margin: 0;
-  padding: 0;
+  padding: 1vh;
 }
 .nameAndPrice p {
-  font-size: 4vmin;
+  text-align: center;
+  font-size: 3vmin;
   font-weight: bolder;
-  padding-left: 1vw;
 }
 .wrapper .container .bottom {
   height: 100%;
@@ -165,7 +167,9 @@ div.filterContainer div div {
 }
 div.filterContainer div div a {
   width: 100%;
-  font-size: 1.9vmin;
+  font-size: 2.7vmin;
+  font-weight: bolder;
+  justify-content: center;
 }
 div.filterContainer div h1 {
   font-family: "Cormorant", serif;
@@ -176,17 +180,21 @@ div.filterContainer div h1 {
   letter-spacing: 0.5vw;
 }
 div.filterContainer div div div {
-  height: 5vh;
+  height: 4vh;
 }
 div.filterContainer div div div input {
   background: none;
   border: none;
-  position: relative;
-  top: 5px;
-  right: 35px;
-  font-size: 1.8vmin;
+  font-size: 2vmin;
   cursor: pointer;
   margin-bottom: 0.5vh;
+}
+div.filterInside{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  margin-bottom: 2vh;
 }
 div.filterContainer div div div input:hover {
   border-bottom: 1px solid black;
@@ -196,96 +204,70 @@ div.inputContainer div select {
   border: none;
   font-size: 1.9vmin;
 }
-@media only screen and (max-width: 991px) {
-  .wrapper {
-    width: 35%;
-    margin: 4vh 3.5vw;
-  }
-  /* .nameAndPrice p {
-    font-size: 3.7vmin;
-  } */
-
-  .nameAndPrice h1 {
-    font-size: 3.3vmin;
-  }
-
-  .wrapper .inside .icon {
-    padding-left: 4.5vw;
-  }
-}
-@media only screen and (max-width: 768px) {
-  .wrapper {
-    width: 40%;
-  }
-  .wrapper .inside .icon {
-    padding-left: 4vw;
-  }
-}
-
-@media only screen and (max-width: 576px) {
-  .wrapper {
-    width: 60%;
-    margin: 4vh 3.5vw;
-  }
-  .nameAndPrice p {
-    font-size: 4.5vmin;
-  }
-  .nameAndPrice h1 {
-    font-size: 3.5vmin;
-  }
-  .wrapper .inside .icon {
-    padding-left: 6.5vw;
-  }
-}
 
 @media only screen and (max-width: 425px) {
   .wrapper {
-    width: 78%;
-    height: 55vh;
+    width: 90%;
+    height: 30vh;
     margin: 4vh 3.5vw;
+    margin-left:20vw;
   }
   .nameAndPrice p {
-    font-size: 4.5vmin;
+    font-size: 5vmin;
   }
   .nameAndPrice h1 {
-    font-size: 4.3vmin;
+    text-align: center;
+    font-size: 3.5vmin;
   }
   .wrapper .inside .icon {
     padding-left: 6vw;
   }
-}
-@media only screen and (max-width: 375px) {
-  .wrapper {
-    width: 80%;
-    height: 58vh;
+  div.filterContainer {
+    min-height: 80vh;
+    min-width: 25%;
   }
-  .nameAndPrice p {
-    font-size: 6vmin;
+  div.filterContainer div div a {
+    min-width: 100%;
+    font-size: 3vmin;
   }
-  .nameAndPrice h1 {
-    font-size: 5.5vmin;
-  }
-  .wrapper .inside .icon {
-    padding-left: 7vw;
-  }
-}
-
-@media only screen and (max-width: 991px) {
-  .wrapper {
-    width: 40%;
-    margin: 4vh 3.5vw;
-  }
-}
-
-@media only screen and (max-width: 576px) {
-  .wrapper {
-    width: 80%;
-    margin: 4vh 3.5vw;
-  }
-  .nameAndPrice p {
-    font-size: 7vmin;
-  }
-  .nameAndPrice h1 {
+  div.filterContainer div h1 {
     font-size: 5vmin;
   }
+  div.filterContainer div div div input {
+    font-size: 2.5vmin;
+  }
+  div.inputContainer div select {
+    font-size: 2.3vmin;
+  }
+  
 }
+
+@media only screen and (min-width: 768px) {
+  .wrapper {
+    width: 52%;
+    height: 45vh;
+  }
+  div.filterContainer {
+    min-height: 80vh;
+    width: 20%;
+  }
+  div.filterContainer div div a {
+    width: 100%;
+    font-size: 2.5vmin;
+  }
+  div.filterContainer div h1 {
+    font-size: 5vmin;
+  }
+  div.filterContainer div div div input {
+    font-size: 2.2vmin;
+  }
+  div.inputContainer div select {
+    font-size: 1.8vmin;
+  }
+}
+
+
+
+
+
+

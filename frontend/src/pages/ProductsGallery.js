@@ -81,7 +81,7 @@ const ProductsGallery = ({ products, getProducts, productsCategory, match, getPr
           <div>
             <Link to="/products">All products</Link>
           </div>
-          <div>
+          <div className={styles.filterInside}>
             <Link to="/products/Kitchenware">Kitchenware</Link>
             {view.category === 'Kitchenware' && 
             <div>
@@ -90,7 +90,7 @@ const ProductsGallery = ({ products, getProducts, productsCategory, match, getPr
               <input type="button" value="Tableware" onClick={viewHandler} />
             </div>}
           </div>
-          <div>
+          <div className={styles.filterInside}>
             <Link to="/products/Bathroom">Bathroom</Link>
             {view.category === 'Bathroom' && 
             <div>
@@ -98,7 +98,7 @@ const ProductsGallery = ({ products, getProducts, productsCategory, match, getPr
               <input type="button" value="Mirrors" onClick={viewHandler} />
             </div>}
           </div>
-          <div>
+          <div className={styles.filterInside}>
             <Link to="/products/Decor">Decor</Link>
             {view.category === 'Decor' && 
             <div>
