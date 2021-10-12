@@ -64,9 +64,6 @@ const Home = () => {
     <div className={styles.home}>
             <Parallax bgImage={'/assets/home1.jpg'} strength={height}>
               <Link to='/products' className={styles.homeStore}>
-                {/* <div>
-                  <p>Check out our latest trends</p>
-                </div> */}
                 <Button1>Check out our latest trends</Button1>
               </Link>
             </Parallax>
@@ -80,7 +77,7 @@ const Home = () => {
             strength={width > 700 ? height/1 : width/0.85}>
               <div className={styles.quote}>
                 <h2>There's no place like home. </h2>
-                <i class="fas fa-quote-right"></i>
+                <i className="fas fa-quote-right"></i>
                 <p>In Cozy we offer a wide variety of well-designed, functional home products. Whether your home decor leans towards minimalist or maximalist aesthetic, you'll find something to suit your style.</p>
               </div>
             </Parallax>

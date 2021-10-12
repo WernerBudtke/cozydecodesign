@@ -17,6 +17,7 @@ const ProductsGallery = ({ products, getProducts, productsCategory, match, getPr
     document.title = "COZY | STORE"
     if (!products.length) {
       getProducts()
+      .then(res => getProductByCategory(match.params.category))
     } else {
       getProductByCategory(match.params.category)
     }
@@ -27,6 +28,7 @@ const ProductsGallery = ({ products, getProducts, productsCategory, match, getPr
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [match.params])
+
   if (!order) {
     productsCategory.sort((a,b) => a.stock - b.stock)
   }
@@ -57,25 +59,6 @@ const ProductsGallery = ({ products, getProducts, productsCategory, match, getPr
 
   return (
     <div className={styles.productsGallery}>
-      {productAlert && (
-        <CartCard
-          productAlert={productAlert}
-          showCartCard={showCartCard}
-          editShowCartCard={editShowCartCard}
-        />
-      )}
-      <div className={styles.productsCards}>
-        {productsSubcategory.map((product) => {
-          return (
-            <ProductCard
-              key={product._id}
-              product={product}
-              editShowCartCard={editShowCartCard}
-              setProductAlert={setProductAlert}
-            />
-          )
-        })}
-      </div>
       <div className={styles.filterContainer}>
         <div className={styles.inputContainer}>
           <div>
@@ -111,6 +94,9 @@ const ProductsGallery = ({ products, getProducts, productsCategory, match, getPr
             <Link to="/products/GiftCard">GitfCard</Link>
           </div>
           <div>
+            <Link to="/products/sale">Sale</Link>
+          </div>
+          <div>
             <select onChange={sortProducts}>
               <option value="relevant">Most relevant</option>
               <option value="minor">Lower to higher</option>
@@ -122,6 +108,25 @@ const ProductsGallery = ({ products, getProducts, productsCategory, match, getPr
           <hr />
           <h1>COZY</h1>
         </div>
+      </div>
+      {productAlert && (
+        <CartCard
+          productAlert={productAlert}
+          showCartCard={showCartCard}
+          editShowCartCard={editShowCartCard}
+        />
+      )}
+      <div className={styles.productsCards}>
+        {productsSubcategory.map((product) => {
+          return (
+            <ProductCard
+              key={product._id}
+              product={product}
+              editShowCartCard={editShowCartCard}
+              setProductAlert={setProductAlert}
+            />
+          )
+        })}
       </div>
     </div>
   )

@@ -11,9 +11,9 @@ const productsActions = {
         )
         if(!res.data.success)throw new Error('Failed to get new products')
         dispatch({ type: "GET_ALL_PRODUCTS", payload: res.data.response })
-        return { success: true, res: res.data.response }
+        return { success: true}
       } catch (err) {
-        return { success: false, res: err }
+        return { success: false}
       }
     }
   },
