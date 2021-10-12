@@ -51,27 +51,23 @@ header .logoUser {
   background-size: cover;
 }
 
-@media only screen and (max-width: 1124px) { 
-      
-      header .logoUser{
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 100%;
-        background-color: #000;
-        background-position: center;
-        background-size: cover;
-      }
-    
+@media only screen and (max-width: 1124px) {
+  header .logoUser {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 100%;
+    background-color: #000;
+    background-position: center;
+    background-size: cover;
+  }
 }
 
 @media (max-width: 1100px) {
-    .logo {
-      width: 30vw;
-      height: 12.5vw;
-    }
+  .logo {
+    width: 30vw;
+    height: 12.5vw;
+  }
 }
-  
-
 
 /* PRODUCT FORM */
 .main,
@@ -176,4 +172,34 @@ div.saleRadios input {
     width: 30vw;
     height: 12.5vw;
   }
+}
+
+.react-responsive-modal-modal {
+  padding: 3px !important;
+  border-radius: 10px !important;
+}
+
+.react-responsive-modal-modal div {
+  width: 30vw;
+  height: 30vw;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+}
+
+.react-responsive-modal-modal div div {
+  background-color: #d0d1d1e7;
+  border-radius: 10px;
+  padding: 0 2vw;
+}
+
+.react-responsive-modal-modal div div h2 {
+  font-family: "Cormorant", serif;
+  text-align: center;
+  font-size: 5vw;
+}
+
+.react-responsive-modal-modal div div p {
+  text-align: center;
 }
