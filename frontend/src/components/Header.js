@@ -6,7 +6,7 @@ import Cart from "./Cart"
 import styles from "../styles/MenuResponsive.module.css"
 import { useState } from "react"
 
-const Header= ({ loginUser, logOut }) => {
+const Header = ({ loginUser, logOut, viewCart }) => {
   const [userMenu, setUserMenu] = useState(false)
 
   const menuHandler = (e) => {
@@ -91,7 +91,8 @@ const Header= ({ loginUser, logOut }) => {
             </NavLink>
           )}
           {loginUser && loginUser.admin && <NavLink to="/admin">ADMIN</NavLink>}
-          <ReactCircleModal
+          {!viewCart && (
+            <ReactCircleModal
               style={{
                 padding: "0",
               }}
@@ -107,6 +108,7 @@ const Header= ({ loginUser, logOut }) => {
             >
               {(onClick) => <Cart onClickHandler={onClick} />}
             </ReactCircleModal>
+          )}
         </nav>
       </div>
     </header>

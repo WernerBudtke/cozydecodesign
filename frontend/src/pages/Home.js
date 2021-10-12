@@ -1,10 +1,15 @@
-import { useEffect, useState } from "react";
-import { Parallax } from "react-parallax";
-import { Link } from "react-router-dom";
-import styles from "../styles/Home.module.css";
+import { useEffect, useState } from "react"
+import { Parallax } from "react-parallax"
+import { Link } from "react-router-dom"
+import styles from "../styles/Home.module.css"
 import Button1 from "../components/Button1"
+import Header from "../components/Header"
+import { Modal } from "react-responsive-modal"
+import "react-responsive-modal/styles.css"
 
-const Home = () => {
+const Home = ({ location }) => {
+  console.log(location.state)
+  const [open, setOpen] = useState(false)
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   )
@@ -15,13 +20,17 @@ const Home = () => {
       height,
     }
   }
+
   useEffect(() => {
+    if (location.state) {
+      setOpen(true)
+    }
+
     window.scroll(0, 0)
     document.title = "COZY | Home"
     function handleResize() {
       setWindowDimensions(getWindowDimensions())
     }
-
     window.addEventListener("resize", handleResize)
     return () => window.removeEventListener("resize", handleResize)
   }, [])
@@ -40,10 +49,10 @@ const Home = () => {
   ]
 
   const info = [
-    { src: "./assets/6.png"},
-    { src: "./assets/7.png"},
-    { src: "./assets/8.png"},
-    { src: "./assets/9.png"},
+    { src: "./assets/6.png" },
+    { src: "./assets/7.png" },
+    { src: "./assets/8.png" },
+    { src: "./assets/9.png" },
   ]
 
   const items = categories.map((obj, index) => (
@@ -55,54 +64,92 @@ const Home = () => {
   ))
 
   const infoItems = info.map((obj, index) => (
-    <div key={index} className={styles.infoItem} style={{ backgroundImage: `url('${obj.src}')` }}>
-    </div>
+    <div
+      key={index}
+      className={styles.infoItem}
+      style={{ backgroundImage: `url('${obj.src}')` }}
+    ></div>
   ))
-
-
+  const onOpenModal = () => setOpen(true)
+  const onCloseModal = () => setOpen(false)
   return (
-    <div className={styles.home}>
-            <Parallax bgImage={'/assets/home1.jpg'} strength={height}>
-              <Link to='/products' className={styles.homeStore}>
-                {/* <div>
+    <>
+      <Header />
+
+      <div className={styles.home}>
+        <Parallax bgImage={"/assets/home1.jpg"} strength={height}>
+          <Link to="/products" className={styles.homeStore}>
+            {/* <div>
                   <p>Check out our latest trends</p>
                 </div> */}
-                <Button1>Check out our latest trends</Button1>
-              </Link>
-            </Parallax>
-            <Parallax strength={-200} className={styles.categories}>
-                <h1>CATEGORIES</h1>
-                <div className={styles.galleryWrap}>
-                    {items}
-                </div>
-            </Parallax>
-            <Parallax bgImage={'/assets/home5.jpg'}
-            strength={width > 700 ? height/1 : width/0.85}>
-              <div className={styles.quote}>
-                <h2>There's no place like home. </h2>
-                <i class="fas fa-quote-right"></i>
-                <p>In Cozy we offer a wide variety of well-designed, functional home products. Whether your home decor leans towards minimalist or maximalist aesthetic, you'll find something to suit your style.</p>
-              </div>
-            </Parallax>
-            <Parallax strength={height/10} className={styles.infoContainer}>
-                <div className={styles.fondoInfo}>
-                    {infoItems}
-                </div>
-            </Parallax>
-            <Parallax bgImage={'/assets/home4.jpg'}
-            strength={width > 700 ? -width/5.5 : width/15}
-            renderLayer={(percentage) => (
-                <div
-                  className={styles.finalInfo}
-                  style={{
-                    background: `rgba(212, 197, 191, ${percentage * 2})`,
-                    width: percentage * 100,
-                    height: percentage * 100
-                  }}>
-                </div>
-              )}>
-            </Parallax>
-    </div>
+            <Button1>Check out our latest trends</Button1>
+          </Link>
+        </Parallax>
+        <Parallax strength={-200} className={styles.categories}>
+          <h1>CATEGORIES</h1>
+          <div className={styles.galleryWrap}>{items}</div>
+        </Parallax>
+        <Parallax
+          bgImage={"/assets/home5.jpg"}
+          strength={width > 700 ? height / 1 : width / 0.85}
+        >
+          <div className={styles.quote}>
+            <h2>There's no place like home. </h2>
+            <i class="fas fa-quote-right"></i>
+            <p>
+              In Cozy we offer a wide variety of well-designed, functional home
+              products. Whether your home decor leans towards minimalist or
+              maximalist aesthetic, you'll find something to suit your style.
+            </p>
+          </div>
+        </Parallax>
+        <Parallax strength={height / 10} className={styles.infoContainer}>
+          <div className={styles.fondoInfo}>{infoItems}</div>
+        </Parallax>
+        <Parallax
+          bgImage={"/assets/home4.jpg"}
+          strength={width > 700 ? -width / 5.5 : width / 15}
+          renderLayer={(percentage) => (
+            <div
+              className={styles.finalInfo}
+              style={{
+                background: `rgba(212, 197, 191, ${percentage * 2})`,
+                width: percentage * 100,
+                height: percentage * 100,
+              }}
+            ></div>
+          )}
+        ></Parallax>
+      </div>
+
+      <div>
+        <button onClick={onOpenModal}>Open modal</button>
+        <Modal
+          open={open}
+          onClose={() => {
+            setOpen(false)
+          }}
+          center
+        >
+          <h2>Simple centered modal</h2>
+          <h1>HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h1>
+          <h1>HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h1>
+          <h1>HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h1>
+          <h1>HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h1>
+          <h1>HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h1>
+          <h1>HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h1>
+          <h1>HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h1>
+          <h1>HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h1>
+          <h1>HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h1>
+          <h1>HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h1>
+          <h1>HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h1>
+          <h1>HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h1>
+          <h1>HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h1>
+          <h1>HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h1>
+          <h1>HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h1>
+        </Modal>
+      </div>
+    </>
   )
 }
 export default Home
