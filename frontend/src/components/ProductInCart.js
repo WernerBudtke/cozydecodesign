@@ -51,7 +51,7 @@ const ProductInCart = ({
                   : null
               }
             ></i>
-            <p>{cartItem.quantity}</p>
+            <p className={styles.amountOrder}>{cartItem.quantity}</p>
             <i
               className="fas fa-plus"
               onClick={
@@ -61,7 +61,7 @@ const ProductInCart = ({
               }
             ></i>
           </div>
-          <p>
+          <p className={styles.priceTotal}>
             $
             {cartItem.product.discount === 0
               ? cartItem.product.price
@@ -70,7 +70,7 @@ const ProductInCart = ({
                   cartItem.product.price
                 ).toFixed(2)}
           </p>
-          <p>
+          <p className={styles.priceTotal}>
             $
             {(
               (cartItem.product.discount === 0

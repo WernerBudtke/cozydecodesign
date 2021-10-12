@@ -102,7 +102,7 @@ const Product = ({
                   ${product.price}
                 </p>
               )}
-              <p>${finalPrice}</p>
+              <p className={styles.priceFinal}>${finalPrice}</p>
             </div>
             <div>
               <i className="far fa-credit-card fa-lg"></i>

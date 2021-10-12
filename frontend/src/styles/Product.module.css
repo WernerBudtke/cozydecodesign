@@ -8,7 +8,7 @@
 .mainContainer {
   display: flex;
   align-self: center;
-  width: 80vw;
+  width: 70vw;
   min-height: 65vh;
   margin: 5vh 0;
   border-radius: 20px;
@@ -81,10 +81,6 @@
   color: #fff;
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
-}
-
-.shippingInfo p {
-  padding-left: 1vw;
 }
 
 div.suggestionContainer {
@@ -373,70 +369,35 @@ div.productCardContainer > div {
     margin: 2vh 0;
   }
   .shippingInfo p {
-    padding-left: 0.1vw;
+    padding-left: 2vw;
     font-size: 3.5vmin;
     margin: 2vh 0;
   }
-  .sale {
-    font-size: 5.2vmin !important;
-    margin: 2vh 0;
-  }
-}
-@media only screen and (max-width: 1024px) {
-  .mainContainer {
-    width: 80%;
-    min-height: 60vh;
-  }
-  .productImage {
-    min-width: 50%;
-    height: 25rem;
-  }
-  .productInfo {
-    text-align: justify;
-    padding: 1vh 2.5vw;
-    width: 50%;
-  }
-  .productInfo > p:nth-child(2) {
+  .interestCard{
     font-size: 3vmin;
-    margin: 2vh 0;
-  }
-  .productInfo > div:nth-child(3) {
-    justify-content: space-evenly;
-    font-size: 5.5vmin;
-    margin-bottom: 2vh 0;
-  }
-  .productInfo h2 {
-    font-size: 5vmin;
-  }
-  .productInfo button {
-    padding: 1.5vh;
-    font-size: 2.5vmin;
-    width: 40%;
-    margin: 2vh 0;
-  }
-  .shippingInfo p {
-    padding-left: 0.1vw;
-    font-size: 3.5vmin;
-    margin: 2vh 0;
+    padding-left: 2vw;
   }
   .sale {
-    font-size: 5.2vmin !important;
+    font-size: 4vmin !important;
     margin: 2vh 0;
+  }
+  .priceFinal{
+    font-size: 6vmin
   }
 }
 
-@media only screen and (max-width: 2560px) {
+@media only screen and (min-width: 1024px) {
   .mainContainer {
-    width: 70%;
-    min-height: 60vh;
+    width: 90%;
+    min-height:50vh;
   }
   .productImage {
     min-width: 50%;
-    height: 70vh;
+    height: 80vh;
   }
   .productInfo {
     text-align: justify;
-    padding: 1vh 2.5vw;
+    padding: 0vh 2.5vw;
     width: 50%;
   }
   .productInfo > p:nth-child(2) {
@@ -458,8 +419,8 @@ div.productCardContainer > div {
     margin: 2vh 0;
   }
   .shippingInfo p {
-    padding-left: 0.1vw;
-    font-size: 3vmin;
+    padding-left: 1.5vw;
+    font-size: 2.9vmin;
     margin: 2vh 0;
   }
   .sale {
@@ -468,6 +429,7 @@ div.productCardContainer > div {
   }
   .interestCard {
     font-size: 2.7vmin;
+    padding-left: 1.5vw;
   }
   .counter p {
     font-size: 2.5vmin;

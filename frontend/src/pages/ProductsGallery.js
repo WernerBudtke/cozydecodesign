@@ -109,7 +109,7 @@ const ProductsGallery = ({
           <div>
             <Link to="/products/sale">Sale</Link>
           </div>
-          <div>
+          <div className={styles.sectiontSelect}>
             <select onChange={sortProducts}>
               <option value="relevant">Most relevant</option>
               <option value="minor">Lower to higher</option>
