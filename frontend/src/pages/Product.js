@@ -173,9 +173,7 @@ const Product = ({
                       newClass={"newClass"}
                       editShowCartCard={editShowCartCard}
                     />
-                  </div>
-                )
-              }
+                  </div>)}
             })}
           </div>
         </div>

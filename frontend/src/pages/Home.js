@@ -7,8 +7,7 @@ import Header from "../components/Header"
 import { Modal } from "react-responsive-modal"
 import "react-responsive-modal/styles.css"
 
-const Home = ({ location }) => {
-  console.log(location.state)
+const Home = ({ location, history}) => {
   const [open, setOpen] = useState(false)
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
@@ -22,10 +21,13 @@ const Home = ({ location }) => {
   }
 
   useEffect(() => {
+
+    history.replace()
+
     if (location.state) {
       setOpen(true)
     }
-
+    
     window.scroll(0, 0)
     document.title = "COZY | Home"
     function handleResize() {
@@ -41,10 +43,7 @@ const Home = ({ location }) => {
     { src: "https://i.postimg.cc/tR8xRKn9/bat.jpg", category: "Bathroom" },
     { src: "https://i.postimg.cc/nzm4F3LR/home8.jpg", category: "Kitchenware" },
     { src: "https://i.postimg.cc/J4Q2C5tc/deco.jpg", category: "Decor" },
-    {
-      src: "https://i.postimg.cc/3wdn2zCV/gitfcard-Home.png",
-      category: "GiftCard",
-    },
+    { src: "https://i.postimg.cc/3wdn2zCV/gitfcard-Home.png", category: "GiftCard"},
     { src: "https://i.postimg.cc/R0mhJ9vz/sale.jpg", category: "sale" },
   ]
 
@@ -114,18 +113,15 @@ const Home = ({ location }) => {
               )}>
             </Parallax>
     </div>
-    <div>
-        <button onClick={onOpenModal}>Open modal</button>
-        <Modal
-          open={open}
-          onClose={() => {
-            setOpen(false)
-          }}
-          center
-        >
-          <h2>Simple centered modal</h2>
-        </Modal>
-      </div>
+    <Modal
+      className={styles.modalcheck}
+      open={open}
+      onClose={() => {
+        setOpen(false)
+      }}
+      center>
+    <h2>compra ok   </h2>
+    </Modal>
     </>
   )
 }

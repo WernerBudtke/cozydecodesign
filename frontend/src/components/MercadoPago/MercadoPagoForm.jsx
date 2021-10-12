@@ -26,7 +26,6 @@ export default function MercadoPagoForm({total, addNewOrderHandler, catchMercado
             catchMercadoPagoErr()
         }
     }
-
     const handleInputChange = (e) => {
         setState({
             ...state,
