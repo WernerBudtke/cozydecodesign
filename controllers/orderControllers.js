@@ -52,7 +52,7 @@ const orderControllers = {
       let message = `
                     <table style="max-width: 700px; padding: 10px; margin:0 auto; border-collapse: collapse;">
                         <div style="width: 100%;margin:20px 0; text-align: center;">
-                            <img src="https://i.postimg.cc/s2Z5nX3q/logo.png" />
+                            <img src="https://cozydeco.herokuapp.com/c.png" />
                         </div>
                         <tr>
                             <td style="background-color: #F0F3F5">
@@ -67,7 +67,7 @@ const orderControllers = {
                                         return (
                                           `<ul style="font-size: 15px;  margin: 10px 0">
                                             <li style="color: #000;">Name: ${product.name}</li>
-                                            <li style="color: #000;">Price: ${product.discount > 0 ? (product.price * (1 - product.discount / 100)) : product.price}</li>
+                                            <li style="color: #000;">Price: ${product.discount > 0 ? (product.price * (1 - product.discount / 100)).toFixed(2) : product.price.toFixed(2)}</li>
                                             <li style="color: #000;">Quantity: ${products.filter(element => element.productId == product._id)[0].quantity}</li>
                                           </ul>`
                                         )

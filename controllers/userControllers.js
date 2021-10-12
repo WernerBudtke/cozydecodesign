@@ -18,6 +18,7 @@ const userControllers = {
       photo,
       admin,
       secretWord,
+      native
     } = req.body
     let owner = false
     let photoUploaded = ""
@@ -43,9 +44,9 @@ const userControllers = {
         google,
         admin,
         owner,
-        photo: google ? photo : "",
+        photo: (google || native) ? photo : "",
       })
-      if (google == "false") {
+      if (google == "false" || native == "true") {
         fileName =
           newUser._id +
           "." +
@@ -245,7 +246,7 @@ const userControllers = {
           let message = `
                     <table style="max-width: 700px; padding: 10px; margin:0 auto; border-collapse: collapse;">
                         <div style="width: 100%;margin:20px 0; text-align: center;">
-                            <img src="https://i.postimg.cc/s2Z5nX3q/logo.png" />
+                            <img src="https://cozydeco.herokuapp.com/c.png" />
                         </div>
                         <tr>
                             <td style="background-color: #F0F3F5">
@@ -314,7 +315,7 @@ const userControllers = {
           let message = `
                     <table style="max-width: 700px; padding: 10px; margin:0 auto; border-collapse: collapse;">
                         <div style="width: 100%;margin:20px 0; text-align: center;">
-                            <img src="https://i.postimg.cc/s2Z5nX3q/logo.png" />
+                            <img src="https://cozydeco.herokuapp.com/c.png" />
                         </div>
                         <tr>
                             <td style="background-color: #F0F3F5">

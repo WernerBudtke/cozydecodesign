@@ -34,7 +34,7 @@ const cardControllers = {
       let message = `
                     <table style="max-width: 700px; padding: 10px; margin:0 auto; border-collapse: collapse;">
                         <div style="width: 100%;margin:20px 0; text-align: center;">
-                            <img src="https://i.postimg.cc/s2Z5nX3q/logo.png" />
+                            <img src="https://cozydeco.herokuapp.com/c.png" />
                         </div>
                         <tr>
                             <td style="background-color: #F0F3F5">
