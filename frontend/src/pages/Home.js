@@ -73,6 +73,8 @@ const Home = ({ location }) => {
   const onOpenModal = () => setOpen(true)
   const onCloseModal = () => setOpen(false)
   return (
+    <>
+    <Header/>
     <div className={styles.home}>
             <Parallax bgImage={'/assets/home1.jpg'} strength={height}>
               <Link to='/products' className={styles.homeStore}>
@@ -112,6 +114,19 @@ const Home = ({ location }) => {
               )}>
             </Parallax>
     </div>
+    <div>
+        <button onClick={onOpenModal}>Open modal</button>
+        <Modal
+          open={open}
+          onClose={() => {
+            setOpen(false)
+          }}
+          center
+        >
+          <h2>Simple centered modal</h2>
+        </Modal>
+      </div>
+    </>
   )
 }
 export default Home
