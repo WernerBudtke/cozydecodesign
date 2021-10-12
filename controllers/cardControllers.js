@@ -5,12 +5,10 @@ const cardControllers = {
     console.log(req.body)
     try {
       if (!req.session.loggedUser) throw new Error("Log In First")
-      // if(!req.session.loggedUser.owner)throw new Error("You don't have permissions to do this")
       const user = req.session.loggedUser
       const { balance } = req.body
       let newCode = Date.now()
       let newCard = new Card({
-        // balance: parseInt(balance),
         balance,
         code: newCode,
       })

@@ -27,7 +27,7 @@ header h1 {
   font-size: 11vh;
   flex: 1;
   text-align: center;
-  color: rgb(83, 78, 78);
+  color: #534e4e;
   letter-spacing: 0.5vw;
 }
 a:active {
@@ -50,28 +50,6 @@ header .logoUser {
   background-position: center;
   background-size: cover;
 }
-
-@media only screen and (max-width: 1124px) { 
-      
-      header .logoUser{
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 100%;
-        background-color: #000;
-        background-position: center;
-        background-size: cover;
-      }
-    
-}
-
-@media (max-width: 1100px) {
-    .logo {
-      width: 30vw;
-      height: 12.5vw;
-    }
-}
-  
-
 
 /* PRODUCT FORM */
 .main,
@@ -160,7 +138,44 @@ div.saleRadios input {
 .fa-trash {
   cursor: pointer;
 }
+.react-responsive-modal-modal {
+  padding: 3px !important;
+  border-radius: 10px !important;
+}
 
+.react-responsive-modal-modal div {
+  width: 30vw;
+  height: 20vw;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+}
+
+.react-responsive-modal-modal div div {
+  background-color: #d0d1d1e7;
+  border-radius: 10px;
+  padding: 0 2vw;
+}
+
+.react-responsive-modal-modal div div h2 {
+  font-family: "Cormorant", serif;
+  text-align: center;
+  font-size: 5vw;
+  color:#534e4e;
+}
+
+.react-responsive-modal-modal div div p {
+  text-align: center;
+  padding-top: 3vw;
+}
+.react-responsive-modal-closeButton{
+  width: 2vw !important;
+  top:1vw !important;
+}
+.fa-exclamation-circle{
+  color:brown;
+}
 @media only screen and (max-width: 1124px) {
   header .logoUser {
     width: 2.5rem;

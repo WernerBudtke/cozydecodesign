@@ -14,7 +14,7 @@ const INITIAL_STATE = {
     issuer: "",
 };
 
-export default function MercadoPagoForm({total, addNewOrderHandler, catchMercadoPagoErr}) {
+export default function MercadoPagoForm({total, addNewOrderHandler, catchPagoErr}) {
     const [state, setState] = useState(INITIAL_STATE);
     const resultPayment = useMercadoPago(total);
     const evaluatePayment = (obj) =>{
@@ -23,7 +23,7 @@ export default function MercadoPagoForm({total, addNewOrderHandler, catchMercado
             addNewOrderHandler()
         }else{
             console.log("rechazado");
-            catchMercadoPagoErr()
+            catchPagoErr()
         }
     }
     const handleInputChange = (e) => {

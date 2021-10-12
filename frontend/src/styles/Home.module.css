@@ -1,8 +1,8 @@
-.home{
+.home {
   display: flex;
   flex-direction: column;
 }
-.home > div{
+.home > div {
   width: 100%;
   height: 100vh;
   background-position: center;
@@ -11,22 +11,22 @@
   display: flex;
   align-items: center;
 }
-.home a{
-  border:none;
+.home a {
+  border: none;
   position: absolute;
   padding: 0 !important;
   border-radius: 20px;
-  box-shadow: 2px 2px 34px -2px rgba(0,0,0,0.5);
-  -webkit-box-shadow: 2px 2px 34px -2px rgba(0,0,0,0.5);
-  -moz-box-shadow: 2px 2px 34px -2px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 34px -2px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 2px 2px 34px -2px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 2px 2px 34px -2px rgba(0, 0, 0, 0.5);
 }
 
-.homeStore{
+.homeStore {
   position: absolute;
   left: 78vw;
-  transform: translate(-50%,-50%)
+  transform: translate(-50%, -50%);
 }
-.homeStore > div{
+.homeStore > div {
   display: flex;
   align-items: center;
   padding: 1vw;
@@ -35,31 +35,31 @@
   border-radius: 20px;
   background-color: #dabea8;
 }
-.homeStore > div >p{
-  font-family: 'Cormorant', serif;
+.homeStore > div > p {
+  font-family: "Cormorant", serif;
   text-align: center;
   font-size: 3vmin;
   text-transform: uppercase;
   line-height: 4vh;
 }
 
-.categories{
-  background-color:#ecebe9;
+.categories {
+  background-color: #ecebe9;
   justify-content: center;
 }
-.categories h1{
+.categories h1 {
   margin-bottom: 4vw;
   text-align: center;
-  font-family: 'Cormorant', serif;
+  font-family: "Cormorant", serif;
   letter-spacing: 1vw;
   font-size: 7vw;
 }
-.galleryWrap{
+.galleryWrap {
   width: 82vw;
   height: 60vh;
   display: flex;
 }
-.galleryWrap div{
+.galleryWrap div {
   flex: 1;
   height: 100%;
   background-position: center;
@@ -67,225 +67,210 @@
   background-repeat: none;
   display: flex;
   justify-content: center;
-  align-items:flex-end;
+  align-items: flex-end;
   transition: flex 0.8s ease;
 }
-.galleryWrap div:hover{
+.galleryWrap div:hover {
   flex: 7;
 }
-.galleryWrap div a{
+.galleryWrap div a {
   transition: all 1s ease;
   margin: 1vw;
   padding: 1vw;
   width: 9%;
 }
-.galleryWrap div a button{
+.galleryWrap div a button {
   width: 100%;
   border-radius: 6px;
-  border:none;
-  background-color: #AD9993;
+  border: none;
+  background-color: #ad9993;
   color: #000;
   text-transform: uppercase;
-  padding:.7rem;
+  padding: 0.7rem;
   cursor: pointer;
 }
-.galleryWrap div:hover a{
+.galleryWrap div:hover a {
   width: 50%;
 }
-.textButton{
-  font-size: .65rem;
+.textButton {
+  font-size: 0.65rem;
   font-weight: bolder;
 }
 
-
 /*Quote Section*/
-.quote{
-  background-color:#d9e2e7c7 ;
+.quote {
+  background-color: #d9e2e7c7;
   border-radius: 10px;
   min-height: 60vh;
   width: 25vw;
-  margin:0 3.5vw;
+  margin: 0 3.5vw;
   padding: 2.5vw;
   line-height: 4vh;
   font-size: 3vmin;
   text-align: center;
   letter-spacing: 0.12vw;
 }
-.info h2{
+.info h2 {
   padding-bottom: 2vw;
-  color:rgb(58, 57, 57);
+  color: rgb(58, 57, 57);
   font-size: 2.8rem;
-  font-family: 'Cormorant', serif;
-  line-height : 2.3rem;
+  font-family: "Cormorant", serif;
+  line-height: 2.3rem;
 }
 
 .quote div i {
   font-size: 3rem;
   color: rgba(77, 75, 75, 0.234);
-  margin:1rem;
+  margin: 1rem;
 }
 
 /*infoSection*/
 
-.infoContainer{
+.infoContainer {
   height: 15rem !important;
   justify-content: space-evenly;
 }
-.fondoInfo{
-  display:flex;
+.fondoInfo {
+  display: flex;
   justify-content: space-around;
- 
 }
 
-.infoItem{
+.infoItem {
   background-position: center;
   background-size: cover;
   background-repeat: none;
-  align-items:center;
+  align-items: center;
   width: 15rem;
   height: 15rem;
-  margin:4rem;
+  margin: 4rem;
 }
- /*modal check*/
-.modalcheck{
-  border: 1px solid #000;
-  border-radius: 20px;
-  background-color: red;
-}
-
 
 @media (max-width: 1300px) {
-  .info{
+  .info {
     width: 27vw;
     font-size: 2.8vmin;
   }
-  .infoItem{
+  .infoItem {
     width: 13rem;
     height: 13rem;
-    margin:3rem;
+    margin: 3rem;
   }
 }
 
 @media (max-width: 1200px) {
-  .info{
+  .info {
     width: 28vw;
     font-size: 2.6vmin;
   }
-  .infoItem{
+  .infoItem {
     width: 12rem;
     height: 12rem;
-    margin:2.6rem;
+    margin: 2.6rem;
   }
 }
 
-@media only screen and (max-width: 1124px) { 
-      
-  .info{
+@media only screen and (max-width: 1124px) {
+  .info {
     width: 30vw;
     font-size: 2.7vmin;
   }
-  .infoItem{
+  .infoItem {
     width: 11rem;
     height: 11rem;
-    margin:2.6rem;
+    margin: 2.6rem;
   }
 }
 
 @media (max-width: 1000px) {
-  .info{
+  .info {
     width: 30vw;
     font-size: 2.5vmin;
   }
-  .infoItem{
+  .infoItem {
     width: 9rem;
     height: 9rem;
-    margin:2.4rem;
+    margin: 2.4rem;
   }
 }
 
 @media (max-width: 880px) {
-  .info{
+  .info {
     width: 32vw;
     font-size: 2.3vmin;
   }
-  .quote h2{
+  .quote h2 {
     font-size: 2.7rem;
   }
   div i {
     font-size: 2.7rem;
   }
-  .infoItem{
+  .infoItem {
     width: 9rem;
     height: 9rem;
-    margin:2rem;
+    margin: 2rem;
   }
 }
 
 @media (max-width: 768px) {
-  .info{
+  .info {
     min-height: auto;
     width: 80%;
-    margin:auto;
+    margin: auto;
     font-size: 2.3vmin;
     text-align: center;
   }
-  .quote h2{
+  .quote h2 {
     font-size: 2.6rem;
   }
   div i {
     font-size: 2.5rem;
-    margin:.7rem;
+    margin: 0.7rem;
   }
-  
-  .infoItem{
+
+  .infoItem {
     width: 9rem;
     height: 9rem;
-    margin:1.8rem;
+    margin: 1.8rem;
   }
-  
 }
 
 @media (max-width: 668px) {
-  .info{
+  .info {
     letter-spacing: 0vw;
   }
-  .quote h2{
+  .quote h2 {
     font-size: 2.5rem;
   }
   div i {
     font-size: 2.4rem;
-    margin:.5rem;
+    margin: 0.5rem;
   }
-  .infoContainer{
+  .infoContainer {
     height: auto !important;
   }
-  .fondoInfo{
+  .fondoInfo {
     display: flex;
     flex-wrap: wrap;
   }
-  .infoItem{
+  .infoItem {
     width: 9rem;
     height: 9rem;
-    margin:1.5rem;
+    margin: 1.5rem;
   }
-  
-
 }
 
 @media (max-width: 600px) {
-  .info{
-    background-color:#d9e2e7bb ;
+  .info {
+    background-color: #d9e2e7bb;
     width: 80vw;
     border-bottom-right-radius: 16px;
     border-top-right-radius: 16px;
-
   }
-  .info p{
+  .info p {
     display: none;
   }
-  .info h2{
+  .info h2 {
     font-size: 4vw;
-    color:rgb(43, 43, 43)
+    color: rgb(43, 43, 43);
   }
-
 }

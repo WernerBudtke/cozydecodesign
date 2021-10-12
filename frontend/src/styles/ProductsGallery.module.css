@@ -210,6 +210,10 @@ div.inputContainer div select {
   .nameAndPrice h1 {
     font-size: 3.3vmin;
   }
+  .nameAndPrice p{
+    color:brown;
+    font-size: small;
+  }
 
   .wrapper .inside .icon {
     padding-left: 4.5vw;
