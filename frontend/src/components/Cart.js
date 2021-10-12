@@ -22,7 +22,7 @@ const Cart = ({ onClickHandler, products, loginUser }) => {
   const redirectHandler = () => {
     loginUser ? redirectPayment() : setView(true)
   }
-  
+
   const onclickAndSetView = () => {
     setView(false)
     onClickHandler()

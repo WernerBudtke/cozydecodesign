@@ -3,3 +3,37 @@
   margin-top: 3vh;
   padding: 2vw;
 }
+
+.checkOut {
+  display: inline-block;
+  position: relative;
+  padding: 10px 20px;
+  border: 2px solid #ffe4c4;
+  color: #000000be;
+  font-size: x-large;
+  margin: 1vw;
+  transition: color 0.4s;
+  text-transform: uppercase;
+  background-color: #e4e6e5;
+  cursor: pointer;
+}
+.checkOut:after {
+  content: " ";
+  border: 2px solid rgba(0, 0, 0, 0);
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  transition: all 0.4s;
+}
+
+.checkOut:hover:after {
+  border: 2px solid #ffe4c4;
+  width: calc(100% - 10px);
+  height: calc(100% + 10px);
+}

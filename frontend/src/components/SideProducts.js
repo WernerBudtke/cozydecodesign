@@ -1,8 +1,10 @@
-import styles from "../styles/PaymentGateway.module.css"
+import { Link } from "react-router-dom"
+import styles from "../styles/SideProducts.module.css"
 
 const SideProducts = ({ products, total }) => {
   return (
-    <div>
+    <div className={styles.sideProducts}>
+      <h2>Shopping Cart </h2>
       {products.map((obj) => {
         return (
           <div key={obj.product._id} className={styles.productInCart}>
@@ -16,13 +18,13 @@ const SideProducts = ({ products, total }) => {
                 }")`,
               }}
             ></div>
-            <p>{obj.product.name}</p>
             <div className={styles.productCartInfo}>
+              <Link to={`product/${obj.product._id}`}>
+                <h5>{obj.product.name}</h5>
+              </Link>
               <div>
-                <p>{obj.quantity} X </p>
-
                 <p>
-                  $
+                  {obj.quantity} u. X $
                   {obj.product.discount === 0
                     ? obj.product.price
                     : (
@@ -30,20 +32,31 @@ const SideProducts = ({ products, total }) => {
                         obj.product.price
                       ).toFixed(2)}
                 </p>
+
                 <p>
-                  $
-                  {(
-                    (obj.product.discount === 0
-                      ? obj.product.price
-                      : ((100 - obj.product.discount) / 100) *
-                        obj.product.price) * obj.quantity
-                  ).toFixed(2)}
+                  Subtotal $
+                  <span>
+                    {(
+                      (obj.product.discount === 0
+                        ? obj.product.price
+                        : ((100 - obj.product.discount) / 100) *
+                          obj.product.price) * obj.quantity
+                    ).toFixed(2)}{" "}
+                  </span>
                 </p>
               </div>
             </div>
           </div>
         )
       })}
+      <div className={styles.totalPrice}>
+        <p>
+          Total Price <span>${total}</span>
+        </p>
+        <Link to="/products">
+          <button>Edit Cart</button>
+        </Link>
+      </div>
     </div>
   )
 }
