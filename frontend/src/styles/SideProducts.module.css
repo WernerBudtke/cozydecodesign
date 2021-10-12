@@ -1,0 +1,79 @@
+/*SIDE PRODUCTS STYLES*/
+.sideProducts {
+  width: 35%;
+}
+
+.sideProducts h2 {
+  text-align: center;
+  margin-bottom: 2vh;
+  text-transform: uppercase;
+  font-size: 4vmin;
+  font-family: "Cormorant", serif;
+  color: #000000be;
+}
+.productInCart {
+  display: flex;
+  width: 100%;
+  height: 9vw;
+  justify-content: space-between;
+  margin-bottom: 1vw;
+  border: 1px solid #d0d1d1;
+}
+
+.productCartInfo {
+  background-color: #d0d1d1e7;
+  padding: 1vw;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.productCartInfo div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.productCartInfo div span {
+  font-weight: bold;
+}
+
+.productCartInfo a h5 {
+  font-weight: bold;
+  font-size: 4vmin;
+}
+
+.productCartPhoto {
+  width: 9vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.totalPrice {
+  font-size: 5vmin;
+  font-weight: bolder;
+  text-align: center;
+  color: #000000be;
+}
+
+.totalPrice span {
+  color: black;
+}
+
+.totalPrice a button {
+  width: 60%;
+  background-color: #ead8ca94;
+  color: #000000be;
+  font-size: medium;
+  font-weight: bolder;
+  line-height: 1;
+  text-align: center;
+  padding: 8px 16px;
+  margin-right: 1vw;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+  border-radius: 4px;
+}

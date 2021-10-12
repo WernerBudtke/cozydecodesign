@@ -5,77 +5,73 @@ import ProductCard from "../components/ProductCard"
 import CartCard from "../components/CartCard"
 import productsActions from "../redux/actions/productsActions"
 import { Link } from "react-router-dom"
+import Header from "../components/Header"
 
-const ProductsGallery = ({ products, getProducts, productsCategory, match, getProductByCategory}) => {
+const ProductsGallery = ({
+  products,
+  getProducts,
+  productsCategory,
+  match,
+  getProductByCategory,
+}) => {
   const [showCartCard, setShowCartCard] = useState(false)
   const [productAlert, setProductAlert] = useState(null)
   const [order, setOrder] = useState(null)
-  const [view, setView] = useState({category: null, subcategory: null})
+  const [view, setView] = useState({ category: null, subcategory: null })
 
   useEffect(() => {
     window.scroll(0, 0)
     document.title = "COZY | STORE"
     if (!products.length) {
       getProducts()
+      .then(res => getProductByCategory(match.params.category))
     } else {
       getProductByCategory(match.params.category)
     }
     if (match.params.category) {
-      setView({category: match.params.category, subcategory: null})
+      setView({ category: match.params.category, subcategory: null })
     } else {
-      setView({category: null, subcategory: null})
+      setView({ category: null, subcategory: null })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [match.params])
+
   if (!order) {
-    productsCategory.sort((a,b) => a.stock - b.stock)
+    productsCategory.sort((a, b) => a.stock - b.stock)
   }
   const editShowCartCard = (newState) => {
     setShowCartCard(newState)
   }
 
-   if(productAlert){
-     setTimeout(() => {
-       setProductAlert(null)
-     },2500)
-   }
+  if (productAlert) {
+    setTimeout(() => {
+      setProductAlert(null)
+    }, 2500)
+  }
 
-   const sortProducts = (e) => {
-     if (e.target.value !== "relevant") {
-       productsCategory.sort((a, b) => e.target.value === "minor" ? a.price - b.price : b.price - a.price)
-     } else {
-       productsCategory.sort((a,b) => a.stock - b.stock)
-     }
+  const sortProducts = (e) => {
+    if (e.target.value !== "relevant") {
+      productsCategory.sort((a, b) =>
+        e.target.value === "minor" ? a.price - b.price : b.price - a.price
+      )
+    } else {
+      productsCategory.sort((a, b) => a.stock - b.stock)
+    }
     setOrder(e.target.value)
-   }
+  }
 
-   let productsSubcategory = !view.subcategory ? productsCategory : productsCategory.filter((obj) => obj.subcategory === view.subcategory )
-   
-   const viewHandler = (e) => {
-     setView({...view, subcategory: e.target.value})
-   }
+  let productsSubcategory = !view.subcategory
+    ? productsCategory
+    : productsCategory.filter((obj) => obj.subcategory === view.subcategory)
+
+  const viewHandler = (e) => {
+    setView({ ...view, subcategory: e.target.value })
+  }
 
   return (
+    <>
+    <Header/>
     <div className={styles.productsGallery}>
-      {productAlert && (
-        <CartCard
-          productAlert={productAlert}
-          showCartCard={showCartCard}
-          editShowCartCard={editShowCartCard}
-        />
-      )}
-      <div className={styles.productsCards}>
-        {productsSubcategory.map((product) => {
-          return (
-            <ProductCard
-              key={product._id}
-              product={product}
-              editShowCartCard={editShowCartCard}
-              setProductAlert={setProductAlert}
-            />
-          )
-        })}
-      </div>
       <div className={styles.filterContainer}>
         <div className={styles.inputContainer}>
           <div>
@@ -111,6 +107,9 @@ const ProductsGallery = ({ products, getProducts, productsCategory, match, getPr
             <Link to="/products/GiftCard">GitfCard</Link>
           </div>
           <div>
+            <Link to="/products/sale">Sale</Link>
+          </div>
+          <div>
             <select onChange={sortProducts}>
               <option value="relevant">Most relevant</option>
               <option value="minor">Lower to higher</option>
@@ -123,18 +122,38 @@ const ProductsGallery = ({ products, getProducts, productsCategory, match, getPr
           <h1>COZY</h1>
         </div>
       </div>
+      {productAlert && (
+        <CartCard
+          productAlert={productAlert}
+          showCartCard={showCartCard}
+          editShowCartCard={editShowCartCard}
+        />
+      )}
+      <div className={styles.productsCards}>
+        {productsSubcategory.map((product) => {
+          return (
+            <ProductCard
+              key={product._id}
+              product={product}
+              editShowCartCard={editShowCartCard}
+              setProductAlert={setProductAlert}
+            />
+          )
+        })}
+      </div>
     </div>
+    </>
   )
 }
 const mapStateToProps = (state) => {
   return {
     products: state.products.products,
-    productsCategory: state.products.productsCategory
+    productsCategory: state.products.productsCategory,
   }
 }
 
 const mapDispatchToProps = {
   getProducts: productsActions.getProducts,
-  getProductByCategory: productsActions.getProductByCategory
+  getProductByCategory: productsActions.getProductByCategory,
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsGallery)

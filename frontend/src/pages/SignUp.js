@@ -1,25 +1,39 @@
-import { useState, useEffect} from "react"
+import { useState, useEffect } from "react"
 import { GoogleLogin } from "react-google-login"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import userActions from "../redux/actions/userActions"
-import '../styles/SignUp.css'
+import "../styles/SignUp.css"
+import Header from "../components/Header"
 
-const SignUp = ({history, signUp}) => {
-  const [user, setUser] = useState({ firstName: "", lastName: "", password: "", eMail: "", photo: "", admin: false, google: false })
+const SignUp = ({ history, signUp }) => {
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    password: "",
+    eMail: "",
+    photo: "",
+    admin: false,
+    google: false,
+  })
   const [renderError, setRenderError] = useState({})
   const errorsInput = {
-    firstName: null, lastName: null, eMail: null, password: null, emptyFields: null
+    firstName: null,
+    lastName: null,
+    eMail: null,
+    password: null,
+    emptyFields: null,
   }
 
-  useEffect(()=>{
-    document.title='COZY | Sign Up'
-  },[])
+  useEffect(() => {
+    document.title = "COZY | Sign Up"
+  }, [])
 
   const inputHandler = (e) => {
     setUser({
       ...user,
-      [e.target.name]: e.target.name === "photo" ? e.target.files[0] : e.target.value,
+      [e.target.name]:
+        e.target.name === "photo" ? e.target.files[0] : e.target.value,
     })
   }
 
@@ -31,13 +45,13 @@ const SignUp = ({history, signUp}) => {
       photo: response.profileObj.imageUrl,
       eMail: response.profileObj.email,
       google: true,
-      admin: false
+      admin: false,
     }
     const res = await signUp(user)
     if (res.success) {
       history.push("/")
     } else {
-      setRenderError({emailGoogle: 'That google account is already in use'})
+      setRenderError({ emailGoogle: "That google account is already in use" })
     }
   }
 
@@ -51,14 +65,14 @@ const SignUp = ({history, signUp}) => {
     fd.append("admin", user.admin)
     fd.append("google", user.google)
     if (Object.values(user).some((value) => value === "")) {
-      setRenderError({emptyFields: "There cannot be empty fields"})
+      setRenderError({ emptyFields: "There cannot be empty fields" })
     } else {
       const response = await signUp(fd)
       if (response.success) {
         history.push("/")
       } else {
-        response.response.forEach(error=> {
-          errorsInput[error.context.label]=error.message
+        response.response.forEach((error) => {
+          errorsInput[error.context.label] = error.message
         })
         setRenderError(errorsInput)
       }
@@ -66,92 +80,103 @@ const SignUp = ({history, signUp}) => {
   }
 
   return (
-    <main className="signup-main">
-      <div className="box">
-        <h1>Sign Up</h1>
-        <div>
-          <div className="group">
-            <input
-              type="text"
-              required
-              onChange={inputHandler}
-              name="firstName"
-            />
-            <span className="highlight"></span>
-            <span className="bar"></span>
-            <label>Firstname</label>
-            <div>
-              {renderError.firstName && <p className="inputError">{renderError.firstName}</p>}
+    <>
+      <Header />
+      <main className="signup-main">
+        <div className="box">
+          <h1>Sign Up</h1>
+          <div>
+            <div className="group">
+              <input
+                type="text"
+                required
+                onChange={inputHandler}
+                name="firstName"
+              />
+              <span className="highlight"></span>
+              <span className="bar"></span>
+              <label>Firstname</label>
+              <div>
+                {renderError.firstName && (
+                  <p className="inputError">{renderError.firstName}</p>
+                )}
+              </div>
+            </div>
+            <div className="group">
+              <input
+                type="text"
+                required
+                onChange={inputHandler}
+                name="lastName"
+              />
+              <span className="highlight"></span>
+              <span className="bar"></span>
+              <label>Lastname</label>
+              <div>
+                {renderError.lastName && (
+                  <p className="inputError">{renderError.lastName}</p>
+                )}
+              </div>
+            </div>
+            <div className="group">
+              <input
+                type="password"
+                required
+                onChange={inputHandler}
+                name="password"
+              />
+              <span className="highlight"></span>
+              <span className="bar"></span>
+              <label>Password</label>
+              <div>
+                {renderError.password && (
+                  <p className="inputError">{renderError.password}</p>
+                )}
+              </div>
+            </div>
+            <div className="group">
+              <input
+                type="text"
+                onChange={inputHandler}
+                name="eMail"
+                required
+              />
+              <span className="highlight"></span>
+              <span className="bar"></span>
+              <label>Email</label>
+              <div>
+                {renderError.eMail && (
+                  <p className="inputError">{renderError.eMail}</p>
+                )}
+              </div>
+            </div>
+            <div className="group">
+              <input type="file" onChange={inputHandler} name="photo" />
+              <label>Avatar</label>
+            </div>
+            <button type="submit" onClick={submitHandler}>
+              Sign Up
+            </button>
+            <p>Or</p>
+            <div className="googleButton">
+              <GoogleLogin
+                clientId="825531110504-5if5ceqkaqcvcu2dppipo8q3j7hvnn9k.apps.googleusercontent.com"
+                buttonText="Sign up"
+                onSuccess={responseGoogle}
+                cookiePolicy={"single_host_origin"}
+              />
             </div>
           </div>
-          <div className="group">
-            <input
-              type="text"
-              required
-              onChange={inputHandler}
-              name="lastName"
-            />
-            <span className="highlight"></span>
-            <span className="bar"></span>
-            <label>Lastname</label>
-            <div>
-              {renderError.lastName && <p className="inputError">{renderError.lastName}</p>}
-            </div>
-          </div>
-          <div className="group">
-            <input
-              type="password"
-              required
-              onChange={inputHandler}
-              name="password"
-            />
-            <span className="highlight"></span>
-            <span className="bar"></span>
-            <label>Password</label>
-            <div>
-              {renderError.password && <p className="inputError">{renderError.password}</p>}
-            </div>
-          </div>
-          <div className="group">
-            <input
-              type="text"
-              onChange={inputHandler}
-              name="eMail"
-              required
-            />
-            <span className="highlight"></span>
-            <span className="bar"></span>
-            <label>Email</label>
-            <div>
-              {renderError.eMail && <p className="inputError">{renderError.eMail}</p>}
-            </div>
-          </div>
-          <div className="group">
-            <input type="file" onChange={inputHandler} name="photo" />
-            <label>Avatar</label>
-          </div>
-          <button type="submit" onClick={submitHandler}>
-            Sign Up
-          </button>
-          <p>Or</p>
-          <div className="googleButton">
-            <GoogleLogin
-              clientId="825531110504-5if5ceqkaqcvcu2dppipo8q3j7hvnn9k.apps.googleusercontent.com"
-              buttonText="Sign up"
-              onSuccess={responseGoogle}
-              cookiePolicy={"single_host_origin"}
-            />
-          </div>
-        </div>
           <div className="errorContainer">
             {<p>{renderError.emptyFields}</p>}
             {<p>{renderError.emailGoogle}</p>}
           </div>
-        <div className="footer-box">
-          <Link to="/signin">You have an account? Sign in now!</Link>
+          <div className="footer-box">
+            <Link to="/signin">You have an account? Sign in now!</Link>
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   )
 }
 
