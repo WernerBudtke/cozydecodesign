@@ -20,24 +20,24 @@ const Footer=()=>{
                 <h3>Contact</h3>
                 <div className={styles.iconResponsive}>
                    <div  className={styles.iconSocial} >
-                <i class="fas fa-envelope fa-lg"></i>
+                <i className="fas fa-envelope fa-lg"></i>
                   <p>cozydecodesign@gmail.com</p>
                 </div>
                 <div className={styles.iconSocial}>
-                <i class="fas fa-phone-square-alt fa-lg"></i>
+                <i className="fas fa-phone-square-alt fa-lg"></i>
                     <p>+54 11 6789 8270</p>
                 </div> 
                 </div>
                 
                 <div className={styles.iconSocial}>
-                    <a href="https://www.facebook.com/" target="_blank" className={styles.iconSocial}>
-                    <i class="fab fa-facebook-square fa-lg"></i>
+                    <a href="https://www.facebook.com/" target="_blank" className={styles.iconFooter}>
+                    <i className="fab fa-facebook-square fa-lg"></i>
                     </a> 
-                    <a href="https://www.instagram.com/" target="_blank" className={styles.iconSocial}>
-                    <i class="fab fa-instagram-square fa-lg"></i>                    
+                    <a href="https://www.instagram.com/" target="_blank" className={styles.iconFooter}>
+                    <i className="fab fa-instagram-square fa-lg"></i>                    
                     </a> 
-                    <a href="https://www.whatsapp.com/" target="_blank" className={styles.iconSocial}>
-                    <i class="fab fa-whatsapp-square fa-lg"></i>
+                    <a href="https://www.whatsapp.com/" target="_blank" className={styles.iconFooter}>
+                    <i className="fab fa-whatsapp-square fa-lg"></i>
                     </a>
                 </div>
             </div>

@@ -101,29 +101,28 @@ div.suggestionContainer h3 {
 }
 
 div.suggestion {
-  width: 100%;
+  width: 98vw;
   min-height: 65vh;
   background-color: #d4c5bf;
   display: flex;
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 
 div.suggestion::-webkit-scrollbar {
-  height: 0.5rem!important;
-
+  height: 0.5rem !important;
 }
 
-div.suggestion::-webkit-scrollbar-thumb{
+div.suggestion::-webkit-scrollbar-thumb {
   background-color: #ad9993;
   border-radius: 10px;
 }
 
 div.productCardContainer {
   padding: 0.5rem;
-  height: 50vh
+  height: 50vh;
 }
 
-div.productCardContainer > div{
+div.productCardContainer > div {
   width: 20rem;
 }
 
@@ -142,17 +141,23 @@ div.productCardContainer > div{
 .efwhzj {
   padding: 0 !important;
 }
-.interestCard{
+.interestCard {
   color: rgb(114, 107, 107);
   margin: 1vh 0;
 }
-.calculateSend{
+.calculateSend {
   font-size: 3vmin;
 }
 .sale {
   text-decoration: line-through;
   color: #dd3e2c !important;
   font-size: 5vmin !important;
+}
+
+.fa-plus,
+.fa-minus,
+.fa-trash-alt {
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 425px) {
@@ -162,7 +167,7 @@ div.productCardContainer > div{
     min-height: 80vh;
   }
   .productInfo {
-    text-align:justify;
+    text-align: justify;
     padding: 1.5vh 2.5vw;
   }
   .productInfo > p:nth-child(2) {
@@ -186,7 +191,7 @@ div.productCardContainer > div{
     margin: 1vh 0;
   }
   .shippingInfo p {
-    padding-left: .2vw;
+    padding-left: 0.2vw;
     font-size: 4.2vmin;
     margin: 2vh 0;
   }
@@ -203,7 +208,7 @@ div.productCardContainer > div{
     min-height: 80vh;
   }
   .productInfo {
-    text-align:justify;
+    text-align: justify;
     padding: 2vh 1.5vw;
   }
   .productImage {
@@ -215,7 +220,7 @@ div.productCardContainer > div{
     margin: 2vh 0;
   }
   .productInfo > div:nth-child(3) {
-    justify-content:space-evenly;
+    justify-content: space-evenly;
     font-size: 8.5vmin;
     margin-bottom: 2vh 0;
   }
@@ -229,7 +234,7 @@ div.productCardContainer > div{
     margin: 2vh 0;
   }
   .shippingInfo p {
-    padding-left: .1vw;
+    padding-left: 0.1vw;
     font-size: 3.5vmin;
     margin: 2vh 0;
   }
@@ -250,7 +255,7 @@ div.productCardContainer > div{
     height: 25rem;
   }
   .productInfo {
-    text-align:justify;
+    text-align: justify;
     padding: 3vh 2.7vw;
     min-width: 100%;
   }
@@ -259,7 +264,7 @@ div.productCardContainer > div{
     margin: 2vh 0;
   }
   .productInfo > div:nth-child(3) {
-    justify-content:space-evenly;
+    justify-content: space-evenly;
     font-size: 6.5vmin;
     margin-bottom: 2vh 0;
   }
@@ -273,7 +278,7 @@ div.productCardContainer > div{
     margin: 2vh 0;
   }
   .shippingInfo p {
-    padding-left: .1vw;
+    padding-left: 0.1vw;
     font-size: 3vmin;
     margin: 2vh 0;
   }
@@ -294,7 +299,7 @@ div.productCardContainer > div{
     height: 30rem;
   }
   .productInfo {
-    text-align:justify;
+    text-align: justify;
     padding: 1vh 2.5vw;
   }
   .productInfo > p:nth-child(2) {
@@ -302,7 +307,7 @@ div.productCardContainer > div{
     margin: 2vh 0;
   }
   .productInfo > div:nth-child(3) {
-    justify-content:space-evenly;
+    justify-content: space-evenly;
     font-size: 5.5vmin;
     margin-bottom: 2vh 0;
   }
@@ -316,7 +321,7 @@ div.productCardContainer > div{
     margin: 2vh 0;
   }
   .shippingInfo p {
-    padding-left: .1vw;
+    padding-left: 0.1vw;
     font-size: 2.5vmin;
     margin: 2vh 0;
   }
@@ -324,70 +329,28 @@ div.productCardContainer > div{
     font-size: 5.2vmin !important;
     margin: 2vh 0;
   }
-  .interestCard{
+  .interestCard {
     font-size: 2.7vmin;
   }
-  .counter p{
+  .counter p {
     font-size: 2vmin;
   }
-  .calculateSend{
+  .calculateSend {
     font-size: 2.5vmin;
   }
 }
 
-@media only screen and (max-width: 991px) { 
+@media only screen and (max-width: 991px) {
   .mainContainer {
     width: 80%;
     min-height: 60vh;
   }
-  .productImage {
-    min-width: 50%;
-    height: 25rem; 
-  } 
-  .productInfo {
-    text-align:justify;
-    padding: 1vh 2.5vw;
-    width: 50%;
-  }
-  .productInfo > p:nth-child(2) {
-    font-size: 3vmin;
-    margin: 2vh 0;
-  }
-  .productInfo > div:nth-child(3) {
-    justify-content:space-evenly;
-    font-size: 5.5vmin;
-    margin-bottom: 2vh 0;
-  }
-  .productInfo h2 {
-    font-size: 5vmin;
-  }
-  .productInfo button {
-    padding: 1.5vh;
-    font-size: 2.5vmin;
-    width: 40%;
-    margin: 2vh 0;
-  }
-  .shippingInfo p {
-    padding-left: .1vw;
-    font-size: 3.5vmin;
-    margin: 2vh 0;
-  }
-  .sale {
-    font-size: 5.2vmin !important;
-    margin: 2vh 0;
-  }
-}
- @media only screen and (max-width: 1024px) {
-  .mainContainer {
-    width: 80%;
-    min-height: 60vh;
-  } 
   .productImage {
     min-width: 50%;
     height: 25rem;
   }
   .productInfo {
-    text-align:justify;
+    text-align: justify;
     padding: 1vh 2.5vw;
     width: 50%;
   }
@@ -396,7 +359,7 @@ div.productCardContainer > div{
     margin: 2vh 0;
   }
   .productInfo > div:nth-child(3) {
-    justify-content:space-evenly;
+    justify-content: space-evenly;
     font-size: 5.5vmin;
     margin-bottom: 2vh 0;
   }
@@ -410,7 +373,49 @@ div.productCardContainer > div{
     margin: 2vh 0;
   }
   .shippingInfo p {
-    padding-left: .1vw;
+    padding-left: 0.1vw;
+    font-size: 3.5vmin;
+    margin: 2vh 0;
+  }
+  .sale {
+    font-size: 5.2vmin !important;
+    margin: 2vh 0;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .mainContainer {
+    width: 80%;
+    min-height: 60vh;
+  }
+  .productImage {
+    min-width: 50%;
+    height: 25rem;
+  }
+  .productInfo {
+    text-align: justify;
+    padding: 1vh 2.5vw;
+    width: 50%;
+  }
+  .productInfo > p:nth-child(2) {
+    font-size: 3vmin;
+    margin: 2vh 0;
+  }
+  .productInfo > div:nth-child(3) {
+    justify-content: space-evenly;
+    font-size: 5.5vmin;
+    margin-bottom: 2vh 0;
+  }
+  .productInfo h2 {
+    font-size: 5vmin;
+  }
+  .productInfo button {
+    padding: 1.5vh;
+    font-size: 2.5vmin;
+    width: 40%;
+    margin: 2vh 0;
+  }
+  .shippingInfo p {
+    padding-left: 0.1vw;
     font-size: 3.5vmin;
     margin: 2vh 0;
   }
@@ -420,18 +425,17 @@ div.productCardContainer > div{
   }
 }
 
-
 @media only screen and (max-width: 2560px) {
   .mainContainer {
     width: 70%;
     min-height: 60vh;
-  } 
+  }
   .productImage {
     min-width: 50%;
     height: 70vh;
   }
   .productInfo {
-    text-align:justify;
+    text-align: justify;
     padding: 1vh 2.5vw;
     width: 50%;
   }
@@ -440,7 +444,7 @@ div.productCardContainer > div{
     margin: 2vh 0;
   }
   .productInfo > div:nth-child(3) {
-    justify-content:space-evenly;
+    justify-content: space-evenly;
     font-size: 5vmin;
     margin-bottom: 2vh 0;
   }
@@ -454,7 +458,7 @@ div.productCardContainer > div{
     margin: 2vh 0;
   }
   .shippingInfo p {
-    padding-left: .1vw;
+    padding-left: 0.1vw;
     font-size: 3vmin;
     margin: 2vh 0;
   }
@@ -462,10 +466,10 @@ div.productCardContainer > div{
     font-size: 3.2vmin !important;
     margin: 2vh 0;
   }
-  .interestCard{
+  .interestCard {
     font-size: 2.7vmin;
   }
-  .counter p{
+  .counter p {
     font-size: 2.5vmin;
   }
 }

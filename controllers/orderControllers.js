@@ -1,14 +1,13 @@
 // Crear Orden, Pedir x User / ALL (x fecha) + Send Mail after purchase
 const Order = require("../models/Order")
 const Product = require("../models/Product")
-const transport = require("../config/transport")
+const wrapedSendMail = require("../config/sendMail")
 const orderControllers = {
   getOrders: async (req, res) => {
     console.log("Received GET ORDERS Petition:" + Date())
     try {
       const { filterBy } = req.body
       let willFilterFor = filterBy ? { ...filterBy } : ""
-      // console.log(willFilterFor)
       let orders = await Order.find({ ...willFilterFor })
       res.json({ success: true, response: orders })
     } catch (err) {
@@ -53,17 +52,17 @@ const orderControllers = {
       let message = `
                     <table style="max-width: 700px; padding: 10px; margin:0 auto; border-collapse: collapse;">
                         <div style="width: 100%;margin:20px 0; text-align: center;">
-                            <img src="https://i.postimg.cc/s2Z5nX3q/logo.png" />
+                            <img src="https://cozydeco.herokuapp.com/c.png" />
                         </div>
                         <tr>
                             <td style="background-color: #F0F3F5">
                                 <div style="color: #34495e; margin: 4% 10% 2%; text-align: justify;font-family: sans-serif">
-                                    <h1 style="color: #19b1bc; margin: 0 0 7px">Hello!</h1>
+                                    <h1 style="color: #dabea8; margin: 0 0 7px">Hello!</h1>
                                     <h2 style="color: #000; margin: 0 0 7px">Dear ${user.firstName} ${user.lastName}:</h2>
                                     <p style="margin: 2px; font-size: 15px; color: #000">
                                             We sent you this e-mail to let you know your purchase was successfully done<br>
                                     </p>
-                                    <h2 style="color: #19b1bc;">Details of your purchase:</h2>
+                                    <h2 style="color: #dabea8;">Details of your purchase:</h2>
                                         ${productsBought.map(product => {
                                         return (
                                           `<ul style="font-size: 15px;  margin: 10px 0">
@@ -73,18 +72,18 @@ const orderControllers = {
                                           </ul>`
                                         )
                                       })}
-                                    <h2 style="color: #19b1bc;">Information about your purchase:</h2>
+                                    <h2 style="color: #dabea8;">Information about your purchase:</h2>
                                     <p style="margin: 2px; font-size: 15px; color: #000">
                                         Bought with ${paymentMethod.type}
                                     </p>
                                     <ul style="font-size: 15px;  margin: 10px 0; color: #000">
-                                        <li>Total price: ${totalPrice.toFixed(2)}</li>
+                                        <li>Total price: ${totalPrice}</li>
                                     </ul>
-                                    <h2 style="margin: 0 0 7px; color: #19b1bc">Also:</h2>
+                                    <h2 style="margin: 0 0 7px; color: #dabea8">Also:</h2>
                                     <p style="margin: 2px; font-size: 15px; color: #000;">
                                         Have a good day and continue shopping anytime soon!
                                     </p>
-                                    <div style="width: 100%;margin:20px 0; display: inline-block;text-align: center; background-color: #19b1bc;">
+                                    <div style="width: 100%;margin:20px 0; display: inline-block;text-align: center; background-color: #dabea8;">
                                     <a style="text-decoration: none; color: white;" href=""><p style="color: #fff; font-size: 14px; text-align: center;">© Copyright 2021 | Cozy Deco.</p></a>	
                                 </div>
                             </td>
@@ -97,13 +96,9 @@ const orderControllers = {
         subject: `Thank you for your purchase ${user.firstName}!`,
         html: message,
       }
-      transport.sendMail(mailOptions, (err, data) => {
-        if(err){
-          throw new Error('Order placed, mail not sent')
-        }else{
-          res.json({ success: true, response: data })
-        }
-      })
+      let mailResp= await wrapedSendMail(mailOptions);
+      if(!mailResp)throw new Error('Order creater, mail not sent')
+      res.json({success: true, response: 'Order created, mail sent'})
     } catch (err) {
       res.json({ success: false, response: err.message })
     }

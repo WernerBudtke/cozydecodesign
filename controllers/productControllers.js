@@ -64,15 +64,22 @@ const productControllers = {
     console.log("Received MODIFY PRODUCT Petition:" + Date())
     try {
       if (!req.session.loggedUser) throw new Error("Log In First")
-      if (!req.session.loggedUser.admin)
-        throw new Error("You don't have permissions to do this")
+      if (!req.session.loggedUser.admin)throw new Error("You don't have permissions to do this")
       const productId = req.params.id
-      let photoUploaded = req.files.photo
-      let fileName = newProduct._id + "." + req.files.photo.name.split('.')[req.files.photo.name.split('.').length-1]
-      photoUploaded.mv(`${__dirname}/../storage/${fileName}`)
+      let photoUploaded = null
+      let fileName = ""
+      let whatToEdit = {}
+      if(req.files){
+        photoUploaded = req.files.photo
+        fileName = productId + "." + req.files.photo.name.split('.')[req.files.photo.name.split('.').length-1]
+        photoUploaded.mv(`${__dirname}/../storage/${fileName}`)
+        whatToEdit = {...req.body, photo: fileName}
+      }else{
+        whatToEdit = {...req.body}
+      }
       let modifiedProduct = await Product.findOneAndUpdate(
         { _id: productId },
-        { ...req.body, photo: fileName },
+        {...whatToEdit},
         { new: true }
       )
       if (!modifiedProduct) throw new Error("Product not found")

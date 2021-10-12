@@ -48,7 +48,6 @@ const cartReducer = (state = { products: [] }, action) => {
         ),
       }
     case "ADD_CART_LS":
-      console.log(action.payload)
       return {
         products: action.payload,
       }

@@ -9,10 +9,14 @@ const productsActions = {
           {},
           { withCredentials: true }
         )
+        if(!res.data.success)throw new Error('Failed to get new products')
+        console.log(res)
+        console.log("mande el despacho")
         dispatch({ type: "GET_ALL_PRODUCTS", payload: res.data.response })
-        return { success: true, res: res.data.response }
+        console.log("retorne al componente")
+        return { success: true}
       } catch (err) {
-        return { success: false, res: err }
+        return { success: false}
       }
     }
   },
@@ -42,6 +46,7 @@ const productsActions = {
     return async (dispatch) => {
       try {
         let res = await axios.get(`https://cozydeco.herokuapp.com/api/product/${id}`)
+        if(!res.data.success) throw new Error('Failed to get product')
         dispatch({ type: "GET_PRODUCT", payload: res.data.response })
         return { success: true, res: res.data.response }
       } catch (err) {

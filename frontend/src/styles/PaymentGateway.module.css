@@ -1,39 +1,162 @@
+/*DIV PADRE */
 .gatewayContainer {
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
+  padding: 1.5vw;
 }
 
-.productInCart {
+/*FORM STYLES */
+.checkoutInfo {
   display: flex;
+  flex-direction: column;
+  width: 50%;
 }
 
-.productCartInfo {
-  background-color: bisque;
+.checkoutInfo h1 {
+  background-color: #ad999393;
+  text-align: center;
+  font-size: 4vmin;
+  font-family: "Cormorant", serif;
+  color: #000000be;
+  text-transform: uppercase;
+  padding: 0.5vw;
 }
 
-.productCartInfo:first-child {
+.inputMail,
+.inputDiv {
   display: flex;
-  flex-direction: row;
+  width: 100%;
+  padding: 1vw;
+}
+.giftCardCode div input,
+.inputMail input,
+.inputDiv div input {
+  flex: 1;
+  margin-left: 0.5vw;
+  padding-left: 0.5vw;
+  border: none;
+  border-bottom: 1px solid #757575;
+  font-size: medium;
+}
+.inputDiv div div {
+  flex: 1;
+}
+.giftCardCode div input:focus,
+.inputMail input:focus,
+.inputDiv div input:focus {
+  outline: none;
 }
 
-.productCartPhoto {
-  width: 10vw;
-  height: 10vw;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.inputDiv {
+  justify-content: space-between;
+}
+.inputDiv div {
+  display: flex;
+  width: 47%;
+}
+.giftCardCode label,
+.inputDiv label,
+.inputMail label {
+  font-weight: bold;
+  font-size: larger;
+  color: #000000be;
 }
 
-.personalInfo {
+.checkOut {
+  width: 50%;
+  margin: 1vw;
+}
+
+.error {
+  text-align: center;
+  font-size: medium;
+  color: rgb(216, 34, 34);
+}
+.giftCardText {
+  text-align: center;
+  font-size: large;
+  padding: 1.5vw;
+  margin: 2vh 0;
+  color: #000000be;
+  border: 1px solid black;
+}
+.giftCardText p {
+  margin: 2vh 0;
+}
+
+.giftCardText span {
+  font-weight: bold;
+  color: black;
+}
+
+.paywithGiftC {
   display: flex;
   flex-direction: column;
 }
 
-.switchField {
+/*INPUT ANIMATION */
+/* Input bars on focus */
+.bar {
+  position: relative;
+  display: block;
+  width: 98%;
+  margin-left: 0.5vw;
+}
+.bar:before,
+.bar:after {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #bf988f;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+.bar:before {
+  left: 50%;
+}
+.bar:after {
+  right: 50%;
+}
+
+.inputDiv div div {
   display: flex;
-  margin-bottom: 36px;
-  overflow: hidden;
+  flex-direction: column;
+}
+
+.giftCardCode {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.giftCardCode div {
+  width: 30%;
+}
+
+.giftCardCode div input {
+  width: 100%;
+}
+
+/* Active input */
+
+.giftCardCode div input:focus ~ .bar:before,
+.giftCardCode div input:focus ~ .bar:after,
+.inputDiv div div input:focus ~ .bar:before,
+.inputDiv div div input:focus ~ .bar:after {
+  width: 50%;
+}
+
+/*RADIO BUTTONS STYLES */
+.radioButtons {
+  min-height: 11vh;
+}
+.switchField {
+  margin: 2vw;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .switchField input {
@@ -42,14 +165,14 @@
   height: 20px;
   width: 20px;
   border: 0;
-  overflow: hidden;
   margin: 1vw;
 }
-
+.giftCardCode button,
 .switchField label {
-  background-color: olive;
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 14px;
+  background-color: #ead8ca94;
+  color: #000000be;
+  font-size: larger;
+  font-weight: bolder;
   line-height: 1;
   text-align: center;
   padding: 8px 16px;
@@ -59,19 +182,58 @@
   transition: all 0.1s ease-in-out;
 }
 
+.giftCardCode button,
 .switchField label:hover {
   cursor: pointer;
 }
 
 .switchField input:checked + label {
-  background-color: #a5dc86;
+  background-color: #dabea8;
   box-shadow: none;
 }
 
-.switchField label:first-of-type {
-  border-radius: 4px 0 0 4px;
+.giftCardCode button,
+.switchField label {
+  border-radius: 4px;
 }
 
-.switchField label:last-of-type {
-  border-radius: 0 4px 4px 0;
+.radioButtons h2 {
+  text-align: center;
+  margin: 1.5vw;
+  text-transform: uppercase;
+  letter-spacing: 0.3vw;
+}
+/*CHECKOUT BUTTON STYLES*/
+.checkOut {
+  display: inline-block;
+  position: relative;
+  padding: 10px 20px;
+  border: 2px solid #ffe4c4;
+  color: #000000be;
+  font-size: x-large;
+  margin: 20px auto;
+  transition: color 0.4s;
+  text-transform: uppercase;
+  background-color: #e4e6e5;
+  cursor: pointer;
+}
+.checkOut:after {
+  content: " ";
+  border: 2px solid rgba(0, 0, 0, 0);
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  transition: all 0.4s;
+}
+
+.checkOut:hover:after {
+  border: 2px solid #ffe4c4;
+  width: calc(100% - 10px);
+  height: calc(100% + 10px);
 }

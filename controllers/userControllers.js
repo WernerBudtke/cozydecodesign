@@ -1,7 +1,7 @@
 const User = require("../models/User")
 const bcryptjs = require("bcryptjs")
 const jwt = require("jsonwebtoken")
-const transport = require("../config/transport")
+const wrapedSendMail = require("../config/sendMail")
 const handleError = (res, err) => {
   console.log(err.message)
   res.json({ success: false, response: err.message })
@@ -18,6 +18,7 @@ const userControllers = {
       photo,
       admin,
       secretWord,
+      native
     } = req.body
     let owner = false
     let photoUploaded = ""
@@ -43,9 +44,9 @@ const userControllers = {
         google,
         admin,
         owner,
-        photo: google ? photo : "",
+        photo: (google || native) ? photo : "",
       })
-      if (google == "false") {
+      if (google == "false" || native == "true") {
         fileName =
           newUser._id +
           "." +
@@ -240,29 +241,29 @@ const userControllers = {
     console.log("Received Send Reset Password Mail Petition:" + Date())
     const { eMail } = req.body
     User.findOne({ eMail: eMail })
-      .then((user) => {
+      .then(async (user) => {
         if (user) {
           let message = `
                     <table style="max-width: 700px; padding: 10px; margin:0 auto; border-collapse: collapse;">
                         <div style="width: 100%;margin:20px 0; text-align: center;">
-                            <img src="https://i.postimg.cc/s2Z5nX3q/logo.png" />
+                            <img src="https://cozydeco.herokuapp.com/c.png" />
                         </div>
                         <tr>
                             <td style="background-color: #F0F3F5">
                                 <div style="color: #34495e; margin: 4% 10% 2%; text-align: justify;font-family: sans-serif">
-                                    <h1 style="color: #19b1bc; margin: 0 0 7px">Hello!</h1>
+                                    <h1 style="color: #dabea8; margin: 0 0 7px">Hello!</h1>
                                     <h2 style="color: #000; margin: 0 0 7px">Dear ${user.firstName} ${user.lastName}:</h2>
                                     <p style="margin: 2px; font-size: 15px; color: #000">
                                             We sent you this e-mail to confirm that you want to change your password!<br>
                                     </p>
-                                    <h2 style="color: #19b1bc;">Details of your Account:</h2>
+                                    <h2 style="color: #dabea8;">Details of your Account:</h2>
                                     <ul style="font-size: 15px;  margin: 10px 0">
                                         <li style="color: #000;">First Name: ${user.firstName}</li>
                                         <li style="color: #000;">Last Name: ${user.lastName}</li>
                                         <li style="color: #000;">Email: ${user.eMail}</li>
                                         <a href="https://cozydecodesign.herokuapp.com/user/resetpassword/${user._id}" style="font-size:25px;color: #000;text-align:center;display:block;">CHANGE YOUR PASSWORD!</a>
                                     </ul>
-                                    <h2 style="color: #19b1bc;">IMPORTANT INFORMATION - PROTECT YOUR ACCOUNT:</h2>
+                                    <h2 style="color: #dabea8;">IMPORTANT INFORMATION - PROTECT YOUR ACCOUNT:</h2>
                                     <p style="margin: 2px; font-size: 15px; color: #000">
                                         Our website encrypt your password to protect your information, but even if we do that, is your responsability to protect your account using a secure password, here are some tips to do so:
                                     </p>
@@ -272,11 +273,11 @@ const userControllers = {
                                         <li>Don't tell anyone your password.</li>
                                         <li>NO ONE will ask from this company your password to assist you.</li>
                                     </ul>
-                                    <h2 style="margin: 0 0 7px; color: #19b1bc">Also:</h2>
+                                    <h2 style="margin: 0 0 7px; color: #dabea8">Also:</h2>
                                     <p style="margin: 2px; font-size: 15px; color: #000;">
                                         If you didn't request a password change, dismiss this email.
                                     </p>
-                                    <div style="width: 100%;margin:20px 0; display: inline-block;text-align: center; background-color: #19b1bc;">
+                                    <div style="width: 100%;margin:20px 0; display: inline-block;text-align: center; background-color: #dabea8;">
                                     <a style="text-decoration: none; color: white;" href=""><p style="color: #fff; font-size: 14px; text-align: center;">© Copyright 2021 | Cozy Deco.</p></a>	
                                 </div>
                             </td>
@@ -289,6 +290,9 @@ const userControllers = {
             subject: `Password Reset ${user.firstName}!`,
             html: message,
           }
+          let mailResp = await wrapedSendMail(mailOptions);
+          if(!mailResp)throw new Error('Password changed changed but email did not send')
+          res.json({success: true, response: 'Password changed and email sent'})
           transport.sendMail(mailOptions, (err, data) => {
             err
               ? res.json({ success: false, response: err })
@@ -306,28 +310,28 @@ const userControllers = {
     const { password } = req.body
     let hashedPass = bcryptjs.hashSync(password)
     User.findOneAndUpdate({ _id: req.params.id }, { password: hashedPass })
-      .then((user) => {
+      .then(async (user) => {
         if (user) {
           let message = `
                     <table style="max-width: 700px; padding: 10px; margin:0 auto; border-collapse: collapse;">
                         <div style="width: 100%;margin:20px 0; text-align: center;">
-                            <img src="https://i.postimg.cc/s2Z5nX3q/logo.png" />
+                            <img src="https://cozydeco.herokuapp.com/c.png" />
                         </div>
                         <tr>
                             <td style="background-color: #F0F3F5">
                                 <div style="color: #34495e; margin: 4% 10% 2%; text-align: justify;font-family: sans-serif">
-                                    <h1 style="color: #19b1bc; margin: 0 0 7px">Hello!</h1>
+                                    <h1 style="color: #dabea8; margin: 0 0 7px">Hello!</h1>
                                     <h2 style="color: #000; margin: 0 0 7px">Dear ${user.firstName} ${user.lastName}:</h2>
                                     <p style="margin: 2px; font-size: 15px; color: #000">
                                             We sent you this e-mail to confirm that your password has changed!<br>
                                     </p>
-                                    <h2 style="color: #19b1bc;">Details of your Account:</h2>
+                                    <h2 style="color: #dabea8;">Details of your Account:</h2>
                                     <ul style="font-size: 15px;  margin: 10px 0">
                                         <li style="color: #000;">First Name: ${user.firstName}</li>
                                         <li style="color: #000;">Last Name: ${user.lastName}</li>
                                         <li style="color: #000;">Email: ${user.eMail}</li>
                                     </ul>
-                                    <h2 style="color: #19b1bc;">IMPORTANT INFORMATION - PROTECT YOUR ACCOUNT:</h2>
+                                    <h2 style="color: #dabea8;">IMPORTANT INFORMATION - PROTECT YOUR ACCOUNT:</h2>
                                     <p style="margin: 2px; font-size: 15px; color: #000">
                                         Our website encrypt your password to protect your information, but even if we do that, is your responsability to protect your account using a secure password, here are some tips to do so:
                                     </p>
@@ -337,11 +341,11 @@ const userControllers = {
                                         <li>Don't tell anyone your password.</li>
                                         <li>NO ONE will ask from this company your password to assist you.</li>
                                     </ul>
-                                    <h2 style="margin: 0 0 7px; color: #19b1bc">Cozy Deco:</h2>
+                                    <h2 style="margin: 0 0 7px; color: #dabea8">Cozy Deco:</h2>
                                     <p style="margin: 2px; font-size: 15px; color: #000;">
                                         Best regards.
                                     </p>
-                                    <div style="width: 100%;margin:20px 0; display: inline-block;text-align: center; background-color: #19b1bc;">
+                                    <div style="width: 100%;margin:20px 0; display: inline-block;text-align: center; background-color: #dabea8;">
                                     <a style="text-decoration: none; color: white;" href=""><p style="color: #fff; font-size: 14px; text-align: center;">© Copyright 2021 | Cozy Deco.</p></a>	
                                 </div>
                             </td>
@@ -354,17 +358,9 @@ const userControllers = {
             subject: `Password changed ${user.firstName}!`,
             html: message,
           }
-          transport.sendMail(mailOptions, (err, data) => {
-            err
-              ? res.json({
-                  success: true,
-                  response: "password changed but email did not send",
-                })
-              : res.json({
-                  success: true,
-                  response: "password changed and email sent",
-                })
-          })
+          let mailResp = await wrapedSendMail(mailOptions);
+          if(!mailResp)throw new Error('Password changed changed but email did not send')
+          res.json({success: true, response: 'Password changed and email sent'})
         } else {
           throw new Error("User not found")
         }

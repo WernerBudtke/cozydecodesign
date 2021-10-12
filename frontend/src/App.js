@@ -9,16 +9,13 @@ import ProductForm from "./pages/ProductForm"
 import SignIn from "./pages/SignIn"
 import SignUp from "./pages/SignUp"
 import Home from "./pages/Home"
-import HoverCard from "./pages/HoverCard"
-import Header from "./components/Header"
 import Footer from "./components/Footer"
 import Product from "./pages/Product"
 import Admin from "./pages/Admin"
 import cartActions from "./redux/actions/cartActions"
 import PaymentGateway from "./pages/PaymentGateway"
-import HeaderResponsive from "./components/HeaderResponsive"
 
-const App = ({ loginUser, logFromSession, addCartLS }) => {
+const App = ({ loginUser, logFromSession, addCartLS, history }) => {
   useEffect(() => {
     if (!loginUser) {
       logFromSession()
@@ -31,7 +28,6 @@ const App = ({ loginUser, logFromSession, addCartLS }) => {
   return (
     <BrowserRouter>
       <Toaster />
-      <HeaderResponsive />
       <Switch>
         <Route exact path="/" component={Home} />
         {!loginUser && <Route path="/signin" component={SignIn} />}
@@ -48,7 +44,6 @@ const App = ({ loginUser, logFromSession, addCartLS }) => {
           path="/productform/:id"
           component={loginUser && loginUser.admin ? ProductForm : Home}
         />
-        <Route exact path="/hover" component={HoverCard} />
         {loginUser && loginUser.admin && (
           <Route path="/admin" component={Admin} />
         )}

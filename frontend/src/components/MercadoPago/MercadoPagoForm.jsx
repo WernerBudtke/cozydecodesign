@@ -14,14 +14,16 @@ const INITIAL_STATE = {
     issuer: "",
 };
 
-export default function MercadoPagoForm({total, addNewOrderHandler}) {
+export default function MercadoPagoForm({total, addNewOrderHandler, catchMercadoPagoErr}) {
     const [state, setState] = useState(INITIAL_STATE);
     const resultPayment = useMercadoPago(total);
     const evaluatePayment = (obj) =>{
         if(obj.status === "approved"){
+            console.log("aprobado");
             addNewOrderHandler()
         }else{
-            alert("intenta de nuevo")
+            console.log("rechazado");
+            catchMercadoPagoErr()
         }
     }
 
@@ -48,7 +50,7 @@ export default function MercadoPagoForm({total, addNewOrderHandler}) {
                 
             />
 
-            <form id="form-checkout">
+            <form c id="form-checkout">
                 <div className="form-control">
                     <input
                         type="tel"
@@ -121,7 +123,7 @@ export default function MercadoPagoForm({total, addNewOrderHandler}) {
                     ></select>
                 </div>
                 <div className="form-control">
-                    <button type="submit" id="form-checkout__submit">
+                    <button className={styles.checkOut} type="submit" id="form-checkout__submit">
                         Make the Payment
                     </button>
                 </div>
