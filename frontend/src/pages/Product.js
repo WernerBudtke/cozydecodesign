@@ -15,7 +15,7 @@ const Product = ({ product, match, products, getProducts, findAProduct, addCartP
   const [productAlert, setProductAlert] = useState(null)
   const [showCartCard, setShowCartCard] = useState(false)
   const [refresh, setRefresh] = useState(false)
-
+  console.log(match)
   useEffect(() => {
     window.scroll(0, 0)
     if (!products.length) {
