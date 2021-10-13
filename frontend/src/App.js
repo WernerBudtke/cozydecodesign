@@ -1,7 +1,6 @@
 import "./App.css"
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom"
 import { connect } from "react-redux"
-import { Toaster } from "react-hot-toast"
 import { useEffect } from "react"
 import userActions from "./redux/actions/userActions"
 import ProductsGallery from "./pages/ProductsGallery"
@@ -27,7 +26,6 @@ const App = ({ loginUser, logFromSession, addCartLS, history }) => {
 
   return (
     <BrowserRouter>
-      <Toaster />
       <Switch>
         <Route exact path="/" component={Home} />
         {!loginUser && <Route path="/signin" component={SignIn} />}

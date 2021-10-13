@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 
-const Paypal = ({ description, total, order, addNewOrderHandler }) => {
+const Paypal = ({ description, total, catchPagoErr, addNewOrderHandler }) => {
   const paypal = useRef()
   useEffect(() => {
     if (window.myButton) window.myButton.close()
@@ -21,12 +21,10 @@ const Paypal = ({ description, total, order, addNewOrderHandler }) => {
       },
       onApprove: async (data, actions) => {
         await actions.order.capture()
-        console.log("entra a on aprove")
         addNewOrderHandler()
       },
       onError: (err) => {
-        alert("Hubo un error!")
-        console.log(err)
+        catchPagoErr()
       },
     })
     window.myButton.render(paypal.current)

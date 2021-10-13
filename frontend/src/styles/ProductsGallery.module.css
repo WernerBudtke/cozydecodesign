@@ -2,6 +2,7 @@
 .productsGallery {
   background-color: #f8f6f4;
   display: flex;
+  gap: 2vw;
 }
 .productsCards {
   margin-left: auto;
@@ -16,14 +17,16 @@
 /*PRODUCT CARD STYLES */
 .wrapper {
   width: 25%;
-  height: 50vh;
+  height: 40vh;
   margin: 4vh 0.5vw;
   background: white;
   position: relative;
   overflow: hidden;
+  flex-wrap: wrap;
   border-radius: 20px 20px 20px 20px;
   transition: box-shadow 0.5s, transform 0.5s;
   box-shadow: 0px 0px 3px 0.5px #cac5c5;
+  margin-left: 1vw;
 }
 
 .wrapper:hover {
@@ -84,15 +87,15 @@
 .nameAndPrice h1,
 .nameAndPrice p {
   text-align: center;
-  font-size: 3vmin;
-  color: black; /*fjkdgnsahgiusnvkjsadnvoaergnvjadsvnoarenvadjbadgha*/
+  font-size: 2.5vmin;
+  color: black; 
   margin: 0;
-  padding: 0;
+  padding: 1vh;
 }
 .nameAndPrice p {
-  font-size: 4vmin;
+  text-align: center;
+  font-size: 3vmin;
   font-weight: bolder;
-  padding-left: 1vw;
 }
 .wrapper .container .bottom {
   height: 100%;
@@ -140,8 +143,8 @@ div.filterContainer {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  max-height: 80vh;
-  width: 12%;
+  height: 80vh;
+  width: 16%;
   background-color: #ead8ca;
   border-radius: 20px;
   margin-top: 4vh;
@@ -162,12 +165,14 @@ div.inputContainer div div {
 }
 div.filterContainer div div {
   display: flex;
-  margin-top: 2vh;
+  margin-top: 0.7vh;
   height: 5vh;
 }
 div.filterContainer div div a {
   width: 100%;
-  font-size: 1.9vmin;
+  font-size: 2.7vmin;
+  font-weight: bolder;
+  justify-content: center;
 }
 div.filterContainer div h1 {
   font-family: "Cormorant", serif;
@@ -178,17 +183,21 @@ div.filterContainer div h1 {
   letter-spacing: 0.5vw;
 }
 div.filterContainer div div div {
-  height: 5vh;
+  height: 6vh;
 }
 div.filterContainer div div div input {
   background: none;
   border: none;
-  position: relative;
-  top: 5px;
-  right: 35px;
-  font-size: 1.8vmin;
+  font-size: 2vmin;
   cursor: pointer;
-  margin-bottom: 0.5vh;
+  margin-bottom: 0.4vh;
+}
+div.filterInside{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  margin-bottom: 3vh;
 }
 div.filterContainer div div div input:hover {
   border-bottom: 1px solid black;
@@ -196,98 +205,56 @@ div.filterContainer div div div input:hover {
 div.inputContainer div select {
   background: none;
   border: none;
-  font-size: 1.9vmin;
+  min-width: 7vw;
 }
-@media only screen and (max-width: 991px) {
-  .wrapper {
-    width: 35%;
-    margin: 4vh 3.5vw;
-  }
-  /* .nameAndPrice p {
-    font-size: 3.7vmin;
-  } */
-
-  .nameAndPrice h1 {
-    font-size: 3.3vmin;
-  }
-
-  .wrapper .inside .icon {
-    padding-left: 4.5vw;
-  }
+div.inputContainer .sectiontSelect{
+  margin-bottom: 8vh;
+  font-size: 3vmin;
 }
+div.inputContainer div select option{
+  font-size: 1.8vmin;
+  height: 1vh;
+}
+
+
 @media only screen and (max-width: 768px) {
-  .wrapper {
-    width: 40%;
+  .productsGallery {
+    width: 100vw;
   }
-  .wrapper .inside .icon {
-    padding-left: 4vw;
-  }
-}
-
-@media only screen and (max-width: 576px) {
   .wrapper {
-    width: 60%;
+    width: 75%;
+    height: 40vh;
     margin: 4vh 3.5vw;
+    margin-left:5vw;
+    
   }
   .nameAndPrice p {
-    font-size: 4.5vmin;
+    font-size: 5vmin;
   }
   .nameAndPrice h1 {
-    font-size: 3.5vmin;
-  }
-  .wrapper .inside .icon {
-    padding-left: 6.5vw;
-  }
-}
-
-@media only screen and (max-width: 425px) {
-  .wrapper {
-    width: 78%;
-    height: 55vh;
-    margin: 4vh 3.5vw;
-  }
-  .nameAndPrice p {
-    font-size: 4.5vmin;
-  }
-  .nameAndPrice h1 {
-    font-size: 4.3vmin;
+    text-align: center;
+    font-size: 3vmin;
   }
   .wrapper .inside .icon {
     padding-left: 6vw;
   }
-}
-@media only screen and (max-width: 375px) {
-  .wrapper {
-    width: 80%;
-    height: 58vh;
+  div.filterContainer {
+    min-height: 80vh;
+    min-width: 25%;
   }
-  .nameAndPrice p {
-    font-size: 6vmin;
+  div.filterContainer div div a {
+    min-width: 100%;
+    font-size: 3.2vmin;
   }
-  .nameAndPrice h1 {
-    font-size: 5.5vmin;
-  }
-  .wrapper .inside .icon {
-    padding-left: 7vw;
-  }
-}
-
-@media only screen and (max-width: 991px) {
-  .wrapper {
-    width: 40%;
-    margin: 4vh 3.5vw;
-  }
-}
-
-@media only screen and (max-width: 576px) {
-  .wrapper {
-    width: 80%;
-    margin: 4vh 3.5vw;
-  }
-  .nameAndPrice p {
-    font-size: 7vmin;
-  }
-  .nameAndPrice h1 {
+  div.filterContainer div h1 {
     font-size: 5vmin;
   }
+  div.filterContainer div div div input {
+    font-size: 2.5vmin;
+  }
+  div.inputContainer div select {
+    font-size: 2.3vmin;
+  } 
 }
+
+
