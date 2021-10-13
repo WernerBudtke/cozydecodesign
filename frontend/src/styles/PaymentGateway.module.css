@@ -53,6 +53,7 @@
 .inputDiv div {
   display: flex;
   width: 47%;
+  flex-wrap: wrap;
 }
 .giftCardCode label,
 .inputDiv label,
@@ -236,4 +237,58 @@
   border: 2px solid #ffe4c4;
   width: calc(100% - 10px);
   height: calc(100% + 10px);
+}
+
+@media only screen and (max-width: 425px){
+  .giftCardCode button,
+  .switchField label{
+    font-size: 2vmin;
+  }
+}
+
+@media only screen and (max-width: 768px){
+  .checkoutInfo {
+    width: 80%;
+  }
+  .checkoutInfo h1 {
+    font-size: 3.5vmin;
+  }
+  .inputMail,
+  .inputDiv {
+    font-size: 2.7vmin;
+  }
+  .giftCardCode div input,
+  .inputMail input,
+  .inputDiv div input {
+    font-size: 3.5vmin;
+  }
+
+  .inputDiv div {
+    display: flex;
+    width: 100%;
+  }
+  .giftCardCode label,
+  .inputDiv label,
+  .inputMail label {
+    font-size: 3.5;
+  }
+  .radioButtons {
+    min-height: 5vh;
+  }
+  .switchField input {
+    height: 5vh;
+    width: 5vw;
+  }  
+  .switchField {
+    margin: 2vw;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .giftCardCode button,
+  .switchField label {
+    margin-top: 1vh;
+  }
+  .checkOut {
+    font-size: 3.5vmin;
+  }
 }

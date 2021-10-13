@@ -108,8 +108,13 @@
   text-align: center;
   line-height: 4vh;
 }
+.warning p{
+  font-size: 2.5vmin;
+  margin-bottom: 1vh;
+}
 .warning p i {
   color: #fc2929;
+  margin-right: 1.2vw;
 }
 .warningButton {
   justify-content: space-evenly;
@@ -167,6 +172,10 @@
   }
   .amountOrder{
     font-size: 3vmin;
+  }
+  .warning p{
+    font-size: 3.8vmin;
+    margin-bottom: 1vh;
   }
   
 }
