@@ -24,6 +24,7 @@ const Product = ({
   const [productAlert, setProductAlert] = useState(null)
   const [showCartCard, setShowCartCard] = useState(false)
   const [refresh, setRefresh] = useState(false)
+  const [error, setError] = useState('')
 
   useEffect(() => {
     window.scroll(0, 0)
@@ -122,13 +123,16 @@ const Product = ({
                 <i
                   className="fas fa-plus"
                   onClick={() => {
-                    product.stock === quantity
-                      ? alert("no hay stock")
-                      : setQuantity(quantity + 1)
+                    (product.stock > quantity && product.category !== 'GiftCard')
+                      ? setQuantity(quantity + 1)
+                      : setError('No Stock')
                   }}
                 ></i>
               </div>
               <button onClick={addToCartHandler}>Add to Cart</button>
+            </div>
+            <div className={styles.divError}>
+              <p>{error}</p>
             </div>
             <div className={styles.shippingInfo}>
               <i className="fas fa-truck fa-lg"></i>
@@ -173,9 +177,7 @@ const Product = ({
                       newClass={"newClass"}
                       editShowCartCard={editShowCartCard}
                     />
-                  </div>
-                )
-              }
+                  </div>)}
             })}
           </div>
         </div>

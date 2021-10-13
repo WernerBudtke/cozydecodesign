@@ -27,7 +27,7 @@ header h1 {
   font-size: 11vh;
   flex: 1;
   text-align: center;
-  color: rgb(83, 78, 78);
+  color: #534e4e;
   letter-spacing: 0.5vw;
 }
 a:active {
@@ -138,7 +138,6 @@ div.saleRadios input {
 .fa-trash {
   cursor: pointer;
 }
-
 .react-responsive-modal-modal {
   padding: 3px !important;
   border-radius: 10px !important;
@@ -146,9 +145,9 @@ div.saleRadios input {
 
 .react-responsive-modal-modal div {
   width: 30vw;
-  height: 30vw;
+  height: 20vw;
   background-position: center;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   border-radius: 10px;
 }
@@ -163,10 +162,19 @@ div.saleRadios input {
   font-family: "Cormorant", serif;
   text-align: center;
   font-size: 5vw;
+  color:#534e4e;
 }
 
 .react-responsive-modal-modal div div p {
   text-align: center;
+  padding-top: 3vw;
+}
+.react-responsive-modal-closeButton{
+  width: 2vw !important;
+  top:1vw !important;
+}
+.fa-exclamation-circle{
+  color:brown;
 }
 
 @media only screen and (max-width: 768px){
@@ -174,7 +182,6 @@ div.saleRadios input {
     font-size: 8vh;
   }
 }
-
 @media only screen and (max-width: 1124px) {
   header .logoUser {
     width: 2.5rem;

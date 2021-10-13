@@ -92,8 +92,9 @@ div.suggestionContainer {
 div.suggestionContainer h3 {
   color: rgba(0, 0, 0, 0.781);
   letter-spacing: 0.1vw;
-  margin-bottom: 2vh;
-  margin-left: 0.5rem;
+  text-align: center;
+  font-family: "Cormorant", serif;
+  font-size: 5vh;
 }
 
 div.suggestion {
@@ -155,7 +156,13 @@ div.productCardContainer > div {
 .fa-trash-alt {
   cursor: pointer;
 }
-
+.divError{
+  min-height: 1.5vw;
+}
+.divError p{
+  font-size: 1vw;
+  color: brown;
+}
 @media only screen and (max-width: 425px) {
   .mainContainer {
     flex-direction: column;

@@ -239,6 +239,7 @@
   height: calc(100% + 10px);
 }
 
+<<<<<<< HEAD
 @media only screen and (max-width: 425px){
   .giftCardCode button,
   .switchField label{
@@ -292,3 +293,16 @@
     font-size: 3.5vmin;
   }
 }
+=======
+.alertPago{
+  text-align: center;
+  margin-top:15vw;
+  font-size: 3vmin;
+  width: 30vw;
+  height: 10vw;
+  background-color: #d0d1d1;
+  border:2px solid #a3a5a5;
+  padding: 1.5vw 5vw;
+  border-radius: 15px;
+}
+>>>>>>> origin/karla

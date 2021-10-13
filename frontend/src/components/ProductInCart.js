@@ -55,7 +55,7 @@ const ProductInCart = ({
             <i
               className="fas fa-plus"
               onClick={
-                cartItem.product.stock > cartItem.quantity && enableCounter
+                (cartItem.product.stock > cartItem.quantity && enableCounter && cartItem.product.category !== 'GiftCard')
                   ? () => updateCartProductHandler("+")
                   : null
               }
