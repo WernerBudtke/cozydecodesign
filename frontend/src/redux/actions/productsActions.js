@@ -10,7 +10,10 @@ const productsActions = {
           { withCredentials: true }
         )
         if(!res.data.success)throw new Error('Failed to get new products')
+        console.log(res)
+        console.log("mande el despacho")
         dispatch({ type: "GET_ALL_PRODUCTS", payload: res.data.response })
+        console.log("retorne al componente")
         return { success: true}
       } catch (err) {
         return { success: false}

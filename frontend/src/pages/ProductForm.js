@@ -30,6 +30,20 @@ const ProductForm = ({
   useEffect(() => {
     window.scrollTo(0, 0)
     findAProduct(productId)
+    if(!productId){
+      setNewProduct({
+        name: "",
+        photo: null,
+        stock: "",
+        description: "",
+        price: "",
+        forSale: "",
+        discount: "",
+        category: "",
+        subcategory: "",
+      })
+      setLoading(false)
+    }
   }, [])
 
   useEffect(() => {
@@ -92,8 +106,8 @@ const ProductForm = ({
     } else {
       const response = await addProduct(fd)
       if (response.data.success) {
-        alert("Producto cargado")
         await getProducts()
+        history.push('/admin')
         return false
       } else {
         alert("Todo salió mal!")
@@ -119,6 +133,7 @@ const ProductForm = ({
       let response = await modifyProduct(productId, fd)
       if (response.success) {
         let res = await getProducts()
+        console.log("antes de pushear")
         console.log(res)
         if (res.success) {
           history.push("/products")
