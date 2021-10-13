@@ -78,15 +78,6 @@ const PaymentGateway = ({
     },
     totalPrice: totalPrice.reduce((a, b) => a + b, 0).toFixed(2),
   })
-  useEffect(
-    (products) => {
-      setOrder({
-        ...order,
-        totalPrice: totalPrice.reduce((a, b) => a + b, 0).toFixed(2),
-      })
-    },
-    [products]
-  )
 
   const validateGift = products.filter(
     (obj) => obj.product.category === "GiftCard"
@@ -144,7 +135,7 @@ const PaymentGateway = ({
   const addNewOrderHandler = () => {
     console.log("entre a addneworderHandler")
     if (giftCard) {
-      addCard(...giftCard).then((res) => console.log(res))
+      addCard(giftCard).then((res) => console.log(res))
     }
     if (
       order.paymentMethod.extraInfo ||

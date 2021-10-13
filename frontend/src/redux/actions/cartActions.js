@@ -52,7 +52,7 @@ const cartActions = {
         let response = await axios.post(
           "http://localhost:4000/api/cards",
           {
-            ...obj,
+            balances: obj,
           },
           { withCredentials: true }
         )
