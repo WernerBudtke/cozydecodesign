@@ -47,6 +47,7 @@ const cartActions = {
     }
   },
   addCard: (obj) => {
+    console.log(obj)
     return async (dispatch) => {
       try {
         let response = await axios.post(

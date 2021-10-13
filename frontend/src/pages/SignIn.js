@@ -95,7 +95,7 @@ const SignIn = ({ history, logIn }) => {
               />
             </div>
           </div>
-          <div className="errorContainer">{<p>{error}</p>}</div>|
+          <div className="errorContainer">{<p>{error}</p>}</div>
           <div className="footer-box">
             <Link to="/signup">You don't have an account? Sign up now!</Link>
           </div>

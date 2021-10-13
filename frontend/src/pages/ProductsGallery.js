@@ -77,7 +77,7 @@ const ProductsGallery = ({
           <div>
             <Link to="/products">All products</Link>
           </div>
-          <div>
+          <div className={styles.filterInside}>
             <Link to="/products/Kitchenware">Kitchenware</Link>
             {view.category === 'Kitchenware' && 
             <div>
@@ -86,7 +86,7 @@ const ProductsGallery = ({
               <input type="button" value="Tableware" onClick={viewHandler} />
             </div>}
           </div>
-          <div>
+          <div className={styles.filterInside}>
             <Link to="/products/Bathroom">Bathroom</Link>
             {view.category === 'Bathroom' && 
             <div>
@@ -94,7 +94,7 @@ const ProductsGallery = ({
               <input type="button" value="Mirrors" onClick={viewHandler} />
             </div>}
           </div>
-          <div>
+          <div className={styles.filterInside}>
             <Link to="/products/Decor">Decor</Link>
             {view.category === 'Decor' && 
             <div>
@@ -109,7 +109,7 @@ const ProductsGallery = ({
           <div>
             <Link to="/products/sale">Sale</Link>
           </div>
-          <div>
+          <div className={styles.sectiontSelect}>
             <select onChange={sortProducts}>
               <option value="relevant">Most relevant</option>
               <option value="minor">Lower to higher</option>

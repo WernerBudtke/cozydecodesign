@@ -9,7 +9,7 @@ const cartReducer = (state = { products: [] }, action) => {
         ? state.products.concat(action.payload)
         : state.products.map((obj) =>
             obj.product._id === action.payload.product._id
-              ? { ...obj, quantity: obj.quantity + action.payload.quantity }
+              ? { ...obj, quantity:  obj.quantity + action.payload.quantity}
               : obj
           )
       localStorage.setItem("cart", JSON.stringify(cartLS))
