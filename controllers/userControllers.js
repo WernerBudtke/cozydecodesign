@@ -25,7 +25,7 @@ const userControllers = {
     let photoUploaded = ""
     let fileName = ""
     try {
-      if (!req.files && !google) throw new Error("Must upload a photo")
+      if (!req.files && !google && !native) throw new Error("Must upload a photo")
       if (req.files) {
         photoUploaded = req.files.photo
       }
