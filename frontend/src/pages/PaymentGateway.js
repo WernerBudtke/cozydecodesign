@@ -8,7 +8,7 @@ import MercadoPagoForm from "../components/MercadoPago/MercadoPagoForm"
 import productsActions from "../redux/actions/productsActions"
 import SideProducts from "../components/SideProducts"
 import Header from "../components/Header"
-import toast, { Toaster } from "react-hot-toast"
+import toast from 'react-hot-toast';
 
 //VENDEDOR
 //sb-imkhe8058198@business.example.com
@@ -87,8 +87,8 @@ const PaymentGateway = ({
     var giftCard = validateGift.map((obj) => ({ balance: obj.product.price }))
   }
 
+  console.log(giftCard)
   const validate = () => {
-    // setEnablePayment(true)
     if (Object.values(info).some((value) => value === "")) {
       setRenderError("You need to complete all the fields to continue!")
     } else {
@@ -133,7 +133,7 @@ const PaymentGateway = ({
   }
 
   const addNewOrderHandler = () => {
-    console.log("entre a addneworderHandler")
+    console.log(giftCard)
     if (giftCard) {
       addCard(giftCard).then((res) => console.log(res))
     }
@@ -175,7 +175,7 @@ const PaymentGateway = ({
 
   const sharedPaymentPrice = Math.abs(checkBalance)
 
-  const catchMercadoPagoErr = () => {
+  const catchPagoErr = () => {
     setChosenMethod({
       ...chosenMethod,
       enable: false,
@@ -183,8 +183,10 @@ const PaymentGateway = ({
     setEnableInput(false)
     setEnablePayment(false)
     setHideRadio(true)
-    alert(
-      "We were unable to process the payment, please try again, or choose another payment method. "
+    toast.custom(
+      <div className={styles.alertPago}>
+        <p><i className="fas fa-exclamation-circle"></i> We were unable to process the payment, please try again, or choose another payment method.</p>
+      </div>, {duration:3000}, 
     )
   }
 
@@ -193,7 +195,7 @@ const PaymentGateway = ({
       <Header viewCart={true} />
       <div className={styles.gatewayContainer}>
         <div className={styles.checkoutInfo}>
-          <h1 onClick={() => history.push("/", true)}>Personal Info</h1>
+          <h1>Personal Info</h1>
           <div className={styles.inputMail}>
             <label>Email</label>
             <input
@@ -464,8 +466,8 @@ const PaymentGateway = ({
           {chosenMethod.enable && chosenMethod.type.includes("PayPal") && (
             <Paypal
               description={`Cozy  ${date.toLocaleDateString()}`}
+              catchPagoErr={catchPagoErr}
               total={!sharedPayment ? order.totalPrice : sharedPaymentPrice}
-              order={order}
               info={info}
               addNewOrderHandler={addNewOrderHandler}
             />
@@ -476,7 +478,7 @@ const PaymentGateway = ({
               total={
                 !sharedPayment ? order.totalPrice : String(sharedPaymentPrice)
               }
-              catchMercadoPagoErr={catchMercadoPagoErr}
+              catchPagoErr={catchPagoErr}
             />
           )}
         </div>

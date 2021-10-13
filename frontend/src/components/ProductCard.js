@@ -11,8 +11,11 @@ const ProductCard = ({
   addCartProduct,
   user,
   newClass,
+  productsCart
 }) => {
   const [admin, setAdmin] = useState(null)
+  const [errorStock, setErrorStock] = useState('')
+
   useEffect(() => {
     if (user) {
       setAdmin(user.admin)
@@ -24,11 +27,13 @@ const ProductCard = ({
       product: product,
       quantity: 1,
     }
-
     editShowCartCard(true)
     setProductAlert(newProducts)
     addCartProduct(newProducts)
   }
+  const enable = productsCart.find((obj) => obj.product._id === product._id && obj.product.category === 'GiftCard')
+
+
   const photo = product.photo?.includes("http")
     ? product.photo
     : `http://localhost:4000/${product.photo}`
@@ -46,6 +51,7 @@ const ProductCard = ({
         <div className={styles.bottom}>
           <div className={styles.nameAndPrice}>
             <h1>{product.name}</h1>
+            <p style={{fontSize:'x-small', color:'brown'}}>{errorStock}</p>
             <div>
               <p className={product.discount !== 0 ? styles.sale : null}>
                 ${product.price}
@@ -66,7 +72,7 @@ const ProductCard = ({
                 <i
                   style={{ cursor: "pointer" }}
                   className="fas fa-cart-plus fa-lg"
-                  onClick={addToCartHandler}
+                  onClick={!enable ? addToCartHandler : ()=>setErrorStock('No Stock')}
                 ></i>
                 <Link to={`/product/${product._id}`}>
                   <i className="fas fa-eye fa-lg"></i>
@@ -92,9 +98,10 @@ const ProductCard = ({
   )
 }
 
-const mapStateToProps = (states) => {
+const mapStateToProps = (state) => {
   return {
-    user: states.users.user,
+    user: state.users.user,
+    productsCart : state.cart.products
   }
 }
 

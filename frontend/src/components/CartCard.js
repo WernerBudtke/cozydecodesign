@@ -15,8 +15,8 @@ const CartCard = ({ productAlert, showCartCard, editShowCartCard }) => {
               <div
                 style={{
                   backgroundImage: `url(${photo})`,
-                  width: "70px",
-                  height: "70px",
+                  width: "100px",
+                  height: "100px",
                   backgroundPosition: "center",
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
@@ -29,9 +29,9 @@ const CartCard = ({ productAlert, showCartCard, editShowCartCard }) => {
               <p>
                 {productAlert.quantity} x ${productAlert.product.price}
               </p>
-              <p className="bold">Successfully added to cart!</p>
+              <p className={styles.bold}>Successfully added to cart!</p>
             </div>
-            <div className="close">
+            <div className={styles.close}>
             <i onClick={()=>editShowCartCard(false)} className="fas fa-times"></i>
             </div>
           </div>

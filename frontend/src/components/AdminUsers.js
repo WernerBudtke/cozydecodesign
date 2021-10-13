@@ -44,7 +44,7 @@ const AdminUsers = ({ getUsers, manageAdmin, loginUser }) => {
       <div>
         <h2>User list</h2>
         <div className={styles.searchBar}>
-          <i className="fas fa-search"></i>
+          <i className="fas fa-search fa-lg"></i>
           <input
             type="text"
             placeholder="Search user.."
