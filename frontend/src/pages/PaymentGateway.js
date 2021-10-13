@@ -133,6 +133,7 @@ const PaymentGateway = ({
   }
 
   const addNewOrderHandler = () => {
+    console.log(giftCard)
     if (giftCard) {
       addCard(giftCard).then((res) => console.log(res))
     }
