@@ -29,6 +29,7 @@ const validatorControllers = {
       admin: joi.boolean().required(),
       secretWord: joi.string(),
       photo: joi.string(),
+      native: joi.boolean()
     })
     const validation = schema.validate(req.body, {abortEarly: false})
       if(!validation.error){
