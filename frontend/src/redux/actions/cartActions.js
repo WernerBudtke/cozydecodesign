@@ -92,6 +92,17 @@ const cartActions = {
       }
     }
   },
+  payWithCreditCard: () => {
+    return async () => {
+      try {
+        let res = await axios.get(`http://localhost:4000/api/payment/`, {withCredentials: true})
+        if(!res.data.success) throw new Error()
+        return {success: true}
+      }catch (e){
+        return {success: false}
+      }
+    }
+  }
 }
 
 export default cartActions
