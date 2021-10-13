@@ -139,6 +139,36 @@ div.saleRadios input {
   cursor: pointer;
 }
 
+.react-responsive-modal-modal {
+  padding: 3px !important;
+  border-radius: 10px !important;
+}
+
+.react-responsive-modal-modal div {
+  width: 30vw;
+  height: 30vw;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+}
+
+.react-responsive-modal-modal div div {
+  background-color: #d0d1d1e7;
+  border-radius: 10px;
+  padding: 0 2vw;
+}
+
+.react-responsive-modal-modal div div h2 {
+  font-family: "Cormorant", serif;
+  text-align: center;
+  font-size: 5vw;
+}
+
+.react-responsive-modal-modal div div p {
+  text-align: center;
+}
+
 @media only screen and (max-width: 768px){
   header h1 {
     font-size: 8vh;
@@ -161,7 +191,3 @@ div.saleRadios input {
     height: 12.5vw;
   }
 }
-
-
-
-

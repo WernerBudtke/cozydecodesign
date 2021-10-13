@@ -7,7 +7,7 @@ import Header from "../components/Header"
 import { Modal } from "react-responsive-modal"
 import "react-responsive-modal/styles.css"
 
-const Home = ({ location }) => {
+const Home = ({ location, history }) => {
   console.log(location.state)
   const [open, setOpen] = useState(false)
   const [windowDimensions, setWindowDimensions] = useState(
@@ -22,6 +22,7 @@ const Home = ({ location }) => {
   }
 
   useEffect(() => {
+    history.replace()
     if (location.state) {
       setOpen(true)
     }
@@ -74,47 +75,50 @@ const Home = ({ location }) => {
   const onCloseModal = () => setOpen(false)
   return (
     <>
-    <Header/>
-    <div className={styles.home}>
-            <Parallax bgImage={'/assets/home1.jpg'} strength={height}>
-              <Link to='/products' className={styles.homeStore}>
-                <Button1>Check out our latest trends</Button1>
-              </Link>
-            </Parallax>
-            <Parallax strength={-200} className={styles.categories}>
-                <h1>CATEGORIES</h1>
-                <div className={styles.galleryWrap}>
-                    {items}
-                </div>
-            </Parallax>
-            <Parallax bgImage={'/assets/home5.jpg'}
-            strength={width > 700 ? height/1 : width/0.85}>
-              <div className={styles.quote}>
-                <h2>There's no place like home. </h2>
-                <i className="fas fa-quote-right"></i>
-                <p>In Cozy we offer a wide variety of well-designed, functional home products. Whether your home decor leans towards minimalist or maximalist aesthetic, you'll find something to suit your style.</p>
-              </div>
-            </Parallax>
-            <Parallax strength={height/10} className={styles.infoContainer}>
-                <div className={styles.fondoInfo}>
-                    {infoItems}
-                </div>
-            </Parallax>
-            <Parallax bgImage={'/assets/home4.jpg'}
-            strength={width > 700 ? -width/5.5 : width/15}
-            renderLayer={(percentage) => (
-                <div
-                  className={styles.finalInfo}
-                  style={{
-                    background: `rgba(212, 197, 191, ${percentage * 2})`,
-                    width: percentage * 100,
-                    height: percentage * 100
-                  }}>
-                </div>
-              )}>
-            </Parallax>
-    </div>
-    <div>
+      <Header />
+      <div className={styles.home}>
+        <Parallax bgImage={"/assets/home1.jpg"} strength={height}>
+          <Link to="/products" className={styles.homeStore}>
+            <Button1>Check out our latest trends</Button1>
+          </Link>
+        </Parallax>
+        <Parallax strength={-200} className={styles.categories}>
+          <h1>CATEGORIES</h1>
+          <div className={styles.galleryWrap}>{items}</div>
+        </Parallax>
+        <Parallax
+          bgImage={"/assets/home5.jpg"}
+          strength={width > 700 ? height / 1 : width / 0.85}
+        >
+          <div className={styles.quote}>
+            <h2>There's no place like home. </h2>
+            <i className="fas fa-quote-right"></i>
+            <p>
+              In Cozy we offer a wide variety of well-designed, functional home
+              products. Whether your home decor leans towards minimalist or
+              maximalist aesthetic, you'll find something to suit your style.
+            </p>
+          </div>
+        </Parallax>
+        <Parallax strength={height / 10} className={styles.infoContainer}>
+          <div className={styles.fondoInfo}>{infoItems}</div>
+        </Parallax>
+        <Parallax
+          bgImage={"/assets/home4.jpg"}
+          strength={width > 700 ? -width / 5.5 : width / 15}
+          renderLayer={(percentage) => (
+            <div
+              className={styles.finalInfo}
+              style={{
+                background: `rgba(212, 197, 191, ${percentage * 2})`,
+                width: percentage * 100,
+                height: percentage * 100,
+              }}
+            ></div>
+          )}
+        ></Parallax>
+      </div>
+      <div>
         <button onClick={onOpenModal}>Open modal</button>
         <Modal
           open={open}
@@ -123,7 +127,17 @@ const Home = ({ location }) => {
           }}
           center
         >
-          <h2>Simple centered modal</h2>
+          <div
+            className={styles.modalContainer}
+            style={{
+              backgroundImage: "url('./assets/c.png')",
+            }}
+          >
+            <div>
+              <h2>COZY</h2>
+              <p>Gracias por realizar su compra, vuelva luego</p>
+            </div>
+          </div>
         </Modal>
       </div>
     </>

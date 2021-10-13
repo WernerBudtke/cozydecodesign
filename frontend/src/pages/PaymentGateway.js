@@ -8,6 +8,7 @@ import MercadoPagoForm from "../components/MercadoPago/MercadoPagoForm"
 import productsActions from "../redux/actions/productsActions"
 import SideProducts from "../components/SideProducts"
 import Header from "../components/Header"
+import toast, { Toaster } from "react-hot-toast"
 
 //VENDEDOR
 //sb-imkhe8058198@business.example.com
