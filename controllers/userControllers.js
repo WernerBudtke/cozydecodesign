@@ -8,6 +8,7 @@ const handleError = (res, err) => {
 }
 const userControllers = {
   registerUser: (req, res) => {
+    console.log(req)
     console.log("Received REGISTER USER Petition:" + Date())
     const {
       lastName,
@@ -35,6 +36,10 @@ const userControllers = {
           throw new Error("Can't be admin")
         }
       }
+      let photoNativeColor = ''
+      if(native == "true"){
+        photoNativeColor = `rgb(${Math.random()*200},${Math.random()*200},${Math.random()*200})`
+      }
       let hashedPass = bcryptjs.hashSync(password)
       const newUser = new User({
         firstName: firstName.trim(),
@@ -45,8 +50,10 @@ const userControllers = {
         admin,
         owner,
         photo: (google || native) ? photo : "",
+        photoNativeColor: photoNativeColor,
+        native: native ? native : false
       })
-      if (google == "false" || native == "true") {
+      if (google == "false") {
         fileName =
           newUser._id +
           "." +
@@ -246,7 +253,7 @@ const userControllers = {
           let message = `
                     <table style="max-width: 700px; padding: 10px; margin:0 auto; border-collapse: collapse;">
                         <div style="width: 100%;margin:20px 0; text-align: center;">
-                            <img src="https://cozydeco.herokuapp.com/c.png" />
+                            <img src="https://cozydeco.herokuapp.com/c.png" style="width: 100px;"/>
                         </div>
                         <tr>
                             <td style="background-color: #F0F3F5">
@@ -315,7 +322,7 @@ const userControllers = {
           let message = `
                     <table style="max-width: 700px; padding: 10px; margin:0 auto; border-collapse: collapse;">
                         <div style="width: 100%;margin:20px 0; text-align: center;">
-                            <img src="https://cozydeco.herokuapp.com/c.png" />
+                            <img src="https://cozydeco.herokuapp.com/c.png" style="width: 100px;"/>
                         </div>
                         <tr>
                             <td style="background-color: #F0F3F5">

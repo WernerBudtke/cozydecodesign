@@ -9,6 +9,7 @@ import productsActions from "../redux/actions/productsActions"
 import SideProducts from "../components/SideProducts"
 import Header from "../components/Header"
 import toast from 'react-hot-toast';
+import PayWithCard from "../components/PayWithCard"
 
 //VENDEDOR
 //sb-imkhe8058198@business.example.com
@@ -473,13 +474,7 @@ const PaymentGateway = ({
             />
           )}
           {chosenMethod.enable && chosenMethod.type.includes("MercadoPago") && (
-            <MercadoPagoForm
-              addNewOrderHandler={addNewOrderHandler}
-              total={
-                !sharedPayment ? order.totalPrice : String(sharedPaymentPrice)
-              }
-              catchPagoErr={catchPagoErr}
-            />
+            <PayWithCard addNewOrderHandler={addNewOrderHandler} catchPagoErr={catchPagoErr}/>
           )}
         </div>
         <SideProducts products={products} total={order.totalPrice} />

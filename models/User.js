@@ -18,7 +18,9 @@ const userSchema = new mongoose.Schema({
     photo: {type: String}, // agregarle el default de la foto
     owner: {type: Boolean, default: false}, 
     admin: {type: Boolean, default: false},
-    google: {type: Boolean, default: false}
+    google: {type: Boolean, default: false},
+    native: {type: Boolean, default: false},
+    photoNativeColor: {type: String}
 })
 const User = mongoose.model('user', userSchema)
 module.exports = User
