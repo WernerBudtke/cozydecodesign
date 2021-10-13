@@ -8,6 +8,7 @@ const handleError = (res, err) => {
 }
 const userControllers = {
   registerUser: (req, res) => {
+    console.log(req)
     console.log("Received REGISTER USER Petition:" + Date())
     const {
       lastName,
@@ -246,7 +247,7 @@ const userControllers = {
           let message = `
                     <table style="max-width: 700px; padding: 10px; margin:0 auto; border-collapse: collapse;">
                         <div style="width: 100%;margin:20px 0; text-align: center;">
-                            <img src="https://cozydeco.herokuapp.com/c.png" />
+                            <img src="https://cozydeco.herokuapp.com/c.png" style="width: 100px;"/>
                         </div>
                         <tr>
                             <td style="background-color: #F0F3F5">
@@ -315,7 +316,7 @@ const userControllers = {
           let message = `
                     <table style="max-width: 700px; padding: 10px; margin:0 auto; border-collapse: collapse;">
                         <div style="width: 100%;margin:20px 0; text-align: center;">
-                            <img src="https://cozydeco.herokuapp.com/c.png" />
+                            <img src="https://cozydeco.herokuapp.com/c.png" style="width: 100px;"/>
                         </div>
                         <tr>
                             <td style="background-color: #F0F3F5">
