@@ -98,8 +98,8 @@ div.suggestionContainer h3 {
 }
 
 div.suggestion {
-  width: 98vw;
-  min-height: 65vh;
+  width: 98.2vw;
+  min-height: 45vh;
   background-color: #d4c5bf;
   display: flex;
   overflow-y: scroll;
@@ -107,6 +107,7 @@ div.suggestion {
 
 div.suggestion::-webkit-scrollbar {
   height: 0.5rem !important;
+  width: 100%;
 }
 
 div.suggestion::-webkit-scrollbar-thumb {

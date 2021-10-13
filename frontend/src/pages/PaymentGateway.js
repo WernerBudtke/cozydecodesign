@@ -197,7 +197,7 @@ const PaymentGateway = ({
         <div className={styles.checkoutInfo}>
           <h1>Personal Info</h1>
           <div className={styles.inputMail}>
-            <label>Email</label>
+            <label>Email:</label>
             <input
               type="text"
               required
@@ -208,7 +208,7 @@ const PaymentGateway = ({
           </div>
           <div className={styles.inputDiv}>
             <div>
-              <label>Name</label>
+              <label>Name:</label>
               <input
                 type="text"
                 required
@@ -218,7 +218,7 @@ const PaymentGateway = ({
               />
             </div>
             <div>
-              <label>Lastname</label>
+              <label>Lastname:</label>
               <input
                 type="text"
                 required
@@ -230,7 +230,7 @@ const PaymentGateway = ({
           </div>
           <div className={styles.inputDiv}>
             <div>
-              <label>DNI</label>
+              <label>DNI:</label>
               <div>
                 <input
                   type="text"
@@ -244,7 +244,7 @@ const PaymentGateway = ({
               </div>
             </div>
             <div>
-              <label>Phone Number</label>
+              <label>Phone Number:</label>
               <div>
                 <input
                   type="text"
@@ -262,7 +262,7 @@ const PaymentGateway = ({
           <h1>Shipment Info</h1>
           <div className={styles.inputDiv}>
             <div>
-              <label>Adress</label>
+              <label>Adress:</label>
               <div>
                 <input
                   type="text"
@@ -292,7 +292,7 @@ const PaymentGateway = ({
           </div>
           <div className={styles.inputDiv}>
             <div>
-              <label>City</label>
+              <label>City:</label>
               <div>
                 <input
                   type="text"
@@ -306,7 +306,7 @@ const PaymentGateway = ({
               </div>
             </div>
             <div>
-              <label>Zip Code</label>
+              <label>Zip Code:</label>
               <div>
                 <input
                   type="text"

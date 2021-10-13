@@ -1,32 +1,36 @@
 /*SIDE PRODUCTS STYLES*/
-.sideProducts {
+.conteinerSideProducts{
   width: 35%;
+  min-height: 7vh;
+  border: 1px solid #d0d1d1;
 }
-
+.sideProducts {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .sideProducts h2 {
   text-align: center;
-  margin-bottom: 2vh;
+  margin-bottom: 1vh;
   text-transform: uppercase;
   font-size: 4vmin;
   font-family: "Cormorant", serif;
-  color: #000000be;
+  color: #746966;
 }
 .productInCart {
   display: flex;
-  width: 100%;
-  height: 9vw;
+  width: 70%;
+  height: 7vw;
   justify-content: space-between;
-  margin-bottom: 1vw;
-  border: 1px solid #d0d1d1;
 }
-
 .productCartInfo {
-  background-color: #d0d1d1e7;
   padding: 1vw;
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .productCartInfo div {
@@ -36,33 +40,46 @@
 
 .productCartInfo div span {
   font-weight: bold;
+  font-size: 2.5vmin;
 }
 
-.productCartInfo a h5 {
-  font-weight: bold;
-  font-size: 4vmin;
+.productCartInfo a p {
+  font-size: 2.5vmin;
+  margin-bottom: 0.3vh;
 }
 
 .productCartPhoto {
-  width: 9vw;
+  width: 3vw;
+  height: 10vh;
+  margin: 2vh 1vw 2vh 1.5vw;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-
+.productCartInfo div p{
+  font-size: 2vmin;
+}
 .totalPrice {
-  font-size: 5vmin;
+  width: 80%;
+  font-size: 3.6vmin;
   font-weight: bolder;
   text-align: center;
-  color: #000000be;
+  color: rgba(0, 0, 0, 0.795);
+  margin-top: 1vh;
+  border-top: 1px solid #d0d1d1;
+}
+.totalPrice p{
+  padding-top: 1.4vh;
+  margin-bottom: 2vh;
 }
 
 .totalPrice span {
-  color: black;
+  color: #000000be;
+  font-size: 3.6vmin;
 }
 
 .totalPrice a button {
-  width: 60%;
+  width: 30%;
   background-color: #ead8ca94;
   color: #000000be;
   font-size: medium;
