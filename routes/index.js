@@ -59,4 +59,6 @@ router.route('/card/:id')
 const paymentControllers = require('../controllers/paymentControllers')
 router.route('/process-payment')
 .post(paymentControllers.payWithMercadoPago)
+router.route('/payment')
+.get(paymentControllers.payWithCreditCard)
 module.exports = router

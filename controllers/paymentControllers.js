@@ -30,6 +30,11 @@ const paymentControllers = {
         .catch((err) => {
             return res.status(500).send(err);
         })
+    },
+    payWithCreditCard: (req, res) => {
+        setTimeout(()=>{
+            res.json({success: true})
+        },5000)
     }
 }
 module.exports = paymentControllers
