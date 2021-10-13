@@ -78,6 +78,8 @@ const userControllers = {
               eMail: user.eMail,
               admin: user.admin,
               owner: user.owner,
+              native: userFound.native ? userFound.native : false,
+              photoNativeColor: userFound.photoNativeColor ? userFound.photoNativeColor : false
             },
           })
         })
@@ -119,6 +121,8 @@ const userControllers = {
                   eMail: userFound.eMail,
                   admin: userFound.admin,
                   owner: userFound.owner,
+                  native: userFound.native ? userFound.native : false,
+                  photoNativeColor: userFound.photoNativeColor ? userFound.photoNativeColor : false
                 },
               })
             })
@@ -148,6 +152,8 @@ const userControllers = {
             firstName: userFound.firstName,
             admin: userFound.admin,
             owner: userFound.owner,
+            native: userFound.native ? userFound.native : false,
+            photoNativeColor: userFound.photoNativeColor ? userFound.photoNativeColor : false
           },
         })
       } else {
