@@ -78,8 +78,8 @@ const userControllers = {
               eMail: user.eMail,
               admin: user.admin,
               owner: user.owner,
-              native: userFound.native ? userFound.native : false,
-              photoNativeColor: userFound.photoNativeColor ? userFound.photoNativeColor : false
+              native: user.native ? user.native : false,
+              photoNativeColor: user.photoNativeColor ? user.photoNativeColor : false
             },
           })
         })
