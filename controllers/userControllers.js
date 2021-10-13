@@ -36,10 +36,6 @@ const userControllers = {
           throw new Error("Can't be admin")
         }
       }
-      let photoNativeColor = ''
-      if(native == "true"){
-        photoNativeColor = `rgb(${Math.random()*200},${Math.random()*200},${Math.random()*200})`
-      }
       let hashedPass = bcryptjs.hashSync(password)
       const newUser = new User({
         firstName: firstName.trim(),
@@ -50,7 +46,7 @@ const userControllers = {
         admin,
         owner,
         photo: (google || native) ? photo : "",
-        photoNativeColor: photoNativeColor,
+        photoNativeColor: native ? `rgb(${Math.random()*200},${Math.random()*200},${Math.random()*200})` : null,
         native: native ? native : false
       })
       if (google == "false") {
