@@ -13,6 +13,7 @@ import Product from "./pages/Product"
 import Admin from "./pages/Admin"
 import cartActions from "./redux/actions/cartActions"
 import PaymentGateway from "./pages/PaymentGateway"
+import PayWithCard from "./components/PayWithCard"
 
 const App = ({ loginUser, logFromSession, addCartLS, history }) => {
   useEffect(() => {
@@ -46,6 +47,7 @@ const App = ({ loginUser, logFromSession, addCartLS, history }) => {
           <Route path="/admin" component={Admin} />
         )}
         {loginUser && <Route path="/payment" component={PaymentGateway} />}
+        <Route path="/paywithcard" component={PayWithCard}/>
         <Redirect to="/" />
       </Switch>
       <Footer />

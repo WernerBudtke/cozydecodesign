@@ -1,0 +1,39 @@
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4vw;
+}
+.formContainer .form{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: space-evenly;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
+.spacedInputs{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2vh;
+}
+.spacedInputs input{
+    width: 60%;
+    font-size: 1.2vw;
+    text-align: center;
+}
+.groupedInputs{
+    display: flex;
+    justify-content: space-between;
+}
+.groupedInputs input{
+    width: 15%;
+    margin-left: 2px;
+    font-size: 1.2vw;
+    text-align: center;
+}
+.formContainer button{
+    font-size: 1.2vw;
+}

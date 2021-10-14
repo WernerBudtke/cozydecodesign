@@ -9,6 +9,9 @@ import productsActions from "../redux/actions/productsActions"
 import SideProducts from "../components/SideProducts"
 import Header from "../components/Header"
 import toast from 'react-hot-toast';
+import PayWithCard from "../components/PayWithCard"
+import { Link } from "react-router-dom"
+
 
 //VENDEDOR
 //sb-imkhe8058198@business.example.com
@@ -195,9 +198,14 @@ const PaymentGateway = ({
       <Header viewCart={true} />
       <div className={styles.gatewayContainer}>
         <div className={styles.checkoutInfo}>
+        <div className={styles.totalPrice768}>
+          <Link to="/products">
+            <button>Edit Cart</button>
+          </Link>
+        </div>
           <h1>Personal Info</h1>
           <div className={styles.inputMail}>
-            <label>Email</label>
+            <label>Email:</label>
             <input
               type="text"
               required
@@ -208,7 +216,7 @@ const PaymentGateway = ({
           </div>
           <div className={styles.inputDiv}>
             <div>
-              <label>Name</label>
+              <label>Name:</label>
               <input
                 type="text"
                 required
@@ -218,7 +226,7 @@ const PaymentGateway = ({
               />
             </div>
             <div>
-              <label>Lastname</label>
+              <label>Lastname:</label>
               <input
                 type="text"
                 required
@@ -230,7 +238,7 @@ const PaymentGateway = ({
           </div>
           <div className={styles.inputDiv}>
             <div>
-              <label>DNI</label>
+              <label>DNI:</label>
               <div>
                 <input
                   type="text"
@@ -244,7 +252,7 @@ const PaymentGateway = ({
               </div>
             </div>
             <div>
-              <label>Phone Number</label>
+              <label>Phone Number:</label>
               <div>
                 <input
                   type="text"
@@ -262,7 +270,7 @@ const PaymentGateway = ({
           <h1>Shipment Info</h1>
           <div className={styles.inputDiv}>
             <div>
-              <label>Adress</label>
+              <label>Adress:</label>
               <div>
                 <input
                   type="text"
@@ -292,7 +300,7 @@ const PaymentGateway = ({
           </div>
           <div className={styles.inputDiv}>
             <div>
-              <label>City</label>
+              <label>City:</label>
               <div>
                 <input
                   type="text"
@@ -306,7 +314,7 @@ const PaymentGateway = ({
               </div>
             </div>
             <div>
-              <label>Zip Code</label>
+              <label>Zip Code:</label>
               <div>
                 <input
                   type="text"
@@ -473,14 +481,11 @@ const PaymentGateway = ({
             />
           )}
           {chosenMethod.enable && chosenMethod.type.includes("MercadoPago") && (
-            <MercadoPagoForm
-              addNewOrderHandler={addNewOrderHandler}
-              total={
-                !sharedPayment ? order.totalPrice : String(sharedPaymentPrice)
-              }
-              catchPagoErr={catchPagoErr}
-            />
+            <PayWithCard addNewOrderHandler={addNewOrderHandler} total={!sharedPayment ? order.totalPrice : sharedPaymentPrice} catchPagoErr={catchPagoErr}/>
           )}
+          {/* {chosenMethod.enable && chosenMethod.type.includes("MercadoPago") && (
+            <MercadoPagoForm addNewOrderHandler={addNewOrderHandler} total={!sharedPayment ? order.totalPrice : sharedPaymentPrice} catchPagoErr={catchPagoErr}/>
+          )} */}
         </div>
         <SideProducts products={products} total={order.totalPrice} />
       </div>

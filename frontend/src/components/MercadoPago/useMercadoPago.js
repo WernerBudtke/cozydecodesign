@@ -11,7 +11,7 @@ export default function useMercadoPago(amountOfPurchase) {
         id: "form-checkout",
         cardholderName: {
             id: "form-checkout__cardholderName",
-            placeholder: "Titular de la tarjeta",
+            placeholder: "Cardholder Name",
         },
         cardholderEmail: {
             id: "form-checkout__cardholderEmail",
@@ -19,35 +19,35 @@ export default function useMercadoPago(amountOfPurchase) {
         },
         cardNumber: {
             id: "form-checkout__cardNumber",
-            placeholder: "Número de la tarjeta",
+            placeholder: "Card number",
         },
         cardExpirationMonth: {
             id: "form-checkout__cardExpirationMonth",
-            placeholder: "Mes de vencimiento",
+            placeholder: "Month of expiration",
         },
         cardExpirationYear: {
             id: "form-checkout__cardExpirationYear",
-            placeholder: "Año de vencimiento",
+            placeholder: "Year of expiration",
         },
         securityCode: {
             id: "form-checkout__securityCode",
-            placeholder: "Código de seguridad",
+            placeholder: "CVC",
         },
         installments: {
             id: "form-checkout__installments",
-            placeholder: "Cuotas",
+            placeholder: "Installments",
         },
         identificationType: {
             id: "form-checkout__identificationType",
-            placeholder: "Tipo de documento",
+            placeholder: "Type of identification",
         },
         identificationNumber: {
             id: "form-checkout__identificationNumber",
-            placeholder: "Número de documento",
+            placeholder: "Identification number",
         },
         issuer: {
             id: "form-checkout__issuer",
-            placeholder: "Banco emisor",
+            placeholder: "Issuer bank",
         },
     }
     useEffect(() => {

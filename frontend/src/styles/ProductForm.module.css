@@ -55,6 +55,11 @@ form.productForm {
   width: 90%;
   margin-top: 2rem;
 }
+.textError{
+  font-size: 3vmin;
+  color: red;
+  margin-bottom: 2vh;
+}
 
 form input,
 form textarea,
@@ -107,7 +112,18 @@ div.saleRadios label {
   width: 80%;
   cursor: pointer;
   transition: all 0.4s;
+  -webkit-transition: all 0.4s;
   border-radius: 2px;
+}
+.formButton:active {
+  background: #d4c5bf;
+  color: #263238;
+}
+.formButton:hover {
+  background: #bf988f;
+  color: #fff;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
 }
 
 @media only screen and (max-width: 425px){

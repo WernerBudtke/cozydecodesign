@@ -128,7 +128,7 @@ const Home = ({ location, history }) => {
           >
             <div>
               <h2>COZY</h2>
-              <p>Gracias por realizar su compra, vuelva luego</p>
+              <p>Thank you for making your purchase, come back later.</p>
             </div>
           </div>
         </Modal>
