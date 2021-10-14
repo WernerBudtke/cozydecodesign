@@ -6,7 +6,7 @@ const productsActions = {
       try {
         let res = await axios.post(
           "https://cozydeco.herokuapp.com/api/products",
-          {},
+          {filterBy: {forSale: true}},
           { withCredentials: true }
         )
         if(!res.data.success)throw new Error('Failed to get new products')
