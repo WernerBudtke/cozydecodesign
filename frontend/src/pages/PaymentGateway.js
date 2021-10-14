@@ -10,6 +10,8 @@ import SideProducts from "../components/SideProducts"
 import Header from "../components/Header"
 import toast from 'react-hot-toast';
 import PayWithCard from "../components/PayWithCard"
+import { Link } from "react-router-dom"
+
 
 //VENDEDOR
 //sb-imkhe8058198@business.example.com
@@ -195,6 +197,11 @@ const PaymentGateway = ({
     <>
       <Header viewCart={true} />
       <div className={styles.gatewayContainer}>
+        <div className={styles.totalPrice768}>
+          <Link to="/products">
+            <button>Edit Cart</button>
+          </Link>
+        </div>
         <div className={styles.checkoutInfo}>
           <h1>Personal Info</h1>
           <div className={styles.inputMail}>

@@ -134,6 +134,7 @@ p.admin {
 div.stockContainer {
    width: 60vw;
    display: flex;
+    flex-direction: column;
 }
 div.stockContainer .addProduct{
     align-self: flex-end;
