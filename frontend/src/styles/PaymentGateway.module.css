@@ -10,7 +10,7 @@
 .checkoutInfo {
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 55%;
 }
 
 .checkoutInfo h1 {
@@ -243,6 +243,9 @@
   padding: 1.5vw 5vw;
   border-radius: 15px;
 } 
+.totalPrice768{
+  display: none;
+}
 @media only screen and (max-width: 425px){
   .giftCardCode button,
   .switchField label{
@@ -251,8 +254,12 @@
 }
 
 @media only screen and (max-width: 768px){
+  .gatewayContainer {
+    flex-direction: column;
+    align-items: center;
+  }
   .checkoutInfo {
-    width: 80%;
+    width: 75%;
   }
   .checkoutInfo h1 {
     font-size: 3.5vmin;
@@ -282,6 +289,8 @@
   .switchField input {
     height: 5vh;
     width: 5vw;
+    display: flex;
+    flex-wrap: wrap;
   }  
   .switchField {
     margin: 2vw;
@@ -293,7 +302,31 @@
     margin-top: 1vh;
   }
   .checkOut {
-    font-size: 3.5vmin;
+    font-size: 3vmin;
   }
+  .totalPrice768 a button{
+      background: #d4c5bf;
+      border: 0;
+      color: #7e6661;
+      padding: 1.5vh;
+      font-size: 3vmin;
+      font-weight: 300;
+      width: 100%;
+      display: block;
+      cursor: pointer;
+      -webkit-transition: all 0.4s;
+      transition: all 0.4s;
+      border-radius: 2px;
+    }
+    .productInfo button:active {
+      background: #d4c5bf;
+      color: #263238;
+    }
+    .productInfo button:hover {
+      background: #bf988f;
+      color: #fff;
+      -webkit-transition: all 0.4s;
+      transition: all 0.4s;
+    }
 }
 

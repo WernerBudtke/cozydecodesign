@@ -1,15 +1,20 @@
 /*SIDE PRODUCTS STYLES*/
 .conteinerSideProducts{
-  width: 35%;
-  min-height: 7vh;
-  border: 1px solid #d0d1d1;
+  width: 30%;
+  justify-content: center;
 }
 .sideProducts {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  border: 1px solid #d0d1d1;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 15px;
+  margin-top: 4.5vh;
+  padding: 2vh 0;
+
 }
 .sideProducts h2 {
   text-align: center;
@@ -18,11 +23,12 @@
   font-size: 4vmin;
   font-family: "Cormorant", serif;
   color: #746966;
+  flex: 1;
 }
 .productInCart {
   display: flex;
   width: 70%;
-  height: 7vw;
+  height: 6vw;
   justify-content: space-between;
 }
 .productCartInfo {
@@ -30,12 +36,15 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  /* align-items: center; */
   justify-content: center;
+  text-align: center;
 }
 
 .productCartInfo div {
   display: flex;
   justify-content: space-between;
+
 }
 
 .productCartInfo div span {
@@ -45,7 +54,8 @@
 
 .productCartInfo a p {
   font-size: 2.5vmin;
-  margin-bottom: 0.3vh;
+  margin-bottom: 0.2vh;
+  flex-wrap: wrap;
 }
 
 .productCartPhoto {
@@ -56,11 +66,15 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+.productCartInfo div{
+  display: flex;
+  align-items: center;
+}
 .productCartInfo div p{
   font-size: 2vmin;
 }
 .totalPrice {
-  width: 80%;
+  width: 70%;
   font-size: 3.6vmin;
   font-weight: bolder;
   text-align: center;
@@ -78,25 +92,42 @@
   font-size: 3.6vmin;
 }
 
-.totalPrice a button {
+.totalPrice a button{
+  background: #d4c5bf;
+  border: 0;
+  color: #7e6661;
+  padding: 1vh;
+  font-size: 2.5vmin;
+  font-weight: 300;
   width: 30%;
-  background-color: #ead8ca94;
-  color: #000000be;
-  font-size: medium;
-  font-weight: bolder;
-  line-height: 1;
-  text-align: center;
-  padding: 8px 16px;
-  margin-right: 1vw;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
-  transition: all 0.1s ease-in-out;
+  display: flex;
+  justify-content: center;
+  margin: auto;
   cursor: pointer;
-  border-radius: 4px;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  border-radius: 2px;
+}
+.totalPrice a button:active {
+  background: #d4c5bf;
+  color: #263238;
+}
+
+.totalPrice a button:hover {
+  background: #bf988f;
+  color: #fff;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
 }
 
 @media only screen and (max-width: 768px){
-  .sideProducts{
+  .conteinerSideProducts{
     display: none;
+  }
+}
+@media only screen and (max-width: 1024){
+  .conteinerSideProducts{
+    width: 90%;
+    justify-content: center;
   }
 }
