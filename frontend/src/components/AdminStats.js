@@ -6,12 +6,13 @@ import styles from "../styles/Admin.module.css"
 const AdminStats = ({ getProducts, products }) => {
   const [productsSold, setProductSold] = useState(null)
   const [totalProfit, setTotalProfit] = useState(null)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const res = async () => {
       let response = await getProducts()
       if (!response.success) {
-        alert("Error")
+        setError('Network Error')
       }
     }
     products.length === 0 && res()
@@ -38,6 +39,7 @@ const AdminStats = ({ getProducts, products }) => {
 
   return (
     <div className={styles.statsContainer}>
+      {error && <p style={{color: 'red', marginBottom: '1vh'}}>{error}</p>}
       <div>
         <i className="fas fa-shopping-cart fa-2x"></i>
         <p>Total sales: {productsSold}</p>

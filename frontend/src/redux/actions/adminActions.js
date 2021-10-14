@@ -22,11 +22,12 @@ const adminUsersActions = {
         },
         withCredentials: true
         })
+        if(!response.data.success)throw new Error("Can't change permission")
         if (response.data.success) {
           return response.data
         }
       } catch (error) {
-        console.error(error)
+        return {success: false, response: error.message}
       }
     }
   }

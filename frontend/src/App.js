@@ -15,7 +15,7 @@ import cartActions from "./redux/actions/cartActions"
 import PaymentGateway from "./pages/PaymentGateway"
 import PayWithCard from "./components/PayWithCard"
 
-const App = ({ loginUser, logFromSession, addCartLS, history }) => {
+const App = ({ loginUser, logFromSession, addCartLS }) => {
   useEffect(() => {
     if (!loginUser) {
       logFromSession()

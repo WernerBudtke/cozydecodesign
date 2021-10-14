@@ -7,6 +7,7 @@ const AdminUsers = ({ getUsers, manageAdmin, loginUser }) => {
   const [users, setUsers] = useState([])
   const [render, setRender] = useState(false)
   const [filteredUsers, setFilteredUsers] = useState([])
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const res = async () => {
@@ -14,7 +15,7 @@ const AdminUsers = ({ getUsers, manageAdmin, loginUser }) => {
       if (response.success) {
         setUsers(response.response)
       } else {
-        console.error(response) // Falta mostrar el error
+        setError('Network Error')
       }
     }
     res()
@@ -27,7 +28,7 @@ const AdminUsers = ({ getUsers, manageAdmin, loginUser }) => {
     if (response.success) {
       setRender(!render)
     } else {
-      alert("error") // Cambiar esto
+      setError('Network Error')
     }
   }
 
@@ -44,6 +45,7 @@ const AdminUsers = ({ getUsers, manageAdmin, loginUser }) => {
     <div>
       <div>
         <h2>User list</h2>
+        {error && <p>{error}</p>}
         <div className={styles.searchBar}>
           <i className="fas fa-search fa-lg"></i>
           <input
