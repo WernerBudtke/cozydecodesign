@@ -109,7 +109,7 @@ const ProductForm = ({
       if (response.data.success) {
         await getProducts()
         setEmptyFields(false)
-        history.push('/admin')
+        history.push('/products')
         return false
       } else {
         alert("Todo salió mal!")
@@ -148,7 +148,16 @@ const ProductForm = ({
   }
 
   if (loading) {
-    return <h4>Loading...</h4>
+    return (
+      <>
+        <div className={styles.productsGallery}>
+          <div className="loader">
+            <div style={{backgroundImage: `url("./assets/c.png")`}} className="preloaderImage"></div>
+            <h1>LOADING...</h1>
+          </div>
+        </div>
+      </>
+    )
   }
 
   return (
@@ -177,10 +186,12 @@ const ProductForm = ({
                 placeholder="Photo"
                 autoComplete="nope"
               />
-              <div
-                className={styles.productPic}
-                style={{ backgroundImage: `url(${product?.photo})` }}
-              ></div>
+              {product &&
+                <div
+                  className={styles.productPic}
+                  style={{ backgroundImage: `url(${product?.photo})` }}
+                ></div>
+              }
             </div>
             <textarea
               onChange={inputHandler}

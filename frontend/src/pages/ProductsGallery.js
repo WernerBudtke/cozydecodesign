@@ -14,6 +14,7 @@ const ProductsGallery = ({
   match,
   getProductByCategory,
 }) => {
+  const [loading, setLoading] = useState(true)
   const [showCartCard, setShowCartCard] = useState(false)
   const [productAlert, setProductAlert] = useState(null)
   const [order, setOrder] = useState(null)
@@ -23,15 +24,24 @@ const ProductsGallery = ({
     window.scroll(0, 0)
     document.title = "COZY | STORE"
     if (!products.length) {
+      
       getProducts()
-      .then(res => getProductByCategory(match.params.category))
+      .then(res => {
+        if(res.success) {
+          getProductByCategory(match.params.category)
+          setLoading(false)
+        }
+      })
     } else {
       getProductByCategory(match.params.category)
+      setLoading(false)
     }
     if (match.params.category) {
       setView({ category: match.params.category, subcategory: null })
+      setLoading(false)
     } else {
       setView({ category: null, subcategory: null })
+      setLoading(false)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [match.params])
@@ -47,6 +57,19 @@ const ProductsGallery = ({
     setTimeout(() => {
       setProductAlert(null)
     }, 2500)
+  }
+
+  if (loading) {
+    return (
+      <>
+        <div className={styles.productsGallery}>
+          <div className="loader">
+            <div style={{backgroundImage: `url("./assets/c.png")`}} className="preloaderImage"></div>
+            <h1>LOADING...</h1>
+          </div>
+        </div>
+      </>
+    )
   }
 
   const sortProducts = (e) => {

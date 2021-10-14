@@ -59,7 +59,16 @@ const Product = ({
   }
 
   if (loading) {
-    return <h1>LOADING...</h1>
+    return (
+      <>
+        <div className={styles.productsGallery}>
+          <div className="loader">
+            <div style={{backgroundImage: `url("./assets/c.png")`}} className="preloaderImage"></div>
+            <h1>LOADING...</h1>
+          </div>
+        </div>
+      </>
+    )
   }
 
   if (productAlert) {
