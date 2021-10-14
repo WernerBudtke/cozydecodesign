@@ -71,13 +71,18 @@ const SignUp = ({ history, signUp }) => {
       if (response.success) {
         history.push("/")
       } else {
-        response.response.forEach((error) => {
-          errorsInput[error.context.label] = error.message
-        })
-        setRenderError(errorsInput)
+        if (typeof response.response === 'string') {
+          setRenderError({...renderError, eMail: 'Email already in use'})
+        } else {
+          response.response.forEach((error) => {
+            errorsInput[error.context.label] = error.message
+          })
+          setRenderError(errorsInput)
+        }
       }
     }
   }
+  console.log(user)
 
   return (
     <>
