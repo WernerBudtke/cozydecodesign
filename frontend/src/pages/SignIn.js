@@ -88,7 +88,7 @@ const SignIn = ({ history, logIn }) => {
             <p>Or</p>
             <div className="googleButton">
               <GoogleLogin
-                clientId="825531110504-5if5ceqkaqcvcu2dppipo8q3j7hvnn9k.apps.googleusercontent.com"
+                clientId="825531110504-0ffdha8bsmqln05l9dtqhst3l984smsm.apps.googleusercontent.com"
                 buttonText="Sign in"
                 onSuccess={responseGoogle}
                 cookiePolicy={"single_host_origin"}
