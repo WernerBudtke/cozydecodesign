@@ -194,7 +194,42 @@ div.saleRadios input {
   display:flex
 }
 
-@media only screen and (max-width: 768px) {
+/*PRELOADER*/
+.preloaderImage {
+  background-position: center;
+  background-size: cover;
+  width: 30vh; 
+  height: 30vh;
+  animation: loaderLogo 1s infinite
+}
+
+.loader{
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5vh;
+}
+
+@keyframes loaderLogo
+{
+  0%
+  {
+    transform: scale( .85 );
+  }
+  50%
+  {
+    transform: scale( 1 );
+  }
+  100%
+  {
+    transform: scale( .85 );
+  }
+}
+
+@media only screen and (max-width: 768px){
   header h1 {
     font-size: 7.5vh;
   }

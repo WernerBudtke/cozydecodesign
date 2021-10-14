@@ -58,7 +58,16 @@ const Product = ({
   }
 
   if (loading) {
-    return <h1>LOADING...</h1>
+    return (
+      <>
+        <div className={styles.productsGallery}>
+          <div className="loader">
+            <div style={{backgroundImage: `url("./assets/c.png")`}} className="preloaderImage"></div>
+            <h1>LOADING...</h1>
+          </div>
+        </div>
+      </>
+    )
   }
 
   if (productAlert) {
@@ -79,9 +88,7 @@ const Product = ({
   const suggestions = products.filter(
     (obj) => obj._id !== product._id && obj.category === product.category
   )
-  console.log(suggestions, "suggestions")
-  console.log(products, "products")
-  console.log(product, "product")
+
   return (
     <>
       <Header />
