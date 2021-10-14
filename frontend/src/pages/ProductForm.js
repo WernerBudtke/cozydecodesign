@@ -4,7 +4,6 @@ import productsActions from "../redux/actions/productsActions"
 import styles from "../styles/ProductForm.module.css"
 import { useHistory } from "react-router"
 import Header from "../components/Header"
-import Preloader from "../components/Preloader"
 
 const ProductForm = ({
   addProduct,
@@ -76,7 +75,7 @@ const ProductForm = ({
     subcategories = ["accesories", "mirrors"]
   } else if (newProduct.category === "kitchenware") {
     subcategories = ["accesories", "glassware", "tableware"]
-  } else if (newProduct.category === "Decor") {
+  } else if (newProduct.category === "decor") {
     subcategories = ["accesories", "home", "lighting"]
   } else if (newProduct.category === "giftcard") {
     subcategories = ["giftcard"]
@@ -149,7 +148,7 @@ const ProductForm = ({
   }
 
   if (loading) {
-    return <Preloader/>
+    return <h4>Loading...</h4>
   }
 
   return (
