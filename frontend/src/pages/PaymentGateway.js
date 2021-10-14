@@ -483,6 +483,9 @@ const PaymentGateway = ({
           {chosenMethod.enable && chosenMethod.type.includes("MercadoPago") && (
             <PayWithCard addNewOrderHandler={addNewOrderHandler} total={!sharedPayment ? order.totalPrice : sharedPaymentPrice} catchPagoErr={catchPagoErr}/>
           )}
+          {/* {chosenMethod.enable && chosenMethod.type.includes("MercadoPago") && (
+            <MercadoPagoForm addNewOrderHandler={addNewOrderHandler} total={!sharedPayment ? order.totalPrice : sharedPaymentPrice} catchPagoErr={catchPagoErr}/>
+          )} */}
         </div>
         <SideProducts products={products} total={order.totalPrice} />
       </div>
