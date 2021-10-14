@@ -8,10 +8,9 @@ import MercadoPagoForm from "../components/MercadoPago/MercadoPagoForm"
 import productsActions from "../redux/actions/productsActions"
 import SideProducts from "../components/SideProducts"
 import Header from "../components/Header"
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast"
 import PayWithCard from "../components/PayWithCard"
 import { Link } from "react-router-dom"
-
 
 //VENDEDOR
 //sb-imkhe8058198@business.example.com
@@ -90,7 +89,6 @@ const PaymentGateway = ({
     var giftCard = validateGift.map((obj) => ({ balance: obj.product.price }))
   }
 
-  console.log(giftCard)
   const validate = () => {
     if (Object.values(info).some((value) => value === "")) {
       setRenderError("You need to complete all the fields to continue!")
@@ -136,9 +134,8 @@ const PaymentGateway = ({
   }
 
   const addNewOrderHandler = () => {
-    console.log(giftCard)
     if (giftCard) {
-      addCard(giftCard).then((res) => console.log(res))
+      addCard(giftCard)
     }
     if (
       order.paymentMethod.extraInfo ||
@@ -188,8 +185,13 @@ const PaymentGateway = ({
     setHideRadio(true)
     toast.custom(
       <div className={styles.alertPago}>
-        <p><i className="fas fa-exclamation-circle"></i> We were unable to process the payment, please try again, or choose another payment method.</p>
-      </div>, {duration:3000}, 
+        <p>
+          <i className="fas fa-exclamation-circle"></i> We were unable to
+          process the payment, please try again, or choose another payment
+          method.
+        </p>
+      </div>,
+      { duration: 3000 }
     )
   }
 
@@ -198,11 +200,11 @@ const PaymentGateway = ({
       <Header viewCart={true} />
       <div className={styles.gatewayContainer}>
         <div className={styles.checkoutInfo}>
-        <div className={styles.totalPrice768}>
-          <Link to="/products">
-            <button>Edit Cart</button>
-          </Link>
-        </div>
+          <div className={styles.totalPrice768}>
+            <Link to="/products">
+              <button>Edit Cart</button>
+            </Link>
+          </div>
           <h1>Personal Info</h1>
           <div className={styles.inputMail}>
             <label>Email:</label>
@@ -480,12 +482,16 @@ const PaymentGateway = ({
               addNewOrderHandler={addNewOrderHandler}
             />
           )}
-          {chosenMethod.enable && chosenMethod.type.includes("MercadoPago") && (
-            <PayWithCard addNewOrderHandler={addNewOrderHandler} total={!sharedPayment ? order.totalPrice : sharedPaymentPrice} catchPagoErr={catchPagoErr}/>
-          )}
           {/* {chosenMethod.enable && chosenMethod.type.includes("MercadoPago") && (
-            <MercadoPagoForm addNewOrderHandler={addNewOrderHandler} total={!sharedPayment ? order.totalPrice : sharedPaymentPrice} catchPagoErr={catchPagoErr}/>
+            <PayWithCard addNewOrderHandler={addNewOrderHandler} total={!sharedPayment ? order.totalPrice : sharedPaymentPrice} catchPagoErr={catchPagoErr}/>
           )} */}
+          {chosenMethod.enable && chosenMethod.type.includes("MercadoPago") && (
+            <MercadoPagoForm
+              addNewOrderHandler={addNewOrderHandler}
+              total={!sharedPayment ? order.totalPrice : sharedPaymentPrice}
+              catchPagoErr={catchPagoErr}
+            />
+          )}
         </div>
         <SideProducts products={products} total={order.totalPrice} />
       </div>

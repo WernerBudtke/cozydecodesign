@@ -240,7 +240,7 @@
     font-size: 1.3rem;
     margin: 0.7rem;
   }
-  .quote p{
+  .quote p {
     font-size: 1.4rem;
   }
 
@@ -257,8 +257,8 @@
     width: 15%;
   }
   .textButton {
-    font-size: .6rem;
-  } 
+    font-size: 0.6rem;
+  }
   .infoContainer {
     padding-top: 3vh;
     height: 30rem !important;
@@ -273,7 +273,7 @@
     height: 12rem;
   }
 }
-@media (max-width: 425px){
+@media (max-width: 425px) {
   .quote {
     width: 45vw;
   }
@@ -281,14 +281,14 @@
     font-size: 1rem;
   }
   div i {
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
-  .quote p{
-    font-size: .9rem;
+  .quote p {
+    font-size: 0.9rem;
   }
   .textButton {
-    font-size: .3rem;
-  }  
+    font-size: 0.3rem;
+  }
   .infoContainer {
     padding-top: 8vh;
     height: 50rem !important;
@@ -299,9 +299,13 @@
     flex-wrap: wrap;
   }
   .infoItem {
-
     width: 15rem;
     height: 10rem;
   }
 }
 
+.modalContainer div p {
+  font-size: 4vmin;
+  font-weight: bold;
+  padding: 0 !important;
+}

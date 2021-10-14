@@ -162,22 +162,26 @@ div.saleRadios input {
   font-family: "Cormorant", serif;
   text-align: center;
   font-size: 5vw;
-  color:#534e4e;
+  color: #534e4e;
 }
 
 .react-responsive-modal-modal div div p {
   text-align: center;
   padding-top: 3vw;
 }
-.react-responsive-modal-closeButton{
+.react-responsive-modal-closeButton {
   width: 2vw !important;
-  top:1vw !important;
+  top: 1vw !important;
 }
-.fa-exclamation-circle{
-  color:brown;
+.fa-exclamation-circle {
+  color: brown;
 }
 
-@media only screen and (max-width: 768px){
+.paypal {
+  margin: 0 15%;
+}
+
+@media only screen and (max-width: 768px) {
   header h1 {
     font-size: 7.5vh;
   }

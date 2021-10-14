@@ -1,7 +1,9 @@
 .container {
   border: 1px solid black;
   margin-top: 3vh;
-  padding: 2vw;
+  padding: 0.5vw;
+  display: flex;
+  align-items: center;
 }
 
 .checkOut {
@@ -37,3 +39,31 @@
   width: calc(100% - 10px);
   height: calc(100% + 10px);
 }
+
+.form {
+  width: 60%;
+  margin: 1vw;
+}
+
+.form > div {
+  display: flex;
+  width: 100%;
+  margin: 0.5vw;
+  justify-content: space-evenly;
+}
+
+.form > div > input,
+.form > div > select {
+  margin: 0.5vw;
+  flex: 1;
+  border-bottom: 3px solid #bf988f;
+}
+.form > div > input {
+  font-size: large;
+}
+.cvc {
+  width: 5vw;
+}
+/* .mercadoPagoInput input {
+  margin: 0.5vw;
+}  */

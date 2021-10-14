@@ -16,7 +16,6 @@ const Product = ({
   getProducts,
   findAProduct,
   addCartProduct,
-  productsCategory,
   getProductByCategory,
 }) => {
   const [quantity, setQuantity] = useState(1)
@@ -24,7 +23,7 @@ const Product = ({
   const [productAlert, setProductAlert] = useState(null)
   const [showCartCard, setShowCartCard] = useState(false)
   const [refresh, setRefresh] = useState(false)
-  const [error, setError] = useState('')
+  const [error, setError] = useState("")
 
   useEffect(() => {
     window.scroll(0, 0)
@@ -67,8 +66,7 @@ const Product = ({
       setProductAlert(null)
     }, 2500)
   }
-console.log(productsCategory)
-console.log()
+
   const finalPrice =
     product.discount === 0
       ? product.price
@@ -78,6 +76,12 @@ console.log()
     ? product.photo
     : `http://localhost:4000/${product.photo}`
 
+  const suggestions = products.filter(
+    (obj) => obj._id !== product._id && obj.category === product.category
+  )
+  console.log(suggestions, "suggestions")
+  console.log(products, "products")
+  console.log(product, "product")
   return (
     <>
       <Header />
@@ -124,9 +128,9 @@ console.log()
                 <i
                   className="fas fa-plus"
                   onClick={() => {
-                    (product.stock > quantity && product.category !== 'GiftCard')
+                    product.stock > quantity && product.category !== "GiftCard"
                       ? setQuantity(quantity + 1)
-                      : setError('No Stock')
+                      : setError("No Stock")
                   }}
                 ></i>
               </div>
@@ -165,20 +169,20 @@ console.log()
         <div className={styles.suggestionContainer}>
           <h3>Related Products</h3>
           <div className={styles.suggestion}>
-            {productsCategory.map((obj) => {
-              if (obj._id !== match.params.id) {
-                return (
-                  <div
-                    onClick={() => setRefresh(!refresh)}
-                    className={styles.productCardContainer}
-                  >
-                    <ProductCard
-                      setProductAlert={setProductAlert}
-                      product={obj}
-                      newClass={"newClass"}
-                      editShowCartCard={editShowCartCard}
-                    />
-                  </div>)}
+            {suggestions.map((obj) => {
+              return (
+                <div
+                  onClick={() => setRefresh(!refresh)}
+                  className={styles.productCardContainer}
+                >
+                  <ProductCard
+                    setProductAlert={setProductAlert}
+                    product={obj}
+                    newClass={"newClass"}
+                    editShowCartCard={editShowCartCard}
+                  />
+                </div>
+              )
             })}
           </div>
         </div>
@@ -190,7 +194,6 @@ const mapStateTopProps = (state) => {
   return {
     product: state.products.product,
     products: state.products.products,
-    productsCategory: state.products.productsCategory,
   }
 }
 

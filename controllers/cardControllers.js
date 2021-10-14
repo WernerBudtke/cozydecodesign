@@ -1,7 +1,9 @@
 const Card = require("../models/Card")
-const wrapedSendMail = require('../config/sendMail')
+const wrapedSendMail = require("../config/sendMail")
 const cardControllers = {
   addCard: async (req, res) => {
+    console.log(req.body)
+    console.log(req.body.balances)
     try {
       if (!req.session.loggedUser) throw new Error("Log In First")
       const user = req.session.loggedUser
@@ -9,7 +11,7 @@ const cardControllers = {
       var savedCards = []
       const saveCards = (balance) => {
         return new Promise(async (resolve, reject) => {
-          setTimeout(async ()=>{
+          setTimeout(async () => {
             let newCode = Date.now()
             let newCard = new Card({
               balance: balance.balance,
@@ -17,16 +19,23 @@ const cardControllers = {
             })
             let savedCard = await newCard.save()
             resolve(savedCard)
-          },Math.random()*5000)
+          }, Math.random() * 5000)
         })
       }
-      savedCards = await Promise.all(balances.map(async (balance) => {
-        let savedCard = await saveCards(balance)
-        return savedCard
-      }))
-      let cardLinks = ["https://i.imgur.com/7HE3LXO.png", "https://i.imgur.com/yk2qPdn.png", "https://i.imgur.com/69Zlp7W.png", "https://i.imgur.com/zy3LTCk.png"]
-      savedCards.forEach(card => {
-        switch(card.balance){
+      savedCards = await Promise.all(
+        balances.map(async (balance) => {
+          let savedCard = await saveCards(balance)
+          return savedCard
+        })
+      )
+      let cardLinks = [
+        "https://i.imgur.com/7HE3LXO.png",
+        "https://i.imgur.com/yk2qPdn.png",
+        "https://i.imgur.com/69Zlp7W.png",
+        "https://i.imgur.com/zy3LTCk.png",
+      ]
+      savedCards.forEach((card) => {
+        switch (card.balance) {
           case 25:
             card.cardBought = cardLinks[0]
             break
@@ -41,18 +50,18 @@ const cardControllers = {
             break
         }
       })
-      let cardDetails = savedCards.map(card => {
-        return(
-          `
+      let cardDetails = savedCards.map((card) => {
+        return `
             <ul style="font-size: 15px;  margin: 10px 0">
               <li style="color: #000;">Name: GIFT - CARD</li>
               <li style="color: #000;">Price: ${card.balance}</li>
               <li style="color: #000;">Code: ${card.code} </li>
             </ul>
           `
-        )
       })
-      let cardImages = savedCards.map(card => `<img src=${card.cardBought} style="width: 100px;"/>`)
+      let cardImages = savedCards.map(
+        (card) => `<img src=${card.cardBought} style="width: 100px;"/>`
+      )
       let message = `
                     <table style="max-width: 700px; padding: 10px; margin:0 auto; border-collapse: collapse;">
                         <div style="width: 100%;margin:20px 0; text-align: center;">
@@ -87,9 +96,9 @@ const cardControllers = {
         subject: `Thank you for your purchase ${user.firstName}!`,
         html: message,
       }
-      let mailResp = await wrapedSendMail(mailOptions);
-      if(!mailResp)throw new Error('Gift Card created, mail not sent')
-      res.json({success: true, response: savedCards})
+      let mailResp = await wrapedSendMail(mailOptions)
+      if (!mailResp) throw new Error("Gift Card created, mail not sent")
+      res.json({ success: true, response: savedCards })
     } catch (e) {
       res.json({ success: false, response: e.message })
     }
