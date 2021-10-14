@@ -28,9 +28,8 @@ const cartActions = {
     }
   },
   addNewOrder: (obj) => {
-    return async (dispatch) => {
+    return async () => {
       try {
-        console.log("entré al add new order al post")
         let response = await axios.post(
           "https://cozydeco.herokuapp.com/api/order/new",
           {
@@ -38,7 +37,6 @@ const cartActions = {
           },
           { withCredentials: true }
         )
-        console.log(response)
         if (!response.data.success) throw new Error(response.data.response)
         return { success: true }
       } catch (error) {
@@ -47,8 +45,7 @@ const cartActions = {
     }
   },
   addCard: (obj) => {
-    console.log(obj)
-    return async (dispatch) => {
+    return async () => {
       try {
         let response = await axios.post(
           "https://cozydeco.herokuapp.com/api/cards",
@@ -65,7 +62,7 @@ const cartActions = {
     }
   },
   getCard: (code) => {
-    return async (dispatch) => {
+    return async () => {
       try {
         let response = await axios.get(
           `https://cozydeco.herokuapp.com/api/card/${code}`,
@@ -79,7 +76,7 @@ const cartActions = {
     }
   },
   editCard: (obj) => {
-    return async (dispatch) => {
+    return async () => {
       try {
         let response = await axios.put( `https://cozydeco.herokuapp.com/api/card/${obj.code}`,
           { ...obj },

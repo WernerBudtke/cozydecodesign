@@ -60,12 +60,12 @@ const userActions = {
         if (!response.data.success) throw new Error(response.data.response)
         dispatch({ type: "LOG_OUT" })
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     }
   },
   manageUser: (obj) => {
-    return async (dispatch) => {
+    return async () => {
       try {
         let response = await axios.put(
           "https://cozydeco.herokuapp.com/api/user/manage",

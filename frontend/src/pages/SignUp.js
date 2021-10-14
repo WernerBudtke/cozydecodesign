@@ -82,7 +82,6 @@ const SignUp = ({ history, signUp }) => {
       }
     }
   }
-  console.log(user)
 
   return (
     <>

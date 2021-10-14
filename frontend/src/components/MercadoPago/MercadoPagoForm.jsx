@@ -19,10 +19,8 @@ export default function MercadoPagoForm({total, addNewOrderHandler, catchPagoErr
     const resultPayment = useMercadoPago(total);
     const evaluatePayment = (obj) =>{
         if(obj.status === "approved"){
-            console.log("aprobado");
             addNewOrderHandler()
         }else{
-            console.log("rechazado");
             catchPagoErr()
         }
     }

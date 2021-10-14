@@ -108,11 +108,10 @@ const ProductForm = ({
       setEmptyFields(true)
     } else {
       const response = await addProduct(fd)
-      if (response.data.success) {
+      if (response.success) {
         await getProducts()
         setEmptyFields(false)
         history.push('/admin')
-        return false
       } else {
         alert("Todo salió mal!")
       }
@@ -130,19 +129,16 @@ const ProductForm = ({
     fd.append("category", newProduct.category)
     fd.append("subcategory", newProduct.subcategory)
     fd.append("discount", newProduct.discount)
-    let empty = Object.values(newProduct).some((value) => value === "")
+    let empty = Object.values(newProduct).some((value) => value === "" || typeof value === "undefined")
     if (empty) {
       alert("complete all the fields")
     } else {
       let response = await modifyProduct(productId, fd)
       if (response.success) {
-        let res = await getProducts()
-        console.log("antes de pushear")
-        console.log(res)
+        let res = await getProducts()  
         if (res.success) {
           history.push("/products")
         }
-        return false
       } else {
         alert("Todo salió mal!")
       }

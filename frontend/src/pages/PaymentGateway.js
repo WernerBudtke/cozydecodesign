@@ -89,7 +89,6 @@ const PaymentGateway = ({
     var giftCard = validateGift.map((obj) => ({ balance: obj.product.price }))
   }
 
-  console.log(giftCard)
   const validate = () => {
     if (Object.values(info).some((value) => value === "")) {
       setRenderError("You need to complete all the fields to continue!")
@@ -135,7 +134,6 @@ const PaymentGateway = ({
   }
 
   const addNewOrderHandler = () => {
-    console.log(giftCard)
     if (giftCard) {
       addCard(giftCard).then((res) => console.log(res))
     }

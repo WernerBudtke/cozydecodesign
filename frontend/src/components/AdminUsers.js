@@ -14,7 +14,7 @@ const AdminUsers = ({ getUsers, manageAdmin, loginUser }) => {
       if (response.success) {
         setUsers(response.response)
       } else {
-        console.log(response) // Falta mostrar el error
+        console.error(response) // Falta mostrar el error
       }
     }
     res()

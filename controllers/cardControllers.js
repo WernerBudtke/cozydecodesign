@@ -136,11 +136,3 @@ const cardControllers = {
   },
 }
 module.exports = cardControllers
-// ver tema del editado
-// mail de order cuando se crea
-// ver el tema de si puedo sacar los numeros de la tarjeta los ultimos 4 para mandarles en el mail.
-//
-
-// recibir un array on obj que tengan balance adentro y mandar mail acorde a eso.
-// revisar tema react mierdinetive para imagenes...
-// ver de hacer formulario apocrifo....

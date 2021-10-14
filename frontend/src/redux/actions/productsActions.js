@@ -10,10 +10,7 @@ const productsActions = {
           { withCredentials: true }
         )
         if(!res.data.success)throw new Error('Failed to get new products')
-        console.log(res)
-        console.log("mande el despacho")
         dispatch({ type: "GET_ALL_PRODUCTS", payload: res.data.response })
-        console.log("retorne al componente")
         return { success: true}
       } catch (err) {
         return { success: false}
@@ -29,8 +26,8 @@ const productsActions = {
           { withCredentials: true }
         )
         if (response.data.success) {
-          dispatch({ type: "ADD_PRODUCT", payload: response.data.respose })
-          return response
+          dispatch({ type: "ADD_PRODUCT", payload: response.data.response })
+          return {success: true, response: response.data.response}
         } else {
           throw new Error(response.data.response)
         }
@@ -76,7 +73,6 @@ const productsActions = {
     }
   },
   getProductByCategory: (category) => {
-    console.log(category)
     return (dispatch) => {
       dispatch({ type: !category ? "GET_ALL" : "GET_BY_CATEGORY", payload: category })
     }
