@@ -72,16 +72,16 @@ const ProductForm = ({
   var subcategories = []
   let history = useHistory()
 
-  if (newProduct.category === "Bathroom") {
-    subcategories = ["Accesories", "Mirrors"]
-  } else if (newProduct.category === "Kitchenware") {
-    subcategories = ["Accesories", "Glassware", "Tableware"]
+  if (newProduct.category === "bathroom") {
+    subcategories = ["accesories", "mirrors"]
+  } else if (newProduct.category === "kitchenware") {
+    subcategories = ["accesories", "glassware", "tableware"]
   } else if (newProduct.category === "Decor") {
-    subcategories = ["Accesories", "Home", "Lighting"]
-  } else if (newProduct.category === "GiftCard") {
-    subcategories = ["GiftCard"]
+    subcategories = ["accesories", "home", "lighting"]
+  } else if (newProduct.category === "giftcard") {
+    subcategories = ["giftcard"]
   }
-  const categories = ["Bathroom", "Kitchenware", "Decor", "GiftCard"]
+  const categories = ["bathroom", "kitchenware", "decor", "giftcard"]
 
   const inputHandler = (e) => {
     setNewProduct({
