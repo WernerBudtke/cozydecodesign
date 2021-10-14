@@ -9,19 +9,7 @@ import productsActions from "../redux/actions/productsActions"
 import SideProducts from "../components/SideProducts"
 import Header from "../components/Header"
 import toast from "react-hot-toast"
-import PayWithCard from "../components/PayWithCard"
 import { Link } from "react-router-dom"
-
-//VENDEDOR
-//sb-imkhe8058198@business.example.com
-//<g/2#2wF
-
-//COMPRADOR
-//sb-dfobu8056038@personal.example.com
-//s7%C68F#
-
-//CLIENT ID
-//AWRVu1dvYAIDrl-vZ5_ST31KBhCxaoAr8-IIsNOYSwlWwMJBoUGiEsrc5H9dLg5DAoWyrhsjE3-UqEMw
 
 const PaymentGateway = ({
   loginUser,
@@ -482,9 +470,6 @@ const PaymentGateway = ({
               addNewOrderHandler={addNewOrderHandler}
             />
           )}
-          {/* {chosenMethod.enable && chosenMethod.type.includes("MercadoPago") && (
-            <PayWithCard addNewOrderHandler={addNewOrderHandler} total={!sharedPayment ? order.totalPrice : sharedPaymentPrice} catchPagoErr={catchPagoErr}/>
-          )} */}
           {chosenMethod.enable && chosenMethod.type.includes("MercadoPago") && (
             <MercadoPagoForm
               addNewOrderHandler={addNewOrderHandler}

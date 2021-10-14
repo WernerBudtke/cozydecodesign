@@ -102,7 +102,6 @@
 .quote {
   background-color: #d9e2e7c7;
   border-radius: 10px;
-  min-height: 60vh;
   width: 25vw;
   margin: 0 3.5vw;
   padding: 2.5vw;
@@ -190,6 +189,9 @@
     height: 11rem;
     margin: 2.6rem;
   }
+  .quote{
+    width: 35vw;
+  }
 }
 
 @media (max-width: 1000px) {
@@ -240,7 +242,10 @@
     font-size: 1.3rem;
     margin: 0.7rem;
   }
-  .quote p {
+  .quote{
+    width: 40vw;
+  }
+  .quote p{
     font-size: 1.4rem;
   }
 

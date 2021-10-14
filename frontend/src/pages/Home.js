@@ -75,7 +75,7 @@ const Home = ({ location, history }) => {
     <>
       <Header />
       <div className={styles.home}>
-        <Parallax bgImage={"/assets/home1.jpg"} strength={height}>
+        <Parallax bgImage={"/assets/home10.jpeg"} strength={height}>
           <Link to="/products" className={styles.homeStore}>
             <Button1>Check out our latest trends</Button1>
           </Link>

@@ -31,7 +31,7 @@ const Footer = () => {
           </div>
           <div className={styles.iconSocial}>
             <i className="fas fa-phone-square-alt fa-lg"></i>
-            <p>+54 11 6789 8270</p>
+            <p>+54 1167898270</p>
           </div>
         </div>
 
