@@ -8,12 +8,13 @@ import { Link } from 'react-router-dom'
 
 const AdminStock = ({products, getProducts}) => {
     const [render, setRender] = useState(false)
+    const [error, setError] = useState(null)
 
     useEffect(() => {
         const res = async () => {
             let response = await getProducts()
             if (!response.success) {
-                alert('Error')
+                setError('Network Error')
             }
         }
         res()
@@ -26,6 +27,7 @@ const AdminStock = ({products, getProducts}) => {
     return (
         <div className={styles.stockContainer}>
             <h1>Stock</h1>
+            {error && <p style={{color: 'red'}}>{error}</p>}
             <Link className={styles.addProduct} to="/productform" ><i class="fas fa-plus-circle fa-lg"></i>
             </Link>
             {products.map((product) => <StockProduct fetch={fetchAgain} key={product._id} product={product} />)}
