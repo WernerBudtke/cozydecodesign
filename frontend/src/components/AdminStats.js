@@ -16,6 +16,7 @@ const AdminStats = ({ getProducts, products }) => {
       }
     }
     products.length === 0 && res()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const add = (a, b) => {
@@ -33,6 +34,7 @@ const AdminStats = ({ getProducts, products }) => {
         )
         .reduce(add, 0)
     )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [products])
 
   return (

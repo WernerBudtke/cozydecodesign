@@ -1,10 +1,8 @@
-// Crear Orden, Pedir x User / ALL (x fecha) + Send Mail after purchase
 const Order = require("../models/Order")
 const Product = require("../models/Product")
 const wrapedSendMail = require("../config/sendMail")
 const orderControllers = {
   getOrders: async (req, res) => {
-    console.log("Received GET ORDERS Petition:" + Date())
     try {
       const { filterBy } = req.body
       let willFilterFor = filterBy ? { ...filterBy } : ""
@@ -15,7 +13,6 @@ const orderControllers = {
     }
   },
   getAnOrder: async (req, res) => {
-    console.log("Received GET AN ORDER Petition:" + Date())
     try {
       const orderId = req.params.id
       let order = await Order.findOne({ _id: orderId })
@@ -26,7 +23,6 @@ const orderControllers = {
     }
   },
   newOrder: async (req, res) => {
-    console.log("Received NEW ORDER Petition:" + Date())
     try {
       if (!req.session.loggedUser) throw new Error("Log In First")
       const user = req.session.loggedUser
@@ -104,7 +100,6 @@ const orderControllers = {
     }
   },
   modifyOrder: async (req, res) => {
-    console.log("Received MODIFY ORDER Petition:" + Date())
     try {
       if (!req.session.loggedUser) throw new Error("Log In First")
       if (!req.session.loggedUser.owner)

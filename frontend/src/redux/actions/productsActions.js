@@ -5,15 +5,12 @@ const productsActions = {
     return async (dispatch) => {
       try {
         let res = await axios.post(
-          "http://localhost:4000/api/products",
-          {},
+          "https://cozydeco.herokuapp.com/api/products",
+          {filterBy: {forSale: true}},
           { withCredentials: true }
         )
         if(!res.data.success)throw new Error('Failed to get new products')
-        console.log(res)
-        console.log("mande el despacho")
         dispatch({ type: "GET_ALL_PRODUCTS", payload: res.data.response })
-        console.log("retorne al componente")
         return { success: true}
       } catch (err) {
         return { success: false}
@@ -24,13 +21,13 @@ const productsActions = {
     return async (dispatch) => {
       try {
         let response = await axios.post(
-          "http://localhost:4000/api/product/add",
+          "https://cozydeco.herokuapp.com/api/product/add",
           newProduct,
           { withCredentials: true }
         )
         if (response.data.success) {
-          dispatch({ type: "ADD_PRODUCT", payload: response.data.respose })
-          return response
+          dispatch({ type: "ADD_PRODUCT", payload: response.data.response })
+          return {success: true, response: response.data.response}
         } else {
           throw new Error(response.data.response)
         }
@@ -45,8 +42,8 @@ const productsActions = {
   getAProduct: (id) => {
     return async (dispatch) => {
       try {
-        let res = await axios.get(`http://localhost:4000/api/product/${id}`)
-        if(!res.data.success)throw new Error('Failed to get new product')
+        let res = await axios.get(`https://cozydeco.herokuapp.com/api/product/${id}`)
+        if(!res.data.success) throw new Error('Failed to get product')
         dispatch({ type: "GET_PRODUCT", payload: res.data.response })
         return { success: true, res: res.data.response }
       } catch (err) {
@@ -63,7 +60,7 @@ const productsActions = {
     return async () => {
       try {
         let response = await axios.put(
-          `http://localhost:4000/api/product/${id}`,
+          `https://cozydeco.herokuapp.com/api/product/${id}`,
           stock,
           { withCredentials: true }
         )
@@ -76,7 +73,6 @@ const productsActions = {
     }
   },
   getProductByCategory: (category) => {
-    console.log(category)
     return (dispatch) => {
       dispatch({ type: !category ? "GET_ALL" : "GET_BY_CATEGORY", payload: category })
     }

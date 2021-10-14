@@ -61,8 +61,8 @@ export default function useMercadoPago(amountOfPurchase) {
                     onFormMounted: (error) => {if(error)return console.warn("Form Mounted handling error: ",error)},
                     onSubmit: (event) => {
                         event.preventDefault();
-                        const {paymentMethodId: payment_method_id,issuerId: issuer_id,cardholderEmail: email,amount,token,installments,identificationNumber,identificationType} = cardForm.getCardFormData();
-                        fetch(`http://localhost:4000/api/process-payment`,{
+                        const {paymentMethodId: payment_method_id,issuerId: issuer_id,cardholderEmail: email,token,installments,identificationNumber,identificationType} = cardForm.getCardFormData();
+                        fetch(`https://cozydeco.herokuapp.com/api/process-payment`,{
                                 method: "POST",
                                 headers: {
                                     "Access-Control-Allow-Origin": "*",
@@ -99,6 +99,7 @@ export default function useMercadoPago(amountOfPurchase) {
                 },
             })
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [MercadoPago]);
 
     return resultPayment;

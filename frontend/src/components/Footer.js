@@ -39,6 +39,7 @@ const Footer = () => {
           <a
             href="https://www.facebook.com/"
             target="_blank"
+            rel="noreferrer" 
             className={styles.iconFooter}
           >
             <i className="fab fa-facebook-square fa-lg"></i>
@@ -46,6 +47,7 @@ const Footer = () => {
           <a
             href="https://www.instagram.com/"
             target="_blank"
+            rel="noreferrer" 
             className={styles.iconFooter}
           >
             <i className="fab fa-instagram-square fa-lg"></i>
@@ -53,6 +55,7 @@ const Footer = () => {
           <a
             href="https://www.whatsapp.com/"
             target="_blank"
+            rel="noreferrer" 
             className={styles.iconFooter}
           >
             <i className="fab fa-whatsapp-square fa-lg"></i>

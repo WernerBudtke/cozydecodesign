@@ -20,6 +20,7 @@ const ProductCard = ({
     if (user) {
       setAdmin(user.admin)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const addToCartHandler = () => {
@@ -36,7 +37,7 @@ const ProductCard = ({
 
   const photo = product.photo?.includes("http")
     ? product.photo
-    : `http://localhost:4000/${product.photo}`
+    : `https://cozydeco.herokuapp.com/${product.photo}`
 
   return (
     <div className={styles.wrapper}>

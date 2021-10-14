@@ -1,8 +1,6 @@
 const mercadopago = require("mercadopago")
 const paymentControllers = {
     payWithMercadoPago: (req, res) => {
-        console.log(req.body)
-        console.log('MercadoPago Petition')
         mercadopago.configurations.setAccessToken(process.env.ACCESS_TOKEN_MP)
         const payment_data = {
             transaction_amount: req.body.transaction_amount,
@@ -30,6 +28,11 @@ const paymentControllers = {
         .catch((err) => {
             return res.status(500).send(err);
         })
+    },
+    payWithCreditCard: (req, res) => {
+        setTimeout(()=>{
+            res.json({success: true})
+        },5000)
     }
 }
 module.exports = paymentControllers

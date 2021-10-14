@@ -4,7 +4,7 @@ const CartCard = ({ productAlert, showCartCard, editShowCartCard }) => {
  
   const photo = productAlert.product.photo.includes("http")
     ? productAlert.product.photo
-    : `http://localhost:4000/${productAlert.product.photo}`
+    : `https://cozydeco.herokuapp.com/${productAlert.product.photo}`
 
   return (
     <>

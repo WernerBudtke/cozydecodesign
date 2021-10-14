@@ -5,7 +5,7 @@ const userActions = {
     return async (dispatch) => {
       try {
         let response = await axios.post(
-          "http://localhost:4000/api/user/register",
+          "https://cozydeco.herokuapp.com/api/user/register",
           user,
           { withCredentials: true }
         )
@@ -23,14 +23,14 @@ const userActions = {
     return async (dispatch) => {
       try {
         let response = await axios.get(
-          "http://localhost:4000/api/user/validate",
+          "https://cozydeco.herokuapp.com/api/user/validate",
           { withCredentials: true }
         )
         if (!response.data.success) throw new Error(response.data.response)
         dispatch({ type: "LOG_IN_USER", payload: response.data.response })
       } catch (error) {
         dispatch({ type: "LOG_OUT" })
-        await axios.get("http://localhost:4000/api/user/logout")
+        await axios.get("https://cozydeco.herokuapp.com/api/user/logout")
       }
     }
   },
@@ -38,7 +38,7 @@ const userActions = {
     return async (dispatch) => {
       try {
         let response = await axios.post(
-          "http://localhost:4000/api/user/login",
+          "https://cozydeco.herokuapp.com/api/user/login",
           user,
           { withCredentials: true }
         )
@@ -54,21 +54,21 @@ const userActions = {
     return async (dispatch) => {
       try {
         let response = await axios.get(
-          "http://localhost:4000/api/user/logout",
+          "https://cozydeco.herokuapp.com/api/user/logout",
           { withCredentials: true }
         )
         if (!response.data.success) throw new Error(response.data.response)
         dispatch({ type: "LOG_OUT" })
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     }
   },
   manageUser: (obj) => {
-    return async (dispatch) => {
+    return async () => {
       try {
         let response = await axios.put(
-          "http://localhost:4000/api/user/manage",
+          "https://cozydeco.herokuapp.com/api/user/manage",
           { ...obj },
           { withCredentials: true }
         )

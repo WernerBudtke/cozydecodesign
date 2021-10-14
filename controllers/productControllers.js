@@ -1,19 +1,16 @@
 const Product = require("../models/Product")
 const productControllers = {
   getProducts: async (req, res) => {
-    console.log("Received GET PRODUCTS Petition:" + Date())
     try {
       const { filterBy } = req.body
       let willFilterFor = filterBy ? { ...filterBy } : ""
       let products = await Product.find({ ...willFilterFor })
       res.json({ success: true, response: products })
     } catch (err) {
-      console.log(err)
       res.json({ success: false, response: err.message })
     }
   },
   getAProduct: async (req, res) => {
-    console.log("Received GET A PRODUCT Petition:" + Date())
     try {
       const productId = req.params.id
       let product = await Product.findOne({ _id: productId })
@@ -24,11 +21,10 @@ const productControllers = {
     }
   },
   addProduct: async (req, res) => {
-    console.log("Received ADD PRODUCT Petition:" + Date())
     try {
-      // if (!req.session.loggedUser) throw new Error("Log In First")
-      // if (!req.session.loggedUser.admin) throw new Error("You don't have permissions to do this")
-      // if(!req.files)throw new Error('Must upload a photo')
+      if (!req.session.loggedUser) throw new Error("Log In First")
+      if (!req.session.loggedUser.admin) throw new Error("You don't have permissions to do this")
+      if(!req.files)throw new Error('Must upload a photo')
       let photoUploaded = req.files.photo
       const {
         name,
@@ -61,7 +57,6 @@ const productControllers = {
     }
   },
   modifyProduct: async (req, res) => {
-    console.log("Received MODIFY PRODUCT Petition:" + Date())
     try {
       // if (!req.session.loggedUser) throw new Error("Log In First")
       // if (!req.session.loggedUser.admin)throw new Error("You don't have permissions to do this")
@@ -89,11 +84,10 @@ const productControllers = {
     }
   },
   deleteProduct: async (req, res) => {
-    console.log("Received DELETE PRODUCT Petition:" + Date())
     try {
-      // if (!req.session.loggedUser) throw new Error("Log In First")
-      // if (!req.session.loggedUser.owner)
-      //   throw new Error("You don't have permissions to do this")
+      if (!req.session.loggedUser) throw new Error("Log In First")
+      if (!req.session.loggedUser.owner)
+        throw new Error("You don't have permissions to do this")
       const productToDelete = req.params.id
       let productDeleted = await Product.findOneAndDelete({
         _id: productToDelete,

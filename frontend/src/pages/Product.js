@@ -83,7 +83,7 @@ const Product = ({
 
   const photo = product.photo.includes("http")
     ? product.photo
-    : `http://localhost:4000/${product.photo}`
+    : `https://cozydeco.herokuapp.com/${product.photo}`
 
   const suggestions = products.filter(
     (obj) => obj._id !== product._id && obj.category === product.category

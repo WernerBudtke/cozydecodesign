@@ -6,7 +6,6 @@ module.exports = passport.use(new jwtStrategy({
     jwtFromRequest: jwtExtract.fromAuthHeaderAsBearerToken(),
     secretOrKey: process.env.SECRETORKEY
 }, (payload, done) =>{
-    console.log("Received Passport petition:" + Date())
     User.findOne({_id: payload._doc._id})
     .then(user => {
         if(!user){

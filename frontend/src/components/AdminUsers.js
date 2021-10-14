@@ -19,6 +19,7 @@ const AdminUsers = ({ getUsers, manageAdmin, loginUser }) => {
       }
     }
     res()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [render])
 
   const giveRol = async (e) => {

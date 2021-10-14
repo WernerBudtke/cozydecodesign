@@ -28,17 +28,15 @@ const cartActions = {
     }
   },
   addNewOrder: (obj) => {
-    return async (dispatch) => {
+    return async () => {
       try {
-        console.log("entré al add new order al post")
         let response = await axios.post(
-          "http://localhost:4000/api/order/new",
+          "https://cozydeco.herokuapp.com/api/order/new",
           {
             ...obj,
           },
           { withCredentials: true }
         )
-        console.log(response)
         if (!response.data.success) throw new Error(response.data.response)
         return { success: true }
       } catch (error) {
@@ -47,10 +45,10 @@ const cartActions = {
     }
   },
   addCard: (obj) => {
-    return async (dispatch) => {
+    return async () => {
       try {
         let response = await axios.post(
-          "http://localhost:4000/api/cards",
+          "https://cozydeco.herokuapp.com/api/cards",
           {
             balances: obj,
           },
@@ -64,10 +62,10 @@ const cartActions = {
     }
   },
   getCard: (code) => {
-    return async (dispatch) => {
+    return async () => {
       try {
         let response = await axios.get(
-          `http://localhost:4000/api/card/${code}`,
+          `https://cozydeco.herokuapp.com/api/card/${code}`,
           { withCredentials: true }
         )
         if (!response.data.success) throw new Error()
@@ -78,10 +76,9 @@ const cartActions = {
     }
   },
   editCard: (obj) => {
-    return async (dispatch) => {
+    return async () => {
       try {
-        let response = await axios.put(
-          `http://localhost:4000/api/card/${obj.code}`,
+        let response = await axios.put( `https://cozydeco.herokuapp.com/api/card/${obj.code}`,
           { ...obj },
           { withCredentials: true }
         )
@@ -95,13 +92,11 @@ const cartActions = {
   payWithCreditCard: () => {
     return async () => {
       try {
-        let res = await axios.get(`http://localhost:4000/api/payment/`, {
-          withCredentials: true,
-        })
-        if (!res.data.success) throw new Error()
-        return { success: true }
-      } catch (e) {
-        return { success: false }
+        let res = await axios.get(`https://cozydeco.herokuapp.com/api/payment/`, {withCredentials: true})
+        if(!res.data.success) throw new Error()
+        return {success: true}
+      }catch (e){
+        return {success: false}
       }
     }
   },

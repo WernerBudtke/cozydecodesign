@@ -21,7 +21,7 @@ const Header = ({ loginUser, logOut, viewCart }) => {
   if (loginUser) {
     var photo = loginUser.photo.includes("http")
       ? loginUser.photo
-      : `http://localhost:4000/${loginUser.photo}`
+      : `https://cozydeco.herokuapp.com/${loginUser.photo}`
   }
 
 const userNull=<div>

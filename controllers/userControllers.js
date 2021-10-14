@@ -3,13 +3,10 @@ const bcryptjs = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const wrapedSendMail = require("../config/sendMail")
 const handleError = (res, err) => {
-  console.log(err.message)
   res.json({ success: false, response: err.message })
 }
 const userControllers = {
   registerUser: (req, res) => {
-    console.log(req)
-    console.log("Received REGISTER USER Petition:" + Date())
     const {
       lastName,
       firstName,
@@ -25,7 +22,7 @@ const userControllers = {
     let photoUploaded = ""
     let fileName = ""
     try {
-      if (!req.files && !google) throw new Error("Must upload a photo")
+      if (!req.files && !google && !native) throw new Error("Must upload a photo")
       if (req.files) {
         photoUploaded = req.files.photo
       }
@@ -35,10 +32,6 @@ const userControllers = {
         } else {
           throw new Error("Can't be admin")
         }
-      }
-      let photoNativeColor = ''
-      if(native == "true"){
-        photoNativeColor = `rgb(${Math.random()*200},${Math.random()*200},${Math.random()*200})`
       }
       let hashedPass = bcryptjs.hashSync(password)
       const newUser = new User({
@@ -50,7 +43,7 @@ const userControllers = {
         admin,
         owner,
         photo: (google || native) ? photo : "",
-        photoNativeColor: photoNativeColor,
+        photoNativeColor: native ? `rgb(${Math.random()*200},${Math.random()*200},${Math.random()*200})` : null,
         native: native ? native : false
       })
       if (google == "false") {
@@ -78,6 +71,8 @@ const userControllers = {
               eMail: user.eMail,
               admin: user.admin,
               owner: user.owner,
+              native: user.native ? user.native : false,
+              photoNativeColor: user.photoNativeColor ? user.photoNativeColor : false
             },
           })
         })
@@ -92,9 +87,8 @@ const userControllers = {
     } catch (err) {
       res.json({ success: false, response: err.message })
     }
-  }, //token, firstName y Photo
+  },
   logUser: (req, res) => {
-    console.log("Received LOG IN USER Petition:" + Date())
     const errMessage = "Invalid username or pass"
     const { eMail, password, google } = req.body
     User.exists({ eMail: eMail })
@@ -119,6 +113,8 @@ const userControllers = {
                   eMail: userFound.eMail,
                   admin: userFound.admin,
                   owner: userFound.owner,
+                  native: userFound.native ? userFound.native : false,
+                  photoNativeColor: userFound.photoNativeColor ? userFound.photoNativeColor : false
                 },
               })
             })
@@ -130,7 +126,6 @@ const userControllers = {
       .catch((err) => handleError(res, err))
   },
   logFromSession: async (req, res) => {
-    console.log("Received LOG IN FROM SESSION USER Petition:" + Date())
     try {
       if (!req.session.loggedUser) throw new Error("Bad Session, Log In First")
       const user = req.session.loggedUser
@@ -148,6 +143,8 @@ const userControllers = {
             firstName: userFound.firstName,
             admin: userFound.admin,
             owner: userFound.owner,
+            native: userFound.native ? userFound.native : false,
+            photoNativeColor: userFound.photoNativeColor ? userFound.photoNativeColor : false
           },
         })
       } else {
@@ -160,7 +157,6 @@ const userControllers = {
     }
   },
   logOut: async (req, res) => {
-    console.log("Received LOG OUT USER Petition:" + Date())
     try {
       req.session.destroy(() => {
         res.json({ success: true })
@@ -170,7 +166,6 @@ const userControllers = {
     }
   },
   manageAdmin: async (req, res) => {
-    console.log("Received MANAGE ADMIN Petition:" + Date())
     try {
       if (!req.session.loggedUser) throw new Error("Log In First")
       const user = req.session.loggedUser
@@ -187,7 +182,6 @@ const userControllers = {
     }
   },
   manageUser: async (req, res) => {
-    console.log("Received MANAGE USER Petition:" + Date())
     try {
       if (!req.session.loggedUser) throw new Error("Log In First")
       const user = req.session.loggedUser
@@ -219,7 +213,6 @@ const userControllers = {
     }
   },
   getUsers: async (req, res) => {
-    console.log("Received GET USERS Petition:" + Date())
     try {
       if (!req.session.loggedUser) throw new Error("Log In First")
       if (!req.session.loggedUser.owner)
@@ -231,7 +224,6 @@ const userControllers = {
     }
   },
   removeUser: async (req, res) => {
-    console.log("Received REMOVE USER Petition:" + Date())
     try {
       if (!req.session.loggedUser) throw new Error("Log In First")
       if (!req.session.loggedUser.owner)
@@ -245,7 +237,6 @@ const userControllers = {
     }
   },
   sendResetPasswordMail: (req, res) => {
-    console.log("Received Send Reset Password Mail Petition:" + Date())
     const { eMail } = req.body
     User.findOne({ eMail: eMail })
       .then(async (user) => {
@@ -312,8 +303,6 @@ const userControllers = {
       .catch((err) => handleError(res, err))
   },
   resetUserPassword: (req, res) => {
-    // desde el punto de vista de la inseguridad... es medio inseguro esto, ver como hacer.
-    console.log("Received Reset Password Petition:" + Date())
     const { password } = req.body
     let hashedPass = bcryptjs.hashSync(password)
     User.findOneAndUpdate({ _id: req.params.id }, { password: hashedPass })

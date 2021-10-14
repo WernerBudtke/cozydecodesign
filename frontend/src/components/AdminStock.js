@@ -17,6 +17,7 @@ const AdminStock = ({products, getProducts}) => {
             }
         }
         res()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [render])
 
     const fetchAgain = () => {

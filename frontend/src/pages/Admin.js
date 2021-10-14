@@ -8,7 +8,6 @@ import AdminStock from "../components/AdminStock"
 import AdminStats from "../components/AdminStats"
 import AdminGuide from "../components/AdminGuide"
 import { Link } from "react-router-dom"
-
 const Admin = ({ loginUser }) => {
   const [component, setComponent] = useState({ screen: "adminGuide" })
 
