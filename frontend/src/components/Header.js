@@ -28,7 +28,7 @@ const Header = ({ loginUser, logOut, viewCart }) => {
     <header>
       <div className={styles.userMenu}>
         <div>
-          {!loginUser && <i className="iconSocial fas fa-user fa-2x"></i>}
+          {!loginUser && <i className="iconSocial fas fa-user fa-lg"></i>}
           {loginUser && (
             <div
               className="logoUser"

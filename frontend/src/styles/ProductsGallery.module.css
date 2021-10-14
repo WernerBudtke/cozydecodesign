@@ -216,7 +216,6 @@ div.inputContainer div select option{
   height: 1vh;
 }
 
-
 @media only screen and (max-width: 768px) {
   .productsGallery {
     width: 100vw;

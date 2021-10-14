@@ -67,7 +67,8 @@ const Product = ({
       setProductAlert(null)
     }, 2500)
   }
-
+console.log(productsCategory)
+console.log()
   const finalPrice =
     product.discount === 0
       ? product.price

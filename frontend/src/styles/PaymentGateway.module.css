@@ -1,6 +1,7 @@
 /*DIV PADRE */
 .gatewayContainer {
   display: flex;
+  justify-content: center;
   justify-content: space-around;
   padding: 1.5vw;
 }
@@ -9,17 +10,17 @@
 .checkoutInfo {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 55%;
 }
 
 .checkoutInfo h1 {
-  background-color: #ad999393;
   text-align: center;
   font-size: 4vmin;
   font-family: "Cormorant", serif;
-  color: #000000be;
+  color: #746966;
   text-transform: uppercase;
   padding: 0.5vw;
+  margin: 2vh 0 0.4vh;
 }
 
 .inputMail,
@@ -27,6 +28,7 @@
   display: flex;
   width: 100%;
   padding: 1vw;
+  flex-wrap: wrap;
 }
 .giftCardCode div input,
 .inputMail input,
@@ -36,9 +38,9 @@
   padding-left: 0.5vw;
   border: none;
   border-bottom: 1px solid #757575;
-  font-size: medium;
+  font-size: 3vmin;
 }
-.inputDiv div div {
+.inputDiv div {
   flex: 1;
 }
 .giftCardCode div input:focus,
@@ -46,21 +48,15 @@
 .inputDiv div input:focus {
   outline: none;
 }
-
-.inputDiv {
-  justify-content: space-between;
-}
 .inputDiv div {
   display: flex;
-  width: 47%;
-  flex-wrap: wrap;
 }
 .giftCardCode label,
 .inputDiv label,
 .inputMail label {
-  font-weight: bold;
   font-size: larger;
   color: #000000be;
+  margin-left: 1vw;
 }
 
 .checkOut {
@@ -151,13 +147,11 @@
 }
 
 /*RADIO BUTTONS STYLES */
-.radioButtons {
-  min-height: 11vh;
-}
 .switchField {
   margin: 2vw;
   display: flex;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .switchField input {
@@ -173,11 +167,10 @@
   background-color: #ead8ca94;
   color: #000000be;
   font-size: larger;
-  font-weight: bolder;
-  line-height: 1;
+  font-weight:500;
   text-align: center;
-  padding: 8px 16px;
-  margin-right: 1vw;
+  padding: 2vh;
+  margin: 2vh;
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
   transition: all 0.1s ease-in-out;
@@ -250,6 +243,7 @@
   padding: 1.5vw 5vw;
   border-radius: 15px;
 } 
+
 @media only screen and (max-width: 425px){
   .giftCardCode button,
   .switchField label{
@@ -258,8 +252,12 @@
 }
 
 @media only screen and (max-width: 768px){
+  .gatewayContainer {
+    flex-direction: column;
+    align-items: center;
+  }
   .checkoutInfo {
-    width: 80%;
+    width: 75%;
   }
   .checkoutInfo h1 {
     font-size: 3.5vmin;
@@ -289,6 +287,8 @@
   .switchField input {
     height: 5vh;
     width: 5vw;
+    display: flex;
+    flex-wrap: wrap;
   }  
   .switchField {
     margin: 2vw;
@@ -300,7 +300,36 @@
     margin-top: 1vh;
   }
   .checkOut {
-    font-size: 3.5vmin;
+    font-size: 3vmin;
   }
+  .totalPrice768 a button{
+      display: block;
+      background: #d4c5bf;
+      border: 0;
+      color: #7e6661;
+      padding: 1.5vh;
+      font-size: 3vmin;
+      font-weight: 300;
+      width: 100%;
+      cursor: pointer;
+      -webkit-transition: all 0.4s;
+      transition: all 0.4s;
+      border-radius: 2px;
+    }
+    .productInfo button:active {
+      background: #d4c5bf;
+      color: #263238;
+    }
+    .productInfo button:hover {
+      background: #bf988f;
+      color: #fff;
+      -webkit-transition: all 0.4s;
+      transition: all 0.4s;
+    }
 }
 
+@media only screen and (min-width: 769px){
+  .totalPrice768{
+    display: none;
+  }
+}

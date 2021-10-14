@@ -8,7 +8,7 @@
 .mainContainer {
   display: flex;
   align-self: center;
-  width: 70vw;
+  width: 60vw;
   min-height: 65vh;
   margin: 5vh 0;
   border-radius: 20px;
@@ -17,7 +17,7 @@
 }
 .productImage {
   min-width: 20rem;
-  height: 20rem;
+  height: 23rem;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -98,8 +98,8 @@ div.suggestionContainer h3 {
 }
 
 div.suggestion {
-  width: 98vw;
-  min-height: 65vh;
+  width: 98.2vw;
+  min-height: 45vh;
   background-color: #d4c5bf;
   display: flex;
   overflow-y: scroll;
@@ -107,6 +107,7 @@ div.suggestion {
 
 div.suggestion::-webkit-scrollbar {
   height: 0.5rem !important;
+  width: 100%;
 }
 
 div.suggestion::-webkit-scrollbar-thumb {
@@ -395,7 +396,7 @@ div.productCardContainer > div {
 
 @media only screen and (min-width: 1024px) {
   .mainContainer {
-    width: 90%;
+    width: 80%;
     min-height:50vh;
   }
   .productImage {

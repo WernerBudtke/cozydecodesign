@@ -53,7 +53,7 @@ const cartActions = {
         let response = await axios.post(
           "https://cozydeco.herokuapp.com/api/cards",
           {
-            ...obj,
+            balances: obj,
           },
           { withCredentials: true }
         )
