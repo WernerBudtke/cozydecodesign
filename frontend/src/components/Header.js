@@ -1,21 +1,14 @@
-import { Link, NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { connect } from "react-redux"
 import userActions from "../redux/actions/userActions"
 import ReactCircleModal from "react-circle-modal"
 import Cart from "./Cart"
-import { useState } from "react"
+
 
 const Header = ({ loginUser, logOut, viewCart }) => {
 
-  const [userMenu, setUserMenu] = useState(false)
-
-  const viewopHandler = () => {
-    setUserMenu(!userMenu)
-  }
-
   const outHandler = () => {
     logOut()
-    setUserMenu(!userMenu)
   }
 
   if (loginUser) {
@@ -25,17 +18,12 @@ const Header = ({ loginUser, logOut, viewCart }) => {
   }
 
 const userNull=<div>
-                  <i className="iconSocial fas fa-user fa-lg" onClick={viewopHandler}></i>
-                  {userMenu && <div className='signcont'>
-                  <Link className='sign' to='/signin'>SIGN IN</Link>
-                  <Link className='sign 'to='/signup'>SIGN UP</Link>
-                  </div>}
+                  <i className="iconSocial fas fa-user fa-lg"></i>
               </div>
              
 
 const userSignIn=<div>
-                    <div className='logoUser' onClick={viewopHandler} style={{ backgroundImage: `url('${photo}')` }}></div>
-                    {userMenu && <Link className='signcont' to='/' onClick={outHandler}>SIGN OUT</Link>}  
+                    <div className='logoUser' style={{ backgroundImage: `url('${photo}')` }}></div>  
                   </div>  
    
   return (
