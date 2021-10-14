@@ -20,6 +20,7 @@ const ProductCard = ({
     if (user) {
       setAdmin(user.admin)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const addToCartHandler = () => {

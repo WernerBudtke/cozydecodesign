@@ -41,11 +41,13 @@ const Header = ({ loginUser, logOut, viewCart }) => {
           {!userMenu ? (
             <img
               className={styles.iconItem}
+              alt="menu"
               src="https://img.icons8.com/ios-filled/50/000000/menu--v1.png"
             />
           ) : (
             <img
               className={styles.iconItem}
+              alt="cancel"
               src="https://img.icons8.com/material-outlined/48/000000/cancel--v1.png"
             />
           )}

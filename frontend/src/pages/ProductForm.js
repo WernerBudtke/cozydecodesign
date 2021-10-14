@@ -45,6 +45,7 @@ const ProductForm = ({
       })
       setLoading(false)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -52,6 +53,7 @@ const ProductForm = ({
       refreshNewProduct()
       setLoading(false)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [product])
 
   const refreshNewProduct = () => {

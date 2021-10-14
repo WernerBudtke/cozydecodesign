@@ -23,6 +23,7 @@ const App = ({ loginUser, logFromSession, addCartLS, history }) => {
     if (localStorage.getItem("cart")) {
       addCartLS(JSON.parse(localStorage.getItem("cart")))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
