@@ -55,6 +55,11 @@ form.productForm {
   width: 90%;
   margin-top: 2rem;
 }
+.textError{
+  font-size: 3vmin;
+  color: red;
+  margin-bottom: 2vh;
+}
 
 form input,
 form textarea,
