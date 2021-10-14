@@ -16,6 +16,7 @@ const ProductForm = ({
 }) => {
   var productId = match.params.id
   const [loading, setLoading] = useState(true)
+  const [emptyFields, setEmptyFields] = useState(false)
   const [newProduct, setNewProduct] = useState({
     name: "",
     photo: null,
@@ -101,13 +102,14 @@ const ProductForm = ({
     fd.append("category", newProduct.category)
     fd.append("subcategory", newProduct.subcategory)
     fd.append("discount", newProduct.discount)
-    let empty = Object.values(newProduct).some((value) => value === "")
+    let empty = Object.values(newProduct).some((value) => value === "" || typeof value === "undefined")
     if (empty) {
-      alert("complete all the fields")
+      setEmptyFields(true)
     } else {
       const response = await addProduct(fd)
       if (response.data.success) {
         await getProducts()
+        setEmptyFields(false)
         history.push('/admin')
         return false
       } else {
@@ -262,6 +264,7 @@ const ProductForm = ({
               ))}
             </select>
           </form>
+          {emptyFields && <p className={styles.textError}>Complete all fields!</p>}
           <button
             className={styles.formButton}
             onClick={productId ? () => editProduct() : () => submitForm()}

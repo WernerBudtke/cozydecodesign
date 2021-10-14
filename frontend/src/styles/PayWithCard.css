@@ -1,15 +1,14 @@
 .formContainer{
-    width: 200%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: 1.4vw;
 }
-.form{
+.formContainer .form{
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: 50%;
     justify-content: space-evenly;
     padding-top: 2vh;
     padding-bottom: 2vh;
@@ -35,6 +34,6 @@
     font-size: 1.2vw;
     text-align: center;
 }
-button{
+.formContainer button{
     font-size: 1.2vw;
 }
