@@ -75,7 +75,7 @@ const ProductForm = ({
     subcategories = ["accesories", "mirrors"]
   } else if (newProduct.category === "kitchenware") {
     subcategories = ["accesories", "glassware", "tableware"]
-  } else if (newProduct.category === "Decor") {
+  } else if (newProduct.category === "decor") {
     subcategories = ["accesories", "home", "lighting"]
   } else if (newProduct.category === "giftcard") {
     subcategories = ["giftcard"]
