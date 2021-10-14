@@ -29,6 +29,11 @@ div.topInfo div {
     justify-content: center;
     border-radius: 5px;
     cursor: pointer;
+
+}
+div.topInfo div h2{
+    font-size: 4vmin;
+    margin-left: 1vw;
 }
 div.topInfo div i {
     margin-right: 1vw;
@@ -63,11 +68,12 @@ div.searchBar i {
 }
 div.searchBar input {
     width: 50%;
+    padding: 2vh;
 }
 div.userContainer {
     overflow-y: auto;
     height: 50vh;
-    width: 40vw;
+    width: 50vw;
 }
 div.statsContainer div {
     background-color: #bf988f;
@@ -104,9 +110,10 @@ div.userCard button, div.manageStock button {
     border: 0;
     color: #7e6661;
     padding: 1vh;
-    font-size: 1.5vmin;
+    font-size: 2.3vmin;
     font-weight: 300;
     width: 90%;
+    margin-left: 1vw;
     cursor: pointer;
     -webkit-transition: all 0.4s;
     transition: all 0.4s;
@@ -118,14 +125,24 @@ div.userCard button:hover {
     -webkit-transition: all 0.4s;
     transition: all 0.4s;
 }  
+div.userCard p{
+    font-size: 3vmin;
+}
 p.admin {
     color: green;
 }
 div.stockContainer {
    width: 60vw;
+   display: flex;
+}
+div.stockContainer .addProduct{
+    align-self: flex-end;
+    margin-right: 2vw;
+    margin-bottom: 2vh;
 }
 div.stockCard div {
-    width: 35%;
+    width: 50%;
+    padding: 0 2vw;
 }
 div.manageStock {
     width: 30%;
@@ -150,7 +167,8 @@ div.guideContainer div hr {
     margin-bottom: 5vh;
 }
 div.guideContainer div div h3 {
-    margin-bottom: 1vh;
+    margin-bottom: 1.2vh;
+    padding: 0 3vw;
 }
 
 h1.brand {
@@ -160,4 +178,56 @@ h1.brand {
     text-align: center;
     color: rgb(83, 78, 78);
     letter-spacing: 0.5vw;
+}
+
+@media only screen and (max-width: 425px){
+    div.statsContainer div {
+        width: 50vw;
+        padding: 3vh 4vw;
+    }
+    div.statsContainer div p {
+        font-size: 3.5vmin;
+    }
+    div.manageStock input {
+        width: 10vw;
+        font-size: 2.4vmin;
+    }
+    div.manageStock button, div.manageStock a {
+        width: 30%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .guideContainer h1{
+        font-size: 6vmin;
+    }
+    .guideContainer h3{
+        font-size: 3.5vmin;
+    }
+    div.searchBar i {
+        margin-right: 1.5vw;
+    }
+    div.searchBar input {
+        width: 75%;
+        padding: 1vw;
+    }
+    div.userContainer {
+        width: 60vw;
+    }
+    div.topInfo div h2 {
+        font-size: 4vmin;
+    }
+    div.topInfo div {
+        width: 25vw;
+    }
+    div.stockCard div {
+        width: 100%;
+    }
+    .stockContainer h1{
+        font-size: 6vmin;
+    }
+    div.stockContainer .addProduct{
+        margin-right: 2vw;
+        margin-bottom: 2vh;
+    }
 }

@@ -4,6 +4,7 @@ main, .formContainer, form {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding-bottom: 5vh;
 }
 
 main.mainForm {
@@ -34,6 +35,8 @@ main.mainForm {
 
 .formContainer h4 {
   color: #bf988f;
+  margin-top: 4vh;
+  font-size: 5vmin;
 }
 
 .formContainer {
@@ -65,6 +68,7 @@ form select {
   resize: none;
   outline: none;
   background: transparent;
+  font-size: 2.5vmin;
 }
 
 div.price,
@@ -82,11 +86,15 @@ div.saleRadios {
 
 div.saleRadios p {
   padding: 0.5rem;
+  font-size: 2.5vmin;
 }
 
 div.saleRadios input {
   height: auto;
   width: 20%;
+}
+div.saleRadios label {
+  font-size: 2.5vmin;
 }
 
 .formButton {
@@ -94,10 +102,35 @@ div.saleRadios input {
   border: none;
   color: #7e6661;
   background-color: #bf988f;
-  font-size: 1.5vmin;
+  font-size: 3.3vmin;
   font-weight: 300;
   width: 80%;
   cursor: pointer;
   transition: all 0.4s;
   border-radius: 2px;
+}
+
+@media only screen and (max-width: 425px){
+  form input,
+  form textarea,
+  form select {
+    font-size: 3vmin;
+  }
+  .picture {
+    width: 100%;
+  }
+  .productPic {    
+    width: 20vw;
+  }
+  .formButton{
+    font-size: 3vmin;
+  }
+}
+@media only screen and (max-width: 768px){
+  .formContainer h4 {
+    font-size: 3.3vmin;
+  }
+  form.productForm {
+    width: 100%;
+  }
 }

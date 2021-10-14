@@ -5,12 +5,10 @@ const cardControllers = {
     console.log(req.body)
     try {
       if (!req.session.loggedUser) throw new Error("Log In First")
-      // if(!req.session.loggedUser.owner)throw new Error("You don't have permissions to do this")
       const user = req.session.loggedUser
       const { balance } = req.body
       let newCode = Date.now()
       let newCard = new Card({
-        // balance: parseInt(balance),
         balance,
         code: newCode,
       })
@@ -34,7 +32,7 @@ const cardControllers = {
       let message = `
                     <table style="max-width: 700px; padding: 10px; margin:0 auto; border-collapse: collapse;">
                         <div style="width: 100%;margin:20px 0; text-align: center;">
-                            <img src="https://i.postimg.cc/s2Z5nX3q/logo.png" />
+                            <img src="https://cozydeco.herokuapp.com/c.png" />
                         </div>
                         <tr>
                             <td style="background-color: #F0F3F5">

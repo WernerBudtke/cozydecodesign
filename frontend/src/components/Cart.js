@@ -22,7 +22,7 @@ const Cart = ({ onClickHandler, products, loginUser }) => {
   const redirectHandler = () => {
     loginUser ? redirectPayment() : setView(true)
   }
-  
+
   const onclickAndSetView = () => {
     setView(false)
     onClickHandler()
@@ -64,7 +64,7 @@ const Cart = ({ onClickHandler, products, loginUser }) => {
         ) : (
           <div className={styles.warning}>
             <p>
-              <i className="fas fa-exclamation"></i> You don't have any items in
+              <i className="fas fa-exclamation fa-lg"></i> You don't have any items in
               your cart.
             </p>
             <p>Many products are waiting for you!</p>

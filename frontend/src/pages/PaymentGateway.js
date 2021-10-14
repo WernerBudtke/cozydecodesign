@@ -7,6 +7,8 @@ import Paypal from "../components/Paypal"
 import MercadoPagoForm from "../components/MercadoPago/MercadoPagoForm"
 import productsActions from "../redux/actions/productsActions"
 import SideProducts from "../components/SideProducts"
+import Header from "../components/Header"
+import toast from 'react-hot-toast';
 
 //VENDEDOR
 //sb-imkhe8058198@business.example.com
@@ -85,8 +87,8 @@ const PaymentGateway = ({
     var giftCard = validateGift.map((obj) => ({ balance: obj.product.price }))
   }
 
+  console.log(giftCard)
   const validate = () => {
-    // setEnablePayment(true)
     if (Object.values(info).some((value) => value === "")) {
       setRenderError("You need to complete all the fields to continue!")
     } else {
@@ -131,12 +133,13 @@ const PaymentGateway = ({
   }
 
   const addNewOrderHandler = () => {
+    console.log(giftCard)
     if (giftCard) {
-      addCard(...giftCard).then((res) => console.log(res))
+      addCard(giftCard).then((res) => console.log(res))
     }
     if (
       order.paymentMethod.extraInfo ||
-      order.paymentMethod.type === "giftCard"
+      order.paymentMethod.type === "GiftCard"
     ) {
       let obj = {
         balance: checkBalance < 0 ? 0 : checkBalance,
@@ -148,7 +151,7 @@ const PaymentGateway = ({
       setChosenMethod({ ...chosenMethod, enable: false })
       deleteAllCartProduct()
       getProducts()
-      history.push("/")
+      history.push("/", { view: true })
     })
   }
 
@@ -172,7 +175,7 @@ const PaymentGateway = ({
 
   const sharedPaymentPrice = Math.abs(checkBalance)
 
-  const catchMercadoPagoErr = () => {
+  const catchPagoErr = () => {
     setChosenMethod({
       ...chosenMethod,
       enable: false,
@@ -180,285 +183,308 @@ const PaymentGateway = ({
     setEnableInput(false)
     setEnablePayment(false)
     setHideRadio(true)
-    alert(
-      "We were unable to process the payment, please try again, or choose another payment method. "
+    toast.custom(
+      <div className={styles.alertPago}>
+        <p><i className="fas fa-exclamation-circle"></i> We were unable to process the payment, please try again, or choose another payment method.</p>
+      </div>, {duration:3000}, 
     )
   }
 
   return (
-    <div className={styles.gatewayContainer}>
-      <div className={styles.checkoutInfo}>
-        <h1>Personal Info</h1>
-        <div className={styles.inputMail}>
-          <label>Email</label>
-          <input
-            type="text"
-            required
-            name="eMail"
-            defaultValue={info.eMail}
-            disabled
-          />
-        </div>
-        <div className={styles.inputDiv}>
-          <div>
-            <label>Name</label>
+    <>
+      <Header viewCart={true} />
+      <div className={styles.gatewayContainer}>
+        <div className={styles.checkoutInfo}>
+          <h1>Personal Info</h1>
+          <div className={styles.inputMail}>
+            <label>Email</label>
             <input
               type="text"
               required
-              name="firstName"
-              defaultValue={info.firstName}
+              name="eMail"
+              defaultValue={info.eMail}
               disabled
             />
           </div>
-          <div>
-            <label>Lastname</label>
-            <input
-              type="text"
-              required
-              name="lastName"
-              defaultValue={info.lastName}
-              disabled
-            />
-          </div>
-        </div>
-        <div className={styles.inputDiv}>
-          <div>
-            <label>DNI</label>
+          <div className={styles.inputDiv}>
             <div>
+              <label>Name</label>
               <input
                 type="text"
                 required
-                name="dni"
-                defaultValue={info.dni}
-                onChange={fillUserInfo}
-                disabled={enableInput}
+                name="firstName"
+                defaultValue={info.firstName}
+                disabled
               />
-              <span className={styles.bar}></span>
             </div>
-          </div>
-          <div>
-            <label>Phone Number</label>
             <div>
+              <label>Lastname</label>
               <input
                 type="text"
                 required
-                name="phone"
-                defaultValue={info.phone}
-                onChange={fillUserInfo}
-                disabled={enableInput}
+                name="lastName"
+                defaultValue={info.lastName}
+                disabled
               />
-              <span className={styles.bar}></span>
             </div>
           </div>
-        </div>
-
-        <h1>Shipment Info</h1>
-        <div className={styles.inputDiv}>
-          <div>
-            <label>Adress</label>
+          <div className={styles.inputDiv}>
             <div>
-              <input
-                type="text"
-                required
-                name="street"
-                defaultValue={info.street}
-                onChange={fillUserInfo}
-                disabled={enableInput}
-              />
-              <span className={styles.bar}></span>
-            </div>
-          </div>
-          <div>
-            <label>Number:</label>
-            <div>
-              <input
-                type="text"
-                required
-                name="number"
-                defaultValue={info.number}
-                onChange={fillUserInfo}
-                disabled={enableInput}
-              />
-              <span className={styles.bar}></span>
-            </div>
-          </div>
-        </div>
-        <div className={styles.inputDiv}>
-          <div>
-            <label>City</label>
-            <div>
-              <input
-                type="text"
-                required
-                name="city"
-                defaultValue={info.city}
-                onChange={fillUserInfo}
-                disabled={enableInput}
-              />
-              <span className={styles.bar}></span>
-            </div>
-          </div>
-          <div>
-            <label>Zip Code</label>
-            <div>
-              <input
-                type="text"
-                required
-                name="zipCode"
-                defaultValue={info.zipCode}
-                onChange={fillUserInfo}
-                disabled={enableInput}
-              />
-              <span className={styles.bar}></span>
-            </div>
-          </div>
-        </div>
-
-        <h1>Payment</h1>
-        <div className={styles.radioButtons}>
-          {hideRadio ? (
-            <div className={styles.switchField}>
-              <div>
-                <input
-                  type="radio"
-                  id="paypal"
-                  name="payMethod"
-                  defaultValue="PayPal"
-                  onChange={fillOrderInfo}
-                  onClick={() => setEnablePayment(false)}
-                  disabled={enableInput}
-                />
-                <label for="paypal">Paypal</label>
-              </div>
-              <div>
-                <input
-                  type="radio"
-                  id="mercadopago"
-                  name="payMethod"
-                  defaultValue="MercadoPago"
-                  onChange={fillOrderInfo}
-                  onClick={() => setEnablePayment(false)}
-                  disabled={enableInput}
-                />
-                <label for="mercadopago">Credit/Mercado Pago </label>
-              </div>
-              <div>
-                <input
-                  type="radio"
-                  id="giftcard"
-                  name="payMethod"
-                  defaultValue="GiftCard"
-                  onChange={fillOrderInfo}
-                  onClick={() => setEnablePayment(false)}
-                  disabled={enableInput}
-                />
-                <label for="giftcard">Gift Card</label>
-              </div>
-            </div>
-          ) : (
-            <h2>{order.paymentMethod.type} </h2>
-          )}
-        </div>
-
-        <button
-          className={styles.checkOut}
-          disabled={enablePayment}
-          onClick={validate}
-        >
-          Checkout Order
-        </button>
-        <p className={styles.error}>{renderError}</p>
-        {chosenMethod.enable && chosenMethod.type.includes("GiftCard") && (
-          <div>
-            <div className={styles.giftCardCode}>
-              <label>Enter your Giftcard Code</label>
+              <label>DNI</label>
               <div>
                 <input
                   type="text"
                   required
-                  name="giftCardCode"
-                  defaultValue=" "
-                  onChange={fillCode}
+                  name="dni"
+                  defaultValue={info.dni}
+                  onChange={fillUserInfo}
+                  disabled={enableInput}
                 />
                 <span className={styles.bar}></span>
               </div>
-              <button onClick={getCardHandler}>Check balance</button>
             </div>
-
-            {typeof balance === "string" && (
-              <p className={styles.error}>{balance}</p>
-            )}
-            {checkBalance < 0 && (
-              <div className={styles.switchField}>
-                <div className={styles.giftCardText}>
-                  <p>The available amount in your Giftcard is ${balance}</p>
-                  <p>
-                    The total amount of your order (${order.totalPrice}) is
-                    higher than the balance left in your GiftCard, the remaining
-                    amount is ${Math.abs(checkBalance)}.
-                  </p>
-                </div>
-                <input
-                  type="radio"
-                  id="paypal"
-                  name="payMethod"
-                  defaultValue="PayPal"
-                  onChange={(e) => fillOrderInfo(e, "add")}
-                  onClick={() => setEnablePayment(false)}
-                  disabled={sharedPayment}
-                />
-                <label for="paypal">Paypal</label>
-                <input
-                  type="radio"
-                  id="mercadopago"
-                  name="payMethod"
-                  defaultValue="MercadoPago"
-                  onChange={(e) => fillOrderInfo(e, "add")}
-                  onClick={() => setEnablePayment(false)}
-                  disabled={sharedPayment}
-                />
-                <label for="mercadopago">Credit/Debit Card</label>
-              </div>
-            )}
-            {checkBalance > 0 && (
+            <div>
+              <label>Phone Number</label>
               <div>
-                <div className={styles.giftCardText}>
-                  <p>The available amount in your Giftcard is ${balance}</p>
-                  <p>
-                    The total amount of your order is ${order.totalPrice} you
-                    have a remaining balance of ${checkBalance}
-                  </p>
-                </div>
-                <button onClick={addNewOrderHandler}>pagar</button>
+                <input
+                  type="text"
+                  required
+                  name="phone"
+                  defaultValue={info.phone}
+                  onChange={fillUserInfo}
+                  disabled={enableInput}
+                />
+                <span className={styles.bar}></span>
               </div>
+            </div>
+          </div>
+
+          <h1>Shipment Info</h1>
+          <div className={styles.inputDiv}>
+            <div>
+              <label>Adress</label>
+              <div>
+                <input
+                  type="text"
+                  required
+                  name="street"
+                  defaultValue={info.street}
+                  onChange={fillUserInfo}
+                  disabled={enableInput}
+                />
+                <span className={styles.bar}></span>
+              </div>
+            </div>
+            <div>
+              <label>Number:</label>
+              <div>
+                <input
+                  type="text"
+                  required
+                  name="number"
+                  defaultValue={info.number}
+                  onChange={fillUserInfo}
+                  disabled={enableInput}
+                />
+                <span className={styles.bar}></span>
+              </div>
+            </div>
+          </div>
+          <div className={styles.inputDiv}>
+            <div>
+              <label>City</label>
+              <div>
+                <input
+                  type="text"
+                  required
+                  name="city"
+                  defaultValue={info.city}
+                  onChange={fillUserInfo}
+                  disabled={enableInput}
+                />
+                <span className={styles.bar}></span>
+              </div>
+            </div>
+            <div>
+              <label>Zip Code</label>
+              <div>
+                <input
+                  type="text"
+                  required
+                  name="zipCode"
+                  defaultValue={info.zipCode}
+                  onChange={fillUserInfo}
+                  disabled={enableInput}
+                />
+                <span className={styles.bar}></span>
+              </div>
+            </div>
+          </div>
+
+          <h1>Payment</h1>
+          <div className={styles.radioButtons}>
+            {hideRadio ? (
+              <div className={styles.switchField}>
+                <div>
+                  <input
+                    type="radio"
+                    id="paypal"
+                    name="payMethod"
+                    defaultValue="PayPal"
+                    onChange={fillOrderInfo}
+                    onClick={() => setEnablePayment(false)}
+                    disabled={enableInput}
+                  />
+                  <label for="paypal">Paypal</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="mercadopago"
+                    name="payMethod"
+                    defaultValue="MercadoPago"
+                    onChange={fillOrderInfo}
+                    onClick={() => setEnablePayment(false)}
+                    disabled={enableInput}
+                  />
+                  <label for="mercadopago">Credit/Mercado Pago </label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="giftcard"
+                    name="payMethod"
+                    defaultValue="GiftCard"
+                    onChange={fillOrderInfo}
+                    onClick={() => setEnablePayment(false)}
+                    disabled={enableInput}
+                  />
+                  <label for="giftcard">Gift Card</label>
+                </div>
+              </div>
+            ) : (
+              <h2>{order.paymentMethod.type} </h2>
             )}
           </div>
-        )}
 
-        {chosenMethod.enable && chosenMethod.type.includes("PayPal") && (
-          <Paypal
-            description={`Cozy  ${date.toLocaleDateString()}`}
-            total={!sharedPayment ? order.totalPrice : sharedPaymentPrice}
-            order={order}
-            info={info}
-            addNewOrderHandler={addNewOrderHandler}
-          />
-        )}
-        {chosenMethod.enable && chosenMethod.type.includes("MercadoPago") && (
-          <MercadoPagoForm
-            addNewOrderHandler={addNewOrderHandler}
-            total={
-              !sharedPayment ? order.totalPrice : String(sharedPaymentPrice)
-            }
-            catchMercadoPagoErr={catchMercadoPagoErr}
-          />
-        )}
-      </div>
-      <div>
-        <h1>Shopping Cart</h1>
+          <button
+            className={styles.checkOut}
+            disabled={enablePayment}
+            onClick={validate}
+          >
+            Checkout Order
+          </button>
+          <p className={styles.error}>{renderError}</p>
+          {chosenMethod.enable && chosenMethod.type.includes("GiftCard") && (
+            <div>
+              <div className={styles.giftCardCode}>
+                <label>Enter your Giftcard Code</label>
+                <div>
+                  <input
+                    type="text"
+                    required
+                    name="giftCardCode"
+                    defaultValue=" "
+                    onChange={fillCode}
+                  />
+                  <span className={styles.bar}></span>
+                </div>
+                <button onClick={getCardHandler}>Check balance</button>
+              </div>
+
+              {typeof balance === "string" && (
+                <p className={styles.error}>{balance}</p>
+              )}
+              {checkBalance < 0 && (
+                <div className={styles.paywithGiftC}>
+                  <div className={styles.giftCardText}>
+                    <p>
+                      The available amount in your Giftcard is
+                      <span> ${balance}</span>
+                    </p>
+                    <p>
+                      The total amount of your order
+                      <span> ${order.totalPrice}</span> is higher than the
+                      balance left in your GiftCard{" "}
+                    </p>
+                    <p>
+                      The remaining amount is{" "}
+                      <span>${Math.abs(checkBalance)}</span>.
+                    </p>
+                  </div>
+                  <div className={styles.switchField}>
+                    <input
+                      type="radio"
+                      id="paypal"
+                      name="payMethod"
+                      defaultValue="PayPal"
+                      onChange={(e) => fillOrderInfo(e, "add")}
+                      onClick={() => setEnablePayment(false)}
+                      disabled={sharedPayment}
+                    />
+                    <label for="paypal">Paypal</label>
+                    <input
+                      type="radio"
+                      id="mercadopago"
+                      name="payMethod"
+                      defaultValue="MercadoPago"
+                      onChange={(e) => fillOrderInfo(e, "add")}
+                      onClick={() => setEnablePayment(false)}
+                      disabled={sharedPayment}
+                    />
+                    <label for="mercadopago">Credit/Debit Card</label>
+                  </div>
+                </div>
+              )}
+              {checkBalance > 0 && (
+                <div className={styles.paywithGiftC}>
+                  <div className={styles.giftCardText}>
+                    <p>
+                      The available amount in your Giftcard is
+                      <span> ${balance}</span>
+                    </p>
+                    <p>
+                      The total amount of your order is
+                      <span> ${order.totalPrice}</span>
+                    </p>
+                    <p>
+                      You have a remaining balance of{" "}
+                      <span>${checkBalance}</span>
+                    </p>
+                  </div>
+                  <button
+                    className={styles.checkOut}
+                    onClick={addNewOrderHandler}
+                  >
+                    pagar
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+
+          {chosenMethod.enable && chosenMethod.type.includes("PayPal") && (
+            <Paypal
+              description={`Cozy  ${date.toLocaleDateString()}`}
+              catchPagoErr={catchPagoErr}
+              total={!sharedPayment ? order.totalPrice : sharedPaymentPrice}
+              info={info}
+              addNewOrderHandler={addNewOrderHandler}
+            />
+          )}
+          {chosenMethod.enable && chosenMethod.type.includes("MercadoPago") && (
+            <MercadoPagoForm
+              addNewOrderHandler={addNewOrderHandler}
+              total={
+                !sharedPayment ? order.totalPrice : String(sharedPaymentPrice)
+              }
+              catchPagoErr={catchPagoErr}
+            />
+          )}
+        </div>
         <SideProducts products={products} total={order.totalPrice} />
       </div>
-    </div>
+    </>
   )
 }
 

@@ -3,6 +3,8 @@ import styles from '../styles/Admin.module.css'
 import { useEffect, useState } from 'react'
 import productsActions from '../redux/actions/productsActions'
 import StockProduct from './StockProduct'
+import { Link } from 'react-router-dom'
+
 
 const AdminStock = ({products, getProducts}) => {
     const [render, setRender] = useState(false)
@@ -24,6 +26,8 @@ const AdminStock = ({products, getProducts}) => {
     return (
         <div className={styles.stockContainer}>
             <h1>Stock</h1>
+            <Link className={styles.addProduct} to="/productform" ><i class="fas fa-plus-circle fa-lg"></i>
+            </Link>
             {products.map((product) => <StockProduct fetch={fetchAgain} key={product._id} product={product} />)}
         </div>
     )
