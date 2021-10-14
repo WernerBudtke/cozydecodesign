@@ -243,9 +243,7 @@
   padding: 1.5vw 5vw;
   border-radius: 15px;
 } 
-.totalPrice768{
-  display: none;
-}
+
 @media only screen and (max-width: 425px){
   .giftCardCode button,
   .switchField label{
@@ -305,6 +303,7 @@
     font-size: 3vmin;
   }
   .totalPrice768 a button{
+      display: block;
       background: #d4c5bf;
       border: 0;
       color: #7e6661;
@@ -312,7 +311,6 @@
       font-size: 3vmin;
       font-weight: 300;
       width: 100%;
-      display: block;
       cursor: pointer;
       -webkit-transition: all 0.4s;
       transition: all 0.4s;
@@ -330,3 +328,8 @@
     }
 }
 
+@media only screen and (min-width: 769px){
+  .totalPrice768{
+    display: none;
+  }
+}

@@ -197,12 +197,12 @@ const PaymentGateway = ({
     <>
       <Header viewCart={true} />
       <div className={styles.gatewayContainer}>
+        <div className={styles.checkoutInfo}>
         <div className={styles.totalPrice768}>
           <Link to="/products">
             <button>Edit Cart</button>
           </Link>
         </div>
-        <div className={styles.checkoutInfo}>
           <h1>Personal Info</h1>
           <div className={styles.inputMail}>
             <label>Email:</label>

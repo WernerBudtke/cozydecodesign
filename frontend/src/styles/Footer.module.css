@@ -82,39 +82,26 @@ footer .socialNetworks {
       margin-right:.2rem;
     }
 } */
-/* @media only screen and (max-width: 768px) { 
+@media only screen and (max-width: 768px) { 
   .footer{
     min-height: 30vh;
     padding: 4vh;
   }
   div h3 {
-    margin-bottom: 1vh;
     font-size: .7rem;
   }
   div p {
-    padding: 0.3vh;
-    margin-bottom: 1vh;
-    font-size: .9rem;
-  }
-  .iconContact {
-    margin-right: .5vw;
     font-size: .9rem;
   }
   div {
     gap: 1;
-  }
-  .iconSocial {
-    margin-right: 0.3vw;
-  }
-  .footer .iconFooter{
-    margin-right:.5rem;
   }
 }
 
 @media (max-width: 425px){
   div h3 {
     margin-bottom: 1vh;
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
-} */
+}

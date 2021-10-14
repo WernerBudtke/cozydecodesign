@@ -179,10 +179,17 @@ div.saleRadios input {
 
 @media only screen and (max-width: 768px){
   header h1 {
-    font-size: 8vh;
+    font-size: 7.5vh;
+  }
+  header .logoUser {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  header a {
+    font-size: 2.5vmin;
   }
 }
-@media only screen and (max-width: 1124px) {
+/* @media only screen and (max-width: 1124px) {
   header .logoUser {
     width: 2.5rem;
     height: 2.5rem;
@@ -197,4 +204,4 @@ div.saleRadios input {
     width: 30vw;
     height: 12.5vw;
   }
-}
+} */
