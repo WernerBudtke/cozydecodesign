@@ -30,7 +30,7 @@ const Paypal = ({ description, total, catchPagoErr, addNewOrderHandler }) => {
     window.myButton.render(paypal.current)
   })
 
-  return <div ref={paypal}></div>
+  return <div className="paypal" ref={paypal}></div>
 }
 
 export default Paypal

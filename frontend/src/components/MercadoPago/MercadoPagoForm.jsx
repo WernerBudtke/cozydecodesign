@@ -49,7 +49,7 @@ export default function MercadoPagoForm({total, addNewOrderHandler, catchPagoErr
                 
             />
 
-            <form c id="form-checkout">
+            <form c id="form-checkout" className={styles.form}>
                 <div className="form-control">
                     <input
                         type="tel"
@@ -59,7 +59,7 @@ export default function MercadoPagoForm({total, addNewOrderHandler, catchPagoErr
                         onFocus={handleInputFocus}
                     />
                 </div>
-                <div className="form-control">
+                <div className="form-control mercadoPagoInput">
                     <input
                         type="tel"
                         name="cardExpirationMonth"
@@ -75,6 +75,7 @@ export default function MercadoPagoForm({total, addNewOrderHandler, catchPagoErr
                         onFocus={handleInputFocus}
                     />
                     <input
+                    className={styles.cvc}
                         type="tel"
                         name="cvc"
                         id="form-checkout__securityCode"

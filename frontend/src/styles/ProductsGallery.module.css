@@ -88,7 +88,7 @@
 .nameAndPrice p {
   text-align: center;
   font-size: 2.5vmin;
-  color: black; 
+  color: black;
   margin: 0;
   padding: 1vh;
 }
@@ -191,8 +191,9 @@ div.filterContainer div div div input {
   font-size: 2vmin;
   cursor: pointer;
   margin-bottom: 0.4vh;
+  text-transform: capitalize;
 }
-div.filterInside{
+div.filterInside {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -206,14 +207,17 @@ div.inputContainer div select {
   background: none;
   border: none;
   min-width: 7vw;
+  font-weight: bold;
+  font-size: 2.7vmin;
 }
-div.inputContainer .sectiontSelect{
+div.inputContainer .sectiontSelect {
   margin-bottom: 8vh;
   font-size: 3vmin;
 }
-div.inputContainer div select option{
+div.inputContainer div select option {
   font-size: 1.8vmin;
   height: 1vh;
+  background-color: #ead8ca;
 }
 
 @media only screen and (max-width: 768px) {
@@ -224,8 +228,7 @@ div.inputContainer div select option{
     width: 75%;
     height: 40vh;
     margin: 4vh 3.5vw;
-    margin-left:5vw;
-    
+    margin-left: 5vw;
   }
   .nameAndPrice p {
     font-size: 5vmin;
@@ -253,7 +256,5 @@ div.inputContainer div select option{
   }
   div.inputContainer div select {
     font-size: 2.3vmin;
-  } 
+  }
 }
-
-

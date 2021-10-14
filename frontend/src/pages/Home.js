@@ -37,10 +37,13 @@ const Home = ({ location, history }) => {
   const { height, width } = getWindowDimensions()
 
   const categories = [
-    { src: "https://i.postimg.cc/tR8xRKn9/bat.jpg", category: "Bathroom" },
-    { src: "https://i.postimg.cc/nzm4F3LR/home8.jpg", category: "Kitchenware" },
-    { src: "https://i.postimg.cc/J4Q2C5tc/deco.jpg", category: "Decor" },
-    { src: "https://i.postimg.cc/3wdn2zCV/gitfcard-Home.png", category: "GiftCard"},
+    { src: "https://i.postimg.cc/tR8xRKn9/bat.jpg", category: "bathroom" },
+    { src: "https://i.postimg.cc/nzm4F3LR/home8.jpg", category: "kitchenware" },
+    { src: "https://i.postimg.cc/J4Q2C5tc/deco.jpg", category: "decor" },
+    {
+      src: "https://i.postimg.cc/3wdn2zCV/gitfcard-Home.png",
+      category: "giftcard",
+    },
     { src: "https://i.postimg.cc/R0mhJ9vz/sale.jpg", category: "sale" },
   ]
 
@@ -113,25 +116,28 @@ const Home = ({ location, history }) => {
           )}
         ></Parallax>
       </div>
-        <Modal
-          open={open}
-          onClose={() => {
-            setOpen(false)
+      <Modal
+        open={open}
+        onClose={() => {
+          setOpen(false)
+        }}
+        center
+      >
+        <div
+          className={styles.modalContainer}
+          style={{
+            backgroundImage: "url('./assets/c.png')",
           }}
-          center
         >
-          <div
-            className={styles.modalContainer}
-            style={{
-              backgroundImage: "url('./assets/c.png')",
-            }}
-          >
-            <div>
-              <h2>COZY</h2>
-              <p>Thank you for making your purchase, come back later.</p>
-            </div>
+          <div>
+            <h2>COZY</h2>
+            <p>
+              Thank you for your purchase! You'll be receiving an email with all
+              the details.
+            </p>
           </div>
-        </Modal>
+        </div>
+      </Modal>
     </>
   )
 }

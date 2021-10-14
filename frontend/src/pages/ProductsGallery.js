@@ -23,8 +23,7 @@ const ProductsGallery = ({
     window.scroll(0, 0)
     document.title = "COZY | STORE"
     if (!products.length) {
-      getProducts()
-      .then(res => getProductByCategory(match.params.category))
+      getProducts().then((res) => getProductByCategory(match.params.category))
     } else {
       getProductByCategory(match.params.category)
     }
@@ -70,78 +69,101 @@ const ProductsGallery = ({
 
   return (
     <>
-    <Header/>
-    <div className={styles.productsGallery}>
-      <div className={styles.filterContainer}>
-        <div className={styles.inputContainer}>
-          <div>
-            <Link to="/products">All products</Link>
-          </div>
-          <div className={styles.filterInside}>
-            <Link to="/products/Kitchenware">Kitchenware</Link>
-            {view.category === 'Kitchenware' && 
+      <Header />
+      <div className={styles.productsGallery}>
+        <div className={styles.filterContainer}>
+          <div className={styles.inputContainer}>
             <div>
-              <input type="button" value="Accesories" onClick={viewHandler} />
-              <input type="button" value="Glassware" onClick={viewHandler} />
-              <input type="button" value="Tableware" onClick={viewHandler} />
-            </div>}
-          </div>
-          <div className={styles.filterInside}>
-            <Link to="/products/Bathroom">Bathroom</Link>
-            {view.category === 'Bathroom' && 
+              <Link to="/products">All products</Link>
+            </div>
+            <div className={styles.filterInside}>
+              <Link to="/products/kitchenware">Kitchenware</Link>
+              {view.category === "kitchenware" && (
+                <div>
+                  <input
+                    type="button"
+                    value="accesories"
+                    onClick={viewHandler}
+                  />
+                  <input
+                    type="button"
+                    value="glassware"
+                    onClick={viewHandler}
+                  />
+                  <input
+                    type="button"
+                    value="tableware"
+                    onClick={viewHandler}
+                  />
+                </div>
+              )}
+            </div>
+            <div className={styles.filterInside}>
+              <Link to="/products/bathroom">Bathroom</Link>
+              {view.category === "bathroom" && (
+                <div>
+                  <input
+                    type="button"
+                    value="accesories"
+                    onClick={viewHandler}
+                  />
+                  <input type="button" value="mirrors" onClick={viewHandler} />
+                </div>
+              )}
+            </div>
+            <div className={styles.filterInside}>
+              <Link to="/products/decor">Decor</Link>
+              {view.category === "decor" && (
+                <div>
+                  <input
+                    type="button"
+                    value="accesories"
+                    onClick={viewHandler}
+                  />
+                  <input type="button" value="home" onClick={viewHandler} />
+                  <input type="button" value="lighting" onClick={viewHandler} />
+                </div>
+              )}
+            </div>
             <div>
-              <input type="button" value="Accesories" onClick={viewHandler} />
-              <input type="button" value="Mirrors" onClick={viewHandler} />
-            </div>}
-          </div>
-          <div className={styles.filterInside}>
-            <Link to="/products/Decor">Decor</Link>
-            {view.category === 'Decor' && 
+              <Link to="/products/giftcard">Gift Card</Link>
+            </div>
             <div>
-              <input type="button" value="Accesories" onClick={viewHandler} />
-              <input type="button" value="Home" onClick={viewHandler} />
-              <input type="button" value="Lighting" onClick={viewHandler} />
-            </div>}
+              <Link to="/products/sale">Sale</Link>
+            </div>
+            <div className={styles.sectiontSelect}>
+              <select onChange={sortProducts}>
+                <option value="relevant">Most relevant</option>
+                <option value="minor">Lower to higher</option>
+                <option value="mayor">Higher to lower</option>
+              </select>
+            </div>
           </div>
           <div>
-            <Link to="/products/GiftCard">GitfCard</Link>
-          </div>
-          <div>
-            <Link to="/products/sale">Sale</Link>
-          </div>
-          <div className={styles.sectiontSelect}>
-            <select onChange={sortProducts}>
-              <option value="relevant">Most relevant</option>
-              <option value="minor">Lower to higher</option>
-              <option value="mayor">Higher to lower</option>
-            </select>
+            <hr />
+            <h1>COZY</h1>
           </div>
         </div>
-        <div>
-          <hr />
-          <h1>COZY</h1>
+        {productAlert && (
+          <CartCard
+            productAlert={productAlert}
+            showCartCard={showCartCard}
+            editShowCartCard={editShowCartCard}
+          />
+        )}
+        <div className={styles.productsCards}>
+          {productsSubcategory.map((product) => {
+            return (
+              <ProductCard
+                key={product._id}
+                product={product}
+                editShowCartCard={editShowCartCard}
+                setProductAlert={setProductAlert}
+              />
+            )
+          })}
         </div>
       </div>
-      {productAlert && (
-        <CartCard
-          productAlert={productAlert}
-          showCartCard={showCartCard}
-          editShowCartCard={editShowCartCard}
-        />
-      )}
-      <div className={styles.productsCards}>
-        {productsSubcategory.map((product) => {
-          return (
-            <ProductCard
-              key={product._id}
-              product={product}
-              editShowCartCard={editShowCartCard}
-              setProductAlert={setProductAlert}
-            />
-          )
-        })}
-      </div>
-    </div>
     </>
   )
 }

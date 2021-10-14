@@ -31,23 +31,10 @@ const Header = ({ loginUser, logOut, viewCart }) => {
           {!loginUser && <i className="iconSocial fas fa-user fa-lg"></i>}
           {loginUser && (
             <div
+              onClick={menuHandler}
               className="logoUser"
               style={{ backgroundImage: `url('${photo}')` }}
             ></div>
-          )}
-        </div>
-
-        <div className={styles.iconsMenu} onClick={menuHandler}>
-          {!userMenu ? (
-            <img
-              className={styles.iconItem}
-              src="https://img.icons8.com/ios-filled/50/000000/menu--v1.png"
-            />
-          ) : (
-            <img
-              className={styles.iconItem}
-              src="https://img.icons8.com/material-outlined/48/000000/cancel--v1.png"
-            />
           )}
         </div>
       </div>

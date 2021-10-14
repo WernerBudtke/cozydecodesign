@@ -31,7 +31,7 @@ const ProductForm = ({
   useEffect(() => {
     window.scrollTo(0, 0)
     findAProduct(productId)
-    if(!productId){
+    if (!productId) {
       setNewProduct({
         name: "",
         photo: null,
@@ -101,7 +101,9 @@ const ProductForm = ({
     fd.append("category", newProduct.category)
     fd.append("subcategory", newProduct.subcategory)
     fd.append("discount", newProduct.discount)
-    let empty = Object.values(newProduct).some((value) => value === "" || typeof value === "undefined")
+    let empty = Object.values(newProduct).some(
+      (value) => value === "" || typeof value === "undefined"
+    )
     if (empty) {
       setEmptyFields(true)
     } else {
@@ -109,7 +111,7 @@ const ProductForm = ({
       if (response.data.success) {
         await getProducts()
         setEmptyFields(false)
-        history.push('/admin')
+        history.push("/admin")
         return false
       } else {
         alert("Todo salió mal!")
@@ -263,7 +265,9 @@ const ProductForm = ({
               ))}
             </select>
           </form>
-          {emptyFields && <p className={styles.textError}>Complete all fields!</p>}
+          {emptyFields && (
+            <p className={styles.textError}>Complete all fields!</p>
+          )}
           <button
             className={styles.formButton}
             onClick={productId ? () => editProduct() : () => submitForm()}
