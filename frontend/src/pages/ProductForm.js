@@ -4,6 +4,7 @@ import productsActions from "../redux/actions/productsActions"
 import styles from "../styles/ProductForm.module.css"
 import { useHistory } from "react-router"
 import Header from "../components/Header"
+import Preloader from "../components/Preloader"
 
 const ProductForm = ({
   addProduct,
@@ -146,7 +147,7 @@ const ProductForm = ({
   }
 
   if (loading) {
-    return <h4>Loading...</h4>
+    return <Preloader/>
   }
 
   return (
