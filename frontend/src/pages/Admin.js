@@ -36,12 +36,12 @@ const Admin = ({ loginUser }) => {
               <i className="fas fa-cart-plus fa-lg"></i>
               <h2>Manage Stock</h2>
             </div>
-            {/* <Link to={`/productform/`}>
+            <Link to={`/productform/`}>
               <div>
                     <i className="fas fa-pen fa-lg"></i>
                     <h2>Add Product</h2>
               </div>
-            </Link> */}
+            </Link>
           </div>
           <hr />
           <div className={styles.midInfo}>
