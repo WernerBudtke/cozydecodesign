@@ -100,7 +100,7 @@ const ProductForm = ({
     fd.append("category", newProduct.category)
     fd.append("subcategory", newProduct.subcategory)
     fd.append("discount", newProduct.discount)
-    let empty = Object.values(newProduct).some((value) => value === "")
+    let empty = Object.values(newProduct).some((value) => value === "" || typeof value === "undefined")
     if (empty) {
       alert("complete all the fields")
     } else {
