@@ -9,6 +9,7 @@ import SideProducts from "../components/SideProducts"
 import Header from "../components/Header"
 import toast from "react-hot-toast"
 import { Link } from "react-router-dom"
+import MercadoPagoForm from "../components/MercadoPago/MercadoPagoForm"
 
 const PaymentGateway = ({
   loginUser,
