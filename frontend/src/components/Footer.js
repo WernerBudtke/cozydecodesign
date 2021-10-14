@@ -24,8 +24,8 @@ const Footer=()=>{
                   <p>cozydecodesign@gmail.com</p>
                 </div>
                 <div className={styles.iconSocial}>
-                <i className="fas fa-phone-square-alt fa-lg"></i>
-                    <p>+54 11 6789 8270</p>
+                    <i className="fas fa-phone-square-alt fa-lg"></i>
+                    <p>+541167898270</p>
                 </div> 
                 </div>
                 

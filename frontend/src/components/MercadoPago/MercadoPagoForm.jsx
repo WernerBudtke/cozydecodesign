@@ -59,7 +59,7 @@ export default function MercadoPagoForm({total, addNewOrderHandler, catchPagoErr
                         onFocus={handleInputFocus}
                     />
                 </div>
-                <div className="form-control">
+                <div className="form-control mercadoPagoInput">
                     <input
                         type="tel"
                         name="cardExpirationMonth"

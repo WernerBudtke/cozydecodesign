@@ -1,15 +1,15 @@
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import { connect } from "react-redux"
 import userActions from "../redux/actions/userActions"
 import ReactCircleModal from "react-circle-modal"
 import Cart from "./Cart"
-import styles from "../styles/MenuResponsive.module.css"
 import { useState } from "react"
 
 const Header = ({ loginUser, logOut, viewCart }) => {
+
   const [userMenu, setUserMenu] = useState(false)
 
-  const menuHandler = (e) => {
+  const viewopHandler = () => {
     setUserMenu(!userMenu)
   }
 
@@ -24,68 +24,52 @@ const Header = ({ loginUser, logOut, viewCart }) => {
       : `http://localhost:4000/${loginUser.photo}`
   }
 
+const userNull=<div>
+                  <i className="iconSocial fas fa-user fa-lg" onClick={viewopHandler}></i>
+                  {userMenu && <div className='signcont'>
+                  <Link className='sign' to='/signin'>SIGN IN</Link>
+                  <Link className='sign 'to='/signup'>SIGN UP</Link>
+                  </div>}
+              </div>
+             
+
+const userSignIn=<div>
+                    <div className='logoUser' onClick={viewopHandler} style={{ backgroundImage: `url('${photo}')` }}></div>
+                    {userMenu && <Link className='signcont' to='/' onClick={outHandler}>SIGN OUT</Link>}  
+                  </div>  
+   
   return (
     <header>
-      <div className={styles.userMenu}>
         <div>
-          {!loginUser && <i className="iconSocial fas fa-user fa-lg"></i>}
-          {loginUser && (
-            <div
-              className="logoUser"
-              style={{ backgroundImage: `url('${photo}')` }}
-            ></div>
-          )}
+          {!loginUser? userNull : userSignIn}
         </div>
-
-        <div className={styles.iconsMenu} onClick={menuHandler}>
-          {!userMenu ? (
-            <img
-              className={styles.iconItem}
-              src="https://img.icons8.com/ios-filled/50/000000/menu--v1.png"
-            />
-          ) : (
-            <img
-              className={styles.iconItem}
-              src="https://img.icons8.com/material-outlined/48/000000/cancel--v1.png"
-            />
-          )}
-        </div>
-      </div>
       <h1>COZY</h1>
       <div>
         <nav>
-          <NavLink active exact to="/">
+          <NavLink exact to="/">
             HOME
           </NavLink>
-          <NavLink active to="/products">
+          <NavLink to="/products">
             STORE
           </NavLink>
           {!loginUser && (
             <NavLink
-              active
               to="/signin"
-              onClick={menuHandler}
-              className={userMenu ? styles.menu1 : styles.itemResponsive}
             >
               SIGN IN
             </NavLink>
           )}
           {!loginUser && (
             <NavLink
-              active
               to="/signup"
-              onClick={menuHandler}
-              className={userMenu ? styles.menu2 : styles.itemResponsive}
             >
               SIGN UP
             </NavLink>
           )}
           {loginUser && (
             <NavLink
-              active
               onClick={outHandler}
               to="/"
-              className={userMenu ? styles.menu1 : styles.itemResponsive}
             >
               SIGN OUT
             </NavLink>
