@@ -150,7 +150,6 @@ const Product = ({
               <i className="fas fa-truck fa-lg"></i>
               <p>Free shipping on purchases from 200 dollars or more.</p>
             </div>
-            <p className={styles.calculateSend}>Calculo de envio - CP</p>
             <ReactCircleModal
               style={{
                 padding: "0",
